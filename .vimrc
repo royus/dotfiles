@@ -1,26 +1,22 @@
 "20160705
-"neobundle
-if has('vim_starting')
-    set runtimepath+=~/.vim/bundle/neobundle.vim
+"dein
+if &compatible
+    set nocompatible
 endif
-call neobundle#begin(expand('~/.vim/bundle/'))
-    NeoBundleFetch 'Shougo/neobundle.vim'
-    "plugins here!
-    NeoBundle 'scrooloose/nerdtree'
-    NeoBundle 'tpope/vim-surround'
-    NeoBundle 'nathanaelkane/vim-indent-guides'
-    NeoBundle 'bronson/vim-trailing-whitespace'
-    NeoBundle 'tomtom/tcomment_vim'
-    NeoBundle 'itchyny/lightline.vim'
-    NeoBundle 'mattn/emmet-vim'
+set runtimepath^=~/.vim/bundle/dein.vim
+call dein#begin(expand('~/.vim/bundle/'))
+call dein#add('shogo/dein')
 
-    NeoBundle 'w0ng/vim-hybrid'
-    " NeoBundle 'nanotech/jellybeans.vim'
-    " NeoBundle 'jpo/vim-railscasts-theme'
-    " NeoBundle 'tomasr/molokai'
-    " NeoBundle 'jacoborus/tender'
-    " NeoBundle 'morhetz/gruvbox'
-call neobundle#end()
+call dein#add('scrooloose/nerdtree')
+call dein#add('tpope/vim-surround')
+call dein#add('nathanaelkane/vim-indent-guides')
+call dein#add('bronson/vim-trailing-whitespace')
+call dein#add('tomtom/tcomment_vim')
+call dein#add('itchyny/lightline.vim')
+call dein#add('mattn/emmet-vim')
+call dein#add('w0ng/vim-hybrid')
+
+call dein#end()
 filetype plugin indent on
 
 "appearence
