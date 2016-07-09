@@ -1,4 +1,4 @@
-"20160705
+"20160710
 "dein
 if &compatible
     set nocompatible
