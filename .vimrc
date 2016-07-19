@@ -1,4 +1,5 @@
-"20160718
+"Last Change: 2016/07/19 18:00:08.
+
 "dein
 if &compatible
 	set nocompatible
@@ -9,11 +10,14 @@ call dein#add('Shougo/dein.vim')
 
 call dein#add('scrooloose/nerdtree')
 call dein#add('tpope/vim-surround')
-call dein#add('bronson/vim-trailing-whitespace')
+" call dein#add('bronson/vim-trailing-whitespace')
 call dein#add('tomtom/tcomment_vim')
 call dein#add('itchyny/lightline.vim')
+call dein#add('itchyny/calendar.vim')
 call dein#add('mattn/emmet-vim')
 call dein#add('w0ng/vim-hybrid')
+call dein#add('easymotion/vim-easymotion')
+call dein#add('vim-scripts/autodate.vim')
 
 call dein#end()
 filetype plugin indent on
@@ -125,6 +129,10 @@ inoremap <C-k> <Up>
 inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 cnoremap <C-l> <right>
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 nnoremap <Space> <NOP>
 vnoremap <Space> <NOP>
 nnoremap <Space>h  ^
@@ -138,10 +146,12 @@ nnoremap <silent> ]B :blast<CR>
 nnoremap <expr> gg line(".")==1 ? 'G':'gg'
 
 "esc
+noremap  <C-@> <Esc>
 inoremap <silent> jj  <Esc>
 vnoremap <Tab> <Esc>
 
-"functions
+":wq
+nnoremap Q  <Nop>
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 nnoremap <Space>w :<C-u>w<CR>
@@ -152,21 +162,36 @@ function! s:SU_W()
 endfunction
 nnoremap <Space>q :<C-u>q<CR>
 nnoremap <Space>Q :<C-u>q!<CR>
+
+"plugins
+nnoremap <Space>n :NERDTreeToggle<CR>
+nnoremap <Space>c :Calendar<CR>
+nnoremap <F10> 1ggOLast Change: .<CR><Esc>
+let autodate_format = '%Y/%m/%d %H:%M:%S'
+
+"functions
+let mapleader=","
 nnoremap Y y$
+nnoremap <Space>i gg=<S-g><C-o><C-o>
+nnoremap <Space>v 0v$h
+nnoremap <Space>d 0v$hx
+nnoremap <Space>y 0v$hy
+vnoremap <Space>p "0p
 nnoremap + <C-a>
 nnoremap - <C-x>
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
+nnoremap <CR> i<CR><Esc>
 nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
 nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
 nnoremap gs :<C-u>%s///g<Left><Left><Left>
 vnoremap gs :s///g<Left><Left><Left>
-nnoremap <C-n> :NERDTreeToggle<CR>
 command! RUN call s:RUN()
 nnoremap <F5> :RUN<CR>
 inoremap <F5> <Esc>:RUN<CR>
 vnoremap <F5> <Esc>:RUN<CR>
 function! s:RUN()
+	:w
 	let e = expand("%:e")
 	if e == "c"
 		:GCC
@@ -181,6 +206,9 @@ function! s:RUN()
 	endif
 	if e == "py"
 		:!python %
+	endif
+	if e == "ml"
+		:!ocaml -init %
 	endif
 endfunction
 command! GCC call s:GCC()
