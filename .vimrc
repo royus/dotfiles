@@ -1,4 +1,4 @@
-"Last Change: 2016/07/19 18:00:08.
+"Last Change: 2016/07/21 17:57:04.
 
 "dein
 if &compatible
@@ -7,23 +7,49 @@ endif
 set runtimepath^=~/.vim/bundle/dein.vim
 call dein#begin(expand('~/.vim/bundle/'))
 call dein#add('Shougo/dein.vim')
-
+"functions
 call dein#add('scrooloose/nerdtree')
-call dein#add('tpope/vim-surround')
-" call dein#add('bronson/vim-trailing-whitespace')
-call dein#add('tomtom/tcomment_vim')
-call dein#add('itchyny/lightline.vim')
-call dein#add('itchyny/calendar.vim')
-call dein#add('mattn/emmet-vim')
-call dein#add('w0ng/vim-hybrid')
-call dein#add('easymotion/vim-easymotion')
 call dein#add('vim-scripts/autodate.vim')
+call dein#add('Shougo/neocomplete.vim')
+call dein#add('itchyny/calendar.vim')
+"input
+call dein#add('tpope/vim-surround')
+call dein#add('tomtom/tcomment_vim')
+call dein#add('mattn/emmet-vim')
+"appearence
+call dein#add('w0ng/vim-hybrid')
+call dein#add('itchyny/lightline.vim')
 
 call dein#end()
 filetype plugin indent on
 if dein#check_install()
 	call dein#install()
 endif
+
+
+"plugins
+nnoremap <Space>n :NERDTreeToggle<CR>
+nnoremap <Space>c :Calendar<CR>
+"autodate
+nnoremap <F10> 1ggOLast Change: .<CR><Esc>
+let autodate_format = '%Y/%m/%d %H:%M:%S'
+let autodate_lines  = 3
+"lightline
+set laststatus=2
+set noshowmode
+let g:lightline = {
+			\ 'colorscheme': 'jellybeans',
+			\ }
+"neocomplete
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#sources#dictionary#dictionaries = {
+			\ 'default' : '',
+			\ 'vimshell' : $HOME.'/.vimshell_hist',
+			\ 'scheme' : $HOME.'/.gosh_completions'
+			\ }
 
 
 "appearence
@@ -41,13 +67,6 @@ highlight normal ctermbg=none
 highlight clear CursorLine
 highlight SpecialKey ctermbg=NONE ctermfg=black
 highlight MatchParen ctermfg=darkblue ctermbg=black
-
-"lightline
-set laststatus=2
-set noshowmode
-let g:lightline = {
-			\ 'colorscheme': 'jellybeans',
-			\ }
 
 
 "encoding
@@ -163,14 +182,7 @@ endfunction
 nnoremap <Space>q :<C-u>q<CR>
 nnoremap <Space>Q :<C-u>q!<CR>
 
-"plugins
-nnoremap <Space>n :NERDTreeToggle<CR>
-nnoremap <Space>c :Calendar<CR>
-nnoremap <F10> 1ggOLast Change: .<CR><Esc>
-let autodate_format = '%Y/%m/%d %H:%M:%S'
-
 "functions
-let mapleader=","
 nnoremap Y y$
 nnoremap <Space>i gg=<S-g><C-o><C-o>
 nnoremap <Space>v 0v$h
