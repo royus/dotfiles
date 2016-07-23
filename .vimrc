@@ -1,4 +1,5 @@
-"Last Change: 2016/07/21 17:57:04.
+"Last Change: 2016/07/23 14:55:03.
+
 
 "dein
 if &compatible
@@ -8,13 +9,16 @@ set runtimepath^=~/.vim/bundle/dein.vim
 call dein#begin(expand('~/.vim/bundle/'))
 call dein#add('Shougo/dein.vim')
 "functions
-call dein#add('scrooloose/nerdtree')
 call dein#add('vim-scripts/autodate.vim')
-call dein#add('Shougo/neocomplete.vim')
 call dein#add('itchyny/calendar.vim')
+call dein#add('Shougo/neocomplete.vim')
+call dein#add('Shougo/neosnippet.vim')
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('scrooloose/nerdtree')
+call dein#add('scrooloose/syntastic')
 "input
-call dein#add('tpope/vim-surround')
 call dein#add('tomtom/tcomment_vim')
+call dein#add('tpope/vim-surround')
 call dein#add('mattn/emmet-vim')
 "appearence
 call dein#add('w0ng/vim-hybrid')
@@ -28,18 +32,15 @@ endif
 
 
 "plugins
+colorscheme hybrid
 nnoremap <Space>n :NERDTreeToggle<CR>
 nnoremap <Space>c :Calendar<CR>
+let g:neosnippet#enable_snipmate_compatibility = 1
 "autodate
 nnoremap <F10> 1ggOLast Change: .<CR><Esc>
 let autodate_format = '%Y/%m/%d %H:%M:%S'
 let autodate_lines  = 3
-"lightline
-set laststatus=2
-set noshowmode
-let g:lightline = {
-			\ 'colorscheme': 'jellybeans',
-			\ }
+
 "neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
@@ -50,6 +51,19 @@ let g:neocomplete#sources#dictionary#dictionaries = {
 			\ 'vimshell' : $HOME.'/.vimshell_hist',
 			\ 'scheme' : $HOME.'/.gosh_completions'
 			\ }
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+"syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_error_symbol = 'x'
+let g:syntastic_warning_symbol = '!'
+let g:syntastic_style_error_symbol = '>>'
+let g:syntastic_style_warning_symbol = '>'
 
 
 "appearence
@@ -61,7 +75,6 @@ set background=dark
 set list listchars=tab:\|-,eol:~
 syntax on
 set t_Co=256
-colorscheme hybrid
 set display=lastline
 highlight normal ctermbg=none
 highlight clear CursorLine
@@ -71,29 +84,6 @@ highlight MatchParen ctermfg=darkblue ctermbg=black
 
 "encoding
 set encoding=utf-8 fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
-
-
-"indentation
-set smartindent autoindent
-set tabstop=4 shiftwidth=4 noexpandtab smarttab
-
-
-"searches
-set incsearch hlsearch ignorecase smartcase
-set wildignorecase
-set wildmode=list:longest,full
-nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
-nnoremap / :<C-u>set hlsearch<CR>/
-nnoremap ? :<C-u>set hlsearch<CR>?
-nnoremap * :<C-u>set hlsearch<CR>*
-nnoremap # :<C-u>set hlsearch<CR>#
-nnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzv' : ':<C-u>set hlsearch<CR>Nzv'
-nnoremap <expr> N <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>Nzv' : ':<C-u>set hlsearch<CR>nzv'
-vnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzv' : ':<C-u>set hlsearch<CR>Nzv'
-vnoremap <expr> N <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>Nzv' : ':<C-u>set hlsearch<CR>nzv'
-function! s:search_forward_p()
-	return exists('v:searchforward') ? v:searchforward : 1
-endfunction
 
 
 "foldings
@@ -120,6 +110,29 @@ function MyFoldText()
 endfunction
 
 
+"indentation
+set smartindent autoindent
+set tabstop=4 shiftwidth=4 noexpandtab smarttab
+
+
+"searches
+set incsearch hlsearch ignorecase smartcase
+set wildignorecase
+set wildmode=list:longest,full
+nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
+nnoremap / :<C-u>set hlsearch<CR>/
+nnoremap ? :<C-u>set hlsearch<CR>?
+nnoremap * :<C-u>set hlsearch<CR>*
+nnoremap # :<C-u>set hlsearch<CR>#
+nnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzv' : ':<C-u>set hlsearch<CR>Nzv'
+nnoremap <expr> N <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>Nzv' : ':<C-u>set hlsearch<CR>nzv'
+vnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzv' : ':<C-u>set hlsearch<CR>Nzv'
+vnoremap <expr> N <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>Nzv' : ':<C-u>set hlsearch<CR>nzv'
+function! s:search_forward_p()
+	return exists('v:searchforward') ? v:searchforward : 1
+endfunction
+
+
 "others
 set noswapfile
 set autochdir
@@ -143,11 +156,10 @@ nnoremap gk  k
 nnoremap gj  j
 vnoremap gk  k
 vnoremap gj  j
-inoremap <C-j> <Down>
-inoremap <C-k> <Up>
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
-cnoremap <C-l> <right>
+inoremap <C-f> <Left>
+inoremap <C-b> <Right>
+cnoremap <C-f> <Left>
+cnoremap <C-b> <Right>
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
@@ -233,3 +245,10 @@ function! s:JAVAC()
 	:w
 	:!javac %
 endfunction
+
+"lightline
+set laststatus=2
+set noshowmode
+let g:lightline = {
+			\ 'colorscheme': 'jellybeans'
+			\ }
