@@ -1,5 +1,4 @@
-"Last Change: 2016/07/23 14:55:03.
-
+"Last Change: 2016/07/24 11:26:20.
 
 "dein
 if &compatible
@@ -250,5 +249,7 @@ endfunction
 set laststatus=2
 set noshowmode
 let g:lightline = {
-			\ 'colorscheme': 'jellybeans'
+			\ 'colorscheme': 'jellybeans',
+			\ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
+			\ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
 			\ }
