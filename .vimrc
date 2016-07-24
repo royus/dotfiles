@@ -1,6 +1,6 @@
-"Last Change: 2016/07/25 01:57:00.
+"Last Change: 2016/07/25 02:05:49.
 
-"git clone https://github.com/Shougo/dein.vim.git     ~/.vim/bundle/dein.vim
+"git clone https://github.com/Shougo/dein.vim.git ~/.vim/bundle/dein.vim
 set shell=/bin/sh
 let dein_ok = 1
 let patched_font = 1
@@ -83,8 +83,10 @@ if dein_ok
 	let g:syntastic_check_on_wq = 0
 	let g:syntastic_error_symbol = 'x'
 	let g:syntastic_warning_symbol = '!'
-	let g:syntastic_style_error_symbol = '>'
-	let g:syntastic_style_warning_symbol = '!'
+	let g:syntastic_style_error_symbol = '>>'
+	let g:syntastic_style_warning_symbol = '>'
+else
+	colorscheme slate 
 endif
 
 
