@@ -1,5 +1,6 @@
-"Last Change: 2016/07/24 11:26:20.
+"Last Change: 2016/07/25 01:19:40.
 
+"git clone https://github.com/Shougo/dein.vim.git     ~/.vim/bundle/dein.vim
 "dein
 if &compatible
 	set nocompatible
@@ -39,7 +40,14 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 nnoremap <F10> 1ggOLast Change: .<CR><Esc>
 let autodate_format = '%Y/%m/%d %H:%M:%S'
 let autodate_lines  = 3
-
+"lightline
+set laststatus=2
+set noshowmode
+let g:lightline = {
+			\ 'colorscheme': 'jellybeans',
+			\ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
+			\ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
+			\ }
 "neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
@@ -61,8 +69,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_error_symbol = 'x'
 let g:syntastic_warning_symbol = '!'
-let g:syntastic_style_error_symbol = '>>'
-let g:syntastic_style_warning_symbol = '>'
+let g:syntastic_style_error_symbol = '>'
+let g:syntastic_style_warning_symbol = '!'
 
 
 "appearence
@@ -244,12 +252,3 @@ function! s:JAVAC()
 	:w
 	:!javac %
 endfunction
-
-"lightline
-set laststatus=2
-set noshowmode
-let g:lightline = {
-			\ 'colorscheme': 'jellybeans',
-			\ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
-			\ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
-			\ }
