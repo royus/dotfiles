@@ -1,76 +1,91 @@
-"Last Change: 2016/07/25 01:19:40.
+"Last Change: 2016/07/25 01:57:00.
 
 "git clone https://github.com/Shougo/dein.vim.git     ~/.vim/bundle/dein.vim
+set shell=/bin/sh
+let dein_ok = 1
+let patched_font = 1
+
 "dein
-if &compatible
-	set nocompatible
+if dein_ok
+	if &compatible
+		set nocompatible
+	endif
+	set runtimepath^=~/.vim/bundle/dein.vim
+	call dein#begin(expand('~/.vim/bundle/'))
+	call dein#add('Shougo/dein.vim')
+	"functions
+	call dein#add('vim-scripts/autodate.vim')
+	call dein#add('itchyny/calendar.vim')
+	call dein#add('Shougo/neocomplete.vim')
+	call dein#add('Shougo/neosnippet.vim')
+	call dein#add('Shougo/neosnippet-snippets')
+	call dein#add('scrooloose/nerdtree')
+	call dein#add('scrooloose/syntastic')
+	"input
+	call dein#add('tomtom/tcomment_vim')
+	call dein#add('tpope/vim-surround')
+	call dein#add('mattn/emmet-vim')
+	"appearence
+	call dein#add('w0ng/vim-hybrid')
+	call dein#add('itchyny/lightline.vim')
+	"end
+	call dein#end()
+	filetype plugin indent on
+	if dein#check_install()
+		call dein#install()
+	endif
+	"plugins
+	colorscheme hybrid
+	nnoremap <Space>n :NERDTreeToggle<CR>
+	nnoremap <Space>c :Calendar<CR>
+	let g:neosnippet#enable_snipmate_compatibility = 1
+	"autodate
+	nnoremap <F10> 1ggOLast Change: .<CR><Esc>
+	let autodate_format = '%Y/%m/%d %H:%M:%S'
+	let autodate_lines  = 3
+	"lightline
+	set laststatus=2
+	set noshowmode
+	" let g:lightline = {
+	" 			\ 'colorscheme': 'jellybeans',
+	" 			\ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
+	" 			\ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
+	" 			\ }
+	if patched_font
+		let g:lightline = {
+					\ 'colorscheme': 'jellybeans',
+					\ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
+					\ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
+					\ }
+	else
+		let g:lightline = {
+					\ 'colorscheme': 'jellybeans'
+					\ }
+	endif
+	"neocomplete
+	let g:neocomplete#enable_at_startup = 1
+	let g:neocomplete#enable_smart_case = 1
+	let g:neocomplete#sources#syntax#min_keyword_length = 3
+	let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+	let g:neocomplete#sources#dictionary#dictionaries = {
+				\ 'default' : '',
+				\ 'vimshell' : $HOME.'/.vimshell_hist',
+				\ 'scheme' : $HOME.'/.gosh_completions'
+				\ }
+	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+	"syntastic
+	set statusline+=%#warningmsg#
+	set statusline+=%{SyntasticStatuslineFlag()}
+	set statusline+=%*
+	let g:syntastic_always_populate_loc_list = 1
+	let g:syntastic_auto_loc_list = 1
+	let g:syntastic_check_on_open = 1
+	let g:syntastic_check_on_wq = 0
+	let g:syntastic_error_symbol = 'x'
+	let g:syntastic_warning_symbol = '!'
+	let g:syntastic_style_error_symbol = '>'
+	let g:syntastic_style_warning_symbol = '!'
 endif
-set runtimepath^=~/.vim/bundle/dein.vim
-call dein#begin(expand('~/.vim/bundle/'))
-call dein#add('Shougo/dein.vim')
-"functions
-call dein#add('vim-scripts/autodate.vim')
-call dein#add('itchyny/calendar.vim')
-call dein#add('Shougo/neocomplete.vim')
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
-call dein#add('scrooloose/nerdtree')
-call dein#add('scrooloose/syntastic')
-"input
-call dein#add('tomtom/tcomment_vim')
-call dein#add('tpope/vim-surround')
-call dein#add('mattn/emmet-vim')
-"appearence
-call dein#add('w0ng/vim-hybrid')
-call dein#add('itchyny/lightline.vim')
-
-call dein#end()
-filetype plugin indent on
-if dein#check_install()
-	call dein#install()
-endif
-
-
-"plugins
-colorscheme hybrid
-nnoremap <Space>n :NERDTreeToggle<CR>
-nnoremap <Space>c :Calendar<CR>
-let g:neosnippet#enable_snipmate_compatibility = 1
-"autodate
-nnoremap <F10> 1ggOLast Change: .<CR><Esc>
-let autodate_format = '%Y/%m/%d %H:%M:%S'
-let autodate_lines  = 3
-"lightline
-set laststatus=2
-set noshowmode
-let g:lightline = {
-			\ 'colorscheme': 'jellybeans',
-			\ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
-			\ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
-			\ }
-"neocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-let g:neocomplete#sources#dictionary#dictionaries = {
-			\ 'default' : '',
-			\ 'vimshell' : $HOME.'/.vimshell_hist',
-			\ 'scheme' : $HOME.'/.gosh_completions'
-			\ }
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-"syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_error_symbol = 'x'
-let g:syntastic_warning_symbol = '!'
-let g:syntastic_style_error_symbol = '>'
-let g:syntastic_style_warning_symbol = '!'
 
 
 "appearence
