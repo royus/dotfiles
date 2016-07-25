@@ -1,4 +1,4 @@
-"Last Change: 2016/07/25 02:05:49.
+"Last Change: 2016/07/25 18:25:49.
 
 "git clone https://github.com/Shougo/dein.vim.git ~/.vim/bundle/dein.vim
 set shell=/bin/sh
@@ -34,6 +34,7 @@ if dein_ok
 	if dein#check_install()
 		call dein#install()
 	endif
+
 	"plugins
 	colorscheme hybrid
 	nnoremap <Space>n :NERDTreeToggle<CR>
@@ -46,11 +47,6 @@ if dein_ok
 	"lightline
 	set laststatus=2
 	set noshowmode
-	" let g:lightline = {
-	" 			\ 'colorscheme': 'jellybeans',
-	" 			\ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
-	" 			\ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
-	" 			\ }
 	if patched_font
 		let g:lightline = {
 					\ 'colorscheme': 'jellybeans',
@@ -86,7 +82,7 @@ if dein_ok
 	let g:syntastic_style_error_symbol = '>>'
 	let g:syntastic_style_warning_symbol = '>'
 else
-	colorscheme slate 
+	colorscheme default
 endif
 
 
