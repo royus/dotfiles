@@ -1,4 +1,4 @@
-"Last Change: 2016/07/25 18:37:40.
+"Last Change: 2016/07/25 18:46:48.
 
 "git clone https://github.com/Shougo/dein.vim.git ~/.vim/bundle/dein.vim
 set shell=/bin/sh
@@ -8,18 +8,15 @@ let patched_font = 1
 let s:dein_dir = expand('~/.vim/bundle')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 "dein
-if dein_ok
-	if &compatible
-		set nocompatible
+" if dein_ok
+if &runtimepath !~# '/dein.vim'
+	if !isdirectory(s:dein_repo_dir)
+		execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 	endif
-	if &runtimepath !~# '/dein.vim'
-		if !isdirectory(s:dein_repo_dir)
-			execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-		endif
-		execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-	endif
-	" set runtimepath^=~/.vim/bundle/dein.vim
-	call dein#begin(expand('~/.vim/bundle/'))
+	execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
+if isdirectory(s:dein_repo_dir)
+	call dein#begin(s:dein_dir)
 	call dein#add('Shougo/dein.vim')
 	"functions
 	call dein#add('vim-scripts/autodate.vim')
