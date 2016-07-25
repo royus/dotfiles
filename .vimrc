@@ -1,4 +1,4 @@
-"Last Change: 2016/07/25 18:57:47.
+"Last Change: 2016/07/25 19:13:47.
 
 set shell=/bin/sh
 let patched_font = 1
@@ -168,10 +168,10 @@ set clipboard=unnamedplus
 
 "mapping&function
 "movements
-nnoremap k	 gk
-nnoremap j	 gj
-vnoremap k	 gk
-vnoremap j	 gj
+nnoremap k   gk
+nnoremap j   gj
+vnoremap k   gk
+vnoremap j   gj
 nnoremap gk  k
 nnoremap gj  j
 vnoremap gk  k
