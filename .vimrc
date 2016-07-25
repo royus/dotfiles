@@ -1,14 +1,11 @@
-"Last Change: 2016/07/25 18:46:48.
+"Last Change: 2016/07/25 18:57:47.
 
-"git clone https://github.com/Shougo/dein.vim.git ~/.vim/bundle/dein.vim
 set shell=/bin/sh
-let dein_ok = 1
 let patched_font = 1
 
+"dein
 let s:dein_dir = expand('~/.vim/bundle')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
-"dein
-" if dein_ok
 if &runtimepath !~# '/dein.vim'
 	if !isdirectory(s:dein_repo_dir)
 		execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
@@ -86,8 +83,6 @@ if isdirectory(s:dein_repo_dir)
 	let g:syntastic_warning_symbol = '!'
 	let g:syntastic_style_error_symbol = '>>'
 	let g:syntastic_style_warning_symbol = '>'
-else
-	colorscheme default
 endif
 
 
