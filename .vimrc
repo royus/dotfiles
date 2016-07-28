@@ -1,4 +1,4 @@
-"Last Change: 2016/07/25 19:13:47.
+"Last Change: 2016/07/28 14:53:56.
 
 set shell=/bin/sh
 let patched_font = 1
@@ -109,11 +109,11 @@ set encoding=utf-8 fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
 "foldings
 set foldmethod=syntax foldlevel=100
 autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
-			\		| setlocal foldmethod=manual
-			\		| endif
+			\| setlocal foldmethod=manual
+			\| endif
 autocmd InsertLeave * if &l:foldmethod ==# 'manual'
-			\		| setlocal foldmethod=syntax
-			\		| endif
+			\| setlocal foldmethod=syntax
+			\| endif
 set foldtext=MyFoldText()
 function MyFoldText()
 	let line=getline(v:foldstart)
@@ -176,25 +176,26 @@ nnoremap gk  k
 nnoremap gj  j
 vnoremap gk  k
 vnoremap gj  j
-inoremap <C-f> <Left>
-inoremap <C-b> <Right>
-cnoremap <C-f> <Left>
-cnoremap <C-b> <Right>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <Space> <NOP>
 vnoremap <Space> <NOP>
-nnoremap <Space>h  ^
-nnoremap <Space>l  $
-vnoremap <Space>h  ^
-vnoremap <Space>l  $
+nnoremap <Space>h ^
+nnoremap <Space>l $
+vnoremap <Space>h ^
+vnoremap <Space>l $
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 nnoremap <expr> gg line(".")==1 ? 'G':'gg'
+vnoremap <expr> gg line(".")==1 ? 'G':'gg'
 
 "esc
 noremap  <C-@> <Esc>
@@ -216,7 +217,7 @@ nnoremap <Space>Q :<C-u>q!<CR>
 
 "functions
 nnoremap Y y$
-nnoremap <Space>i gg=<S-g><C-o><C-o>
+nnoremap <Space>i gg=G<C-o><C-o>
 nnoremap <Space>v 0v$h
 nnoremap <Space>d 0v$hx
 nnoremap <Space>y 0v$hy
@@ -238,12 +239,21 @@ function! s:RUN()
 	:w
 	let e = expand("%:e")
 	if e == "c"
-		:GCC
+		if filereadable("Makefile")
+			:make
+		else
+			:GCC
+		endif
 		:!./.x_%:r
 	endif
 	if e == "java"
-		:JAVAC
-		:!java %:r
+		if filereadable("Makefile")
+			:make
+			:!java Main
+		else
+			:JAVAC
+			:!java %:r
+		endif
 	endif
 	if e == "rb"
 		:!ruby %
