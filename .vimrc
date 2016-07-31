@@ -1,4 +1,4 @@
-"Last Change: 2016/07/28 14:53:56.
+"Last Change: 2016/07/31 16:10:28.
 
 set shell=/bin/sh
 let patched_font = 1
@@ -23,6 +23,7 @@ if isdirectory(s:dein_repo_dir)
 	call dein#add('Shougo/neosnippet-snippets')
 	call dein#add('scrooloose/nerdtree')
 	call dein#add('scrooloose/syntastic')
+	call dein#add('modsound/gips-vim')
 	"input
 	call dein#add('tomtom/tcomment_vim')
 	call dein#add('tpope/vim-surround')
@@ -40,7 +41,7 @@ if isdirectory(s:dein_repo_dir)
 	"plugins
 	colorscheme hybrid
 	nnoremap <Space>n :NERDTreeToggle<CR>
-	nnoremap <Space>c :Calendar<CR>
+	nnoremap <Space>c :Calendar -first_day=monday<CR>
 	let g:neosnippet#enable_snipmate_compatibility = 1
 	"autodate
 	nnoremap <F10> 1ggOLast Change: .<CR><Esc>
@@ -71,6 +72,7 @@ if isdirectory(s:dein_repo_dir)
 				\ 'scheme' : $HOME.'/.gosh_completions'
 				\ }
 	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+	set completeopt=menuone
 	"syntastic
 	set statusline+=%#warningmsg#
 	set statusline+=%{SyntasticStatuslineFlag()}
@@ -87,23 +89,52 @@ endif
 
 
 "appearence
-set showcmd
-set title
-set number ruler
-set cursorline
-set background=dark
-set list listchars=tab:\|-,eol:~
 syntax on
 set t_Co=256
+set title
+set number ruler
+set showcmd
+set background=dark
+set list listchars=tab:\|-,eol:~
+set smartindent autoindent
+set tabstop=4 shiftwidth=4 noexpandtab smarttab
 set display=lastline
-highlight normal ctermbg=none
+set scrolloff=7
+set helpheight=1000
+set splitbelow splitright
+set showmatch
+set matchpairs+=<:>
+set cursorline
 highlight clear CursorLine
+highlight normal ctermbg=none
 highlight SpecialKey ctermbg=NONE ctermfg=black
 highlight MatchParen ctermfg=darkblue ctermbg=black
 
 
 "encoding
-set encoding=utf-8 fileencodings=utf-8,iso-2022-jp,euc-jp,sjis
+set encoding=utf-8 fileencodings=utf-8,iso-2022-jp,euc-jp,sjis fileencoding=utf-8
+set fileformats=unix,dos,mac fileformat=unix
+
+
+"files
+set noswapfile
+set autochdir
+set hidden
+nnoremap Q  <Nop>
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
+nnoremap <Space>w :<C-u>w<CR>
+nnoremap w<Space> :<C-u>w<CR>
+nnoremap <Space>W :<C-u>W<CR>
+nnoremap W<Space> :<C-u>W<CR>
+command! W call s:SU_W()
+function! s:SU_W()
+	:w !sudo tee %
+endfunction
+nnoremap <Space>q :<C-u>q<CR>
+nnoremap q<Space> :<C-u>q<CR>
+nnoremap <Space>Q :<C-u>q!<CR>
+nnoremap Q<Space> :<C-u>q!<CR>
 
 
 "foldings
@@ -115,7 +146,7 @@ autocmd InsertLeave * if &l:foldmethod ==# 'manual'
 			\| setlocal foldmethod=syntax
 			\| endif
 set foldtext=MyFoldText()
-function MyFoldText()
+function! MyFoldText()
 	let line=getline(v:foldstart)
 	let line=substitute(line,'/\*\|\*/\|{{{\d\=','','g')
 	let cnt = printf(' [%3s,%2s]',(v:foldend-v:foldstart+1),v:foldlevel)
@@ -128,11 +159,6 @@ function MyFoldText()
 	let line=substitute(line,'\%( \)\@<= \%( *$\)\@=','-','g')
 	return line.cnt
 endfunction
-
-
-"indentation
-set smartindent autoindent
-set tabstop=4 shiftwidth=4 noexpandtab smarttab
 
 
 "searches
@@ -154,16 +180,10 @@ endfunction
 
 
 "others
-set noswapfile
-set autochdir
-set hidden
-set scrolloff=7
 set history=100
 set backspace=start,eol,indent
 set pumheight=10
-set showmatch
-set matchpairs+=<:>
-set clipboard=unnamedplus
+set clipboard=unnamed,unnamedplus
 
 
 "mapping&function
@@ -190,6 +210,8 @@ nnoremap <Space>h ^
 nnoremap <Space>l $
 vnoremap <Space>h ^
 vnoremap <Space>l $
+nnoremap <Space>t gt
+nnoremap <Space>T gT
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
@@ -199,23 +221,18 @@ vnoremap <expr> gg line(".")==1 ? 'G':'gg'
 
 "esc
 noremap  <C-@> <Esc>
-inoremap <silent> jj  <Esc>
+imap <silent> jj  <Esc>
 vnoremap <Tab> <Esc>
 
-":wq
-nnoremap Q  <Nop>
-nnoremap ZZ <Nop>
-nnoremap ZQ <Nop>
-nnoremap <Space>w :<C-u>w<CR>
-nnoremap <Space>W :<C-u>W<CR>
-command! W call s:SU_W()
-function! s:SU_W()
-	:w !sudo tee %
-endfunction
-nnoremap <Space>q :<C-u>q<CR>
-nnoremap <Space>Q :<C-u>q!<CR>
+"input
+nnoremap <CR> i<CR><Esc>
+inoremap {<Enter> {}<Left><CR><ESC>O
+inoremap [<Enter> []<Left><CR><ESC>O
+inoremap (<Enter> ()<Left><CR><ESC>O
+nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
 
-"functions
+"making_changes
 nnoremap Y y$
 nnoremap <Space>i gg=G<C-o><C-o>
 nnoremap <Space>v 0v$h
@@ -224,17 +241,17 @@ nnoremap <Space>y 0v$hy
 vnoremap <Space>p "0p
 nnoremap + <C-a>
 nnoremap - <C-x>
+set gdefault
+nnoremap gs :<C-u>%s/
+vnoremap gs :s/
 nnoremap & :&&<CR>
 xnoremap & :&&<CR>
-nnoremap <CR> i<CR><Esc>
-nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
-nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
-nnoremap gs :<C-u>%s///g<Left><Left><Left>
-vnoremap gs :s///g<Left><Left><Left>
+
+"RUN
 command! RUN call s:RUN()
-nnoremap <F5> :RUN<CR>
-inoremap <F5> <Esc>:RUN<CR>
-vnoremap <F5> <Esc>:RUN<CR>
+nnoremap <F5> :RUN<CR>:source ~/.vimrc<CR>
+inoremap <F5> <Esc>:RUN<CR>:source ~/.vimrc<CR>
+vnoremap <F5> <Esc>:RUN<CR>:source ~/.vimrc<CR>
 function! s:RUN()
 	:w
 	let e = expand("%:e")
