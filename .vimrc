@@ -1,4 +1,4 @@
-"Last Change: 2016/07/31 16:10:28.
+"Last Change: 2016/08/08 01:32:36.
 
 set shell=/bin/sh
 let patched_font = 1
@@ -16,21 +16,31 @@ if isdirectory(s:dein_repo_dir)
 	call dein#begin(s:dein_dir)
 	call dein#add('Shougo/dein.vim')
 	"functions
-	call dein#add('vim-scripts/autodate.vim')
 	call dein#add('itchyny/calendar.vim')
-	call dein#add('Shougo/neocomplete.vim')
-	call dein#add('Shougo/neosnippet.vim')
-	call dein#add('Shougo/neosnippet-snippets')
-	call dein#add('scrooloose/nerdtree')
-	call dein#add('scrooloose/syntastic')
 	call dein#add('modsound/gips-vim')
-	"input
-	call dein#add('tomtom/tcomment_vim')
-	call dein#add('tpope/vim-surround')
-	call dein#add('mattn/emmet-vim')
+	call dein#add('thinca/vim-scouter')
+	call dein#add('scrooloose/syntastic')
+	" call dein#add('Shougo/unite.vim')
+	" call dein#add('Shougo/unite-outline')
+	" call dein#add('ujihisa/unite-colorscheme')
+	" call dein#add('Shougo/neomru.vim')
+	" call dein#add('Shougo/vimproc')
 	"appearence
 	call dein#add('w0ng/vim-hybrid')
 	call dein#add('itchyny/lightline.vim')
+	"input
+	call dein#add('vim-scripts/autodate.vim')
+	call dein#add('tomtom/tcomment_vim')
+	call dein#add('tpope/vim-surround')
+	call dein#add('mattn/emmet-vim')
+	call dein#add('Shougo/neocomplete.vim')
+	call dein#add('Shougo/neosnippet.vim')
+	call dein#add('Shougo/neosnippet-snippets')
+	call dein#add('junegunn/vim-easy-align')
+	"files
+	call dein#add('soramugi/auto-ctags.vim')
+	call dein#add('majutsushi/tagbar')
+	call dein#add('scrooloose/nerdtree')
 	"end
 	call dein#end()
 	filetype plugin indent on
@@ -40,13 +50,19 @@ if isdirectory(s:dein_repo_dir)
 
 	"plugins
 	colorscheme hybrid
+	nnoremap <F2> :NERDTreeToggle<CR>:TagbarToggle<CR>:echo<CR>
 	nnoremap <Space>n :NERDTreeToggle<CR>
-	nnoremap <Space>c :Calendar -first_day=monday<CR>
+	nnoremap <Space>c :TagbarToggle<CR>
+	nnoremap <Space>C :Calendar -first_day=monday<CR>
 	let g:neosnippet#enable_snipmate_compatibility = 1
+	let g:auto_ctags=1
 	"autodate
 	nnoremap <F10> 1ggOLast Change: .<CR><Esc>
 	let autodate_format = '%Y/%m/%d %H:%M:%S'
 	let autodate_lines  = 3
+	"easy-align
+	nmap ga <Plug>(EasyAlign)
+	xmap ga <Plug>(EasyAlign)
 	"lightline
 	set laststatus=2
 	set noshowmode
@@ -74,17 +90,27 @@ if isdirectory(s:dein_repo_dir)
 	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 	set completeopt=menuone
 	"syntastic
-	set statusline+=%#warningmsg#
-	set statusline+=%{SyntasticStatuslineFlag()}
-	set statusline+=%*
-	let g:syntastic_always_populate_loc_list = 1
-	let g:syntastic_auto_loc_list = 1
-	let g:syntastic_check_on_open = 1
-	let g:syntastic_check_on_wq = 0
-	let g:syntastic_error_symbol = 'x'
-	let g:syntastic_warning_symbol = '!'
-	let g:syntastic_style_error_symbol = '>>'
-	let g:syntastic_style_warning_symbol = '>'
+	let g:syntastic_enable_signs=1
+	let g:syntastic_auto_loc_list=2
+	let g:syntastic_mode_map = {'mode': 'passive'} 
+	" augroup AutoSyntastic
+	" 	autocmd!
+	" 	autocmd InsertLeave,TextChanged * call s:syntastic() 
+	" augroup END
+	" function! s:syntastic()
+	" 	w
+	" 	SyntasticCheck
+	" endfunction
+	"unite
+	" let g:unite_enable_start_insert=0
+	" let g:unite_source_history_yank_enable =1
+	" let g:unite_source_file_mru_limit = 200
+	" nnoremap <silent> <Space>u  :<C-u>Unite
+	" nnoremap <silent> <Space>uy :<C-u>Unite history/yank<CR>
+	" nnoremap <silent> <Space>ub :<C-u>Unite buffer<CR>
+	" nnoremap <silent> <Space>uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+	" nnoremap <silent> <Space>ur :<C-u>Unite -buffer-name=register register<CR>
+	" nnoremap <silent> <Space>uu :<C-u>Unite file_mru buffer<CR>
 endif
 
 
@@ -166,6 +192,7 @@ set incsearch hlsearch ignorecase smartcase
 set wildignorecase
 set wildmode=list:longest,full
 nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
+nnoremap <Space><Space> :<C-u>set nohlsearch<CR>
 nnoremap / :<C-u>set hlsearch<CR>/
 nnoremap ? :<C-u>set hlsearch<CR>?
 nnoremap * :<C-u>set hlsearch<CR>*
@@ -212,10 +239,8 @@ vnoremap <Space>h ^
 vnoremap <Space>l $
 nnoremap <Space>t gt
 nnoremap <Space>T gT
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
+nnoremap <Space>b :bprevious<CR>
+nnoremap <Space>B :bnext<CR>
 nnoremap <expr> gg line(".")==1 ? 'G':'gg'
 vnoremap <expr> gg line(".")==1 ? 'G':'gg'
 
@@ -225,10 +250,9 @@ imap <silent> jj  <Esc>
 vnoremap <Tab> <Esc>
 
 "input
-nnoremap <CR> i<CR><Esc>
-inoremap {<Enter> {}<Left><CR><ESC>O
-inoremap [<Enter> []<Left><CR><ESC>O
-inoremap (<Enter> ()<Left><CR><ESC>O
+inoremap {<CR> {}<Left><CR><ESC>O
+inoremap [<CR> []<Left><CR><ESC>O
+inoremap (<CR> ()<Left><CR><ESC>O
 nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
 nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
 
@@ -249,9 +273,12 @@ xnoremap & :&&<CR>
 
 "RUN
 command! RUN call s:RUN()
-nnoremap <F5> :RUN<CR>:source ~/.vimrc<CR>
-inoremap <F5> <Esc>:RUN<CR>:source ~/.vimrc<CR>
-vnoremap <F5> <Esc>:RUN<CR>:source ~/.vimrc<CR>
+nnoremap <F4> :w<CR>:source %<CR>
+inoremap <F4> <Esc>:w<CR>:source %<CR>
+vnoremap <F4> <Esc>:w<CR>:source %<CR>
+nnoremap <F5> :RUN<CR>
+inoremap <F5> <Esc>:RUN<CR>
+vnoremap <F5> <Esc>:RUN<CR>
 function! s:RUN()
 	:w
 	let e = expand("%:e")
@@ -261,9 +288,12 @@ function! s:RUN()
 		else
 			:GCC
 		endif
-		:!./.x_%:r
-	endif
-	if e == "java"
+		if filereadable("main")
+			:!./main
+		else
+			:!./.x_%:r
+		endif
+	elseif e == "java"
 		if filereadable("Makefile")
 			:make
 			:!java Main
@@ -271,14 +301,11 @@ function! s:RUN()
 			:JAVAC
 			:!java %:r
 		endif
-	endif
-	if e == "rb"
+	elseif e == "rb"
 		:!ruby %
-	endif
-	if e == "py"
+	elseif e == "py"
 		:!python %
-	endif
-	if e == "ml"
+	elseif e == "ml"
 		:!ocaml -init %
 	endif
 endfunction
