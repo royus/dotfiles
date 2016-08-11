@@ -1,10 +1,10 @@
-"Last Change: 2016/08/08 01:32:36.
+"Last Change: 2016/08/11 13:32:18.
 
 set shell=/bin/sh
 let patched_font = 1
 
 "dein
-let s:dein_dir = expand('~/.vim/bundle')
+let s:dein_dir = expand('~/vim')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if &runtimepath !~# '/dein.vim'
 	if !isdirectory(s:dein_repo_dir)
@@ -17,7 +17,7 @@ if isdirectory(s:dein_repo_dir)
 	call dein#add('Shougo/dein.vim')
 	"functions
 	call dein#add('itchyny/calendar.vim')
-	call dein#add('modsound/gips-vim')
+	call dein#add('tpope/vim-fugitive')
 	call dein#add('thinca/vim-scouter')
 	call dein#add('scrooloose/syntastic')
 	" call dein#add('Shougo/unite.vim')
@@ -29,18 +29,33 @@ if isdirectory(s:dein_repo_dir)
 	call dein#add('w0ng/vim-hybrid')
 	call dein#add('itchyny/lightline.vim')
 	"input
+	call dein#add('tpope/vim-abolish')
 	call dein#add('vim-scripts/autodate.vim')
 	call dein#add('tomtom/tcomment_vim')
-	call dein#add('tpope/vim-surround')
+	call dein#add('junegunn/vim-easy-align')
 	call dein#add('mattn/emmet-vim')
 	call dein#add('Shougo/neocomplete.vim')
 	call dein#add('Shougo/neosnippet.vim')
 	call dein#add('Shougo/neosnippet-snippets')
-	call dein#add('junegunn/vim-easy-align')
+	call dein#add('tpope/vim-surround')
 	"files
 	call dein#add('soramugi/auto-ctags.vim')
 	call dein#add('majutsushi/tagbar')
 	call dein#add('scrooloose/nerdtree')
+	"txtobj
+	call dein#add('kana/vim-textobj-user')
+	call dein#add('osyo-manga/vim-textobj-blockwise')
+	call dein#add('thinca/vim-textobj-comment')
+	call dein#add('deris/vim-textobj-enclosedsyntax')
+	call dein#add('kana/vim-textobj-fold')
+	call dein#add('kana/vim-textobj-function')
+	call dein#add('thinca/vim-textobj-function-javascript')
+	call dein#add('thinca/vim-textobj-function-perl')
+	call dein#add('mjbrownie/html-textobjects')
+	call dein#add('kana/vim-textobj-indent')
+	call dein#add('rhysd/vim-textobj-ruby')
+	call dein#add('kana/vim-textobj-underscore')
+	call dein#add('mattn/vim-textobj-url')
 	"end
 	call dein#end()
 	filetype plugin indent on
@@ -50,12 +65,8 @@ if isdirectory(s:dein_repo_dir)
 
 	"plugins
 	colorscheme hybrid
-	nnoremap <F2> :NERDTreeToggle<CR>:TagbarToggle<CR>:echo<CR>
-	nnoremap <Space>n :NERDTreeToggle<CR>
-	nnoremap <Space>c :TagbarToggle<CR>
-	nnoremap <Space>C :Calendar -first_day=monday<CR>
+	nnoremap ,C :Calendar -first_day=monday<CR>
 	let g:neosnippet#enable_snipmate_compatibility = 1
-	let g:auto_ctags=1
 	"autodate
 	nnoremap <F10> 1ggOLast Change: .<CR><Esc>
 	let autodate_format = '%Y/%m/%d %H:%M:%S'
@@ -63,6 +74,12 @@ if isdirectory(s:dein_repo_dir)
 	"easy-align
 	nmap ga <Plug>(EasyAlign)
 	xmap ga <Plug>(EasyAlign)
+	"files&ctags
+	nnoremap <F2> :NERDTreeToggle<CR>:TagbarToggle<CR>:echo<CR>
+	nnoremap ,n :NERDTreeToggle<CR>
+	let g:auto_ctags=1
+	nnoremap ,c :TagbarToggle<CR>
+	let g:tagbar_width = 25
 	"lightline
 	set laststatus=2
 	set noshowmode
@@ -92,14 +109,14 @@ if isdirectory(s:dein_repo_dir)
 	"syntastic
 	let g:syntastic_enable_signs=1
 	let g:syntastic_auto_loc_list=2
-	let g:syntastic_mode_map = {'mode': 'passive'} 
+	let g:syntastic_mode_map = {'mode': 'passive'}
 	" augroup AutoSyntastic
-	" 	autocmd!
-	" 	autocmd InsertLeave,TextChanged * call s:syntastic() 
+	"   autocmd!
+	"   autocmd InsertLeave,TextChanged * call s:syntastic()
 	" augroup END
 	" function! s:syntastic()
-	" 	w
-	" 	SyntasticCheck
+	"   w
+	"   SyntasticCheck
 	" endfunction
 	"unite
 	" let g:unite_enable_start_insert=0
@@ -111,6 +128,14 @@ if isdirectory(s:dein_repo_dir)
 	" nnoremap <silent> <Space>uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 	" nnoremap <silent> <Space>ur :<C-u>Unite -buffer-name=register register<CR>
 	" nnoremap <silent> <Space>uu :<C-u>Unite file_mru buffer<CR>
+	"abolish
+	nnoremap gs :<C-u>%Subvert/
+	vnoremap gs :Subvert/
+else
+	"abolish
+	set gdefault
+	nnoremap gs :<C-u>%s/
+	vnoremap gs :s/
 endif
 
 
@@ -146,9 +171,9 @@ set fileformats=unix,dos,mac fileformat=unix
 set noswapfile
 set autochdir
 set hidden
-nnoremap Q  <Nop>
-nnoremap ZZ <Nop>
-nnoremap ZQ <Nop>
+nnoremap Q  <NOP>
+nnoremap ZZ <NOP>
+nnoremap ZQ <NOP>
 nnoremap <Space>w :<C-u>w<CR>
 nnoremap w<Space> :<C-u>w<CR>
 nnoremap <Space>W :<C-u>W<CR>
@@ -187,6 +212,18 @@ function! MyFoldText()
 endfunction
 
 
+"history
+set history=100
+nnoremap q; <NOP>
+nnoremap <Space>: q:
+nnoremap q/ <NOP>
+nnoremap <Space>/ q/
+vnoremap q; <NOP>
+vnoremap <Space>: q:
+vnoremap q/ <NOP>
+vnoremap <Space>/ q/
+
+
 "searches
 set incsearch hlsearch ignorecase smartcase
 set wildignorecase
@@ -195,8 +232,8 @@ nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
 nnoremap <Space><Space> :<C-u>set nohlsearch<CR>
 nnoremap / :<C-u>set hlsearch<CR>/
 nnoremap ? :<C-u>set hlsearch<CR>?
-nnoremap * :<C-u>set hlsearch<CR>*
-nnoremap # :<C-u>set hlsearch<CR>#
+nnoremap * :<C-u>set hlsearch<CR>*N
+nnoremap # :<C-u>set hlsearch<CR>#N
 nnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzv' : ':<C-u>set hlsearch<CR>Nzv'
 nnoremap <expr> N <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>Nzv' : ':<C-u>set hlsearch<CR>nzv'
 vnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzv' : ':<C-u>set hlsearch<CR>Nzv'
@@ -207,7 +244,6 @@ endfunction
 
 
 "others
-set history=100
 set backspace=start,eol,indent
 set pumheight=10
 set clipboard=unnamed,unnamedplus
@@ -215,6 +251,14 @@ set clipboard=unnamed,unnamedplus
 
 "mapping&function
 "movements
+nnoremap <Up>    <NOP>
+nnoremap <Down>  <NOP>
+nnoremap <Right> <NOP>
+nnoremap <Left>  <NOP>
+inoremap <Up>    <NOP>
+inoremap <Down>  <NOP>
+inoremap <Right> <NOP>
+inoremap <Left>  <NOP>
 nnoremap k   gk
 nnoremap j   gj
 vnoremap k   gk
@@ -243,10 +287,14 @@ nnoremap <Space>b :bprevious<CR>
 nnoremap <Space>B :bnext<CR>
 nnoremap <expr> gg line(".")==1 ? 'G':'gg'
 vnoremap <expr> gg line(".")==1 ? 'G':'gg'
+autocmd BufReadPost *
+			\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+			\   exe "normal! g'\"" |
+			\ endif
 
 "esc
 noremap  <C-@> <Esc>
-imap <silent> jj  <Esc>
+inoremap <silent> jj  <Esc>
 vnoremap <Tab> <Esc>
 
 "input
@@ -255,8 +303,6 @@ inoremap [<CR> []<Left><CR><ESC>O
 inoremap (<CR> ()<Left><CR><ESC>O
 nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
 nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
-
-"making_changes
 nnoremap Y y$
 nnoremap <Space>i gg=G<C-o><C-o>
 nnoremap <Space>v 0v$h
@@ -265,11 +311,14 @@ nnoremap <Space>y 0v$hy
 vnoremap <Space>p "0p
 nnoremap + <C-a>
 nnoremap - <C-x>
-set gdefault
-nnoremap gs :<C-u>%s/
-vnoremap gs :s/
-nnoremap & :&&<CR>
-xnoremap & :&&<CR>
+function! s:remove_dust()
+	let cursor = getpos(".")
+	%s/\s\+$//ge
+	" %s/\t/    /ge
+	call setpos(".", cursor)
+	unlet cursor
+endfunction
+autocmd BufWritePre * call <SID>remove_dust()
 
 "RUN
 command! RUN call s:RUN()
