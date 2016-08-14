@@ -1,11 +1,11 @@
-"Last Change: 2016/08/11 13:42:04.
+"Last Change: 2016/08/14 12:20:44.
 
 set shell=/bin/sh
-let patched_font = 1
+let patched_font=1
 
 "dein
-let s:dein_dir = expand('~/vim')
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let s:dein_dir=expand('~/vim')
+let s:dein_repo_dir=s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 if &runtimepath !~# '/dein.vim'
 	if !isdirectory(s:dein_repo_dir)
 		execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
@@ -18,8 +18,11 @@ if isdirectory(s:dein_repo_dir)
 	"functions
 	call dein#add('itchyny/calendar.vim')
 	call dein#add('tpope/vim-fugitive')
+	call dein#add('thinca/vim-poslist')
 	call dein#add('thinca/vim-scouter')
 	call dein#add('scrooloose/syntastic')
+	call dein#add('yuratomo/w3m.vim')
+	call dein#add('LeafCage/yankround.vim')
 	" call dein#add('Shougo/unite.vim')
 	" call dein#add('Shougo/unite-outline')
 	" call dein#add('ujihisa/unite-colorscheme')
@@ -27,6 +30,7 @@ if isdirectory(s:dein_repo_dir)
 	" call dein#add('Shougo/vimproc')
 	"appearence
 	call dein#add('w0ng/vim-hybrid')
+	call dein#add('vimtaku/hl_matchit.vim')
 	call dein#add('itchyny/lightline.vim')
 	"input
 	call dein#add('tpope/vim-abolish')
@@ -34,6 +38,7 @@ if isdirectory(s:dein_repo_dir)
 	call dein#add('tomtom/tcomment_vim')
 	call dein#add('junegunn/vim-easy-align')
 	call dein#add('mattn/emmet-vim')
+	call dein#add('kana/vim-smartchr')
 	call dein#add('Shougo/neocomplete.vim')
 	call dein#add('Shougo/neosnippet.vim')
 	call dein#add('Shougo/neosnippet-snippets')
@@ -65,12 +70,12 @@ if isdirectory(s:dein_repo_dir)
 
 	"plugins
 	colorscheme hybrid
-	nnoremap ,C :Calendar -first_day=monday<CR>
-	let g:neosnippet#enable_snipmate_compatibility = 1
+	nnoremap ,c :Calendar -first_day=monday<CR>
+	let g:neosnippet#enable_snipmate_compatibility=1
 	"autodate
 	nnoremap <F10> 1ggOLast Change: .<CR><Esc>
-	let autodate_format = '%Y/%m/%d %H:%M:%S'
-	let autodate_lines  = 3
+	let autodate_format='%Y/%m/%d %H:%M:%S'
+	let autodate_lines =3
 	"easy-align
 	nmap ga <Plug>(EasyAlign)
 	xmap ga <Plug>(EasyAlign)
@@ -78,38 +83,54 @@ if isdirectory(s:dein_repo_dir)
 	nnoremap <F2> :NERDTreeToggle<CR>:TagbarToggle<CR>:echo<CR>
 	nnoremap ,n :NERDTreeToggle<CR>
 	let g:auto_ctags=1
-	nnoremap ,c :TagbarToggle<CR>
-	let g:tagbar_width = 25
+	nnoremap ,t :TagbarToggle<CR>
+	let g:tagbar_width=25
+	"hl_matchit
+	let g:hl_matchit_enable_on_vim_startup = 1
+	let g:hl_matchit_hl_groupname = 'Title'
+	let g:hl_matchit_allow_ft = 'html\|vim\|ruby\|sh'
 	"lightline
 	set laststatus=2
 	set noshowmode
 	if patched_font
-		let g:lightline = {
+		let g:lightline={
 					\ 'colorscheme': 'jellybeans',
 					\ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
 					\ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
 					\ }
 	else
-		let g:lightline = {
+		let g:lightline={
 					\ 'colorscheme': 'jellybeans'
 					\ }
 	endif
 	"neocomplete
-	let g:neocomplete#enable_at_startup = 1
-	let g:neocomplete#enable_smart_case = 1
-	let g:neocomplete#sources#syntax#min_keyword_length = 3
-	let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-	let g:neocomplete#sources#dictionary#dictionaries = {
+	let g:neocomplete#enable_at_startup=1
+	let g:neocomplete#enable_smart_case=1
+	let g:neocomplete#sources#syntax#min_keyword_length=3
+	let g:neocomplete#lock_buffer_name_pattern='\*ku\*'
+	let g:neocomplete#sources#dictionary#dictionaries={
 				\ 'default' : '',
 				\ 'vimshell' : $HOME.'/.vimshell_hist',
 				\ 'scheme' : $HOME.'/.gosh_completions'
 				\ }
 	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 	set completeopt=menuone
+	"poslist
+	nmap <C-o> <Plug>(poslist-prev-pos)
+	nmap <C-i> <Plug>(poslist-next-pos)
+	let g:poslist_hstsize=10000
+	"smartchr
+	inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
+	inoremap <expr> + smartchr#loop(' + ', '++ ', '+')
+	inoremap <expr> - smartchr#loop(' - ', '-- ', '-')
+	inoremap <expr> / smartchr#loop(' / ', '// ', '/')
+	inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
+	inoremap <expr> , smartchr#loop(', ', ',')
+	inoremap <expr> . smartchr#loop('. ', '.', '...')
 	"syntastic
 	let g:syntastic_enable_signs=1
 	let g:syntastic_auto_loc_list=2
-	let g:syntastic_mode_map = {'mode': 'passive'}
+	let g:syntastic_mode_map={'mode': 'passive'}
 	" augroup AutoSyntastic
 	"   autocmd!
 	"   autocmd InsertLeave,TextChanged * call s:syntastic()
@@ -121,27 +142,38 @@ if isdirectory(s:dein_repo_dir)
 	"unite
 	" let g:unite_enable_start_insert=0
 	" let g:unite_source_history_yank_enable =1
-	" let g:unite_source_file_mru_limit = 200
+	" let g:unite_source_file_mru_limit=200
 	" nnoremap <silent> <Space>u  :<C-u>Unite
 	" nnoremap <silent> <Space>uy :<C-u>Unite history/yank<CR>
 	" nnoremap <silent> <Space>ub :<C-u>Unite buffer<CR>
 	" nnoremap <silent> <Space>uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 	" nnoremap <silent> <Space>ur :<C-u>Unite -buffer-name=register register<CR>
 	" nnoremap <silent> <Space>uu :<C-u>Unite file_mru buffer<CR>
+	"w3m
+	nnoremap ,w :W3m<Space>google
+	nnoremap ,h :W3mHistory<CR>
+	let g:w3m#history#save_file=s:dein_dir.'/repos/github.com/yuratomo/w3m.vim/.vim_w3m_hist'
+	"yankround
+	nmap p <Plug>(yankround-p)
+	xmap p <Plug>(yankround-p)
+	nmap P <Plug>(yankround-P)
+	nmap <C-p> <Plug>(yankround-prev)
+	nmap <C-n> <Plug>(yankround-next)
+	let g:yankround_max_history=20
 	"abolish
-	nnoremap gs :<C-u>%Subvert/
-	vnoremap gs :Subvert/
+	nnoremap <Space>s :<C-u>%Subvert/
+	vnoremap <Space>s :Subvert/
 else
 	"abolish
 	set gdefault
-	nnoremap gs :<C-u>%s/
-	vnoremap gs :s/
+	nnoremap <Space>s :<C-u>%s/
+	vnoremap <Space>s :s/
 endif
 
 
 "appearence
-syntax on
 set t_Co=256
+syntax on
 set title
 set number ruler
 set showcmd
@@ -157,9 +189,10 @@ set showmatch
 set matchpairs+=<:>
 set cursorline
 highlight clear CursorLine
-highlight normal ctermbg=none
+highlight normal ctermbg=NONE
 highlight SpecialKey ctermbg=NONE ctermfg=black
-highlight MatchParen ctermfg=darkblue ctermbg=black
+highlight MatchParen ctermfg=darkblue ctermbg=NONE
+highlight Title ctermfg=cyan ctermbg=NONE
 
 
 "encoding
@@ -200,12 +233,12 @@ set foldtext=MyFoldText()
 function! MyFoldText()
 	let line=getline(v:foldstart)
 	let line=substitute(line,'/\*\|\*/\|{{{\d\=','','g')
-	let cnt = printf(' [%3s,%2s]',(v:foldend-v:foldstart+1),v:foldlevel)
+	let cnt=printf(' [%3s,%2s]',(v:foldend-v:foldstart+1),v:foldlevel)
 	let line_width=winwidth(0)-&foldcolumn
-	if &number == 1
+	if &number==1
 		let line_width -= max([&numberwidth, len(line('$'))])
 	endif
-	let alignment = line_width - len(cnt)
+	let alignment=line_width - len(cnt)
 	let line=strpart(printf('%-'.alignment.'s',line),0,alignment)
 	let line=substitute(line,'\%( \)\@<= \%( *$\)\@=','-','g')
 	return line.cnt
@@ -214,18 +247,28 @@ endfunction
 
 "history
 set history=100
-nnoremap q; <NOP>
+nnoremap q: <NOP>
 nnoremap <Space>: q:
 nnoremap q/ <NOP>
 nnoremap <Space>/ q/
-vnoremap q; <NOP>
+vnoremap q: <NOP>
 vnoremap <Space>: q:
 vnoremap q/ <NOP>
 vnoremap <Space>/ q/
 
 
+"matchit
+runtime macros/matchit.vim
+let b:match_ignorecase=1
+augroup matchit
+	autocmd!
+	autocmd FileType vim let b:match_words='\<if\>:\<elseif\>:\<else\>:\<endif\>,\<for\>:\<endfor\>,\<function\>:\<endfunction\>'
+	autocmd FileType ruby let b:match_words='\<\(module\|class\|def\|begin\|do\|if\|unless\|case\)\>:\<\(elsif\|when\|rescue\)\>:\<\(else\|ensure\)\>:\<end\>'
+augroup END
+
+
 "searches
-set incsearch hlsearch ignorecase smartcase
+set incsearch ignorecase smartcase
 set wildignorecase
 set wildmode=list:longest,full
 nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
@@ -281,10 +324,11 @@ nnoremap <Space>h ^
 nnoremap <Space>l $
 vnoremap <Space>h ^
 vnoremap <Space>l $
-nnoremap <Space>t gt
-nnoremap <Space>T gT
-nnoremap <Space>b :bprevious<CR>
-nnoremap <Space>B :bnext<CR>
+nnoremap <silent> <Space>t :$tabnew<Space>
+nnoremap K gt
+nnoremap J gT
+nnoremap H <C-o>
+nnoremap L <C-i>
 nnoremap <expr> gg line(".")==1 ? 'G':'gg'
 vnoremap <expr> gg line(".")==1 ? 'G':'gg'
 autocmd BufReadPost *
@@ -298,9 +342,12 @@ inoremap <silent> jj  <Esc>
 vnoremap <Tab> <Esc>
 
 "input
-inoremap {<CR> {}<Left><CR><ESC>O
-inoremap [<CR> []<Left><CR><ESC>O
-inoremap (<CR> ()<Left><CR><ESC>O
+inoremap { <Space>{
+inoremap [ <Space>[
+inoremap ( <Space>(
+inoremap {<CR> <Space>{}<Left><CR><ESC>O
+inoremap [<CR> <Space>[]<Left><CR><ESC>O
+inoremap (<CR> <Space>()<Left><CR><ESC>O
 nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
 nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
 nnoremap Y y$
@@ -312,7 +359,7 @@ vnoremap <Space>p "0p
 nnoremap + <C-a>
 nnoremap - <C-x>
 function! s:remove_dust()
-	let cursor = getpos(".")
+	let cursor=getpos(".")
 	%s/\s\+$//ge
 	" %s/\t/    /ge
 	call setpos(".", cursor)
@@ -330,8 +377,8 @@ inoremap <F5> <Esc>:RUN<CR>
 vnoremap <F5> <Esc>:RUN<CR>
 function! s:RUN()
 	:w
-	let e = expand("%:e")
-	if e == "c"
+	let e=expand("%:e")
+	if e=="c"
 		if filereadable("Makefile")
 			:make
 		else
@@ -342,7 +389,7 @@ function! s:RUN()
 		else
 			:!./.x_%:r
 		endif
-	elseif e == "java"
+	elseif e=="java"
 		if filereadable("Makefile")
 			:make
 			:!java Main
@@ -350,11 +397,11 @@ function! s:RUN()
 			:JAVAC
 			:!java %:r
 		endif
-	elseif e == "rb"
-		:!ruby %
-	elseif e == "py"
+	elseif e=="rb"
+		:!ruby % -w
+	elseif e=="py"
 		:!python %
-	elseif e == "ml"
+	elseif e=="ml"
 		:!ocaml -init %
 	endif
 endfunction
