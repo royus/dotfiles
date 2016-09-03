@@ -1,4 +1,4 @@
-"Last Change: 2016/08/14 12:20:44.
+"Last Change: 2016/09/03 14:51:52.
 
 set shell=/bin/sh
 let patched_font=1
@@ -23,6 +23,7 @@ if isdirectory(s:dein_repo_dir)
 	call dein#add('scrooloose/syntastic')
 	call dein#add('yuratomo/w3m.vim')
 	call dein#add('LeafCage/yankround.vim')
+	call dein#add('fuenor/qfixhowm')
 	" call dein#add('Shougo/unite.vim')
 	" call dein#add('Shougo/unite-outline')
 	" call dein#add('ujihisa/unite-colorscheme')
@@ -126,7 +127,7 @@ if isdirectory(s:dein_repo_dir)
 	inoremap <expr> / smartchr#loop(' / ', '// ', '/')
 	inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
 	inoremap <expr> , smartchr#loop(', ', ',')
-	inoremap <expr> . smartchr#loop('. ', '.', '...')
+	autocmd filetype txt inoremap <expr> . smartchr#loop('. ', '.', '...')
 	"syntastic
 	let g:syntastic_enable_signs=1
 	let g:syntastic_auto_loc_list=2
@@ -150,9 +151,15 @@ if isdirectory(s:dein_repo_dir)
 	" nnoremap <silent> <Space>ur :<C-u>Unite -buffer-name=register register<CR>
 	" nnoremap <silent> <Space>uu :<C-u>Unite file_mru buffer<CR>
 	"w3m
-	nnoremap ,w :W3m<Space>google
+	nnoremap ,w :W3mTab<Space>google
 	nnoremap ,h :W3mHistory<CR>
 	let g:w3m#history#save_file=s:dein_dir.'/repos/github.com/yuratomo/w3m.vim/.vim_w3m_hist'
+	"qfixhowm
+	let QFixHowm_Key = 'g'
+	let howm_dir             = '~/howm'
+	let howm_filename        = '%Y/%m/%Y%m%d_%H%M%S.txt'
+	let howm_fileencoding    = 'utf-8'
+	let howm_fileformat      = 'unix'
 	"yankround
 	nmap p <Plug>(yankround-p)
 	xmap p <Plug>(yankround-p)
@@ -290,9 +297,15 @@ endfunction
 set backspace=start,eol,indent
 set pumheight=10
 set clipboard=unnamed,unnamedplus
+set ambiwidth=double
+autocmd BufReadPost *
+			\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+			\   exe "normal! g'\"" |
+			\ endif
 
 
 "mapping&function
+set timeout timeoutlen=3000 ttimeoutlen=100
 "movements
 nnoremap <Up>    <NOP>
 nnoremap <Down>  <NOP>
@@ -322,8 +335,12 @@ nnoremap <Space> <NOP>
 vnoremap <Space> <NOP>
 nnoremap <Space>h ^
 nnoremap <Space>l $
+nnoremap <Space>k <C-u>
+nnoremap <Space>j <C-d>
 vnoremap <Space>h ^
 vnoremap <Space>l $
+nnoremap <Space>k <C-u>
+nnoremap <Space>j <C-d>
 nnoremap <silent> <Space>t :$tabnew<Space>
 nnoremap K gt
 nnoremap J gT
@@ -331,23 +348,10 @@ nnoremap H <C-o>
 nnoremap L <C-i>
 nnoremap <expr> gg line(".")==1 ? 'G':'gg'
 vnoremap <expr> gg line(".")==1 ? 'G':'gg'
-autocmd BufReadPost *
-			\ if line("'\"") > 0 && line ("'\"") <= line("$") |
-			\   exe "normal! g'\"" |
-			\ endif
+nnoremap 0 ^
+vnoremap 0 ^
 
-"esc
-noremap  <C-@> <Esc>
-inoremap <silent> jj  <Esc>
-vnoremap <Tab> <Esc>
-
-"input
-inoremap { <Space>{
-inoremap [ <Space>[
-inoremap ( <Space>(
-inoremap {<CR> <Space>{}<Left><CR><ESC>O
-inoremap [<CR> <Space>[]<Left><CR><ESC>O
-inoremap (<CR> <Space>()<Left><CR><ESC>O
+"actions
 nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
 nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
 nnoremap Y y$
@@ -366,12 +370,27 @@ function! s:remove_dust()
 	unlet cursor
 endfunction
 autocmd BufWritePre * call <SID>remove_dust()
+nnoremap U <C-r>
+
+"esc
+noremap  <C-@> <Esc>
+inoremap <silent> jj  <Esc>
+vnoremap <Tab> <Esc>
+
+"input
+inoremap { <Space>{
+inoremap [ <Space>[
+inoremap ( <Space>(
+inoremap {<CR> <Space>{}<Left><CR><ESC>O
+inoremap [<CR> <Space>[]<Left><CR><ESC>O
+inoremap (<CR> <Space>()<Left><CR><ESC>O
+inoremap tl [ ]<Space>
 
 "RUN
 command! RUN call s:RUN()
-nnoremap <F4> :w<CR>:source %<CR>
-inoremap <F4> <Esc>:w<CR>:source %<CR>
-vnoremap <F4> <Esc>:w<CR>:source %<CR>
+autocmd filetype vim nnoremap <F4> :w<CR>:source %<CR>
+autocmd filetype vim inoremap <F4> <Esc>:w<CR>:source %<CR>
+autocmd filetype vim vnoremap <F4> <Esc>:w<CR>:source %<CR>
 nnoremap <F5> :RUN<CR>
 inoremap <F5> <Esc>:RUN<CR>
 vnoremap <F5> <Esc>:RUN<CR>
