@@ -1,4 +1,4 @@
-"Last Change: 2016/09/03 14:51:52.
+"Last Change: 2016/09/08 (Thu) 11:17:10.
 
 set shell=/bin/sh
 let patched_font=1
@@ -23,7 +23,6 @@ if isdirectory(s:dein_repo_dir)
 	call dein#add('scrooloose/syntastic')
 	call dein#add('yuratomo/w3m.vim')
 	call dein#add('LeafCage/yankround.vim')
-	call dein#add('fuenor/qfixhowm')
 	" call dein#add('Shougo/unite.vim')
 	" call dein#add('Shougo/unite-outline')
 	" call dein#add('ujihisa/unite-colorscheme')
@@ -71,12 +70,14 @@ if isdirectory(s:dein_repo_dir)
 
 	"plugins
 	colorscheme hybrid
-	nnoremap ,c :Calendar -first_day=monday<CR>
 	let g:neosnippet#enable_snipmate_compatibility=1
 	"autodate
 	nnoremap <F10> 1ggOLast Change: .<CR><Esc>
-	let autodate_format='%Y/%m/%d %H:%M:%S'
+	let autodate_format='%Y/%m/%d (%a) %H:%M:%S'
 	let autodate_lines =3
+	"calendar
+	let g:calendar_frame = 'default'
+	nnoremap ,c :Calendar -first_day=monday<CR>
 	"easy-align
 	nmap ga <Plug>(EasyAlign)
 	xmap ga <Plug>(EasyAlign)
@@ -114,7 +115,7 @@ if isdirectory(s:dein_repo_dir)
 				\ 'vimshell' : $HOME.'/.vimshell_hist',
 				\ 'scheme' : $HOME.'/.gosh_completions'
 				\ }
-	inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+	inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
 	set completeopt=menuone
 	"poslist
 	nmap <C-o> <Plug>(poslist-prev-pos)
@@ -154,12 +155,6 @@ if isdirectory(s:dein_repo_dir)
 	nnoremap ,w :W3mTab<Space>google
 	nnoremap ,h :W3mHistory<CR>
 	let g:w3m#history#save_file=s:dein_dir.'/repos/github.com/yuratomo/w3m.vim/.vim_w3m_hist'
-	"qfixhowm
-	let QFixHowm_Key = 'g'
-	let howm_dir             = '~/howm'
-	let howm_filename        = '%Y/%m/%Y%m%d_%H%M%S.txt'
-	let howm_fileencoding    = 'utf-8'
-	let howm_fileformat      = 'unix'
 	"yankround
 	nmap p <Plug>(yankround-p)
 	xmap p <Plug>(yankround-p)
@@ -305,6 +300,10 @@ autocmd BufReadPost *
 
 
 "mapping&function
+"unused:
+"<F3><F4><F6><F7><F8><F9>^
+"<Space> + abcefgmnruxz
+",       + abdefgijklmopqrsuvxyz
 set timeout timeoutlen=3000 ttimeoutlen=100
 "movements
 nnoremap <Up>    <NOP>
@@ -384,13 +383,29 @@ inoremap ( <Space>(
 inoremap {<CR> <Space>{}<Left><CR><ESC>O
 inoremap [<CR> <Space>[]<Left><CR><ESC>O
 inoremap (<CR> <Space>()<Left><CR><ESC>O
-inoremap tl [ ]<Space>
+
+"todo
+command! Todo edit .todo
+inoremap tl - [ ]<Space>
+nnoremap <buffer> <Enter> :call ToggleCheckbox()<CR>
+vnoremap <buffer> <Enter> :call ToggleCheckbox()<CR>
+function! ToggleCheckbox()
+	let l:line = getline('.')
+	if l:line =~ '\-\s\[\s\]'
+		let l:result = substitute(l:line, '-\s\[\s\]', '- [x]', '') . ' [' . strftime("%Y/%m/%d (%a) %H:%M:%S") . ']'
+		call setline('.', l:result)
+	elseif l:line =~ '\-\s\[x\]'
+		let l:result = substitute(substitute(l:line, '-\s\[x\]', '- [ ]', ''), '\s\[\d\{4}.\+]$', '', '')
+		call setline('.', l:result)
+	end
+endfunction
+syntax match CheckboxMark /-\s\[x\]\s.\+/ display containedin=ALL
+highlight CheckboxMark ctermfg=green
+syntax match CheckboxUnmark /-\s\[\s\]\s.\+/ display containedin=ALL
+highlight CheckboxUnmark ctermfg=red
 
 "RUN
 command! RUN call s:RUN()
-autocmd filetype vim nnoremap <F4> :w<CR>:source %<CR>
-autocmd filetype vim inoremap <F4> <Esc>:w<CR>:source %<CR>
-autocmd filetype vim vnoremap <F4> <Esc>:w<CR>:source %<CR>
 nnoremap <F5> :RUN<CR>
 inoremap <F5> <Esc>:RUN<CR>
 vnoremap <F5> <Esc>:RUN<CR>
@@ -434,3 +449,6 @@ function! s:JAVAC()
 	:w
 	:!javac %
 endfunction
+autocmd filetype vim nnoremap <F5> :w<CR>:source %<CR>
+autocmd filetype vim inoremap <F5> <Esc>:w<CR>:source %<CR>
+autocmd filetype vim vnoremap <F5> <Esc>:w<CR>:source %<CR>
