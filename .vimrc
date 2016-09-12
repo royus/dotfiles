@@ -1,16 +1,16 @@
-"Last Change: 2016/09/08 (Thu) 11:17:10.
+"Last Change: 2016/09/09 (Fri) 12:54:07.
 
 set shell=/bin/sh
 let patched_font=1
 
 "dein
 let s:dein_dir=expand('~/vim')
-let s:dein_repo_dir=s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let s:dein_repo_dir=s:dein_dir.'/repos/github.com/Shougo/dein.vim'
 if &runtimepath !~# '/dein.vim'
 	if !isdirectory(s:dein_repo_dir)
 		execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
 	endif
-	execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+	execute 'set runtimepath^='.fnamemodify(s:dein_repo_dir, ':p')
 endif
 if isdirectory(s:dein_repo_dir)
 	call dein#begin(s:dein_dir)
@@ -42,7 +42,6 @@ if isdirectory(s:dein_repo_dir)
 	call dein#add('Shougo/neocomplete.vim')
 	call dein#add('Shougo/neosnippet.vim')
 	call dein#add('Shougo/neosnippet-snippets')
-	call dein#add('tpope/vim-surround')
 	"files
 	call dein#add('soramugi/auto-ctags.vim')
 	call dein#add('majutsushi/tagbar')
@@ -303,7 +302,7 @@ autocmd BufReadPost *
 "unused:
 "<F3><F4><F6><F7><F8><F9>^
 "<Space> + abcefgmnruxz
-",       + abdefgijklmopqrsuvxyz
+"   ,    + abdefgijklmopqrsuvxyz
 set timeout timeoutlen=3000 ttimeoutlen=100
 "movements
 nnoremap <Up>    <NOP>
@@ -364,7 +363,6 @@ nnoremap - <C-x>
 function! s:remove_dust()
 	let cursor=getpos(".")
 	%s/\s\+$//ge
-	" %s/\t/    /ge
 	call setpos(".", cursor)
 	unlet cursor
 endfunction
@@ -383,8 +381,17 @@ inoremap ( <Space>(
 inoremap {<CR> <Space>{}<Left><CR><ESC>O
 inoremap [<CR> <Space>[]<Left><CR><ESC>O
 inoremap (<CR> <Space>()<Left><CR><ESC>O
+vnoremap { "zdi<C-v>{<C-R>z}<ESC>
+vnoremap } "zdi<C-v>{<C-R>z}<ESC>
+vnoremap [ "zdi<C-v>[<C-R>z]<ESC>
+vnoremap ] "zdi<C-v>[<C-R>z]<ESC>
+vnoremap ( "zdi<C-v>(<C-R>z)<ESC>
+vnoremap ) "zdi<C-v>(<C-R>z)<ESC>
+vnoremap " "zdi<C-v>"<C-R>z<C-v>"<ESC>
+vnoremap ' "zdi'<C-R>z'<ESC>
 
 "todo
+nnoremap T :Todo<CR>
 command! Todo edit .todo
 inoremap tl - [ ]<Space>
 nnoremap <buffer> <Enter> :call ToggleCheckbox()<CR>
@@ -410,44 +417,44 @@ nnoremap <F5> :RUN<CR>
 inoremap <F5> <Esc>:RUN<CR>
 vnoremap <F5> <Esc>:RUN<CR>
 function! s:RUN()
-	:w
+	w
 	let e=expand("%:e")
 	if e=="c"
 		if filereadable("Makefile")
-			:make
+			make
 		else
-			:GCC
+			GCC
 		endif
 		if filereadable("main")
-			:!./main
+			!./main
 		else
-			:!./.x_%:r
+			!./.x_%:r
 		endif
 	elseif e=="java"
 		if filereadable("Makefile")
-			:make
-			:!java Main
+			make
+			!java Main
 		else
-			:JAVAC
-			:!java %:r
+			JAVAC
+			!java %:r
 		endif
 	elseif e=="rb"
-		:!ruby % -w
+		!ruby % -w
 	elseif e=="py"
-		:!python %
+		!python %
 	elseif e=="ml"
-		:!ocaml -init %
+		!ocaml -init %
 	endif
 endfunction
 command! GCC call s:GCC()
 function! s:GCC()
-	:w
-	:!gcc % -O3 -lm -lGL -lGLU -lglut -o .x_%:r -Wall
+	w
+	!gcc % -O3 -lm -lGL -lGLU -lglut -o .x_%:r -Wall
 endfunction
 command! JAVAC call s:JAVAC()
 function! s:JAVAC()
-	:w
-	:!javac %
+	w
+	!javac %
 endfunction
 autocmd filetype vim nnoremap <F5> :w<CR>:source %<CR>
 autocmd filetype vim inoremap <F5> <Esc>:w<CR>:source %<CR>
