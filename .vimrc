@@ -1,4 +1,4 @@
-"Last Change: 2016/09/09 (Fri) 12:54:07.
+"Last Change: 2016/09/12 (Mon) 17:14:39.
 
 set shell=/bin/sh
 let patched_font=1
@@ -90,6 +90,13 @@ if isdirectory(s:dein_repo_dir)
 	let g:hl_matchit_enable_on_vim_startup = 1
 	let g:hl_matchit_hl_groupname = 'Title'
 	let g:hl_matchit_allow_ft = 'html\|vim\|ruby\|sh'
+	runtime macros/matchit.vim
+	let b:match_ignorecase=1
+	augroup matchit
+		autocmd!
+		autocmd filetype vim let b:match_words='\<if\>:\<elseif\>:\<else\>:\<endif\>,\<for\>:\<endfor\>,\<function\>:\<endfunction\>'
+		autocmd filetype ruby let b:match_words='\<\(module\|class\|def\|begin\|do\|if\|unless\|case\)\>:\<\(elsif\|when\|rescue\)\>:\<\(else\|ensure\)\>:\<end\>'
+	augroup END
 	"lightline
 	set laststatus=2
 	set noshowmode
@@ -181,7 +188,8 @@ set showcmd
 set background=dark
 set list listchars=tab:\|-,eol:~
 set smartindent autoindent
-set tabstop=4 shiftwidth=4 noexpandtab smarttab
+set tabstop=4 shiftwidth=0 noexpandtab smarttab
+" autocmd filetype vim set tabstop=2
 set display=lastline
 set scrolloff=7
 set helpheight=1000
@@ -258,16 +266,6 @@ vnoremap q/ <NOP>
 vnoremap <Space>/ q/
 
 
-"matchit
-runtime macros/matchit.vim
-let b:match_ignorecase=1
-augroup matchit
-	autocmd!
-	autocmd FileType vim let b:match_words='\<if\>:\<elseif\>:\<else\>:\<endif\>,\<for\>:\<endfor\>,\<function\>:\<endfunction\>'
-	autocmd FileType ruby let b:match_words='\<\(module\|class\|def\|begin\|do\|if\|unless\|case\)\>:\<\(elsif\|when\|rescue\)\>:\<\(else\|ensure\)\>:\<end\>'
-augroup END
-
-
 "searches
 set incsearch ignorecase smartcase
 set wildignorecase
@@ -276,8 +274,8 @@ nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
 nnoremap <Space><Space> :<C-u>set nohlsearch<CR>
 nnoremap / :<C-u>set hlsearch<CR>/
 nnoremap ? :<C-u>set hlsearch<CR>?
-nnoremap * :<C-u>set hlsearch<CR>*N
-nnoremap # :<C-u>set hlsearch<CR>#N
+nnoremap * :<C-u>set hlsearch<CR>*N:echo<CR>
+nnoremap # :<C-u>set hlsearch<CR>#N:echo<CR>
 nnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzv' : ':<C-u>set hlsearch<CR>Nzv'
 nnoremap <expr> N <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>Nzv' : ':<C-u>set hlsearch<CR>nzv'
 vnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzv' : ':<C-u>set hlsearch<CR>Nzv'
@@ -391,11 +389,11 @@ vnoremap " "zdi<C-v>"<C-R>z<C-v>"<ESC>
 vnoremap ' "zdi'<C-R>z'<ESC>
 
 "todo
-nnoremap T :Todo<CR>
-command! Todo edit .todo
-inoremap tl - [ ]<Space>
-nnoremap <buffer> <Enter> :call ToggleCheckbox()<CR>
-vnoremap <buffer> <Enter> :call ToggleCheckbox()<CR>
+nnoremap T :TodoToggle<CR>
+command! TodoToggle edit .todo
+inoremap tl <Space>- [ ]<Space>
+nnoremap <Enter> :call ToggleCheckbox()<CR>
+vnoremap <Enter> :call ToggleCheckbox()<CR>
 function! ToggleCheckbox()
 	let l:line = getline('.')
 	if l:line =~ '\-\s\[\s\]'
@@ -404,12 +402,12 @@ function! ToggleCheckbox()
 	elseif l:line =~ '\-\s\[x\]'
 		let l:result = substitute(substitute(l:line, '-\s\[x\]', '- [ ]', ''), '\s\[\d\{4}.\+]$', '', '')
 		call setline('.', l:result)
-	end
+	endif
 endfunction
-syntax match CheckboxMark /-\s\[x\]\s.\+/ display containedin=ALL
-highlight CheckboxMark ctermfg=green
-syntax match CheckboxUnmark /-\s\[\s\]\s.\+/ display containedin=ALL
-highlight CheckboxUnmark ctermfg=red
+syntax match CheckboxMark /.*\-\s\[x\]\s.\+/ display containedin=ALL
+autocmd vimenter,colorscheme * highlight CheckboxMark ctermfg=green
+syntax match CheckboxUnmark /.*\-\s\[\s\]\s.\+/ display containedin=ALL
+autocmd vimenter,colorscheme * highlight CheckboxUnmark ctermfg=red
 
 "RUN
 command! RUN call s:RUN()
