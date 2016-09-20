@@ -1,4 +1,4 @@
-"Last Change: 2016/09/12 (Mon) 17:20:38.
+"Last Change: 2016/09/19 (Mon) 22:50:46.
 
 set shell=/bin/sh
 let patched_font=1
@@ -181,7 +181,7 @@ endif
 
 "appearence
 set t_Co=256
-syntax on
+syntax enable
 set title
 set number ruler
 set showcmd
@@ -189,7 +189,7 @@ set background=dark
 set list listchars=tab:\|-,eol:~
 set smartindent autoindent
 set tabstop=4 shiftwidth=4 noexpandtab smarttab
-" autocmd filetype vim set tabstop=2
+autocmd filetype vim set tabstop=2 shiftwidth=2
 set display=lastline
 set scrolloff=7
 set helpheight=1000
@@ -391,7 +391,7 @@ vnoremap ' "zdi'<C-R>z'<ESC>
 "todo
 nnoremap T :TodoToggle<CR>
 command! TodoToggle edit .todo
-inoremap tl <Space>- [ ]<Space>
+inoremap tl - [ ]<Space>
 nnoremap <Enter> :call ToggleCheckbox()<CR>
 vnoremap <Enter> :call ToggleCheckbox()<CR>
 function! ToggleCheckbox()
@@ -404,10 +404,10 @@ function! ToggleCheckbox()
 		call setline('.', l:result)
 	endif
 endfunction
-syntax match CheckboxMark /.*\-\s\[x\]\s.\+/ display containedin=ALL
-autocmd vimenter,colorscheme * highlight CheckboxMark ctermfg=green
-syntax match CheckboxUnmark /.*\-\s\[\s\]\s.\+/ display containedin=ALL
-autocmd vimenter,colorscheme * highlight CheckboxUnmark ctermfg=red
+autocmd bufnew,bufenter * syntax match CheckboxMark /.*\-\s\[x\]\s.\+/ display containedin=ALL
+highlight CheckboxMark ctermfg=green
+autocmd bufnew,bufenter * syntax match CheckboxUnmark /.*\-\s\[\s\]\s.\+/ display containedin=ALL
+highlight CheckboxUnmark ctermfg=red
 
 "RUN
 command! RUN call s:RUN()
