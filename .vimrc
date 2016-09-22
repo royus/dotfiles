@@ -1,8 +1,8 @@
-"Last Change: 2016/09/22 (Thu) 15:49:10.
+"Last Change: 2016/09/22 (Thu) 16:02:46.
 
 set shell=/bin/sh
-let patched_font=0
-let colorscheme_no=0
+let patched_font=1
+let colorscheme_no=1
 
 "dein
 let s:dein_dir=expand('~/vim')
@@ -69,7 +69,12 @@ if isdirectory(s:dein_repo_dir)
 	endif
 
 	"plugins
-	colorscheme hybrid
+	if colorscheme_no==1
+		colorscheme hybrid
+		highlight SpecialKey ctermbg=NONE ctermfg=black
+		highlight MatchParen ctermfg=darkblue ctermbg=NONE
+		highlight Title ctermfg=cyan ctermbg=NONE
+	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	"autodate
 	nnoremap <F10> 1ggOLast Change: .<CR><Esc>
@@ -200,9 +205,6 @@ set matchpairs+=<:>
 set cursorline
 highlight clear CursorLine
 highlight normal ctermbg=NONE
-highlight SpecialKey ctermbg=NONE ctermfg=black
-highlight MatchParen ctermfg=darkblue ctermbg=NONE
-highlight Title ctermfg=cyan ctermbg=NONE
 
 
 "encoding
