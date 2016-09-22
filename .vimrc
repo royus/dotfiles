@@ -1,7 +1,8 @@
-"Last Change: 2016/09/22 (Thu) 14:20:43.
+"Last Change: 2016/09/22 (Thu) 15:49:10.
 
 set shell=/bin/sh
-let patched_font=1
+let patched_font=0
+let colorscheme_no=0
 
 "dein
 let s:dein_dir=expand('~/vim')
@@ -128,12 +129,12 @@ if isdirectory(s:dein_repo_dir)
 	nmap <C-i> <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=10000
 	"smartchr
-	inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
-	inoremap <expr> + smartchr#loop(' + ', '++ ', '+')
-	inoremap <expr> - smartchr#loop(' - ', '-- ', '-')
-	inoremap <expr> / smartchr#loop(' / ', '// ', '/')
-	inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
-	inoremap <expr> , smartchr#loop(', ', ',')
+	autocmd filetype c,java inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
+	autocmd filetype c,java inoremap <expr> + smartchr#loop(' + ', '++ ', '+')
+	autocmd filetype c,java inoremap <expr> - smartchr#loop(' - ', '-- ', '-')
+	autocmd filetype c,java inoremap <expr> / smartchr#loop(' / ', '// ', '/')
+	autocmd filetype c,java inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
+	autocmd filetype c,java inoremap <expr> , smartchr#loop(', ', ',')
 	autocmd filetype txt inoremap <expr> . smartchr#loop('. ', '.', '...')
 	"syntastic
 	let g:syntastic_enable_signs=1
