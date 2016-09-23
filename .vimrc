@@ -1,8 +1,8 @@
-"Last Change: 2016/09/22 (Thu) 16:02:46.
+"Last Change: 2016/09/22 (Thu) 16:05:40.
 
 set shell=/bin/sh
-let patched_font=1
-let colorscheme_no=1
+let patched_font=0
+let colorscheme_no=0
 
 "dein
 let s:dein_dir=expand('~/vim')
@@ -74,6 +74,7 @@ if isdirectory(s:dein_repo_dir)
 		highlight SpecialKey ctermbg=NONE ctermfg=black
 		highlight MatchParen ctermfg=darkblue ctermbg=NONE
 		highlight Title ctermfg=cyan ctermbg=NONE
+	else
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	"autodate
