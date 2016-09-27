@@ -1,8 +1,8 @@
-"Last Change: 2016/09/22 (Thu) 16:05:40.
+"Last Change: 2016/09/27 (Tue) 17:16:07.
 
 set shell=/bin/sh
-let patched_font=0
-let colorscheme_no=0
+let patched_font=1
+let colorscheme_no=1
 
 "dein
 let s:dein_dir=expand('~/vim')
