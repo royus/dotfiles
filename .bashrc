@@ -114,4 +114,3 @@ if ! shopt -oq posix; then
 fi
 
 export PS1="[\u@ \t \w]\n$ "
-set completion-ignore-case on
