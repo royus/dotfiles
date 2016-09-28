@@ -1,4 +1,4 @@
-"Last Change: 2016/09/27 (Tue) 17:16:07.
+"Last Change: 2016/09/28 (Wed) 13:46:46.
 
 set shell=/bin/sh
 let patched_font=1
@@ -408,7 +408,7 @@ function! ToggleCheckbox()
 		call setline('.', l:result)
 	endif
 endfunction
-autocmd bufnew,bufenter * syntax match CheckboxMark /.*\-\s\[x\]\s.\+/ display containedin=ALL
+autocmd bufnew,bufenter .todo syntax match CheckboxMark /.*\-\s\[x\]\s.\+/ display containedin=ALL
 highlight CheckboxMark ctermfg=darkgreen
 autocmd bufnew,bufenter * syntax match CheckboxUnmark /.*\-\s\[\s\]\s.\+/ display containedin=ALL
 highlight CheckboxUnmark ctermfg=darkred
