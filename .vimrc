@@ -1,4 +1,4 @@
-"Last Change: 2016/09/30 (Fri) 16:03:35.
+"Last Change: 2016/09/30 (Fri) 16:06:39.
 
 set shell=/bin/sh
 let patched_font=1
@@ -71,9 +71,6 @@ if isdirectory(s:dein_repo_dir)
 	"plugins
 	if colorscheme_no==1
 		colorscheme hybrid
-		highlight SpecialKey ctermbg=NONE ctermfg=black
-		highlight MatchParen ctermfg=darkblue ctermbg=NONE
-		highlight Title ctermfg=cyan ctermbg=NONE
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	"autodate
