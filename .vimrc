@@ -1,4 +1,4 @@
-"Last Change: 2016/09/28 (Wed) 13:46:46.
+"Last Change: 2016/09/30 (Fri) 16:03:35.
 
 set shell=/bin/sh
 let patched_font=1
@@ -74,7 +74,6 @@ if isdirectory(s:dein_repo_dir)
 		highlight SpecialKey ctermbg=NONE ctermfg=black
 		highlight MatchParen ctermfg=darkblue ctermbg=NONE
 		highlight Title ctermfg=cyan ctermbg=NONE
-	else
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	"autodate
@@ -179,6 +178,7 @@ if isdirectory(s:dein_repo_dir)
 	nnoremap <Space>s :<C-u>%Subvert/
 	vnoremap <Space>s :Subvert/
 else
+	let colorscheme_no=0
 	"abolish
 	set gdefault
 	nnoremap <Space>s :<C-u>%s/
@@ -206,6 +206,11 @@ set matchpairs+=<:>
 set cursorline
 highlight clear CursorLine
 highlight normal ctermbg=NONE
+if colorscheme_no==1
+	highlight SpecialKey ctermbg=NONE ctermfg=black
+	highlight MatchParen ctermfg=darkblue ctermbg=NONE
+	highlight Title ctermfg=cyan ctermbg=NONE
+endif
 
 
 "encoding
