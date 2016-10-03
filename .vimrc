@@ -1,4 +1,4 @@
-"Last Change: 2016/09/30 (Fri) 16:06:39.
+"Last Change: 2016/10/03 (Mon) 11:13:05.
 
 set shell=/bin/sh
 let patched_font=1
@@ -131,13 +131,12 @@ if isdirectory(s:dein_repo_dir)
 	nmap <C-i> <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=10000
 	"smartchr
-	autocmd filetype c,java inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
-	autocmd filetype c,java inoremap <expr> + smartchr#loop(' + ', '++ ', '+')
-	autocmd filetype c,java inoremap <expr> - smartchr#loop(' - ', '-- ', '-')
-	autocmd filetype c,java inoremap <expr> / smartchr#loop(' / ', '// ', '/')
-	autocmd filetype c,java inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
-	autocmd filetype c,java inoremap <expr> , smartchr#loop(', ', ',')
-	autocmd filetype txt inoremap <expr> . smartchr#loop('. ', '.', '...')
+	autocmd filetype c,java,text inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
+	autocmd filetype c,java,text inoremap <expr> + smartchr#loop(' + ', '++ ', '+')
+	autocmd filetype c,java,text inoremap <expr> - smartchr#loop(' - ', '-- ', '-')
+	autocmd filetype c,java,text inoremap <expr> / smartchr#loop(' / ', '// ', '/')
+	autocmd filetype c,java,text inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
+	autocmd filetype c,java,text inoremap <expr> , smartchr#loop(', ', ',')
 	"syntastic
 	let g:syntastic_enable_signs=1
 	let g:syntastic_auto_loc_list=2
@@ -354,6 +353,8 @@ nnoremap 0 ^
 vnoremap 0 ^
 
 "actions
+nnoremap ; :
+nnoremap : ;
 nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
 nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
 nnoremap Y y$
@@ -393,6 +394,33 @@ vnoremap ( "zdi<C-v>(<C-R>z)<ESC>
 vnoremap ) "zdi<C-v>(<C-R>z)<ESC>
 vnoremap " "zdi<C-v>"<C-R>z<C-v>"<ESC>
 vnoremap ' "zdi'<C-R>z'<ESC>
+autocmd filetype text inoremap .  .<Space>
+autocmd filetype text inoremap .a .<Space>A
+autocmd filetype text inoremap .b .<Space>B
+autocmd filetype text inoremap .c .<Space>C
+autocmd filetype text inoremap .d .<Space>D
+autocmd filetype text inoremap .e .<Space>E
+autocmd filetype text inoremap .f .<Space>F
+autocmd filetype text inoremap .g .<Space>G
+autocmd filetype text inoremap .h .<Space>H
+autocmd filetype text inoremap .i .<Space>I
+autocmd filetype text inoremap .j .<Space>J
+autocmd filetype text inoremap .k .<Space>K
+autocmd filetype text inoremap .l .<Space>L
+autocmd filetype text inoremap .m .<Space>M
+autocmd filetype text inoremap .n .<Space>N
+autocmd filetype text inoremap .o .<Space>O
+autocmd filetype text inoremap .p .<Space>P
+autocmd filetype text inoremap .q .<Space>Q
+autocmd filetype text inoremap .r .<Space>R
+autocmd filetype text inoremap .s .<Space>S
+autocmd filetype text inoremap .t .<Space>T
+autocmd filetype text inoremap .u .<Space>U
+autocmd filetype text inoremap .v .<Space>V
+autocmd filetype text inoremap .w .<Space>W
+autocmd filetype text inoremap .x .<Space>X
+autocmd filetype text inoremap .y .<Space>Y
+autocmd filetype text inoremap .z .<Space>Z
 
 "todo
 nnoremap T :TodoToggle<CR>
