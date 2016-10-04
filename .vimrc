@@ -1,4 +1,4 @@
-"Last Change: 2016/10/03 (Mon) 11:13:05.
+"Last Change: 2016/10/03 (Mon) 11:24:32.
 
 set shell=/bin/sh
 let patched_font=1
@@ -343,10 +343,10 @@ vnoremap <Space>l $
 nnoremap <Space>k <C-u>
 nnoremap <Space>j <C-d>
 nnoremap <silent> <Space>t :$tabnew<Space>
-nnoremap K gt
-nnoremap J gT
-nnoremap H <C-o>
-nnoremap L <C-i>
+" nnoremap K gt
+" nnoremap J gT
+" nnoremap H <C-o>
+" nnoremap L <C-i>
 nnoremap <expr> gg line(".")==1 ? 'G':'gg'
 vnoremap <expr> gg line(".")==1 ? 'G':'gg'
 nnoremap 0 ^
