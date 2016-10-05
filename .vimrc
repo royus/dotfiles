@@ -1,4 +1,4 @@
-"Last Change: 2016/10/03 (Mon) 11:24:32.
+"Last Change: 2016/10/05 (Wed) 13:47:10.
 
 set shell=/bin/sh
 let patched_font=1
@@ -84,7 +84,7 @@ if isdirectory(s:dein_repo_dir)
 	nmap ga <Plug>(EasyAlign)
 	xmap ga <Plug>(EasyAlign)
 	"files&ctags
-	nnoremap <F2> :NERDTreeToggle<CR>:TagbarToggle<CR>:echo<CR>
+	nnoremap <F2> :TodoToggle<CR>:NERDTreeToggle<CR>:TagbarToggle<CR>:echo<CR>
 	nnoremap ,n :NERDTreeToggle<CR>
 	let g:auto_ctags=1
 	nnoremap ,t :TagbarToggle<CR>
@@ -328,10 +328,12 @@ inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+nnoremap <Tab> <C-w><C-w>
+vnoremap <Tab> <C-w><C-w>
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-l> <C-w>l
 nnoremap <Space> <NOP>
 vnoremap <Space> <NOP>
 nnoremap <Space>h ^
@@ -375,56 +377,77 @@ autocmd BufWritePre * call <SID>remove_dust()
 nnoremap U <C-r>
 
 "esc
-noremap  <C-@> <Esc>
-inoremap <silent> jj  <Esc>
-vnoremap <Tab> <Esc>
+" inoremap <silent> jj  <Esc>
 
 "input
 inoremap { <Space>{
 inoremap [ <Space>[
 inoremap ( <Space>(
-inoremap {<CR> <Space>{}<Left><CR><ESC>O
-inoremap [<CR> <Space>[]<Left><CR><ESC>O
-inoremap (<CR> <Space>()<Left><CR><ESC>O
-vnoremap { "zdi<C-v>{<C-R>z}<ESC>
-vnoremap } "zdi<C-v>{<C-R>z}<ESC>
-vnoremap [ "zdi<C-v>[<C-R>z]<ESC>
-vnoremap ] "zdi<C-v>[<C-R>z]<ESC>
-vnoremap ( "zdi<C-v>(<C-R>z)<ESC>
-vnoremap ) "zdi<C-v>(<C-R>z)<ESC>
-vnoremap " "zdi<C-v>"<C-R>z<C-v>"<ESC>
-vnoremap ' "zdi'<C-R>z'<ESC>
-autocmd filetype text inoremap .  .<Space>
-autocmd filetype text inoremap .a .<Space>A
-autocmd filetype text inoremap .b .<Space>B
-autocmd filetype text inoremap .c .<Space>C
-autocmd filetype text inoremap .d .<Space>D
-autocmd filetype text inoremap .e .<Space>E
-autocmd filetype text inoremap .f .<Space>F
-autocmd filetype text inoremap .g .<Space>G
-autocmd filetype text inoremap .h .<Space>H
-autocmd filetype text inoremap .i .<Space>I
-autocmd filetype text inoremap .j .<Space>J
-autocmd filetype text inoremap .k .<Space>K
-autocmd filetype text inoremap .l .<Space>L
-autocmd filetype text inoremap .m .<Space>M
-autocmd filetype text inoremap .n .<Space>N
-autocmd filetype text inoremap .o .<Space>O
-autocmd filetype text inoremap .p .<Space>P
-autocmd filetype text inoremap .q .<Space>Q
-autocmd filetype text inoremap .r .<Space>R
-autocmd filetype text inoremap .s .<Space>S
-autocmd filetype text inoremap .t .<Space>T
-autocmd filetype text inoremap .u .<Space>U
-autocmd filetype text inoremap .v .<Space>V
-autocmd filetype text inoremap .w .<Space>W
-autocmd filetype text inoremap .x .<Space>X
-autocmd filetype text inoremap .y .<Space>Y
-autocmd filetype text inoremap .z .<Space>Z
+inoremap {<CR> <Space>{}<Left><CR><Esc>O
+inoremap [<CR> <Space>[]<Left><CR><Esc>O
+inoremap (<CR> <Space>()<Left><CR><Esc>O
+vnoremap { "zdi<C-v>{<C-R>z}<Esc>
+vnoremap } "zdi<C-v>{<C-R>z}<Esc>
+vnoremap [ "zdi<C-v>[<C-R>z]<Esc>
+vnoremap ] "zdi<C-v>[<C-R>z]<Esc>
+vnoremap ( "zdi<C-v>(<C-R>z)<Esc>
+vnoremap ) "zdi<C-v>(<C-R>z)<Esc>
+vnoremap " "zdi<C-v>"<C-R>z<C-v>"<Esc>
+vnoremap ' "zdi'<C-R>z'<Esc>
+
+"text
+autocmd filetype text inoremap .   .<Space>
+autocmd filetype text inoremap .a  .<Space>A
+autocmd filetype text inoremap .b  .<Space>B
+autocmd filetype text inoremap .c  .<Space>C
+autocmd filetype text inoremap .d  .<Space>D
+autocmd filetype text inoremap .e  .<Space>E
+autocmd filetype text inoremap .f  .<Space>F
+autocmd filetype text inoremap .g  .<Space>G
+autocmd filetype text inoremap .h  .<Space>H
+autocmd filetype text inoremap .i  .<Space>I
+autocmd filetype text inoremap .j  .<Space>J
+" autocmd filetype text inoremap .jj .<Space><Esc>
+autocmd filetype text inoremap .k  .<Space>K
+autocmd filetype text inoremap .l  .<Space>L
+autocmd filetype text inoremap .m  .<Space>M
+autocmd filetype text inoremap .n  .<Space>N
+autocmd filetype text inoremap .o  .<Space>O
+autocmd filetype text inoremap .p  .<Space>P
+autocmd filetype text inoremap .q  .<Space>Q
+autocmd filetype text inoremap .r  .<Space>R
+autocmd filetype text inoremap .s  .<Space>S
+autocmd filetype text inoremap .t  .<Space>T
+autocmd filetype text inoremap .u  .<Space>U
+autocmd filetype text inoremap .v  .<Space>V
+autocmd filetype text inoremap .w  .<Space>W
+autocmd filetype text inoremap .x  .<Space>X
+autocmd filetype text inoremap .y  .<Space>Y
+autocmd filetype text inoremap .z  .<Space>Z
 
 "todo
-nnoremap T :TodoToggle<CR>
-command! TodoToggle edit .todo
+nnoremap T :VTodoToggle<CR>
+" command! TodoToggle edit .todo
+command! TodoToggle call s:TodoToggle()
+function! s:TodoToggle()
+	let todowinnr = bufwinnr(".todo")
+	if todowinnr != -1
+		exe "normal \<c-w>".todowinnr."w"
+		bdelete
+		return
+	endif
+	10 split .todo
+endfunction
+command! VTodoToggle call s:VTodoToggle()
+function! s:VTodoToggle()
+	let todowinnr = bufwinnr(".todo")
+	if todowinnr != -1
+		exe "normal \<c-w>".todowinnr."w"
+		bdelete
+		return
+	endif
+	44 vsplit .todo
+endfunction
 inoremap tl - [ ]<Space>
 nnoremap <Enter> :call ToggleCheckbox()<CR>
 vnoremap <Enter> :call ToggleCheckbox()<CR>
@@ -449,7 +472,7 @@ nnoremap <F5> :RUN<CR>
 inoremap <F5> <Esc>:RUN<CR>
 vnoremap <F5> <Esc>:RUN<CR>
 function! s:RUN()
-	w
+	write
 	let e=expand("%:e")
 	if e=="c"
 		if filereadable("Makefile")
@@ -480,12 +503,12 @@ function! s:RUN()
 endfunction
 command! GCC call s:GCC()
 function! s:GCC()
-	w
+	write
 	!gcc % -O3 -lm -lGL -lGLU -lglut -o .x_%:r -Wall
 endfunction
 command! JAVAC call s:JAVAC()
 function! s:JAVAC()
-	w
+	write
 	!javac %
 endfunction
 autocmd filetype vim nnoremap <F5> :w<CR>:source %<CR>
