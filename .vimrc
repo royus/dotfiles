@@ -1,7 +1,7 @@
-"Last Change: 2016/10/05 (Wed) 13:47:10.
+"Last Change: 2016/10/10 (Mon) 13:19:33.
 
 set shell=/bin/sh
-let patched_font=1
+let patched_font=0
 let colorscheme_no=1
 
 "dein
