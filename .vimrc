@@ -1,19 +1,20 @@
-"Last Change: 2016/10/10 (Mon) 13:19:33.
+"Last Change: 2016/10/10 (Mon) 16:02:17.
 
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 
 "dein
-let s:dein_dir=expand('~/vim')
-let s:dein_repo_dir=s:dein_dir.'/repos/github.com/Shougo/dein.vim'
-if &runtimepath !~# '/dein.vim'
-	if !isdirectory(s:dein_repo_dir)
-		execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+if version>=704
+	let s:dein_dir=expand('~/vim')
+	let s:dein_repo_dir=s:dein_dir.'/repos/github.com/Shougo/dein.vim'
+	if &runtimepath !~# '/dein.vim'
+		if !isdirectory(s:dein_repo_dir)
+			execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+		endif
+		execute 'set runtimepath^='.fnamemodify(s:dein_repo_dir, ':p')
 	endif
-	execute 'set runtimepath^='.fnamemodify(s:dein_repo_dir, ':p')
-endif
-if isdirectory(s:dein_repo_dir)
+	" if isdirectory(s:dein_repo_dir)
 	call dein#begin(s:dein_dir)
 	call dein#add('Shougo/dein.vim')
 	"functions
@@ -504,7 +505,7 @@ endfunction
 command! GCC call s:GCC()
 function! s:GCC()
 	write
-	!gcc % -O3 -lm -lGL -lGLU -lglut -o .x_%:r -Wall
+	!gcc % -O3 -lm -o .x_%:r -Wall
 endfunction
 command! JAVAC call s:JAVAC()
 function! s:JAVAC()
