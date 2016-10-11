@@ -1,7 +1,7 @@
-"Last Change: 2016/10/11 (Tue) 12:44:41.
+"Last Change: 2016/10/11 (Tue) 17:55:23.
 
 set shell=/bin/sh
-let patched_font=1
+let patched_font=0
 let colorscheme_no=1
 
 "dein
@@ -57,7 +57,7 @@ if version>=704
 	call dein#add('kana/vim-textobj-function')
 	call dein#add('thinca/vim-textobj-function-javascript')
 	call dein#add('thinca/vim-textobj-function-perl')
-	call dein#add('mjbrownie/html-textobjects')
+	" call dein#add('mjbrownie/html-textobjects')
 	call dein#add('kana/vim-textobj-indent')
 	call dein#add('rhysd/vim-textobj-ruby')
 	call dein#add('kana/vim-textobj-underscore')
