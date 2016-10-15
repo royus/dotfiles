@@ -1,4 +1,4 @@
-"Last Change: 2016/10/11 (Tue) 17:55:23.
+"Last Change: 2016/10/15 (Sat) 19:51:07.
 
 set shell=/bin/sh
 let patched_font=0
@@ -190,7 +190,7 @@ set title
 set number ruler
 set showcmd
 set background=dark
-set list listchars=tab:\|-,eol:~
+set list listchars=eol:~,tab:\|-
 set smartindent autoindent
 set tabstop=4 shiftwidth=4 noexpandtab smarttab
 autocmd filetype vim set tabstop=2 shiftwidth=2
@@ -223,9 +223,9 @@ nnoremap Q  <NOP>
 nnoremap ZZ <NOP>
 nnoremap ZQ <NOP>
 nnoremap <Space>w :<C-u>w<CR>
-nnoremap w<Space> :<C-u>w<CR>
+" nnoremap w<Space> :<C-u>w<CR>
 nnoremap <Space>W :<C-u>W<CR>
-nnoremap W<Space> :<C-u>W<CR>
+" nnoremap W<Space> :<C-u>W<CR>
 command! W call s:SU_W()
 function! s:SU_W()
 	:w !sudo tee %
@@ -382,8 +382,11 @@ nnoremap U <C-r>
 
 "input
 inoremap { <Space>{
+inoremap } }<Space>
 inoremap [ <Space>[
+inoremap ] ]<Space>
 inoremap ( <Space>(
+inoremap ) )<Space>
 inoremap {<CR> <Space>{}<Left><CR><Esc>O
 inoremap [<CR> <Space>[]<Left><CR><Esc>O
 inoremap (<CR> <Space>()<Left><CR><Esc>O
