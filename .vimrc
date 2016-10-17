@@ -1,4 +1,4 @@
-"Last Change: 2016/10/17 (Mon) 14:19:12.
+"Last Change: 2016/10/17 (Mon) 14:27:45.
 
 set shell=/bin/sh
 let patched_font=0
@@ -132,12 +132,12 @@ if version>=704
 	nmap <C-i> <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=10000
 	"smartchr
-	autocmd filetype c,java,text inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
-	autocmd filetype c,java,text inoremap <expr> + smartchr#loop(' + ', '++ ', '+')
-	autocmd filetype c,java,text inoremap <expr> - smartchr#loop(' - ', '-- ', '-')
-	autocmd filetype c,java,text inoremap <expr> / smartchr#loop(' / ', '// ', '/')
-	autocmd filetype c,java,text inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
-	autocmd filetype c,java,text inoremap <expr> , smartchr#loop(', ', ',')
+	autocmd filetype c,java,py,text inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
+	autocmd filetype c,java,py,text inoremap <expr> + smartchr#loop(' + ', '++ ', '+')
+	autocmd filetype c,java,py,text inoremap <expr> - smartchr#loop(' - ', '-- ', '-')
+	autocmd filetype c,java,py,text inoremap <expr> / smartchr#loop(' / ', '// ', '/')
+	autocmd filetype c,java,py,text inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
+	autocmd filetype c,java,py,text inoremap <expr> , smartchr#loop(', ', ',')
 	"syntastic
 	let g:syntastic_enable_signs=1
 	let g:syntastic_auto_loc_list=2
