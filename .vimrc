@@ -1,4 +1,4 @@
-"Last Change: 2016/10/17 (Mon) 14:27:45.
+"Last Change: 2016/10/17 (Mon) 14:57:37.
 
 set shell=/bin/sh
 let patched_font=0
@@ -132,12 +132,12 @@ if version>=704
 	nmap <C-i> <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=10000
 	"smartchr
-	autocmd filetype c,java,py,text inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
-	autocmd filetype c,java,py,text inoremap <expr> + smartchr#loop(' + ', '++ ', '+')
-	autocmd filetype c,java,py,text inoremap <expr> - smartchr#loop(' - ', '-- ', '-')
-	autocmd filetype c,java,py,text inoremap <expr> / smartchr#loop(' / ', '// ', '/')
-	autocmd filetype c,java,py,text inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
-	autocmd filetype c,java,py,text inoremap <expr> , smartchr#loop(', ', ',')
+	autocmd filetype c,java,python,text inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
+	autocmd filetype c,java,python,text inoremap <expr> + smartchr#loop(' + ', '++ ', '+')
+	autocmd filetype c,java,python,text inoremap <expr> - smartchr#loop(' - ', '-- ', '-')
+	autocmd filetype c,java,python,text inoremap <expr> / smartchr#loop(' / ', '// ', '/')
+	autocmd filetype c,java,python,text inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
+	autocmd filetype c,java,python,text inoremap <expr> , smartchr#loop(', ', ',')
 	"syntastic
 	let g:syntastic_enable_signs=1
 	let g:syntastic_auto_loc_list=2
@@ -381,22 +381,25 @@ nnoremap U <C-r>
 " inoremap <silent> jj  <Esc>
 
 "input
+" inoremap { {}<Left>
 inoremap { <Space>{
 inoremap } }<Space>
+" inoremap [ []<Left>
 inoremap [ <Space>[
 inoremap ] ]<Space>
+" inoremap ( ()<Left>
 inoremap ( <Space>(
 inoremap ) )<Space>
 inoremap {<CR> <Space>{}<Left><CR><Esc>O
 inoremap [<CR> <Space>[]<Left><CR><Esc>O
 inoremap (<CR> <Space>()<Left><CR><Esc>O
-vnoremap { "zdi<C-v> {<C-R>z} <Esc>
-vnoremap } "zdi<C-v> {<C-R>z} <Esc>
-vnoremap [ "zdi<C-v> [<C-R>z] <Esc>
-vnoremap ] "zdi<C-v> [<C-R>z] <Esc>
-vnoremap ( "zdi<C-v> (<C-R>z) <Esc>
-vnoremap ) "zdi<C-v> (<C-R>z) <Esc>
-vnoremap " "zdi<C-v> "<C-R>z<C-v>" <Esc>
+vnoremap { "zdi<C-v>{<C-R>z}<Esc>
+vnoremap } "zdi<C-v>{<C-R>z}<Esc>
+vnoremap [ "zdi<C-v>[<C-R>z]<Esc>
+vnoremap ] "zdi<C-v>[<C-R>z]<Esc>
+vnoremap ( "zdi<C-v>(<C-R>z)<Esc>
+vnoremap ) "zdi<C-v>(<C-R>z)<Esc>
+vnoremap " "zdi<C-v>"<C-R>z<C-v>"<Esc>
 vnoremap ' "zdi'<C-R>z'<Esc>
 
 "text
