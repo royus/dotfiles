@@ -1,4 +1,4 @@
-"Last Change: 2016/10/15 (Sat) 19:51:07.
+"Last Change: 2016/10/17 (Mon) 14:19:12.
 
 set shell=/bin/sh
 let patched_font=0
@@ -390,13 +390,13 @@ inoremap ) )<Space>
 inoremap {<CR> <Space>{}<Left><CR><Esc>O
 inoremap [<CR> <Space>[]<Left><CR><Esc>O
 inoremap (<CR> <Space>()<Left><CR><Esc>O
-vnoremap { "zdi<C-v>{<C-R>z}<Esc>
-vnoremap } "zdi<C-v>{<C-R>z}<Esc>
-vnoremap [ "zdi<C-v>[<C-R>z]<Esc>
-vnoremap ] "zdi<C-v>[<C-R>z]<Esc>
-vnoremap ( "zdi<C-v>(<C-R>z)<Esc>
-vnoremap ) "zdi<C-v>(<C-R>z)<Esc>
-vnoremap " "zdi<C-v>"<C-R>z<C-v>"<Esc>
+vnoremap { "zdi<C-v> {<C-R>z} <Esc>
+vnoremap } "zdi<C-v> {<C-R>z} <Esc>
+vnoremap [ "zdi<C-v> [<C-R>z] <Esc>
+vnoremap ] "zdi<C-v> [<C-R>z] <Esc>
+vnoremap ( "zdi<C-v> (<C-R>z) <Esc>
+vnoremap ) "zdi<C-v> (<C-R>z) <Esc>
+vnoremap " "zdi<C-v> "<C-R>z<C-v>" <Esc>
 vnoremap ' "zdi'<C-R>z'<Esc>
 
 "text
@@ -500,7 +500,7 @@ function! s:RUN()
 	elseif e=="rb"
 		!ruby % -w
 	elseif e=="py"
-		!python %
+		!python3 %
 	elseif e=="ml"
 		!ocaml -init %
 	endif
