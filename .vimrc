@@ -1,4 +1,4 @@
-"Last Change: 2016/10/17 (Mon) 14:57:37.
+"Last Change: 2016/10/25 (Tue) 13:21:50.
 
 set shell=/bin/sh
 let patched_font=0
@@ -204,7 +204,7 @@ set cursorline
 highlight clear CursorLine
 highlight normal ctermbg=NONE
 if colorscheme_no==1
-	highlight SpecialKey ctermbg=NONE ctermfg=black
+	" highlight SpecialKey ctermbg=NONE ctermfg=black
 	highlight MatchParen ctermfg=darkblue ctermbg=NONE
 	highlight Title ctermfg=cyan ctermbg=NONE
 endif
@@ -382,17 +382,20 @@ nnoremap U <C-r>
 
 "input
 " inoremap { {}<Left>
-inoremap { <Space>{
-inoremap } }<Space>
+" inoremap { <Space>{
+" inoremap } }<Space>
 " inoremap [ []<Left>
-inoremap [ <Space>[
-inoremap ] ]<Space>
+" inoremap [ <Space>[
+" inoremap ] ]<Space>
 " inoremap ( ()<Left>
-inoremap ( <Space>(
-inoremap ) )<Space>
-inoremap {<CR> <Space>{}<Left><CR><Esc>O
-inoremap [<CR> <Space>[]<Left><CR><Esc>O
-inoremap (<CR> <Space>()<Left><CR><Esc>O
+" inoremap ( <Space>(
+" inoremap ) )<Space>
+" inoremap {<CR> <Space>{}<Left><CR><Esc>O
+" inoremap [<CR> <Space>[]<Left><CR><Esc>O
+" inoremap (<CR> <Space>()<Left><CR><Esc>O
+inoremap {<CR> {}<Left><CR><Esc>O
+inoremap [<CR> []<Left><CR><Esc>O
+inoremap (<CR> ()<Left><CR><Esc>O
 vnoremap { "zdi<C-v>{<C-R>z}<Esc>
 vnoremap } "zdi<C-v>{<C-R>z}<Esc>
 vnoremap [ "zdi<C-v>[<C-R>z]<Esc>
@@ -414,7 +417,6 @@ autocmd filetype text inoremap .g  .<Space>G
 autocmd filetype text inoremap .h  .<Space>H
 autocmd filetype text inoremap .i  .<Space>I
 autocmd filetype text inoremap .j  .<Space>J
-" autocmd filetype text inoremap .jj .<Space><Esc>
 autocmd filetype text inoremap .k  .<Space>K
 autocmd filetype text inoremap .l  .<Space>L
 autocmd filetype text inoremap .m  .<Space>M
@@ -434,12 +436,12 @@ autocmd filetype text inoremap .z  .<Space>Z
 
 "todo
 nnoremap T :VTodoToggle<CR>
-" command! TodoToggle edit .todo
 command! TodoToggle call s:TodoToggle()
 function! s:TodoToggle()
 	let todowinnr = bufwinnr(".todo")
 	if todowinnr != -1
 		exe "normal \<c-w>".todowinnr."w"
+		write
 		bdelete
 		return
 	endif
@@ -450,6 +452,7 @@ function! s:VTodoToggle()
 	let todowinnr = bufwinnr(".todo")
 	if todowinnr != -1
 		exe "normal \<c-w>".todowinnr."w"
+		write
 		bdelete
 		return
 	endif
@@ -479,7 +482,7 @@ nnoremap <F5> :RUN<CR>
 inoremap <F5> <Esc>:RUN<CR>
 vnoremap <F5> <Esc>:RUN<CR>
 function! s:RUN()
-	write
+	wall
 	let e=expand("%:e")
 	if e=="c"
 		if filereadable("Makefile")
@@ -503,7 +506,11 @@ function! s:RUN()
 	elseif e=="rb"
 		!ruby % -w
 	elseif e=="py"
-		!python3 %
+		if filereadable("main.py")
+			!python3 -B main.py
+		else
+			!python3 -B %
+		endif
 	elseif e=="ml"
 		!ocaml -init %
 	endif
