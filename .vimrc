@@ -1,4 +1,4 @@
-"Last Change: 2016/10/25 (Tue) 13:21:50.
+"Last Change: 2016/10/26 (Wed) 14:27:41.
 
 set shell=/bin/sh
 let patched_font=0
@@ -133,9 +133,9 @@ if version>=704
 	let g:poslist_hstsize=10000
 	"smartchr
 	autocmd filetype c,java,python,text inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
-	autocmd filetype c,java,python,text inoremap <expr> + smartchr#loop(' + ', '++ ', '+')
-	autocmd filetype c,java,python,text inoremap <expr> - smartchr#loop(' - ', '-- ', '-')
-	autocmd filetype c,java,python,text inoremap <expr> / smartchr#loop(' / ', '// ', '/')
+	autocmd filetype c,java,python,text inoremap <expr> + smartchr#loop(' + ', '++', '+')
+	autocmd filetype c,java,python,text inoremap <expr> - smartchr#loop(' - ', '--', '-')
+	autocmd filetype c,java,python,text inoremap <expr> / smartchr#loop(' / ', ' // ', '/')
 	autocmd filetype c,java,python,text inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
 	autocmd filetype c,java,python,text inoremap <expr> , smartchr#loop(', ', ',')
 	"syntastic
@@ -191,9 +191,10 @@ set number ruler
 set showcmd
 set background=dark
 set list listchars=eol:~,tab:\|-
+set breakindent showbreak=+++
 set smartindent autoindent
 set tabstop=4 shiftwidth=4 noexpandtab smarttab
-autocmd filetype vim set tabstop=2 shiftwidth=2
+autocmd filetype vim setl tabstop=2 shiftwidth=2
 set display=lastline
 set scrolloff=7
 set helpheight=1000
@@ -273,9 +274,9 @@ vnoremap <Space>/ q/
 
 
 "searches
-set incsearch ignorecase smartcase
-set wildignorecase
+set incsearch wrapscan ignorecase smartcase wildignorecase
 set wildmode=list:longest,full
+set wildignore=*.o,*.obj,*.pyc,*.class,*.out
 nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
 nnoremap <Space><Space> :<C-u>set nohlsearch<CR>
 nnoremap / :<C-u>set hlsearch<CR>/
@@ -404,6 +405,8 @@ vnoremap ( "zdi<C-v>(<C-R>z)<Esc>
 vnoremap ) "zdi<C-v>(<C-R>z)<Esc>
 vnoremap " "zdi<C-v>"<C-R>z<C-v>"<Esc>
 vnoremap ' "zdi'<C-R>z'<Esc>
+inoremap zl <Space>-><Space>
+inoremap zh <Space><-<Space>
 
 "text
 autocmd filetype text inoremap .   .<Space>
@@ -506,7 +509,7 @@ function! s:RUN()
 	elseif e=="rb"
 		!ruby % -w
 	elseif e=="py"
-		if filereadable("main.py")
+		if bufwinnr("main.py")!=-1
 			!python3 -B main.py
 		else
 			!python3 -B %
