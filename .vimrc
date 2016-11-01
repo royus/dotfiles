@@ -1,4 +1,4 @@
-"Last Change: 2016/10/26 (Wed) 14:27:41.
+"Last Change: 2016/10/27 (Thu) 08:50:18.
 
 set shell=/bin/sh
 let patched_font=0
@@ -297,6 +297,7 @@ set backspace=start,eol,indent
 set pumheight=10
 set clipboard=unnamed,unnamedplus
 set ambiwidth=double
+set virtualedit=block
 autocmd BufReadPost *
 			\ if line("'\"") > 0 && line ("'\"") <= line("$") |
 			\   exe "normal! g'\"" |
