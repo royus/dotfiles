@@ -1,4 +1,4 @@
-"Last Change: 2016/10/27 (Thu) 08:50:18.
+"Last Change: 2016/11/06 (Sun) 14:32:21.
 
 set shell=/bin/sh
 let patched_font=0
@@ -205,7 +205,6 @@ set cursorline
 highlight clear CursorLine
 highlight normal ctermbg=NONE
 if colorscheme_no==1
-	" highlight SpecialKey ctermbg=NONE ctermfg=black
 	highlight MatchParen ctermfg=darkblue ctermbg=NONE
 	highlight Title ctermfg=cyan ctermbg=NONE
 endif
@@ -224,9 +223,7 @@ nnoremap Q  <NOP>
 nnoremap ZZ <NOP>
 nnoremap ZQ <NOP>
 nnoremap <Space>w :<C-u>w<CR>
-" nnoremap w<Space> :<C-u>w<CR>
 nnoremap <Space>W :<C-u>W<CR>
-" nnoremap W<Space> :<C-u>W<CR>
 command! W call s:SU_W()
 function! s:SU_W()
 	:w !sudo tee %
