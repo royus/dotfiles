@@ -1,0 +1,16 @@
+"Last Change: 2016/11/06 (Sun) 14:32:22.
+
+syntax enable
+set number ruler
+set showcmd
+set smartindent autoindent
+set tabstop=4 shiftwidth=4 noexpandtab smarttab
+set scrolloff=7
+nnoremap <Space>w :<C-u>w<CR>
+nnoremap <Space>q :<C-u>q<CR>
+nnoremap q<Space> :<C-u>q<CR>
+nnoremap <Space>Q :<C-u>q!<CR>
+nnoremap Q<Space> :<C-u>q!<CR>
+set incsearch wrapscan ignorecase smartcase wildignorecase
+set backspace=start,eol,indent
+inoremap <silent> jj  <Esc>
