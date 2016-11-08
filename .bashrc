@@ -114,3 +114,4 @@ if ! shopt -oq posix; then
 fi
 
 export PS1="[\u@ \t \w]\n$ "
+alias vimrc='vim ~/.vimrc'

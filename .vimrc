@@ -1,4 +1,4 @@
-"Last Change: 2016/11/06 (Sun) 14:32:21.
+"Last Change: 2016/11/08 (Tue) 13:17:46.
 
 set shell=/bin/sh
 let patched_font=0
@@ -271,7 +271,10 @@ vnoremap <Space>/ q/
 
 
 "searches
-set incsearch wrapscan ignorecase smartcase wildignorecase
+set incsearch wrapscan ignorecase smartcase
+if version>=704
+	set wildignorecase
+endif
 set wildmode=list:longest,full
 set wildignore=*.o,*.obj,*.pyc,*.class,*.out
 nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
