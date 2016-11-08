@@ -1,4 +1,4 @@
-"Last Change: 2016/11/08 (Tue) 13:17:46.
+"Last Change: 2016/11/08 (Tue) 13:33:16.
 
 set shell=/bin/sh
 let patched_font=0
@@ -191,7 +191,9 @@ set number ruler
 set showcmd
 set background=dark
 set list listchars=eol:~,tab:\|-
-set breakindent showbreak=+++
+if version>=740
+	set breakindent showbreak=+++
+endif
 set smartindent autoindent
 set tabstop=4 shiftwidth=4 noexpandtab smarttab
 autocmd filetype vim setl tabstop=2 shiftwidth=2
