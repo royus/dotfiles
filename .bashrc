@@ -113,5 +113,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PS1="[\u@ \t \w]\n$ "
+# export PS1="[\u@ \t \w]\n$ "
+export PS1="[\033[32m\]\u@\h \[\033[00m\]\t \[\033[33m\]\w\033[00m\]]\n$ "
 alias vimrc='vim ~/.vimrc'
