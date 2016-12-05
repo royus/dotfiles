@@ -1,4 +1,4 @@
-"Last Change: 2016/11/08 (Tue) 13:42:44.
+"Last Change: 2016/11/22 (Tue) 13:54:06.
 
 set shell=/bin/sh
 let patched_font=0
@@ -132,12 +132,12 @@ if version>=704
 	nmap <C-i> <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=10000
 	"smartchr
-	autocmd filetype c,java,python,text inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
-	autocmd filetype c,java,python,text inoremap <expr> + smartchr#loop(' + ', '++', '+')
-	autocmd filetype c,java,python,text inoremap <expr> - smartchr#loop(' - ', '--', '-')
-	autocmd filetype c,java,python,text inoremap <expr> / smartchr#loop(' / ', ' // ', '/')
-	autocmd filetype c,java,python,text inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
-	autocmd filetype c,java,python,text inoremap <expr> , smartchr#loop(', ', ',')
+	" autocmd filetype c,java,python,text inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
+	" autocmd filetype c,java,python,text inoremap <expr> + smartchr#loop(' + ', '++', '+')
+	" autocmd filetype c,java,python,text inoremap <expr> - smartchr#loop(' - ', '--', '-')
+	" autocmd filetype c,java,python,text inoremap <expr> / smartchr#loop(' / ', ' // ', '/')
+	" autocmd filetype c,java,python,text inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
+	" autocmd filetype c,java,python,text inoremap <expr> , smartchr#loop(', ', ',')
 	"syntastic
 	let g:syntastic_enable_signs=1
 	let g:syntastic_auto_loc_list=2
@@ -521,6 +521,9 @@ function! s:RUN()
 		endif
 	elseif e=="ml"
 		!ocaml -init %
+	" elseif e=="v"
+		" split(expand("%"), '_')[1]
+		" !vcs -o % +v2k -RI -M sim/test_% rtl/rtl_myand.v -v storage/EDA/library/TSMC/tsmc90/SAED_EDK90nm/Digital_Standard_Cell_Library/verilog/saed90nm.v -negdelay +neg_tchk -gui
 	endif
 endfunction
 command! GCC call s:GCC()
