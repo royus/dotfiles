@@ -1,4 +1,4 @@
-"Last Change: 2016/12/07 (Wed) 12:55:24.
+"Last Change: 2016/12/07 (Wed) 14:12:16.
 
 set shell=/bin/sh
 let patched_font=0
@@ -537,4 +537,4 @@ autocmd filetype vim inoremap <F5> <Esc>:w<CR>:source %<CR>
 autocmd filetype vim vnoremap <F5> <Esc>:w<CR>:source %<CR>
 
 "template
-autocmd BufNewFile,BufRead *.c if getfsize(@%) <= 0 | 0read ~/dotfiles/template/template.c | endif
+autocmd BufNewFile,BufRead *.c if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.c | substitute/filename/\=expand('%:r')/g | endif
