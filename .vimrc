@@ -1,4 +1,4 @@
-"Last Change: 2016/11/22 (Tue) 13:54:06.
+"Last Change: 2016/12/07 (Wed) 12:55:24.
 
 set shell=/bin/sh
 let patched_font=0
@@ -14,7 +14,6 @@ if version>=704
 		endif
 		execute 'set runtimepath^='.fnamemodify(s:dein_repo_dir, ':p')
 	endif
-	" if isdirectory(s:dein_repo_dir)
 	call dein#begin(s:dein_dir)
 	call dein#add('Shougo/dein.vim')
 	"functions
@@ -25,6 +24,7 @@ if version>=704
 	call dein#add('scrooloose/syntastic')
 	call dein#add('yuratomo/w3m.vim')
 	call dein#add('LeafCage/yankround.vim')
+	call dein#add('vim-scripts/verilog.vim')
 	" call dein#add('Shougo/unite.vim')
 	" call dein#add('Shougo/unite-outline')
 	" call dein#add('ujihisa/unite-colorscheme')
@@ -40,7 +40,7 @@ if version>=704
 	call dein#add('tomtom/tcomment_vim')
 	call dein#add('junegunn/vim-easy-align')
 	call dein#add('mattn/emmet-vim')
-	call dein#add('kana/vim-smartchr')
+	" call dein#add('kana/vim-smartchr')
 	call dein#add('Shougo/neocomplete.vim')
 	call dein#add('Shougo/neosnippet.vim')
 	call dein#add('Shougo/neosnippet-snippets')
@@ -57,7 +57,6 @@ if version>=704
 	call dein#add('kana/vim-textobj-function')
 	call dein#add('thinca/vim-textobj-function-javascript')
 	call dein#add('thinca/vim-textobj-function-perl')
-	" call dein#add('mjbrownie/html-textobjects')
 	call dein#add('kana/vim-textobj-indent')
 	call dein#add('rhysd/vim-textobj-ruby')
 	call dein#add('kana/vim-textobj-underscore')
@@ -521,9 +520,6 @@ function! s:RUN()
 		endif
 	elseif e=="ml"
 		!ocaml -init %
-	" elseif e=="v"
-		" split(expand("%"), '_')[1]
-		" !vcs -o % +v2k -RI -M sim/test_% rtl/rtl_myand.v -v storage/EDA/library/TSMC/tsmc90/SAED_EDK90nm/Digital_Standard_Cell_Library/verilog/saed90nm.v -negdelay +neg_tchk -gui
 	endif
 endfunction
 command! GCC call s:GCC()
@@ -539,3 +535,6 @@ endfunction
 autocmd filetype vim nnoremap <F5> :w<CR>:source %<CR>
 autocmd filetype vim inoremap <F5> <Esc>:w<CR>:source %<CR>
 autocmd filetype vim vnoremap <F5> <Esc>:w<CR>:source %<CR>
+
+"template
+autocmd BufNewFile,BufRead *.c if getfsize(@%) <= 0 | 0read ~/dotfiles/template/template.c | endif
