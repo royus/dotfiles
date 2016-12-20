@@ -1,11 +1,12 @@
-"Last Change: 2016/12/12 (Mon) 10:52:38.
+"Last Change: 2016/12/20 (Tue) 11:38:05.
 
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
+let load_plugin=1
 
 "dein
-if version>=704
+if version>=704 && load_plugin
 	let s:dein_dir=expand('~/vim')
 	let s:dein_repo_dir=s:dein_dir.'/repos/github.com/Shougo/dein.vim'
 	if &runtimepath !~# '/dein.vim'
@@ -129,7 +130,7 @@ if version>=704
 	"poslist
 	nmap <C-o> <Plug>(poslist-prev-pos)
 	nmap <C-i> <Plug>(poslist-next-pos)
-	let g:poslist_hstsize=10000
+	let g:poslist_hstsize=100
 	"smartchr
 	" autocmd filetype c,java,python,text inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
 	" autocmd filetype c,java,python,text inoremap <expr> + smartchr#loop(' + ', '++', '+')
