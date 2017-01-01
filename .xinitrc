@@ -55,7 +55,7 @@ fi
 # exec xterm -geometry 80x66+0+0 -name login
 # exec xbacklight -dec 99
 NetworkManager
-feh --bg-fill ~/.background.jpg
+feh --bg-fill ~/.xmonad/.background.jpg
 exec xmonad
 (sleep 15s && xmodmap ~/.Xmodmap) &
 # exec xmobar
