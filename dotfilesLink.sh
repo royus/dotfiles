@@ -4,3 +4,5 @@ ln -sf ~/dotfiles/.bashrc ~/.bashrc
 ln -sf ~/dotfiles/.xmonad ~/.xmonad
 ln -sf ~/dotfiles/lighter.sh ~/lighter.sh
 ln -sf ~/dotfiles/darker.sh ~/darker.sh
+ln -sf ~/dotfiles/.xinitrc ~/.xinitrc
+ln -sf ~/dotfiles/.background.jpg ~/.background.jpg
