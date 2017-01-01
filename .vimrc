@@ -1,4 +1,4 @@
-"Last Change: 2017/01/01 (Sun) 15:03:00.
+"Last Change: 2017/01/01 (Sun) 15:09:54.
 
 set shell=/bin/sh
 let patched_font=0
@@ -7,7 +7,7 @@ let load_plugin=1
 
 "dein
 if version>=704 && load_plugin
-	let s:dein_dir=expand('~/dotfiles/.vim')
+	let s:dein_dir=expand('~/.vim')
 	let s:dein_repo_dir=s:dein_dir.'/repos/github.com/Shougo/dein.vim'
 	if &runtimepath !~# '/dein.vim'
 		if !isdirectory(s:dein_repo_dir)
