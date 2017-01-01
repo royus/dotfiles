@@ -7,7 +7,7 @@ import XMonad.Hooks.ManageDocks
 
 
 main = do
-	xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobarrc"
+	xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobar.hs"
 	xmonad $ defaultConfig
 		{ terminal           = "xterm"
 		, modMask            = mod4Mask
