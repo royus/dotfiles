@@ -1,4 +1,5 @@
 ! remove Control = Control_L
+! remove Shift = Shift_R
 keycode   8 =
 keycode   9 = Escape NoSymbol Escape
 keycode  10 = 1 exclam 1 exclam
@@ -28,7 +29,7 @@ keycode  33 = p P p P
 keycode  34 = bracketleft braceleft bracketleft braceleft
 keycode  35 = bracketright braceright bracketright braceright
 keycode  36 = BackSpace Delete BackSpace BackSpace
-keycode  37 = Control_L NoSymbol Control_L
+! keycode  37 = Control_L NoSymbol Control_L
 keycode  38 = a A a A
 keycode  39 = s S s S
 keycode  40 = d D d D
@@ -124,7 +125,7 @@ keycode 129 = KP_Decimal KP_Decimal KP_Decimal KP_Decimal
 keycode 130 = Hangul NoSymbol Hangul
 keycode 131 =
 keycode 132 = backslash bar backslash bar
-keycode 133 = Control_L NoSymbol Control_L
+! keycode 133 = Control_L NoSymbol Control_L
 keycode 134 = Super_R NoSymbol Super_R
 keycode 135 = Menu NoSymbol Menu
 keycode 136 = Cancel NoSymbol Cancel
@@ -247,7 +248,7 @@ keycode 252 =
 keycode 253 =
 keycode 254 =
 keycode 255 =
-clear Control
-add Control = Control_L
 clear Shift
-add Shift = Shift_R
+add Shift = Shift_L Shift_R
+! clear Control
+! add Control = Control_L Control_R

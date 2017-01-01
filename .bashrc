@@ -117,6 +117,7 @@ fi
 export PS1="[\[\033[32m\]\u@\h \[\033[00m\]\t \[\033[33m\]\w\[\033[00m\]]\n\$ "
 alias vimrc='vim ~/.vimrc'
 alias vi='vim'
+complete -cf sudo
 
 export PATH=/opt/carch/bin:$PATH
 export PATH=/sbin:$PATH
