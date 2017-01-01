@@ -121,8 +121,8 @@ complete -cf sudo
 
 export PATH=/opt/carch/bin:$PATH
 export PATH=/sbin:$PATH
-export PATH=usr/sbin:$PATH
-export PATH=usr/local/sbin:$PATH
+export PATH=/usr/sbin:$PATH
+export PATH=/usr/local/sbin:$PATH
 export LANG=C
 if [ -e ~/.local_bashrc ]; then
 	source .local_bashrc
