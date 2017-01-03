@@ -1,3 +1,12 @@
 XTerm*reverseVideo: on
 XTerm*VT100*font: 7x14
 URxvt*reverseVideo: on
+! Rxvt.geometry: 120x50+50+50
+! Rxvt.inheritPixmap: True
+! Rxvt.tintColor: gray70
+! Rxvt.foreground: gray80
+! Rxvt.background: gray10
+! Rxvt.cursorColor: goldenrod
+! Rxvt.fading: 10
+! Rxvt.shading: 80
+! Rxvt.scrollBar: false
