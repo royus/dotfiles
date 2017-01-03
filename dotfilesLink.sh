@@ -6,3 +6,4 @@ ln -sf ~/dotfiles/lighter.sh  ~/lighter.sh
 ln -sf ~/dotfiles/darker.sh   ~/darker.sh
 ln -sf ~/dotfiles/.xinitrc    ~/.xinitrc
 ln -sf ~/dotfiles/.Xresources ~/.Xresources
+ln -sf ~/dotfiles/.vifm       ~/.vifm
