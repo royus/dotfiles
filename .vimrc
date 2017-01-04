@@ -1,4 +1,4 @@
-"Last Change: 2017/01/01 (Sun) 15:09:54.
+"Last Change: 2017/01/04 (Wed) 22:19:16.
 
 set shell=/bin/sh
 let patched_font=0
@@ -22,7 +22,7 @@ if version>=704 && load_plugin
 	call dein#add('tpope/vim-fugitive')
 	call dein#add('thinca/vim-poslist')
 	call dein#add('thinca/vim-scouter')
-	call dein#add('scrooloose/syntastic')
+	" call dein#add('scrooloose/syntastic')
 	call dein#add('yuratomo/w3m.vim')
 	call dein#add('LeafCage/yankround.vim')
 	call dein#add('vim-scripts/verilog.vim')
@@ -132,16 +132,16 @@ if version>=704 && load_plugin
 	nmap <C-i> <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=100
 	"smartchr
-	" autocmd filetype c,java,python,text inoremap <expr> = smartchr#loop(' = ', ' == ', "=")
+	" autocmd filetype c,java,python,text inoremap <expr> = smartchr#loop(' = ', ' == ', '=')
 	" autocmd filetype c,java,python,text inoremap <expr> + smartchr#loop(' + ', '++', '+')
 	" autocmd filetype c,java,python,text inoremap <expr> - smartchr#loop(' - ', '--', '-')
 	" autocmd filetype c,java,python,text inoremap <expr> / smartchr#loop(' / ', ' // ', '/')
 	" autocmd filetype c,java,python,text inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
 	" autocmd filetype c,java,python,text inoremap <expr> , smartchr#loop(', ', ',')
 	"syntastic
-	let g:syntastic_enable_signs=1
-	let g:syntastic_auto_loc_list=2
-	let g:syntastic_mode_map={'mode': 'passive'}
+	" let g:syntastic_enable_signs=1
+	" let g:syntastic_auto_loc_list=2
+	" let g:syntastic_mode_map={'mode': 'passive'}
 	" augroup AutoSyntastic
 	"   autocmd!
 	"   autocmd InsertLeave,TextChanged * call s:syntastic()
@@ -383,9 +383,6 @@ endfunction
 autocmd BufWritePre * call <SID>remove_dust()
 nnoremap U <C-r>
 
-"esc
-" inoremap <silent> jj  <Esc>
-
 "input
 " inoremap { {}<Left>
 " inoremap { <Space>{
@@ -410,8 +407,8 @@ vnoremap ( "zdi<C-v>(<C-R>z)<Esc>
 vnoremap ) "zdi<C-v>(<C-R>z)<Esc>
 vnoremap " "zdi<C-v>"<C-R>z<C-v>"<Esc>
 vnoremap ' "zdi'<C-R>z'<Esc>
-inoremap zl <Space>-><Space>
-inoremap zh <Space><-<Space>
+inoremap zl ->
+inoremap zh <-
 
 "text
 autocmd filetype text inoremap .   .<Space>
