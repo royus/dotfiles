@@ -44,9 +44,7 @@ sudo NetworkManager
 feh --bg-fill ~/.xmonad/.background.jpg
 exec xmonad
 (sleep 15s && xmodmap ~/.Xmodmap) &
-stalonetray
-nm-applet
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
-export DefaultIMModule=fcitx
+# export DefaultIMModule=fcitx
