@@ -15,5 +15,5 @@ Config { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*-*-*"
 			]
 		, sepChar = "%"
 		, alignSep = "}{"
-		, template = "%cpu% | %memory% | %battery% }{ <fc=#ee9a00>%date%</fc> "
+		, template = "%cpu% | %memory% | %battery% }{ <fc=#ee9a00>%date%</fc>   "
 }
