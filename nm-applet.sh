@@ -1,2 +1,0 @@
-stalonetray &
-nm-applet &
