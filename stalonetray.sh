@@ -1,2 +1,3 @@
 stalonetray &
 nm-applet &
+fcitx &
