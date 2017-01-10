@@ -1,14 +1,19 @@
 
-xmonad.hs:10:1: warning: [-Wtabs]
-    Tab character found here, and in 17 further locations.
+xmonad.hs:15:1: warning: [-Wtabs]
+    Tab character found here, and in 40 further locations.
     Please use spaces instead.
 
-xmonad.hs:11:18: warning: [-Wdeprecations]
+xmonad.hs:18:39: warning: [-Wdeprecations]
     In the use of `defaultConfig'
     (imported from XMonad, but defined in XMonad.Config):
     Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
 
-xmonad.hs:17:67: warning: [-Wdeprecations]
+xmonad.hs:22:18: warning: [-Wdeprecations]
+    In the use of `defaultConfig'
+    (imported from XMonad, but defined in XMonad.Config):
+    Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
+
+xmonad.hs:28:67: warning: [-Wdeprecations]
     In the use of `defaultConfig'
     (imported from XMonad, but defined in XMonad.Config):
     Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
