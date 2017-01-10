@@ -41,7 +41,7 @@ fi
 # xterm -geometry 80x50+494+51 &
 
 sudo NetworkManager
-feh --bg-fill ~/.xmonad/.background.jpg
+# feh --bg-fill ~/.xmonad/.background.jpg
 exec xmonad
 (sleep 15s && xmodmap ~/.Xmodmap) &
 export GTK_IM_MODULE=fcitx

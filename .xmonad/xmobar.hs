@@ -5,7 +5,7 @@ Config { font = "-misc-fixed-*-*-*-*-13-*-*-*-*-*-*-*"
 		, fgColor = "grey"
 		, position = TopW L 100
 		, commands =
-			[ Run Cpu ["-L","3","-H","50","--low","green","--normal","grey","--high","red"] 10
+			[ Run Cpu ["-L","10","-H","50","--low","green","--normal","grey","--high","red"] 10
 			, Run Memory ["-t","Mem: <usedratio>%"] 10
 			-- , Run Battery ["Bat0"] 600
 			, Run Battery [] 10
