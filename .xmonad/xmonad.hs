@@ -4,11 +4,12 @@ import System.IO                       -- for xmobar
 import XMonad.Layout
 import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
-import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.Run
+import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.EZConfig
 
--- myWorkspaces = ["  main  ", "  browser  ", "  work  "]
+myWorkspaces = ["  main  ", "  browser  ", "  work  "]
 modm = mod4Mask
 
 keysToRemove x =
@@ -26,13 +27,20 @@ main = do
 		, normalBorderColor  = "#6633FF"
 		, focusedBorderColor = "#66FFFF"
 		, manageHook         = manageDocks <+> manageHook defaultConfig
-		, layoutHook         = spacing 10 $ gaps [(U,12),(D,0),(L,30),(R,30)] $ Tall 1 0.03 0.5
+		, layoutHook         = spacing 7 $ gaps [(U,15),(D,0),(L,20),(R,20)] $ Tall 1 0.03 0.5
+		, logHook            = dynamicLogWithPP $ xmobarPP
+			{ ppOrder           = \(ws:l:t:_)  -> [ws,t]
+			, ppOutput          = hPutStrLn xmproc
+			, ppTitle = xmobarColor "green" "".shorten 50
+			, ppWsSep           = " "
+			, ppSep             = "  "
+			}
 		, startupHook = myStartupHook
 		}
 		`additionalKeys`
-		[ ((modm                    , xK_Return ), spawn "xterm")
-		, ((modm                    , xK_c      ), kill) -- %! Close the focused window
-		, ((modm                    , xK_n      ), spawn "chromium")
+		[ ((modm , xK_Return ), spawn "xterm")
+		, ((modm , xK_i      ), spawn "chromium")
+		, ((modm , xK_c      ), kill)
         -- Brightness Keys
 		-- , ((0                       , 0x1008FF02), spawn "xbacklight + 10")
 		-- , ((0                       , 0x1008FF03), spawn "xbacklight - 10")
