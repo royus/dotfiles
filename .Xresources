@@ -14,8 +14,8 @@ XTerm*cursorColor:        black
 XTerm*forcePackedFont:    false
 XTerm*cjkWidth:           true
 XTerm*faceSize:           12
-XTerm*faceName:           RictyDiscord
-XTerm*faceNameDoublesize: RictyDiscord
+XTerm*faceName:           Ricty
+XTerm*faceNameDoublesize: Ricty
 XTerm*fontDoublesize:     true
 ! URxvt*reverseVideo: on
 ! Rxvt.geometry: 120x50+50+50
