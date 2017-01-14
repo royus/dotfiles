@@ -49,7 +49,7 @@ main = do
 		]
 
 myStartupHook = do
-	spawn "feh --bg-fill ~/.xmonad/.background.jpg"
+	spawn "feh --bg-fill ~/.background.jpg"
 	spawn "stalonetray &"
 	spawn "nm-applet &"
 	spawn "fcitx &"

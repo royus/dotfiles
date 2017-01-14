@@ -4,16 +4,16 @@ xmonad.hs:16:1: warning: [-Wtabs]
     Please use spaces instead.
 
 xmonad.hs:20:39: warning: [-Wdeprecations]
-    In the use of `defaultConfig'
+    In the use of ‘defaultConfig’
     (imported from XMonad, but defined in XMonad.Config):
     Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
 
 xmonad.hs:24:18: warning: [-Wdeprecations]
-    In the use of `defaultConfig'
+    In the use of ‘defaultConfig’
     (imported from XMonad, but defined in XMonad.Config):
     Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
 
 xmonad.hs:30:67: warning: [-Wdeprecations]
-    In the use of `defaultConfig'
+    In the use of ‘defaultConfig’
     (imported from XMonad, but defined in XMonad.Config):
     Deprecated: "Use def (from Data.Default, and re-exported by XMonad and XMonad.Config) instead."
