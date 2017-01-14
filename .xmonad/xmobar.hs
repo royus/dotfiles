@@ -1,4 +1,4 @@
-Config  { font = "-misc-*"
+Config  { font = "xft:Ricty"
 		, borderColor = "black"
 		, border = TopB
 		, bgColor = "black"
