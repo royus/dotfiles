@@ -1,4 +1,4 @@
-"Last Change: 2017/01/14 (Sat) 20:51:53.
+"Last Change: 2017/01/14 (Sat) 23:31:48.
 
 set shell=/bin/sh
 let patched_font=0
@@ -23,7 +23,7 @@ if version>=704 && load_plugin
 	call dein#add('thinca/vim-poslist')
 	call dein#add('thinca/vim-scouter')
 	" call dein#add('scrooloose/syntastic')
-	call dein#add('yuratomo/w3m.vim')
+	" call dein#add('yuratomo/w3m.vim')
 	call dein#add('LeafCage/yankround.vim')
 	call dein#add('vim-scripts/verilog.vim')
 	" call dein#add('Shougo/unite.vim')
@@ -161,9 +161,9 @@ if version>=704 && load_plugin
 	" nnoremap <silent> <Space>ur :<C-u>Unite -buffer-name=register register<CR>
 	" nnoremap <silent> <Space>uu :<C-u>Unite file_mru buffer<CR>
 	"w3m
-	nnoremap ,w :W3mTab<Space>google
-	nnoremap ,h :W3mHistory<CR>
-	let g:w3m#history#save_file=s:dein_dir.'/repos/github.com/yuratomo/w3m.vim/.vim_w3m_hist'
+	" nnoremap ,w :W3mTab<Space>google
+	" nnoremap ,h :W3mHistory<CR>
+	" let g:w3m#history#save_file=s:dein_dir.'/repos/github.com/yuratomo/w3m.vim/.vim_w3m_hist'
 	"yankround
 	nmap p <Plug>(yankround-p)
 	xmap p <Plug>(yankround-p)
@@ -203,7 +203,6 @@ set helpheight=1000
 set splitbelow splitright
 set showmatch
 set matchpairs+=<:>
-highlight normal ctermbg=NONE
 if colorscheme_no==1
 	set cursorline
 	highlight clear CursorLine
@@ -212,6 +211,7 @@ if colorscheme_no==1
 else
 	colorscheme darkblue
 endif
+highlight normal ctermbg=NONE
 
 
 "encoding
