@@ -14,6 +14,7 @@ modm = mod4Mask
 
 keysToRemove x =
 	[ (modm .|. shiftMask, xK_c)
+	, (modm              , xK_p)
 	, (modm .|. shiftMask, xK_Return)
 	]
 strippedKeys x = foldr M.delete (keys defaultConfig x) (keysToRemove x)
@@ -27,7 +28,7 @@ main = do
 		, normalBorderColor  = "#6633FF"
 		, focusedBorderColor = "#66FFFF"
 		, manageHook         = manageDocks <+> manageHook defaultConfig
-		, layoutHook         = spacing 7 $ gaps [(U,14),(D,2),(L,20),(R,20)] $ Tall 1 0.03 0.5
+		, layoutHook         = spacing 7 $ gaps [(U,13),(D,0),(L,20),(R,20)] $ Tall 1 0.03 0.5
 		, logHook            = dynamicLogWithPP $ xmobarPP
 			{ ppOrder           = \(ws:l:t:_)  -> [ws,t]
 			, ppOutput          = hPutStrLn xmproc
@@ -40,6 +41,7 @@ main = do
 		`additionalKeys`
 		[ ((modm , xK_Return ), spawn "xterm")
 		, ((modm , xK_i      ), spawn "chromium")
+		, ((modm , xK_p      ), spawn "dmenu_run -fn \"Ricty-13\" -nb black -nf grey -sb grey -sf black")
 		, ((modm , xK_c      ), kill)
 		-- Brightness Keys
 		-- , ((0                       , 0x1008FF02), spawn "xbacklight + 10")
