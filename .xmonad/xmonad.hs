@@ -23,11 +23,11 @@ main = do
 	xmonad $ defaultConfig
 		{ terminal           = "xterm"
 		, modMask            = mod4Mask
-		, borderWidth        = 5
+		, borderWidth        = 3
 		, normalBorderColor  = "#6633FF"
 		, focusedBorderColor = "#66FFFF"
 		, manageHook         = manageDocks <+> manageHook defaultConfig
-		, layoutHook         = spacing 7 $ gaps [(U,15),(D,0),(L,20),(R,20)] $ Tall 1 0.03 0.5
+		, layoutHook         = spacing 7 $ gaps [(U,14),(D,2),(L,20),(R,20)] $ Tall 1 0.03 0.5
 		, logHook            = dynamicLogWithPP $ xmobarPP
 			{ ppOrder           = \(ws:l:t:_)  -> [ws,t]
 			, ppOutput          = hPutStrLn xmproc
