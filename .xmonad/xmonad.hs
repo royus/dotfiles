@@ -1,6 +1,6 @@
 import qualified Data.Map as M
 import XMonad
-import System.IO                       -- for xmobar
+import System.IO
 import XMonad.Layout
 import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
@@ -41,7 +41,7 @@ main = do
 		[ ((modm , xK_Return ), spawn "xterm")
 		, ((modm , xK_i      ), spawn "chromium")
 		, ((modm , xK_c      ), kill)
-        -- Brightness Keys
+		-- Brightness Keys
 		-- , ((0                       , 0x1008FF02), spawn "xbacklight + 10")
 		-- , ((0                       , 0x1008FF03), spawn "xbacklight - 10")
 		]

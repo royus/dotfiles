@@ -1,6 +1,6 @@
 
 xmonad.hs:16:1: warning: [-Wtabs]
-    Tab character found here, and in 60 further locations.
+    Tab character found here, and in 62 further locations.
     Please use spaces instead.
 
 xmonad.hs:19:39: warning: [-Wdeprecations]
