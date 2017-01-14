@@ -1,11 +1,11 @@
+XTerm*locale:             true
 XTerm*reverseVideo:       on
 ! XTerm*VT100*font: 7x14
 XTerm*loginShell:         on
 XTerm*visualBell:         false
 XTerm*utf8:               1
-! XTerm*locale:             true
 XTerm*jumpScroll:         false
-XTerm*saveLines:          1000
+XTerm*saveLines:          4096
 XTerm*scrollBar:          false
 XTerm*rightScrollBar:     false
 XTerm*background:         gray87
@@ -13,12 +13,9 @@ XTerm*foreground:         black
 XTerm*cursorColor:        black
 XTerm*forcePackedFont:    false
 XTerm*cjkWidth:           true
-xterm*background:         gray87
-xterm*foreground:         black
-xterm*cursorColor:        black
 XTerm*faceSize:           12
-XTerm*faceName:           Ricty
-XTerm*faceNameDoublesize: Ricty
+XTerm*faceName:           RictyDiscord
+XTerm*faceNameDoublesize: RictyDiscord
 XTerm*fontDoublesize:     true
 ! URxvt*reverseVideo: on
 ! Rxvt.geometry: 120x50+50+50
