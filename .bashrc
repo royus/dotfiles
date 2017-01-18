@@ -127,3 +127,4 @@ export LANG=C
 if [ -e ~/.local_bashrc ]; then
 	source .local_bashrc
 fi
+[ -n "$XTERM_VERSION" ] && transset-df -a 0.9
