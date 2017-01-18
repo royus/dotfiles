@@ -55,3 +55,4 @@ myStartupHook = do
 	spawn "stalonetray &"
 	spawn "nm-applet &"
 	spawn "fcitx &"
+	-- spawn "xcompmgr &"

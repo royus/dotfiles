@@ -1,4 +1,4 @@
-"Last Change: 2017/01/14 (Sat) 23:31:48.
+"Last Change: 2017/01/18 (Wed) 14:18:14.
 
 set shell=/bin/sh
 let patched_font=0
@@ -189,8 +189,8 @@ syntax enable
 set title
 set number ruler
 set showcmd
-set background=dark
 set list listchars=eol:~,tab:\|-
+set background=dark
 if version>=740
 	set breakindent showbreak=+++
 endif

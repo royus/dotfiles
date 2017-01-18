@@ -18,7 +18,7 @@ Config  { font = "xft:Ricty"
 							, "--normal","grey"
 							, "--high","red"
 							] 10
-			, Run Battery   [ "--template","Batt: <left>%"
+			, Run Battery   [ "--template","Bat: <left>%"
 							, "--Low","30"
 							, "--High","80"
 							, "--low","red"
