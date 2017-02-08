@@ -14,8 +14,8 @@ myWorkspaces = ["1: main", "2: browser", "3: work", "4: media"]
 modm = mod4Mask
 
 keysToRemove x =
-	[ (modm .|. shiftMask, xK_c)
-	, (modm              , xK_p)
+	[ (modm              , xK_p)
+	-- , (modm .|. shiftMask, xK_c)
 	, (modm .|. shiftMask, xK_Return)
 	]
 strippedKeys x = foldr M.delete (keys defaultConfig x) (keysToRemove x)
@@ -44,7 +44,7 @@ main = do
 		[ ((modm , xK_Return ), spawn "xterm")
 		, ((modm , xK_i      ), spawn "chromium")
 		, ((modm , xK_p      ), spawn "dmenu_run -fn \"Ricty-13\" -nb black -nf grey -sb grey -sf black")
-		, ((modm , xK_c      ), kill)
+		-- , ((modm , xK_c      ), kill)
 		-- Brightness Keys
 		-- , ((0                       , 0x1008FF02), spawn "xbacklight + 10")
 		-- , ((0                       , 0x1008FF03), spawn "xbacklight - 10")

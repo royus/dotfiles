@@ -1,4 +1,4 @@
-"Last Change: 2017/01/18 (Wed) 14:18:14.
+"Last Change: 2017/01/23 (Mon) 12:26:10.
 
 set shell=/bin/sh
 let patched_font=0
@@ -19,6 +19,7 @@ if version>=704 && load_plugin
 	call dein#add('Shougo/dein.vim')
 	"functions
 	call dein#add('itchyny/calendar.vim')
+	call dein#add('tyru/eskk.vim')
 	call dein#add('tpope/vim-fugitive')
 	call dein#add('thinca/vim-poslist')
 	call dein#add('thinca/vim-scouter')
@@ -84,6 +85,19 @@ if version>=704 && load_plugin
 	"easy-align
 	nmap ga <Plug>(EasyAlign)
 	xmap ga <Plug>(EasyAlign)
+	"eskk
+	set imdisable
+	if has('vim_starting')
+		let g:eskk#dictionary = {
+			\'path'     : "~/.skk-jisyo",
+			\'sorted'   : 0,
+			\'encoding' : 'utf-8',
+			\}
+	endif
+	let g:eskk_debug = 0
+	let g:eskk_egg_like_newline = 1
+	let g:eskk_revert_henkan_style = "okuri"
+	let g:eskk_enable_completion = 1
 	"files&ctags
 	nnoremap <F2> :TodoToggle<CR>:NERDTreeToggle<CR>:TagbarToggle<CR>:echo<CR>
 	nnoremap ,n :NERDTreeToggle<CR>
