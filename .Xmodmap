@@ -1,7 +1,8 @@
-! remove Control = Control_L
-! remove Shift = Shift_R
+clear control
+clear mod4
+clear shift
 keycode   8 =
-keycode   9 = Escape NoSymbol Escape
+keycode   9 = Zenkaku_Hankaku NoSymbol Escape
 keycode  10 = 1 exclam 1 exclam
 keycode  11 = 2 at 2 at
 keycode  12 = 3 numbersign 3 numbersign
@@ -30,6 +31,7 @@ keycode  34 = bracketleft braceleft bracketleft braceleft
 keycode  35 = bracketright braceright bracketright braceright
 keycode  36 = BackSpace Delete BackSpace BackSpace
 ! keycode  37 = Control_L NoSymbol Control_L
+keycode  37 = Super_L NoSymbol Super_L
 keycode  38 = a A a A
 keycode  39 = s S s S
 keycode  40 = d D d D
@@ -125,7 +127,7 @@ keycode 129 = KP_Decimal KP_Decimal KP_Decimal KP_Decimal
 keycode 130 = Hangul NoSymbol Hangul
 keycode 131 =
 keycode 132 = backslash bar backslash bar
-! keycode 133 = Control_L NoSymbol Control_L
+keycode 133 = Control_L NoSymbol Control_L
 keycode 134 = Super_R NoSymbol Super_R
 keycode 135 = Menu NoSymbol Menu
 keycode 136 = Cancel NoSymbol Cancel
@@ -248,7 +250,6 @@ keycode 252 =
 keycode 253 =
 keycode 254 =
 keycode 255 =
-clear Shift
-add Shift = Shift_L Shift_R
-! clear Control
-! add Control = Control_L Control_R
+add shift = Shift_L Shift_R
+add control = Control_L Control_R
+add mod4 = Super_L Super_R
