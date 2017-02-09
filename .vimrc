@@ -1,4 +1,4 @@
-"Last Change: 2017/01/23 (Mon) 12:26:10.
+"Last Change: 2017/02/08 (Wed) 18:54:59.
 
 set shell=/bin/sh
 let patched_font=0
@@ -513,6 +513,7 @@ function! s:RUN()
 			!./main
 		else
 			!./.x_%:r
+			!rm .x_%:r
 		endif
 	elseif e=="java"
 		if filereadable("Makefile")
