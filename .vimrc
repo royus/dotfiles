@@ -1,4 +1,4 @@
-"Last Change: 2017/02/08 (Wed) 18:54:59.
+"Last Change: 2017/02/12 (Sun) 13:09:27.
 
 set shell=/bin/sh
 let patched_font=0
@@ -388,6 +388,8 @@ nnoremap <Space>y 0v$hy
 vnoremap <Space>p "0p
 nnoremap + <C-a>
 nnoremap - <C-x>
+vnoremap + <C-a>
+vnoremap - <C-x>
 function! s:remove_dust()
 	let cursor=getpos(".")
 	%s/\s\+$//ge
