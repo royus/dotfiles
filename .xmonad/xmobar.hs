@@ -25,7 +25,7 @@ Config  { font = "xft:Ricty"
 							, "--normal","grey"
 							, "--high","green"
 							] 10
-			, Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+			, Run Date "%a %b%_d %Y %H:%M:%S" "date" 10
 			, Run StdinReader
 			]
 		, sepChar = "%"
