@@ -1,1 +1,1 @@
-xbacklight  -inc 10
+xbacklight -inc 10
