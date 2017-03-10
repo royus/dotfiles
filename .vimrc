@@ -1,4 +1,4 @@
-"Last Change: 2017/03/10 (Fri) 16:08:35.
+"Last Change: 2017/03/10 (Fri) 22:22:57.
 
 set shell=/bin/sh
 let patched_font=0
@@ -27,6 +27,7 @@ if version>=704 && load_plugin
 	" call dein#add('yuratomo/w3m.vim')
 	call dein#add('LeafCage/yankround.vim')
 	call dein#add('vim-scripts/verilog.vim')
+	call dein#add('dag/vim-fish')
 	" call dein#add('Shougo/unite.vim')
 	" call dein#add('Shougo/unite-outline')
 	" call dein#add('ujihisa/unite-colorscheme')
