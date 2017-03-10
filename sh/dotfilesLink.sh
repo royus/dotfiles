@@ -1,6 +1,6 @@
 #!/bin/sh
 # dotfilesLink.sh
-# Last Change: 2017/03/10 (Fri) 16:11:11.
+# Last Change: 2017/03/10 (Fri) 22:23:43.
 
 ln -sf ~/dotfiles/.vimrc         ~/.vimrc
 ln -sf ~/dotfiles/.inputrc       ~/.inputrc
@@ -13,4 +13,4 @@ ln -sf ~/dotfiles/sh/darker.sh   ~/darker.sh
 ln -sf ~/dotfiles/.xinitrc       ~/.xinitrc
 ln -sf ~/dotfiles/.Xresources    ~/.Xresources
 ln -sf ~/dotfiles/.vifm          ~/.vifm
-ln -sf ~/dotfiles/.fishrc        ~/.config/fish/config.fish
+ln -sf ~/dotfiles/config.fish    ~/.config/fish/config.fish
