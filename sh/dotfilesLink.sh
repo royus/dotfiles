@@ -9,3 +9,4 @@ ln -sf ~/dotfiles/sh/darker.sh   ~/darker.sh
 ln -sf ~/dotfiles/.xinitrc       ~/.xinitrc
 ln -sf ~/dotfiles/.Xresources    ~/.Xresources
 ln -sf ~/dotfiles/.vifm          ~/.vifm
+ln -sf ~/dotfiles/.fishrc        ~/.config/fish/config.fish

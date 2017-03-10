@@ -1,4 +1,4 @@
-"Last Change: 2017/02/12 (Sun) 13:09:27.
+"Last Change: 2017/03/10 (Fri) 16:08:35.
 
 set shell=/bin/sh
 let patched_font=0
@@ -36,6 +36,7 @@ if version>=704 && load_plugin
 	call dein#add('w0ng/vim-hybrid')
 	call dein#add('vimtaku/hl_matchit.vim')
 	call dein#add('itchyny/lightline.vim')
+	call dein#add('itchyny/vim-autoft')
 	"input
 	call dein#add('tpope/vim-abolish')
 	call dein#add('vim-scripts/autodate.vim')
@@ -79,6 +80,13 @@ if version>=704 && load_plugin
 	nnoremap <F10> 1ggOLast Change: .<CR><Esc>
 	let autodate_format='%Y/%m/%d (%a) %H:%M:%S'
 	let autodate_lines =3
+	"auto_ft
+	let g:autoft_config = [
+				\ { 'filetype': 'html' , 'pattern': '<\%(!DOCTYPE\|html\|head\|script\)' },
+				\ { 'filetype': 'c'    , 'pattern': '^\s*#\s*\%(include\|define\)\>' },
+				\ { 'filetype': 'diff' , 'pattern': '^diff -' },
+				\ { 'filetype': 'sh'   , 'pattern': '^#!.*\%(\<sh\>\|\<bash\>\)\s*$' },
+				\ ]
 	"calendar
 	let g:calendar_frame = 'default'
 	nnoremap ,c :Calendar -first_day=monday<CR>
@@ -89,10 +97,10 @@ if version>=704 && load_plugin
 	set imdisable
 	if has('vim_starting')
 		let g:eskk#dictionary = {
-			\'path'     : "~/.skk-jisyo",
-			\'sorted'   : 0,
-			\'encoding' : 'utf-8',
-			\}
+					\'path'     : "~/.skk-jisyo",
+					\'sorted'   : 0,
+					\'encoding' : 'utf-8',
+					\}
 	endif
 	let g:eskk_debug = 0
 	let g:eskk_egg_like_newline = 1
@@ -552,5 +560,6 @@ autocmd filetype vim inoremap <F5> <Esc>:w<CR>:source %<CR>
 autocmd filetype vim vnoremap <F5> <Esc>:w<CR>:source %<CR>
 
 "template
-autocmd BufNewFile,BufRead *.c if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.c | substitute/filename/\=expand('%:r')/g | endif
-autocmd BufNewFile,BufRead *.java if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.java | substitute/filename/\=expand('%:r')/g | endif
+autocmd BufNewFile,BufRead *.c    if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.c    | %substitute/filename/\=expand('%:r')/g | endif
+autocmd BufNewFile,BufRead *.java if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.java | %substitute/filename/\=expand('%:r')/g | endif
+autocmd BufNewFile,BufRead *.sh   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.sh   | %substitute/filename/\=expand('%:r')/g | endif
