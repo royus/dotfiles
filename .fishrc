@@ -1,0 +1,32 @@
+#!/bin/sh
+alias fishrc='vim ~/dotfiles/.fishrc'
+alias vimrc='vim ~/.vimrc'
+alias vi='vim'
+function cd
+	builtin cd $argv
+	ls -A
+end
+
+set __fish_git_prompt_showdirstate "yes"
+set __fish_git_prompt_showstashstate "yes"
+set __fish_git_prompt_showupstream "yes"
+set __fish_git_prompt_color_branch bryellow
+
+function fish_prompt
+	set_color normal
+	printf '['
+	set_color green
+	printf '%s' (whoami)
+	printf '@'
+	printf '%s' (hostname)
+	printf ' '
+	set_color yellow
+	printf '%s' (prompt_pwd)
+	set_color normal
+	printf '%s' (__fish_git_prompt)
+	set_color normal
+	printf ']\n> '
+	set_color normal
+end
+
+set PATH /usr/local/bin /usr/sbin /sbin $PATH
