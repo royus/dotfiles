@@ -1,3 +1,7 @@
+#!/bin/sh
+# dotfilesLink.sh
+# Last Change: 2017/03/10 (Fri) 16:11:11.
+
 ln -sf ~/dotfiles/.vimrc         ~/.vimrc
 ln -sf ~/dotfiles/.inputrc       ~/.inputrc
 ln -sf ~/dotfiles/.bashrc        ~/.bashrc
