@@ -38,6 +38,9 @@ function fish_prompt
 	end
 	printf '['
 	set_color green
+	if test $uid -eq 0
+		set_color red
+	end
 	printf '%s' (whoami)
 	printf '@'
 	printf '%s' (hostname)
