@@ -2,17 +2,7 @@
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 # fish_vi_mode
 
-fish_vi_key_bindings
-function fish_user_key_bindings
-	for mode in insert default visual
-		fish_default_key_bindings -M $mode
-	end
-	fish_vi_key_bindings --no-erase
-end
-function fish_mode_prompt
-	# NOOP - Disable vim mode indicator
-end
-
+#alias
 alias fishrc='vim ~/dotfiles/.fishrc'
 alias vimrc='vim ~/.vimrc'
 alias vi='vim'
@@ -28,6 +18,7 @@ function cd
 	ls -A
 end
 
+#appearance
 set fish_color_autosuggestion BD93F9
 set fish_color_command F8F8F2
 set fish_color_comment 6272A4
@@ -54,12 +45,49 @@ function fish_prompt
 	set_color yellow
 	printf '%s' (prompt_pwd)
 	set_color normal
+	printf ']'
 	printf '%s' (__fish_git_prompt)
+	printf '\n'
+	# printf '%s' (fish_default_mode_prompt)
 	set_color normal
-	printf ']\n'
-	printf '%s' (fish_default_mode_prompt)
+	switch $fish_bind_mode
+		case default
+			set_color 334C66
+			printf '>'
+			set_color 5985B2
+			printf '>'
+			set_color 7FBFFF
+			printf '>'
+		case insert
+			set_color 336633
+			printf '>'
+			set_color 59B259
+			printf '>'
+			set_color 7FFF7F
+			printf '>'
+		case visual
+			set_color 663333
+			printf '>'
+			set_color B25959
+			printf '>'
+			set_color FF7F7F
+			printf '>'
+	end
 	set_color normal
-	printf '> '
+	printf ' '
 end
 
+#path
 set PATH /usr/local/bin /usr/sbin /sbin $PATH
+
+#vi_mode
+fish_vi_key_bindings
+function fish_user_key_bindings
+	for mode in insert default visual
+		fish_default_key_bindings -M $mode
+	end
+	fish_vi_key_bindings --no-erase
+end
+function fish_mode_prompt
+	# NOOP - Disable vim mode indicator
+end
