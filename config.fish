@@ -55,6 +55,7 @@ function fish_prompt
 		set_color red
 	end
 	printf ']'
+	set_color normal
 	printf '%s' (__fish_git_prompt)
 	printf '\n'
 	# printf '%s' (fish_default_mode_prompt)
