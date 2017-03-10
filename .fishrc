@@ -1,18 +1,45 @@
 #!/bin/sh
-# ln -sf ~/dotfiles/.fishrc        ~/.config/fish/config.fish
+# ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
+# fish_vi_mode
+
+fish_vi_key_bindings
+function fish_user_key_bindings
+	for mode in insert default visual
+		fish_default_key_bindings -M $mode
+	end
+	fish_vi_key_bindings --no-erase
+end
+function fish_mode_prompt
+	# NOOP - Disable vim mode indicator
+end
+
 alias fishrc='vim ~/dotfiles/.fishrc'
 alias vimrc='vim ~/.vimrc'
 alias vi='vim'
+alias ..    'cd ..'
+alias ...   'cd ../..'
+alias ....  'cd ../../..'
+alias ..... 'cd ../../../..'
+alias cp 'cp -i'
+alias rm 'rm -i'
+alias mv 'mv -i'
 function cd
 	builtin cd $argv
 	ls -A
 end
 
+set fish_color_autosuggestion BD93F9
+set fish_color_command F8F8F2
+set fish_color_comment 6272A4
+set fish_color_end 50FA7B
+set fish_color_error FFB86C
+set fish_color_param FF79C6
+set fish_color_quote F1FA8C
+set fish_color_redirection 8BE9FD
 set __fish_git_prompt_showdirstate "yes"
 set __fish_git_prompt_showstashstate "yes"
 set __fish_git_prompt_showupstream "yes"
 set __fish_git_prompt_color_branch bryellow
-
 function fish_prompt
 	set_color normal
 	printf '['
@@ -22,15 +49,17 @@ function fish_prompt
 	printf '%s' (hostname)
 	printf ' '
 	set_color normal
-	printf '%s' (date +%_H:%M:%S)
+	printf '%s' (date +%H:%M:%S)
 	printf ' '
 	set_color yellow
 	printf '%s' (prompt_pwd)
 	set_color normal
 	printf '%s' (__fish_git_prompt)
 	set_color normal
-	printf ']\n> '
+	printf ']\n'
+	printf '%s' (fish_default_mode_prompt)
 	set_color normal
+	printf '> '
 end
 
 set PATH /usr/local/bin /usr/sbin /sbin $PATH
