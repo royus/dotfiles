@@ -1,3 +1,4 @@
+# Last Change: 2017/03/11 (Sat) 16:54:32.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 # fish_vi_mode
 
