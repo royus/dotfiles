@@ -1,9 +1,9 @@
-# Last Change: 2017/03/11 (Sat) 16:54:32.
+# Last Change: 2017/03/11 (Sat) 20:18:24.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 # fish_vi_mode
 
 #alias
-alias fishrc='vim ~/dotfiles/config.fish'
+alias fishrc='vim ~/.config/fish/config.fish'
 alias vimrc='vim ~/.vimrc'
 alias vi='vim'
 alias ..    'cd ..'

@@ -1,4 +1,4 @@
-"Last Change: 2017/03/10 (Fri) 22:22:57.
+"Last Change: 2017/03/11 (Sat) 20:16:41.
 
 set shell=/bin/sh
 let patched_font=0
@@ -19,15 +19,13 @@ if version>=704 && load_plugin
 	call dein#add('Shougo/dein.vim')
 	"functions
 	call dein#add('itchyny/calendar.vim')
-	call dein#add('tyru/eskk.vim')
 	call dein#add('tpope/vim-fugitive')
 	call dein#add('thinca/vim-poslist')
 	call dein#add('thinca/vim-scouter')
+	call dein#add('tyru/skk.vim')
 	" call dein#add('scrooloose/syntastic')
 	" call dein#add('yuratomo/w3m.vim')
 	call dein#add('LeafCage/yankround.vim')
-	call dein#add('vim-scripts/verilog.vim')
-	call dein#add('dag/vim-fish')
 	" call dein#add('Shougo/unite.vim')
 	" call dein#add('Shougo/unite-outline')
 	" call dein#add('ujihisa/unite-colorscheme')
@@ -52,6 +50,9 @@ if version>=704 && load_plugin
 	call dein#add('soramugi/auto-ctags.vim')
 	call dein#add('majutsushi/tagbar')
 	call dein#add('scrooloose/nerdtree')
+	"filetype
+	call dein#add('dag/vim-fish')
+	call dein#add('vim-scripts/verilog.vim')
 	"txtobj
 	call dein#add('kana/vim-textobj-user')
 	call dein#add('osyo-manga/vim-textobj-blockwise')
@@ -94,19 +95,6 @@ if version>=704 && load_plugin
 	"easy-align
 	nmap ga <Plug>(EasyAlign)
 	xmap ga <Plug>(EasyAlign)
-	"eskk
-	set imdisable
-	if has('vim_starting')
-		let g:eskk#dictionary = {
-					\'path'     : "~/.skk-jisyo",
-					\'sorted'   : 0,
-					\'encoding' : 'utf-8',
-					\}
-	endif
-	let g:eskk_debug = 0
-	let g:eskk_egg_like_newline = 1
-	let g:eskk_revert_henkan_style = "okuri"
-	let g:eskk_enable_completion = 1
 	"files&ctags
 	nnoremap <F2> :TodoToggle<CR>:NERDTreeToggle<CR>:TagbarToggle<CR>:echo<CR>
 	nnoremap ,n :NERDTreeToggle<CR>
@@ -154,6 +142,10 @@ if version>=704 && load_plugin
 	nmap <C-o> <Plug>(poslist-prev-pos)
 	nmap <C-i> <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=100
+	"skk
+	map! <C-j> <Plug>(skk-toggle-im)
+	let g:skk_large_jisyo = expand('~/.skk-jisyo')
+	let g:skk_auto_save_jisyo = 1
 	"smartchr
 	" autocmd filetype c,java,python,text inoremap <expr> = smartchr#loop(' = ', ' == ', '=')
 	" autocmd filetype c,java,python,text inoremap <expr> + smartchr#loop(' + ', '++', '+')
