@@ -1,4 +1,4 @@
-# Last Change: 2017/03/11 (Sat) 20:18:24.
+# Last Change: 2017/03/11 (Sat) 21:48:40.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 # fish_vi_mode
 
@@ -59,7 +59,6 @@ function fish_prompt
 	set_color normal
 	printf '%s' (__fish_git_prompt)
 	printf '\n'
-	# printf '%s' (fish_default_mode_prompt)
 	set_color normal
 	switch $fish_bind_mode
 		case default
