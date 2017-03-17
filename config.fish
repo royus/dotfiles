@@ -1,6 +1,5 @@
-# Last Change: 2017/03/11 (Sat) 21:48:40.
+# Last Change: 2017/03/17 (Fri) 10:29:17.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
-# fish_vi_mode
 
 #alias
 alias fishrc='vim ~/.config/fish/config.fish'
@@ -86,6 +85,7 @@ function fish_prompt
 	set_color normal
 	printf ' '
 end
+[ -n "$XTERM_VERSION" ]; transset-df -a 0.9 >/dev/null
 
 #path
 set PATH /usr/local/bin /usr/sbin /sbin $PATH
