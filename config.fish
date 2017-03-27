@@ -1,4 +1,4 @@
-# Last Change: 2017/03/27 (Mon) 11:35:44.
+# Last Change: 2017/03/27 (Mon) 13:36:50.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 
 #alias
