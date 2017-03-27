@@ -1,4 +1,4 @@
-# Last Change: 2017/03/17 (Fri) 10:29:17.
+# Last Change: 2017/03/27 (Mon) 11:35:44.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 
 #alias
@@ -19,13 +19,13 @@ end
 
 #appearance
 set fish_color_autosuggestion BD93F9
-set fish_color_command F8F8F2
-set fish_color_comment 6272A4
-set fish_color_end 50FA7B
-set fish_color_error FFB86C
-set fish_color_param FF79C6
-set fish_color_quote F1FA8C
-set fish_color_redirection 8BE9FD
+set fish_color_command        F8F8F2
+set fish_color_comment        6272A4
+set fish_color_end            50FA7B
+set fish_color_error          FFB86C
+set fish_color_param          FF79C6
+set fish_color_quote          F1FA8C
+set fish_color_redirection    8BE9FD
 set __fish_git_prompt_showdirstate "yes"
 set __fish_git_prompt_showstashstate "yes"
 set __fish_git_prompt_showupstream "yes"

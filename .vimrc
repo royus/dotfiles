@@ -1,4 +1,4 @@
-"Last Change: 2017/03/27 (Mon) 10:18:54.
+"Last Change: 2017/03/27 (Mon) 11:49:15.
 
 set shell=/bin/sh
 let patched_font=0
@@ -239,9 +239,10 @@ set fileformats=unix,dos,mac fileformat=unix
 set noswapfile
 set autochdir
 set hidden
-nnoremap Q  <NOP>
-nnoremap ZZ <NOP>
-nnoremap ZQ <NOP>
+nnoremap Q     <NOP>
+nnoremap ZZ    <NOP>
+nnoremap ZQ    <NOP>
+nnoremap <C-z> <NOP>
 nnoremap <Space>w :<C-u>w<CR>
 nnoremap <Space>W :<C-u>W<CR>
 command! W call s:SU_W()
@@ -255,6 +256,8 @@ nnoremap Q<Space> :<C-u>q!<CR>
 
 
 "foldings
+nnoremap zz za
+nnoremap za <NOP>
 set foldmethod=syntax foldlevel=100
 autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
 			\| setlocal foldmethod=manual
