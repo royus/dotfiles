@@ -1,11 +1,10 @@
 #!/bin/sh
 # dotfilesLink.sh
-# Last Change: 2017/03/27 (Mon) 11:05:26.
+# Last Change: 2017/03/27 (Mon) 11:22:18.
 
-mkdir ~/.config 2>/dev/null
-mkdir ~/.config/fish 2>/dev/null
-mkdir ~/.xmonad 2>/dev/null
-mkdir ~/.vifm 2>/dev/null
+mkdir ~/.xmonad      2>/dev/null
+mkdir ~/.vifm        2>/dev/null
+mkdir ~/.config/fish 2>/dev/null -p
 
 ln -sf ~/dotfiles/.vimrc            ~/.vimrc
 ln -sf ~/dotfiles/.inputrc          ~/.inputrc
