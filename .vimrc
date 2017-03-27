@@ -1,4 +1,4 @@
-"Last Change: 2017/03/11 (Sat) 21:57:14.
+"Last Change: 2017/03/27 (Mon) 10:18:54.
 
 set shell=/bin/sh
 let patched_font=0
@@ -146,6 +146,7 @@ if version>=704 && load_plugin
 	map! <C-j> <Plug>(skk-toggle-im)
 	let g:skk_large_jisyo = expand('~/.skk-jisyo')
 	let g:skk_auto_save_jisyo = 1
+	let g:eskk#enable_completion = 1
 	"smartchr
 	" autocmd filetype c,java,python,text inoremap <expr> = smartchr#loop(' = ', ' == ', '=')
 	" autocmd filetype c,java,python,text inoremap <expr> + smartchr#loop(' + ', '++', '+')
