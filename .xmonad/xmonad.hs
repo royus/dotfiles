@@ -9,6 +9,7 @@ import XMonad.Hooks.DynamicLog
 -- import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.EZConfig
+import XMonad.Actions.GroupNavigation
 
 myWorkspaces = ["1: main", "2: browser", "3: work", "4: media"]
 modm = mod4Mask
@@ -43,6 +44,8 @@ main = do
 		[ ((modm,               xK_Return ), spawn "xterm")
 		, ((modm,               xK_i      ), spawn "chromium")
 		, ((modm,               xK_p      ), spawn "dmenu_run -fn \"Ricty-13\" -nb black -nf grey -sb grey -sf black")
+		, ((modm,               xK_Tab    ), nextMatch Forward   (return True))
+		, ((modm .|. shiftMask, xK_Tab    ), nextMatch Backward (return True))
 		, ((modm .|. shiftMask, xK_l      ), spawn "xbacklight + 5")
 		, ((modm .|. shiftMask, xK_d      ), spawn "xbacklight - 5")
 		]
