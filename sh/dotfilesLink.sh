@@ -1,6 +1,6 @@
 #!/bin/sh
 # dotfilesLink.sh
-# Last Change: 2017/03/27 (Mon) 11:02:02.
+# Last Change: 2017/03/27 (Mon) 11:05:26.
 
 mkdir ~/.config 2>/dev/null
 mkdir ~/.config/fish 2>/dev/null
@@ -16,6 +16,8 @@ ln -sf ~/dotfiles/.xmonad/xmobar.hs ~/.xmonad/xmobar.hs
 ln -sf ~/dotfiles/.stalonetrayrc    ~/.stalonetrayrc
 ln -sf ~/dotfiles/sh/lighter.sh     ~/lighter.sh
 ln -sf ~/dotfiles/sh/darker.sh      ~/darker.sh
+ln -sf ~/dotfiles/sh/git_push.sh    ~/push.sh
+ln -sf ~/dotfiles/sh/git_pull.sh    ~/pull.sh
 ln -sf ~/dotfiles/.xinitrc          ~/.xinitrc
 ln -sf ~/dotfiles/.Xresources       ~/.Xresources
 ln -sf ~/dotfiles/.vifm/vifmrc      ~/.vifm/vifmrc
