@@ -15,7 +15,6 @@ modm = mod4Mask
 
 keysToRemove x =
 	[ (modm              , xK_p)
-	-- , (modm .|. shiftMask, xK_c)
 	, (modm .|. shiftMask, xK_Return)
 	]
 strippedKeys x = foldr M.delete (keys defaultConfig x) (keysToRemove x)
@@ -41,13 +40,11 @@ main = do
 		, startupHook = myStartupHook
 		}
 		`additionalKeys`
-		[ ((modm , xK_Return ), spawn "xterm")
-		, ((modm , xK_i      ), spawn "chromium")
-		, ((modm , xK_p      ), spawn "dmenu_run -fn \"Ricty-13\" -nb black -nf grey -sb grey -sf black")
-		-- , ((modm , xK_c      ), kill)
-		-- Brightness Keys
-		-- , ((0                       , 0x1008FF02), spawn "xbacklight + 10")
-		-- , ((0                       , 0x1008FF03), spawn "xbacklight - 10")
+		[ ((modm,               xK_Return ), spawn "xterm")
+		, ((modm,               xK_i      ), spawn "chromium")
+		, ((modm,               xK_p      ), spawn "dmenu_run -fn \"Ricty-13\" -nb black -nf grey -sb grey -sf black")
+		, ((modm .|. shiftMask, xK_l      ), spawn "xbacklight + 5")
+		, ((modm .|. shiftMask, xK_d      ), spawn "xbacklight - 5")
 		]
 
 myStartupHook = do
