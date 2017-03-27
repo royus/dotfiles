@@ -1,4 +1,4 @@
-"Last Change: 2017/03/27 (Mon) 11:49:15.
+"Last Change: 2017/03/27 (Mon) 13:39:30.
 
 set shell=/bin/sh
 let patched_font=0
@@ -24,7 +24,6 @@ if version>=704 && load_plugin
 	call dein#add('thinca/vim-scouter')
 	call dein#add('tyru/skk.vim')
 	" call dein#add('scrooloose/syntastic')
-	" call dein#add('yuratomo/w3m.vim')
 	call dein#add('LeafCage/yankround.vim')
 	" call dein#add('Shougo/unite.vim')
 	" call dein#add('Shougo/unite-outline')
@@ -176,10 +175,6 @@ if version>=704 && load_plugin
 	" nnoremap <silent> <Space>uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 	" nnoremap <silent> <Space>ur :<C-u>Unite -buffer-name=register register<CR>
 	" nnoremap <silent> <Space>uu :<C-u>Unite file_mru buffer<CR>
-	"w3m
-	" nnoremap ,w :W3mTab<Space>google
-	" nnoremap ,h :W3mHistory<CR>
-	" let g:w3m#history#save_file=s:dein_dir.'/repos/github.com/yuratomo/w3m.vim/.vim_w3m_hist'
 	"yankround
 	nmap p <Plug>(yankround-p)
 	xmap p <Plug>(yankround-p)
@@ -331,7 +326,7 @@ autocmd BufReadPost *
 "unused:
 "<F3><F4><F6><F7><F8><F9>^
 "<Space> + abcefgmnruxz
-"   ,    + abdefgijklmopqrsuvxyz
+"   ,    + abdefghijklmopqrsuvwxyz
 set timeout timeoutlen=3000 ttimeoutlen=100
 "movements
 nnoremap <Up>    <NOP>
