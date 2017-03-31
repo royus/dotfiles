@@ -1,4 +1,4 @@
-# Last Change: 2017/03/27 (Mon) 13:36:50.
+# Last Change: 2017/03/27 (Mon) 14:30:06.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 
 #alias
@@ -57,6 +57,7 @@ function fish_prompt
 	printf ']'
 	set_color normal
 	printf '%s' (__fish_git_prompt)
+	# printf '%s' ( $fish_bind_mode)
 	printf '\n'
 	set_color normal
 	switch $fish_bind_mode
@@ -68,6 +69,13 @@ function fish_prompt
 			set_color 7FBFFF
 			printf '>'
 		case insert
+			set_color 336633
+			printf '>'
+			set_color 59B259
+			printf '>'
+			set_color 7FFF7F
+			printf '>'
+		case replace-one
 			set_color 336633
 			printf '>'
 			set_color 59B259
