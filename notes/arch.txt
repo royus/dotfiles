@@ -1,5 +1,5 @@
 pacman
-vim git 
+vim git
 network-manager-applet
 xorg-server xorg-server-utils xorg-apps xorg-xinit xorg-twm xorg-xclock mesa
 //video driver
@@ -8,3 +8,6 @@ otf-ipafont
 
 yaourt
 ttf-ricty
+
+tex (pacman)
+texlive-most texlive-langjapanese ghostscript evince poppler-data
