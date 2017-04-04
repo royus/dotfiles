@@ -3,7 +3,7 @@ download from
 https://www.gnome-look.org/p/999929/
 
 mkdir ~/.icons
-mkdir ~/.icons/default
+mkdir ~/.icons/default -p
 bsdtar xvf ~/Downloads/cursortheme.tar.gz --directory ~/.icons
-cp ~/.icons/cursortheme/* ~/.icons/default
+cp ~/.icons/cursortheme/* ~/.icons/default -r
 reboot

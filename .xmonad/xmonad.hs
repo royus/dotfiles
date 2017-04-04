@@ -30,7 +30,7 @@ main = do
 		, normalBorderColor  = "#6633FF"
 		, focusedBorderColor = "#66FFFF"
 		, manageHook         = manageDocks <+> manageHook defaultConfig
-		, layoutHook         = spacing 4 $ gaps [(U,16),(D,2),(L,21),(R,21)] $ Tall 1 0.03 0.5
+		, layoutHook         = spacing 4 $ gaps [(U,32),(D,28),(L,23),(R,23)] $ Tall 1 0.03 0.5
 		, logHook            = dynamicLogWithPP $ xmobarPP
 			{ ppOrder           = \(ws:l:t:_)  -> [ws,t]
 			, ppOutput          = hPutStrLn xmproc
@@ -43,16 +43,17 @@ main = do
 		`additionalKeys`
 		[ ((modm,               xK_Return ), spawn "xterm")
 		, ((modm,               xK_i      ), spawn "chromium")
-		, ((modm,               xK_p      ), spawn "dmenu_run -fn \"Ricty-13\" -nb black -nf grey -sb grey -sf black")
+		, ((modm,               xK_p      ), spawn "dmenu_run -fn \"Ricty-14\" -nb black -nf grey -sb grey -sf black")
 		, ((modm,               xK_Tab    ), nextMatch Forward   (return True))
 		, ((modm .|. shiftMask, xK_Tab    ), nextMatch Backward (return True))
 		, ((modm .|. shiftMask, xK_l      ), spawn "xbacklight + 5")
 		, ((modm .|. shiftMask, xK_d      ), spawn "xbacklight - 5")
 		]
+		-- , layoutHook         = spacing 4 $ gaps [(U,16),(D,2),(L,21),(R,21)] $ Tall 1 0.03 0.5
 
 myStartupHook = do
 	spawn "feh --bg-fill ~/.background.jpg"
-	spawn "stalonetray &"
-	spawn "nm-applet &"
-	spawn "fcitx &"
+	-- spawn "stalonetray &"
+	-- spawn "nm-applet &"
+	-- spawn "fcitx &"
 	spawn "xcompmgr &"
