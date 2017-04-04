@@ -35,11 +35,12 @@ fi
 # twm &
 # xclock -geometry 50x50-1+1 &
 # xterm -geometry 80x20+494-0 &
-# exec xterm -geometry 80x66+0+0 -name login
+# exec xterm -geometry 106x47+0+0 -name login
 # exec xbacklight -dec 99
 # exec xmobar
 # xterm -geometry 80x50+494+51 &
 
+exec xmonad
 sudo NetworkManager
 # feh --bg-fill ~/.xmonad/.background.jpg
 exec xmonad
