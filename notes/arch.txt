@@ -1,11 +1,12 @@
 pacman
 vim git
-network-manager-applet
+networkmanager network-manager-applet openssh
 xorg-server xorg-server-utils xorg-apps xorg-xinit xorg-twm xorg-xclock mesa
 //video driver
 xterm xmonad xmonad-contrib xmobar dmenu gnome-icon-theme stalonetray xcompmgr transset-df
 otf-ipafont
 fcitx-im fcitx-configtool fcitx-mozc
+alsa-utils
 
 yaourt
 ttf-ricty
