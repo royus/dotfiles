@@ -1,4 +1,4 @@
-"Last Change: 2017/03/27 (Mon) 13:39:30.
+"Last Change: 2017/04/07 (Fri) 12:21:48.
 
 set shell=/bin/sh
 let patched_font=0
@@ -535,6 +535,10 @@ function! s:RUN()
 		endif
 	elseif e=="ml"
 		!ocaml -init %
+	elseif e=="tex"
+		!platex %
+		!dvipdfm %:r.dvi
+		!evince %:r.pdf
 	endif
 endfunction
 command! GCC call s:GCC()
