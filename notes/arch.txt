@@ -1,7 +1,11 @@
-sudo pacman -S vim git networkmanager network-manager-applet openssh xorg-server xorg-server-utils xorg-apps xorg-xinit xorg-twm xorg-xclock mesa xterm xmonad xmonad-contrib xmobar dmenu gnome-icon-theme stalonetray xcompmgr transset-df otf-ipafont fcitx-im fcitx-configtool fcitx-mozc alsa-utils
-#
-#yaourt
-#ttf-ricty
-#
+gvim git networkmanager network-manager-applet openssh
+xorg-server xorg-server-utils xorg-apps xorg-xinit xorg-twm xorg-xclock mesa xterm
+xmonad xmonad-contrib xmobar dmenu gnome-icon-theme stalonetray xcompmgr transset-df
+otf-ipafont fcitx-im fcitx-configtool fcitx-mozc
+alsa-utils
+
+yaourt
+ttf-ricty
+
 #tex (pacman)
-#texlive-most texlive-langjapanese ghostscript evince poppler-data
+texlive-most texlive-langjapanese ghostscript evince poppler-data
