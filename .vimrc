@@ -1,4 +1,4 @@
-"Last Change: 2017/04/07 (Fri) 12:21:48.
+"Last Change: 2017/04/07 (Fri) 14:09:14.
 
 set shell=/bin/sh
 let patched_font=0
@@ -146,6 +146,10 @@ if version>=704 && load_plugin
 	let g:skk_large_jisyo = expand('~/.skk-jisyo')
 	let g:skk_auto_save_jisyo = 1
 	let g:eskk#enable_completion = 1
+	let g:skk_kutouten_type = "en"
+	" if (g:skk_kutouten_jp!=g:skk_kutouten_en)
+		" let g:skk_kutouten_jp=g:skk_kutouten_en
+	" endif
 	"smartchr
 	" autocmd filetype c,java,python,text inoremap <expr> = smartchr#loop(' = ', ' == ', '=')
 	" autocmd filetype c,java,python,text inoremap <expr> + smartchr#loop(' + ', '++', '+')
