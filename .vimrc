@@ -1,4 +1,4 @@
-"Last Change: 2017/04/12 (Wed) 11:33:44.
+"Last Change: 2017/04/12 (Wed) 11:56:11.
 
 set shell=/bin/sh
 let patched_font=0
@@ -78,6 +78,7 @@ if version>=704 && load_plugin
 		colorscheme hybrid
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
+	let g:tex_flavor='latex'
 	"autodate
 	nnoremap <F10> OLast Change: .<CR><Esc>
 	let autodate_format='%Y/%m/%d (%a) %H:%M:%S'
@@ -103,7 +104,7 @@ if version>=704 && load_plugin
 	let g:tagbar_width=25
 	"hl_matchit
 	let g:hl_matchit_enable_on_vim_startup = 1
-	let g:hl_matchit_hl_groupname = 'Title'
+	let g:hl_matchit_hl_groupname = 'MatchParen'
 	let g:hl_matchit_allow_ft = 'html\|vim\|ruby\|sh'
 	runtime macros/matchit.vim
 	let b:match_ignorecase=1
@@ -219,8 +220,7 @@ set matchpairs+=<:>
 if colorscheme_no==1
 	set cursorline
 	highlight clear CursorLine
-	highlight MatchParen ctermfg=darkblue ctermbg=NONE
-	highlight Title ctermfg=cyan ctermbg=NONE
+	highlight MatchParen ctermfg=cyan ctermbg=NONE
 else
 	colorscheme darkblue
 endif
