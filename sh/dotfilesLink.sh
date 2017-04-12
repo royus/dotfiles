@@ -1,6 +1,6 @@
 #!/bin/sh
 # dotfilesLink.sh
-# Last Change: 2017/03/27 (Mon) 11:22:18.
+# Last Change: 2017/04/12 (Wed) 11:36:37.
 
 mkdir ~/.xmonad      2>/dev/null
 mkdir ~/.vifm        2>/dev/null
@@ -22,3 +22,4 @@ ln -sf ~/dotfiles/.Xresources       ~/.Xresources
 ln -sf ~/dotfiles/.vifm/vifmrc      ~/.vifm/vifmrc
 ln -sf ~/dotfiles/config.fish       ~/.config/fish/config.fish
 ln -sf ~/dotfiles/.skk-jisyo        ~/.skk-jisyo
+ln -sf ~/dotfiles/.latexmkrc        ~/.latexmkrc

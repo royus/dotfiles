@@ -1,4 +1,4 @@
-"Last Change: 2017/04/07 (Fri) 14:09:14.
+"Last Change: 2017/04/12 (Wed) 11:33:44.
 
 set shell=/bin/sh
 let patched_font=0
@@ -52,6 +52,7 @@ if version>=704 && load_plugin
 	"filetype
 	call dein#add('dag/vim-fish')
 	call dein#add('vim-scripts/verilog.vim')
+	call dein#add('lervag/vimtex')
 	"txtobj
 	call dein#add('kana/vim-textobj-user')
 	call dein#add('osyo-manga/vim-textobj-blockwise')
@@ -78,7 +79,7 @@ if version>=704 && load_plugin
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	"autodate
-	nnoremap <F10> 1ggOLast Change: .<CR><Esc>
+	nnoremap <F10> OLast Change: .<CR><Esc>
 	let autodate_format='%Y/%m/%d (%a) %H:%M:%S'
 	let autodate_lines =3
 	"auto_ft
@@ -147,9 +148,6 @@ if version>=704 && load_plugin
 	let g:skk_auto_save_jisyo = 1
 	let g:eskk#enable_completion = 1
 	let g:skk_kutouten_type = "en"
-	" if (g:skk_kutouten_jp!=g:skk_kutouten_en)
-		" let g:skk_kutouten_jp=g:skk_kutouten_en
-	" endif
 	"smartchr
 	" autocmd filetype c,java,python,text inoremap <expr> = smartchr#loop(' = ', ' == ', '=')
 	" autocmd filetype c,java,python,text inoremap <expr> + smartchr#loop(' + ', '++', '+')
@@ -540,9 +538,10 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		!platex %
-		!dvipdfm %:r.dvi
-		!evince %:r.pdf
+		!latexmk % -pv
+		" !platex %
+		" !dvipdfm %:r.dvi
+		" !evince %:r.pdf
 	endif
 endfunction
 command! GCC call s:GCC()
