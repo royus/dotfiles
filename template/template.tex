@@ -1,0 +1,89 @@
+% Last Change: 2017/04/13 (Thu) 13:05:35.
+% filename.tex
+
+\documentclass[a4j,twoside]{jarticle}
+\usepackage[dvipdfmx]{graphicx}
+% \usepackage{lastpage}
+
+\setlength{\topmargin}{-15mm}
+\setlength{\headheight}{10mm}
+\setlength{\headsep}{5mm}
+
+\setlength{\footskip}{0mm}
+\setlength{\textwidth}{165mm}
+\setlength{\textheight}{250mm}
+
+\setlength{\evensidemargin}{-5.8mm}
+\setlength{\oddsidemargin}{0mm}
+
+\pagestyle{myheadings}
+\renewcommand{\thepage}{\arabic{page}/4}
+\begin{document}
+%----------------------------%
+\twocolumn[
+	\noindent
+	zeminar
+	\hfill year/month/day(wd)
+	\begin{center}
+		\vspace{3mm}
+		{\Large\bf title}\\
+		{\large subtitle}\\
+	\end{center}
+	\hfill{name}
+	\vspace{-0.5\baselineskip}
+	\noindent
+	{\rule{\textwidth}{0.5pt}}
+	\vspace{0.2\baselineskip}
+]
+%----------------------------%
+\section{a}
+blabla1
+%----------------------------------------%
+\subsection{b}
+blabla2
+%----------------------------------------%
+\subsubsection{c}
+\begin{table}[t]
+	\center
+	\begin{tabular}{|c||c|c|c|} \hline
+		  E   & i & data[i] & next[i] \\ \hline \hline
+		$e_2$ & 0 &    3    &    6    \\
+		  *   & 1 &    *    &    *    \\
+		$e_1$ & 2 &    1    &    0    \\
+		$e_4$ & 3 &   10    &   -1    \\
+		  *   & 4 &    *    &    *    \\
+		  *   & 5 &    *    &    *    \\
+		$e_3$ & 6 &    4    &    3    \\
+		  *   & 7 &    *    &    *    \\
+		  *   & 8 &    *    &    *    \\ \hline
+	\end{tabular}
+	\caption{x}
+	\label{tab:x}
+\end{table}
+
+table\ref{tab:x}
+
+\begin{figure}[t]
+	\center
+	% \includegraphics[width=8cm,clip]{./pdf/xxx.pdf}
+	\caption{y}
+	\label{fig:y}
+\end{figure}
+
+figure\ref{fig:y}
+
+\begin{enumerate}
+	\item a
+	\item b
+	\item c
+\end{enumerate}
+
+%----------------------------------------%
+%----------------------------------------%
+\begin{thebibliography}{99}
+	\bibitem{all}
+		Dr. X,
+		``book title''，
+		pp.\ 1--99, 20xx.
+\end{thebibliography}
+\end{document}
