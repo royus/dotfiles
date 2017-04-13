@@ -1,4 +1,4 @@
-"Last Change: 2017/04/12 (Wed) 11:56:11.
+"Last Change: 2017/04/13 (Thu) 12:31:25.
 
 set shell=/bin/sh
 let patched_font=0
@@ -78,7 +78,7 @@ if version>=704 && load_plugin
 		colorscheme hybrid
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
-	let g:tex_flavor='latex'
+	" let g:tex_flavor='latex'
 	"autodate
 	nnoremap <F10> OLast Change: .<CR><Esc>
 	let autodate_format='%Y/%m/%d (%a) %H:%M:%S'
@@ -482,6 +482,7 @@ function! s:VTodoToggle()
 	44 vsplit .todo
 endfunction
 inoremap tl - [ ]<Space>
+inoremap tL tl
 nnoremap <Enter> :call ToggleCheckbox()<CR>
 vnoremap <Enter> :call ToggleCheckbox()<CR>
 function! ToggleCheckbox()
