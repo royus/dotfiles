@@ -1,4 +1,4 @@
-"Last Change: 2017/04/14 (Fri) 17:38:55.
+"Last Change: 2017/04/14 (Fri) 17:48:33.
 
 set shell=/bin/sh
 let patched_font=0
@@ -194,6 +194,9 @@ set t_Co=256
 syntax enable
 set title
 set number ruler
+if version>=730
+	set relativenumber
+endif
 set showcmd
 set list listchars=eol:~,tab:\|-
 set background=dark
@@ -250,11 +253,11 @@ nnoremap za <NOP>
 " set foldmethod=syntax foldlevel=100
 set foldmethod=indent foldlevel=100
 " autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
-			" \| setlocal foldmethod=manual
-			" \| endif
+" \| setlocal foldmethod=manual
+" \| endif
 " autocmd InsertLeave * if &l:foldmethod ==# 'manual'
-			" \| setlocal foldmethod=syntax
-			" \| endif
+" \| setlocal foldmethod=syntax
+" \| endif
 set foldtext=MyFoldText()
 function! MyFoldText()
 	let line=getline(v:foldstart)
