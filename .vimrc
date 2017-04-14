@@ -1,4 +1,4 @@
-"Last Change: 2017/04/13 (Thu) 13:05:04.
+"Last Change: 2017/04/14 (Fri) 17:38:55.
 
 set shell=/bin/sh
 let patched_font=0
@@ -41,7 +41,6 @@ if version>=704 && load_plugin
 	call dein#add('tomtom/tcomment_vim')
 	call dein#add('junegunn/vim-easy-align')
 	call dein#add('mattn/emmet-vim')
-	" call dein#add('kana/vim-smartchr')
 	call dein#add('Shougo/neocomplete.vim')
 	call dein#add('Shougo/neosnippet.vim')
 	call dein#add('Shougo/neosnippet-snippets')
@@ -149,13 +148,6 @@ if version>=704 && load_plugin
 	let g:skk_auto_save_jisyo = 1
 	let g:eskk#enable_completion = 1
 	let g:skk_kutouten_type = "en"
-	"smartchr
-	" autocmd filetype c,java,python,text inoremap <expr> = smartchr#loop(' = ', ' == ', '=')
-	" autocmd filetype c,java,python,text inoremap <expr> + smartchr#loop(' + ', '++', '+')
-	" autocmd filetype c,java,python,text inoremap <expr> - smartchr#loop(' - ', '--', '-')
-	" autocmd filetype c,java,python,text inoremap <expr> / smartchr#loop(' / ', ' // ', '/')
-	" autocmd filetype c,java,python,text inoremap <expr> * smartchr#loop(' * ', ' ** ', '*')
-	" autocmd filetype c,java,python,text inoremap <expr> , smartchr#loop(', ', ',')
 	"syntastic
 	" let g:syntastic_enable_signs=1
 	" let g:syntastic_auto_loc_list=2
@@ -229,7 +221,7 @@ highlight normal ctermbg=NONE
 
 "encoding
 set encoding=utf-8 fileencodings=utf-8,iso-2022-jp,euc-jp,sjis fileencoding=utf-8
-set fileformats=unix,dos,mac fileformat=unix
+set fileformat=unix fileformats=unix,dos,mac
 
 
 "files
@@ -242,8 +234,8 @@ nnoremap ZQ    <NOP>
 nnoremap <C-z> <NOP>
 nnoremap <Space>w :<C-u>w<CR>
 nnoremap <Space>W :<C-u>W<CR>
-command! W call s:SU_W()
-function! s:SU_W()
+command! W call s:Su_Write()
+function! s:Su_Write()
 	:w !sudo tee %
 endfunction
 nnoremap <Space>q :<C-u>q<CR>
@@ -255,16 +247,20 @@ nnoremap Q<Space> :<C-u>q!<CR>
 "foldings
 nnoremap zz za
 nnoremap za <NOP>
-set foldmethod=syntax foldlevel=100
-autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
-			\| setlocal foldmethod=manual
-			\| endif
-autocmd InsertLeave * if &l:foldmethod ==# 'manual'
-			\| setlocal foldmethod=syntax
-			\| endif
+" set foldmethod=syntax foldlevel=100
+set foldmethod=indent foldlevel=100
+" autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
+			" \| setlocal foldmethod=manual
+			" \| endif
+" autocmd InsertLeave * if &l:foldmethod ==# 'manual'
+			" \| setlocal foldmethod=syntax
+			" \| endif
 set foldtext=MyFoldText()
 function! MyFoldText()
 	let line=getline(v:foldstart)
+	let space=strpart('|---------------',0,&tabstop)
+	" let space=substitute(space,'\%( \)\@<= \%( *$\)\@=',' ','g')
+	let line=substitute(line,"\t",space,'g')
 	let line=substitute(line,'/\*\|\*/\|{{{\d\=','','g')
 	let cnt=printf(' [%3s,%2s]',(v:foldend-v:foldstart+1),v:foldlevel)
 	let line_width=winwidth(0)-&foldcolumn
