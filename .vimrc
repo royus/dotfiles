@@ -1,4 +1,4 @@
-"Last Change: 2017/04/14 (Fri) 17:48:33.
+"Last Change: 2017/04/14 (Fri) 17:57:04.
 
 set shell=/bin/sh
 let patched_font=0
@@ -250,14 +250,22 @@ nnoremap Q<Space> :<C-u>q!<CR>
 "foldings
 nnoremap zz za
 nnoremap za <NOP>
-" set foldmethod=syntax foldlevel=100
-set foldmethod=indent foldlevel=100
-" autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
-" \| setlocal foldmethod=manual
-" \| endif
-" autocmd InsertLeave * if &l:foldmethod ==# 'manual'
-" \| setlocal foldmethod=syntax
-" \| endif
+set foldmethod=syntax foldlevel=100
+" set foldmethod=indent foldlevel=100
+autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
+\| setlocal foldmethod=manual
+\| endif
+autocmd InsertLeave * if &l:foldmethod ==# 'manual'
+\| setlocal foldmethod=syntax
+\| endif
+let javaScript_fold=1
+let perl_fold=1
+let php_folding=1
+let r_syntax_folding=1
+let ruby_fold=1
+let sh_fold_enabled=1
+let vimsyn_folding='af'
+let xml_syntax_folding=1
 set foldtext=MyFoldText()
 function! MyFoldText()
 	let line=getline(v:foldstart)
