@@ -1,4 +1,4 @@
-"Last Change: 2017/04/14 (Fri) 17:57:04.
+"Last Change: 2017/04/17 (Mon) 12:21:12.
 
 set shell=/bin/sh
 let patched_font=0
@@ -77,7 +77,7 @@ if version>=704 && load_plugin
 		colorscheme hybrid
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
-	" let g:tex_flavor='latex'
+	let g:tex_flavor='latex'
 	"autodate
 	nnoremap <F10> OLast Change: .<CR><Esc>
 	let autodate_format='%Y/%m/%d (%a) %H:%M:%S'
