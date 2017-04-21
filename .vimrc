@@ -1,4 +1,4 @@
-"Last Change: 2017/04/17 (Mon) 12:21:12.
+"Last Change: 2017/04/19 (Wed) 12:06:46.
 
 set shell=/bin/sh
 let patched_font=0
@@ -52,6 +52,7 @@ if version>=704 && load_plugin
 	call dein#add('dag/vim-fish')
 	call dein#add('vim-scripts/verilog.vim')
 	call dein#add('lervag/vimtex')
+	call dein#add('matze/vim-tex-fold')
 	"txtobj
 	call dein#add('kana/vim-textobj-user')
 	call dein#add('osyo-manga/vim-textobj-blockwise')
@@ -248,8 +249,8 @@ nnoremap Q<Space> :<C-u>q!<CR>
 
 
 "foldings
-nnoremap zz za
-nnoremap za <NOP>
+nnoremap z za
+" nnoremap za <NOP>
 set foldmethod=syntax foldlevel=100
 " set foldmethod=indent foldlevel=100
 autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
