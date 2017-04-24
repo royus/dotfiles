@@ -1,0 +1,25 @@
+# Fdb version 3
+["dvipdf"] 0 "template.dvi" "template.pdf" "template" 0
+  "template.dvi" 0 -1 0 "latex"
+  (generated)
+  "template.pdf"
+["latex"] 1492760033 "template.tex" "template.dvi" "template" 1492760033
+  "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1492244632 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
+  "/usr/share/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1492244639 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg" 1492244644 1224 978390e9c2234eab29404bc21b268d1e ""
+  "/usr/share/texmf-dist/tex/latex/graphics-def/dvipdfmx.def" 1492244644 14029 5cd6e4f2e990db2fbd2fe97678d73009 ""
+  "/usr/share/texmf-dist/tex/latex/graphics/graphics.sty" 1492244644 14539 727a4716746112f20fd860d095ccebd2 ""
+  "/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty" 1492244644 8125 557ab9f1bfa80d369fb45a914aa8a3b4 ""
+  "/usr/share/texmf-dist/tex/latex/graphics/keyval.sty" 1492244644 2594 d18d5e19aa8239cf867fa670c556d2e9 ""
+  "/usr/share/texmf-dist/tex/latex/graphics/trig.sty" 1492244644 3980 0a268fbfda01e381fa95821ab13b6aee ""
+  "/usr/share/texmf-dist/tex/latex/lastpage/lastpage.sty" 1476971573 9922 eb7d00b99f0f5207f71a5cdcbafceac1 ""
+  "/usr/share/texmf-dist/tex/platex/base/jarticle.cls" 1479560681 24341 dcd3f63f23273f448ef1f3bc7fc262a4 ""
+  "/usr/share/texmf-dist/tex/platex/base/jsize10.clo" 1479560681 8423 b02df8ac64f7a249ec3b33d1592e10bf ""
+  "/usr/share/texmf-dist/web2c/texmf.cnf" 1492569585 31673 786a8e184bd3a25706eb78df72dbea7e ""
+  "/var/lib/texmf/web2c/eptex/platex.fmt" 1492390151 7340597 95c776adb83b0d61bcb520f6354e87f8 ""
+  "template.aux" 1492759787 8 a94a2480d3289e625eea47cd1b285758 ""
+  "template.tex" 1492760033 1899 1396d75eb9c05354777d948287e92906 ""
+  (generated)
+  "template.log"
+  "template.aux"
+  "template.dvi"
