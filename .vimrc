@@ -1,4 +1,4 @@
-"Last Change: 2017/04/19 (Wed) 12:06:46.
+"Last Change: 2017/04/26 (Wed) 11:47:30.
 
 set shell=/bin/sh
 let patched_font=0
@@ -217,6 +217,7 @@ if colorscheme_no==1
 	set cursorline
 	highlight clear CursorLine
 	highlight MatchParen ctermfg=cyan ctermbg=NONE
+	highlight PmenuSel ctermbg=lightgray
 else
 	colorscheme darkblue
 endif
