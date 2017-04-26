@@ -1,4 +1,4 @@
-"Last Change: 2017/04/26 (Wed) 11:47:30.
+"Last Change: 2017/04/26 (Wed) 14:59:18.
 
 set shell=/bin/sh
 let patched_font=0
@@ -377,10 +377,10 @@ vnoremap <Space>l $
 nnoremap <Space>k <C-u>
 nnoremap <Space>j <C-d>
 nnoremap <silent> <Space>t :$tabnew<Space>
-" nnoremap K gt
-" nnoremap J gT
-" nnoremap H <C-o>
-" nnoremap L <C-i>
+nnoremap K gt
+nnoremap J gT
+nnoremap H <C-o>
+nnoremap L <C-i>
 nnoremap <expr> gg line(".")==1 ? 'G':'gg'
 vnoremap <expr> gg line(".")==1 ? 'G':'gg'
 nnoremap 0 ^
@@ -409,6 +409,7 @@ function! s:remove_dust()
 endfunction
 autocmd BufWritePre * call <SID>remove_dust()
 nnoremap U <C-r>
+nnoremap <C-j> J
 
 "input
 " inoremap { {}<Left>
