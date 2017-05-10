@@ -12,7 +12,7 @@ import XMonad.Util.EZConfig
 import XMonad.Actions.GroupNavigation
 
 myWorkspaces = ["1: main", "2: browser", "3: work", "4: media"]
-modm = mod4Mask
+modm = mod1Mask
 
 keysToRemove x =
 	[ (modm              , xK_p)
@@ -25,7 +25,7 @@ main = do
 	xmonad $ defaultConfig
 		{ terminal           = "xterm"
 		, workspaces         = myWorkspaces
-		, modMask            = mod4Mask
+		-- , modMask            = mod4Mask
 		, borderWidth        = 3
 		, normalBorderColor  = "#6633FF"
 		, focusedBorderColor = "#66FFFF"

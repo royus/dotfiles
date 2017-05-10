@@ -1,4 +1,4 @@
-"Last Change: 2017/04/28 (Fri) 17:52:14.
+"Last Change: 2017/05/10 (Wed) 12:01:08.
 
 set shell=/bin/sh
 let patched_font=0
@@ -214,8 +214,9 @@ set splitbelow splitright
 set showmatch
 set matchpairs+=<:>
 if colorscheme_no==1
-	set cursorline
-	highlight clear CursorLine
+	set cursorline cursorcolumn
+	" highlight clear CursorLine
+	" highlight clear CursorColumn
 	highlight MatchParen ctermfg=cyan ctermbg=NONE
 	highlight PmenuSel ctermbg=lightgray
 else
