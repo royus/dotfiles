@@ -1,4 +1,4 @@
-"Last Change: 2017/05/10 (Wed) 12:01:08.
+"Last Change: 2017/05/15 (Mon) 15:43:26.
 
 set shell=/bin/sh
 let patched_font=0
@@ -369,12 +369,12 @@ vnoremap <Tab> <C-w><C-w>
 " nnoremap <C-l> <C-w>l
 nnoremap <Space> <NOP>
 vnoremap <Space> <NOP>
-nnoremap <Space>h ^
-nnoremap <Space>l $
+nnoremap <Space>h g^
+nnoremap <Space>l g$
 nnoremap <Space>k <C-u>
 nnoremap <Space>j <C-d>
-vnoremap <Space>h ^
-vnoremap <Space>l $
+vnoremap <Space>h g^
+vnoremap <Space>l g$
 nnoremap <Space>k <C-u>
 nnoremap <Space>j <C-d>
 nnoremap <silent> <Space>t :$tabnew<Space>
@@ -394,9 +394,9 @@ nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') 
 nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
 nnoremap Y y$
 nnoremap <Space>i gg=G<C-o><C-o>
-nnoremap <Space>v 0v$h
-nnoremap <Space>d 0v$hx
-nnoremap <Space>y 0v$hy
+nnoremap <Space>v ^v$h
+nnoremap <Space>d ^v$hx
+nnoremap <Space>y ^v$hy
 vnoremap <Space>p "0p
 nnoremap + <C-a>
 nnoremap - <C-x>
