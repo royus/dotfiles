@@ -1,4 +1,4 @@
-"Last Change: 2017/05/15 (Mon) 15:43:26.
+"Last Change: 2017/05/18 (Thu) 14:23:20.
 
 set shell=/bin/sh
 let patched_font=0
@@ -533,11 +533,9 @@ function! s:RUN()
 		endif
 	elseif e=="java"
 		if filereadable("Makefile")
-			make
-			!java Main
+			make ; !java Main
 		else
-			JAVAC
-			!java %:r
+			JAVAC ; !java %:r
 		endif
 	elseif e=="rb"
 		!ruby % -w
@@ -550,7 +548,7 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		!latexmk % -pv
+		!latexmk % -pv ; latexmk % -c ; rm platex*.fls
 		" !platex %
 		" !dvipdfm %:r.dvi
 		" !evince %:r.pdf
