@@ -1,4 +1,4 @@
-# Last Change: 2017/03/27 (Mon) 14:30:06.
+# Last Change: 2017/05/19 (Fri) 14:31:01.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 
 #alias
@@ -107,5 +107,5 @@ function fish_user_key_bindings
 	fish_vi_key_bindings --no-erase
 end
 function fish_mode_prompt
-	# NOOP - Disable vim mode indicator
+	# NOP - Disable vim mode indicator
 end
