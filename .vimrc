@@ -1,4 +1,4 @@
-"Last Change: 2017/05/24 (Wed) 14:14:22.
+"Last Change: 2017/05/25 (Thu) 00:49:02.
 
 set shell=/bin/sh
 let patched_font=0
@@ -148,7 +148,10 @@ if version>=704 && load_plugin
 	nmap <C-i> <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=100
 	"skk
-	map! <C-j> <Plug>(skk-toggle-im)
+	" map! <C-q> <Plug>(skk-toggle-im)
+	let g:skk_control_j_key="<C-q>"
+	let g:skk_abbrev_to_zenei_key=""
+	let g:skk_keep_state=1
 	let g:skk_large_jisyo = expand('~/.skk-jisyo')
 	let g:skk_auto_save_jisyo = 1
 	let g:eskk#enable_completion = 1
@@ -211,6 +214,7 @@ endif
 set smartindent autoindent
 set tabstop=4 shiftwidth=4 noexpandtab smarttab
 autocmd filetype vim setl tabstop=2 shiftwidth=2
+autocmd filetype tex setl tabstop=2 shiftwidth=2
 set display=lastline
 set scrolloff=7
 set helpheight=1000
@@ -442,6 +446,7 @@ vnoremap " "zdi<C-v>"<C-R>z<C-v>"<Esc>
 vnoremap ' "zdi'<C-R>z'<Esc>
 inoremap zl ->
 inoremap zh <-
+" inoremap <C-j> <CR>
 
 "text
 autocmd filetype text inoremap .   .<Space>
@@ -471,6 +476,8 @@ autocmd filetype text inoremap .w  .<Space>W
 autocmd filetype text inoremap .x  .<Space>X
 autocmd filetype text inoremap .y  .<Space>Y
 autocmd filetype text inoremap .z  .<Space>Z
+autocmd filetype tex inoremap figure \begin{figure}[t]<CR>\centering<CR>%<Space>\includegraphics[width=8cm,clip]{./pdf/xxx.pdf}<CR>\caption{．\label{xxx}}<CR>\end{figure}
+autocmd filetype tex inoremap table \begin{table}[t]<CR>\centering<CR>\caption{．\label{xxx}}<CR>\begin{tabular}{\|c\|\|c\|c\|}<Space>\hline<CR>a<Space>&<Space>b<Space>&<Space>c<Space>\\<Space>\hline<Space>\hline<CR>\end{tabular}<CR>\end{table}
 
 "todo
 nnoremap T :VTodoToggle<CR>
