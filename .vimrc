@@ -1,4 +1,4 @@
-"Last Change: 2017/05/18 (Thu) 14:23:20.
+"Last Change: 2017/05/24 (Wed) 10:58:53.
 
 set shell=/bin/sh
 let patched_font=0
@@ -256,11 +256,11 @@ nnoremap z za
 set foldmethod=syntax foldlevel=100
 " set foldmethod=indent foldlevel=100
 autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
-\| setlocal foldmethod=manual
-\| endif
+			\| setlocal foldmethod=manual
+			\| endif
 autocmd InsertLeave * if &l:foldmethod ==# 'manual'
-\| setlocal foldmethod=syntax
-\| endif
+			\| setlocal foldmethod=syntax
+			\| endif
 let javaScript_fold=1
 let perl_fold=1
 let php_folding=1
@@ -479,7 +479,11 @@ function! s:TodoToggle()
 		bdelete
 		return
 	endif
-	10 split .todo
+	if filereadable(".todo")
+		10 split .todo
+	else
+		10 split ~/.todo
+	endif
 endfunction
 command! VTodoToggle call s:VTodoToggle()
 function! s:VTodoToggle()
@@ -490,7 +494,12 @@ function! s:VTodoToggle()
 		bdelete
 		return
 	endif
-	44 vsplit .todo
+	if filereadable(".todo")
+		44 vsplit .todo
+	else
+		44 vsplit ~/.todo
+	endif
+
 endfunction
 inoremap tl - [ ]<Space>
 inoremap tL tl
