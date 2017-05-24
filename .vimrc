@@ -1,4 +1,4 @@
-"Last Change: 2017/05/24 (Wed) 10:58:53.
+"Last Change: 2017/05/24 (Wed) 11:05:12.
 
 set shell=/bin/sh
 let patched_font=0
@@ -518,7 +518,7 @@ endfunction
 autocmd bufnew,bufenter .todo syntax match CheckboxMark /.*\-\s\[x\]\s.\+/ display containedin=ALL
 highlight CheckboxMark ctermfg=darkgreen
 autocmd bufnew,bufenter * syntax match CheckboxUnmark /.*\-\s\[\s\]\s.\+/ display containedin=ALL
-highlight CheckboxUnmark ctermfg=darkred
+highlight CheckboxUnmark ctermfg=red
 
 "RUN
 command! RUN call s:RUN()
