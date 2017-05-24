@@ -1,4 +1,4 @@
-"Last Change: 2017/05/24 (Wed) 12:07:57.
+"Last Change: 2017/05/24 (Wed) 14:10:45.
 
 set shell=/bin/sh
 let patched_font=0
@@ -80,7 +80,7 @@ if version>=704 && load_plugin
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	let g:tex_flavor='latex'
-	au BufRead,BufNewFile *.spin set filetype=c
+	au BufRead,BufNewFile *.spin set filetype=spin
 	" au Syntax spin source $HOME/.vim/repos/github.com/dimatura/spin.vim/spin.vim
 	"autodate
 	nnoremap <F10> OLast Change: .<CR><Esc>
@@ -108,13 +108,14 @@ if version>=704 && load_plugin
 	"hl_matchit
 	let g:hl_matchit_enable_on_vim_startup = 1
 	let g:hl_matchit_hl_groupname = 'MatchParen'
-	let g:hl_matchit_allow_ft = 'html\|vim\|ruby\|sh'
+	let g:hl_matchit_allow_ft = 'html\|vim\|ruby\|sh\|spin'
 	runtime macros/matchit.vim
 	let b:match_ignorecase=1
 	augroup matchit
 		autocmd!
 		autocmd filetype vim let b:match_words='\<if\>:\<elseif\>:\<else\>:\<endif\>,\<for\>:\<endfor\>,\<function\>:\<endfunction\>'
 		autocmd filetype ruby let b:match_words='\<\(module\|class\|def\|begin\|do\|if\|unless\|case\)\>:\<\(elsif\|when\|rescue\)\>:\<\(else\|ensure\)\>:\<end\>'
+		autocmd filetype spin let b:match_words='\<if\>:\<fi\>,\<do\>:\<od\>'
 	augroup END
 	"lightline
 	set laststatus=2
@@ -147,7 +148,7 @@ if version>=704 && load_plugin
 	nmap <C-i> <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=100
 	"skk
-	map! <C-j> <Plug>(skk-toggle-im)
+	map! <C-m> <Plug>(skk-toggle-im)
 	let g:skk_large_jisyo = expand('~/.skk-jisyo')
 	let g:skk_auto_save_jisyo = 1
 	let g:eskk#enable_completion = 1
@@ -441,6 +442,7 @@ vnoremap " "zdi<C-v>"<C-R>z<C-v>"<Esc>
 vnoremap ' "zdi'<C-R>z'<Esc>
 inoremap zl ->
 inoremap zh <-
+inoremap <C-j> <CR>
 
 "text
 autocmd filetype text inoremap .   .<Space>
