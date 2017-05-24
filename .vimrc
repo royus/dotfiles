@@ -1,4 +1,4 @@
-"Last Change: 2017/05/25 (Thu) 00:49:02.
+"Last Change: 2017/05/25 (Thu) 00:54:39.
 
 set shell=/bin/sh
 let patched_font=0
@@ -153,7 +153,7 @@ if version>=704 && load_plugin
 	let g:skk_abbrev_to_zenei_key=""
 	let g:skk_keep_state=1
 	let g:skk_large_jisyo = expand('~/.skk-jisyo')
-	let g:skk_auto_save_jisyo = 1
+	let g:skk_auto_save_jisyo = -1
 	let g:eskk#enable_completion = 1
 	let g:skk_kutouten_type = "en"
 	"syntastic
