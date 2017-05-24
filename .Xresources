@@ -12,7 +12,7 @@ XTerm*foreground:         black
 XTerm*cursorColor:        black
 XTerm*forcePackedFont:    false
 XTerm*cjkWidth:           true
-XTerm*faceSize:           12
+XTerm*faceSize:           11
 XTerm*faceName:           Ricty
 XTerm*faceNameDoublesize: Ricty
 XTerm*fontDoublesize:     true
