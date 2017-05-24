@@ -1,4 +1,4 @@
-"Last Change: 2017/05/24 (Wed) 14:10:45.
+"Last Change: 2017/05/24 (Wed) 14:14:22.
 
 set shell=/bin/sh
 let patched_font=0
@@ -148,7 +148,7 @@ if version>=704 && load_plugin
 	nmap <C-i> <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=100
 	"skk
-	map! <C-m> <Plug>(skk-toggle-im)
+	map! <C-j> <Plug>(skk-toggle-im)
 	let g:skk_large_jisyo = expand('~/.skk-jisyo')
 	let g:skk_auto_save_jisyo = 1
 	let g:eskk#enable_completion = 1
@@ -442,7 +442,6 @@ vnoremap " "zdi<C-v>"<C-R>z<C-v>"<Esc>
 vnoremap ' "zdi'<C-R>z'<Esc>
 inoremap zl ->
 inoremap zh <-
-inoremap <C-j> <CR>
 
 "text
 autocmd filetype text inoremap .   .<Space>
