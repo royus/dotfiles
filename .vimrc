@@ -1,4 +1,4 @@
-"Last Change: 2017/05/24 (Wed) 11:05:12.
+"Last Change: 2017/05/24 (Wed) 12:07:57.
 
 set shell=/bin/sh
 let patched_font=0
@@ -50,9 +50,10 @@ if version>=704 && load_plugin
 	call dein#add('scrooloose/nerdtree')
 	"filetype
 	call dein#add('dag/vim-fish')
-	call dein#add('vim-scripts/verilog.vim')
+	" call dein#add('dimatura/spin.vim')
 	call dein#add('lervag/vimtex')
 	call dein#add('matze/vim-tex-fold')
+	call dein#add('vim-scripts/verilog.vim')
 	"txtobj
 	call dein#add('kana/vim-textobj-user')
 	call dein#add('osyo-manga/vim-textobj-blockwise')
@@ -79,6 +80,8 @@ if version>=704 && load_plugin
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	let g:tex_flavor='latex'
+	au BufRead,BufNewFile *.spin set filetype=c
+	" au Syntax spin source $HOME/.vim/repos/github.com/dimatura/spin.vim/spin.vim
 	"autodate
 	nnoremap <F10> OLast Change: .<CR><Esc>
 	let autodate_format='%Y/%m/%d (%a) %H:%M:%S'
@@ -537,14 +540,13 @@ function! s:RUN()
 		if filereadable("main")
 			!./main
 		else
-			!./.x_%:r
-			!rm .x_%:r
+			!./.x_%:r; !rm .x_%:r
 		endif
 	elseif e=="java"
 		if filereadable("Makefile")
-			make ; !java Main
+			make; !java Main
 		else
-			JAVAC ; !java %:r
+			JAVAC; !java %:r
 		endif
 	elseif e=="rb"
 		!ruby % -w
@@ -557,10 +559,12 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		!latexmk % -pv ; latexmk % -c ; rm platex*.fls
+		!latexmk % -pv; latexmk % -c; rm platex*.fls
 		" !platex %
 		" !dvipdfm %:r.dvi
 		" !evince %:r.pdf
+	elseif e=="spin"
+		!spin %
 	endif
 endfunction
 command! GCC call s:GCC()
