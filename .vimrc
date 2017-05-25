@@ -1,4 +1,4 @@
-"Last Change: 2017/05/25 (Thu) 01:11:39.
+"Last Change: 2017/05/25 (Thu) 12:58:48.
 
 set shell=/bin/sh
 let patched_font=0
@@ -535,7 +535,7 @@ highlight CheckboxUnmark ctermfg=red
 "RUN
 command! RUN call s:RUN()
 nnoremap <F5> :RUN<CR>
-inoremap <F5> <Esc>:RUN<CR>
+inoremap <F5> <Esc><Esc>:RUN<CR>
 vnoremap <F5> <Esc>:RUN<CR>
 function! s:RUN()
 	wall
