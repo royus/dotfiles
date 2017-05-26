@@ -1,4 +1,4 @@
-"Last Change: 2017/05/25 (Thu) 12:58:48.
+"Last Change: 2017/05/26 (Fri) 15:27:05.
 
 set shell=/bin/sh
 let patched_font=0
@@ -50,7 +50,6 @@ if version>=704 && load_plugin
 	call dein#add('scrooloose/nerdtree')
 	"filetype
 	call dein#add('dag/vim-fish')
-	" call dein#add('dimatura/spin.vim')
 	call dein#add('lervag/vimtex')
 	call dein#add('matze/vim-tex-fold')
 	call dein#add('vim-scripts/verilog.vim')
@@ -80,7 +79,7 @@ if version>=704 && load_plugin
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	let g:tex_flavor='latex'
-	au BufRead,BufNewFile *.spin set filetype=spin
+	" au BufRead,BufNewFile *.spin set filetype=spin
 	" au Syntax spin source $HOME/.vim/repos/github.com/dimatura/spin.vim/spin.vim
 	"autodate
 	nnoremap <F10> OLast Change: .<CR><Esc>
@@ -108,14 +107,14 @@ if version>=704 && load_plugin
 	"hl_matchit
 	let g:hl_matchit_enable_on_vim_startup = 1
 	let g:hl_matchit_hl_groupname = 'MatchParen'
-	let g:hl_matchit_allow_ft = 'html\|vim\|ruby\|sh\|spin'
+	let g:hl_matchit_allow_ft = 'html\|vim\|ruby\|sh'
 	runtime macros/matchit.vim
 	let b:match_ignorecase=1
 	augroup matchit
 		autocmd!
 		autocmd filetype vim let b:match_words='\<if\>:\<elseif\>:\<else\>:\<endif\>,\<for\>:\<endfor\>,\<function\>:\<endfunction\>'
 		autocmd filetype ruby let b:match_words='\<\(module\|class\|def\|begin\|do\|if\|unless\|case\)\>:\<\(elsif\|when\|rescue\)\>:\<\(else\|ensure\)\>:\<end\>'
-		autocmd filetype spin let b:match_words='\<if\>:\<fi\>,\<do\>:\<od\>'
+		" autocmd filetype spin let b:match_words='\<if\>:\<fi\>,\<do\>:\<od\>'
 	augroup END
 	"lightline
 	set laststatus=2
@@ -572,7 +571,7 @@ function! s:RUN()
 		" !platex %
 		" !dvipdfm %:r.dvi
 		" !evince %:r.pdf
-	elseif e=="spin"
+	elseif e=="pml"
 		!spin %
 	endif
 endfunction
