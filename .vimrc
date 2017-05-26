@@ -1,4 +1,4 @@
-"Last Change: 2017/05/26 (Fri) 19:10:11.
+"Last Change: 2017/05/26 (Fri) 19:45:27.
 
 set shell=/bin/sh
 let patched_font=0
@@ -97,7 +97,8 @@ if version>=704 && load_plugin
 	nmap ga <Plug>(EasyAlign)
 	xmap ga <Plug>(EasyAlign)
 	"files&ctags
-	nnoremap <F2> :TodoToggle<CR>:NERDTreeToggle<CR>:TagbarToggle<CR>:echo<CR>
+	nnoremap <F2> :TodoToggle<CR>:wincmd w<CR>:echo<CR>:NERDTreeToggle<CR>:TagbarToggle<CR>:echo<CR>
+
 	nnoremap ,n :NERDTreeToggle<CR>
 	let g:auto_ctags=1
 	nnoremap ,t :TagbarToggle<CR>
@@ -482,7 +483,8 @@ command! TodoToggle call s:TodoToggle()
 function! s:TodoToggle()
 	let todowinnr = bufwinnr(".todo")
 	if todowinnr != -1
-		exe "normal \<c-w>".todowinnr."w"
+		exe todowinnr."wincmd w"
+		" exe "normal \<C-w>".todowinnr."w"
 		write
 		bdelete
 		return
@@ -497,7 +499,8 @@ command! VTodoToggle call s:VTodoToggle()
 function! s:VTodoToggle()
 	let todowinnr = bufwinnr(".todo")
 	if todowinnr != -1
-		exe "normal \<c-w>".todowinnr."w"
+		exe todowinnr."wincmd w"
+		" exe "normal \<C-w>".todowinnr."w"
 		write
 		bdelete
 		return
