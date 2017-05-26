@@ -1,4 +1,4 @@
-"Last Change: 2017/05/26 (Fri) 15:27:05.
+"Last Change: 2017/05/26 (Fri) 19:10:11.
 
 set shell=/bin/sh
 let patched_font=0
@@ -79,8 +79,6 @@ if version>=704 && load_plugin
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	let g:tex_flavor='latex'
-	" au BufRead,BufNewFile *.spin set filetype=spin
-	" au Syntax spin source $HOME/.vim/repos/github.com/dimatura/spin.vim/spin.vim
 	"autodate
 	nnoremap <F10> OLast Change: .<CR><Esc>
 	let autodate_format='%Y/%m/%d (%a) %H:%M:%S'
@@ -114,7 +112,6 @@ if version>=704 && load_plugin
 		autocmd!
 		autocmd filetype vim let b:match_words='\<if\>:\<elseif\>:\<else\>:\<endif\>,\<for\>:\<endfor\>,\<function\>:\<endfunction\>'
 		autocmd filetype ruby let b:match_words='\<\(module\|class\|def\|begin\|do\|if\|unless\|case\)\>:\<\(elsif\|when\|rescue\)\>:\<\(else\|ensure\)\>:\<end\>'
-		" autocmd filetype spin let b:match_words='\<if\>:\<fi\>,\<do\>:\<od\>'
 	augroup END
 	"lightline
 	set laststatus=2
@@ -254,8 +251,8 @@ function! s:Su_Write()
 endfunction
 nnoremap <Space>q :<C-u>q<CR>
 nnoremap q<Space> :<C-u>q<CR>
-nnoremap <Space>Q :<C-u>q!<CR>
-nnoremap Q<Space> :<C-u>q!<CR>
+nnoremap <Space>Q :<C-u>qa!<CR>
+nnoremap Q<Space> :<C-u>qa!<CR>
 
 
 "foldings
