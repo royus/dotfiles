@@ -1,4 +1,4 @@
-"Last Change: 2017/06/01 (Thu) 15:50:40.
+"Last Change: 2017/06/02 (Fri) 15:31:33.
 
 set shell=/bin/sh
 let patched_font=0
@@ -145,9 +145,9 @@ if version>=704 && load_plugin
 	nmap <C-i> <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=100
 	"skk
-	map! <C-q> <Plug>(skk-toggle-im)
-	let g:skk_control_j_key="<C-q>"
-	let g:skk_kakutei_key="\<C-q>"
+	map! <C-j> <Plug>(skk-toggle-im)
+	" let g:skk_control_j_key="<C-q>"
+	" let g:skk_kakutei_key="\<C-q>"
 	let g:skk_abbrev_to_zenei_key=""
 	let g:skk_keep_state=1
 	let g:skk_large_jisyo = expand('~/.skk-jisyo')
