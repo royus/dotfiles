@@ -1,4 +1,4 @@
-"Last Change: 2017/06/02 (Fri) 15:31:33.
+"Last Change: 2017/06/07 (Wed) 16:19:18.
 
 set shell=/bin/sh
 let patched_font=0
@@ -404,6 +404,7 @@ nnoremap <Space>v ^v$h
 nnoremap <Space>d ^v$hx
 nnoremap <Space>y ^v$hy
 vnoremap <Space>p "0p
+nnoremap <C-g> g<C-g>
 nnoremap + <C-a>
 nnoremap - <C-x>
 vnoremap + <C-a>
@@ -510,7 +511,6 @@ function! s:VTodoToggle()
 	else
 		44 vsplit ~/.todo
 	endif
-
 endfunction
 inoremap tl - [ ]<Space>
 inoremap tL tl
