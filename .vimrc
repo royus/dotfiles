@@ -1,9 +1,10 @@
-"Last Change: 2017/06/07 (Wed) 16:19:18.
+"Last Change: 2017/06/07 (Wed) 16:39:28.
 
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
+let use_ja_input=1
 
 "dein
 if version>=704 && load_plugin
@@ -121,13 +122,29 @@ if version>=704 && load_plugin
 		let g:lightline={
 					\ 'colorscheme': 'jellybeans',
 					\ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
-					\ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" }
+					\ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
+					\ 'component_function': {
+					\   'winform': 'LightLineWinform'
+					\ },
 					\ }
 	else
 		let g:lightline={
-					\ 'colorscheme': 'jellybeans'
+					\ 'colorscheme': 'jellybeans',
+					\ 'component_function': {
+					\   'winform': 'LightLineWinform'
+					\ },
 					\ }
 	endif
+	let g:lightline.active = {
+				\ 'left': [ [ 'mode', 'paste' ],
+				\           [ 'readonly', 'filename', 'modified' ] ],
+				\ 'right': [ [ 'lineinfo','winform'],
+				\            [ 'percent' ],
+				\            [ 'fileformat', 'fileencoding', 'filetype' ] ] ,
+				\ }
+	function! LightLineWinform()
+		return winwidth(0) > 50 ?  winwidth(0) . ':' .  winheight(0) : ''
+	endfunction
 	"neocomplete
 	let g:neocomplete#enable_at_startup=1
 	let g:neocomplete#enable_smart_case=1
@@ -145,15 +162,15 @@ if version>=704 && load_plugin
 	nmap <C-i> <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=100
 	"skk
-	map! <C-j> <Plug>(skk-toggle-im)
-	" let g:skk_control_j_key="<C-q>"
-	" let g:skk_kakutei_key="\<C-q>"
-	let g:skk_abbrev_to_zenei_key=""
-	let g:skk_keep_state=1
-	let g:skk_large_jisyo = expand('~/.skk-jisyo')
-	let g:skk_auto_save_jisyo = -1
-	let g:eskk#enable_completion = 1
-	let g:skk_kutouten_type = "en"
+	if use_ja_input
+		map! <C-j> <Plug>(skk-toggle-im)
+		let g:skk_abbrev_to_zenei_key=""
+		let g:skk_keep_state=1
+		let g:skk_large_jisyo = expand('~/.skk-jisyo')
+		let g:skk_auto_save_jisyo = -1
+		let g:eskk#enable_completion = 1
+		let g:skk_kutouten_type = "en"
+	endif
 	"syntastic
 	" let g:syntastic_enable_signs=1
 	" let g:syntastic_auto_loc_list=2
