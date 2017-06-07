@@ -1,4 +1,4 @@
-"Last Change: 2017/06/07 (Wed) 16:39:28.
+"Last Change: 2017/06/07 (Wed) 16:43:18.
 
 set shell=/bin/sh
 let patched_font=0
@@ -123,18 +123,14 @@ if version>=704 && load_plugin
 					\ 'colorscheme': 'jellybeans',
 					\ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
 					\ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
-					\ 'component_function': {
-					\   'winform': 'LightLineWinform'
-					\ },
 					\ }
 	else
 		let g:lightline={
 					\ 'colorscheme': 'jellybeans',
-					\ 'component_function': {
-					\   'winform': 'LightLineWinform'
-					\ },
 					\ }
 	endif
+	let g:lightline.component = {
+				\ 'lineinfo': '%3l[%L]:%-2v'}
 	let g:lightline.active = {
 				\ 'left': [ [ 'mode', 'paste' ],
 				\           [ 'readonly', 'filename', 'modified' ] ],
@@ -142,9 +138,6 @@ if version>=704 && load_plugin
 				\            [ 'percent' ],
 				\            [ 'fileformat', 'fileencoding', 'filetype' ] ] ,
 				\ }
-	function! LightLineWinform()
-		return winwidth(0) > 50 ?  winwidth(0) . ':' .  winheight(0) : ''
-	endfunction
 	"neocomplete
 	let g:neocomplete#enable_at_startup=1
 	let g:neocomplete#enable_smart_case=1
