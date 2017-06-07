@@ -1,4 +1,4 @@
-"Last Change: 2017/06/07 (Wed) 16:43:18.
+"Last Change: 2017/06/07 (Wed) 17:12:22.
 
 set shell=/bin/sh
 let patched_font=0
@@ -130,14 +130,16 @@ if version>=704 && load_plugin
 					\ }
 	endif
 	let g:lightline.component = {
-				\ 'lineinfo': '%3l[%L]:%-2v'}
-	let g:lightline.active = {
-				\ 'left': [ [ 'mode', 'paste' ],
-				\           [ 'readonly', 'filename', 'modified' ] ],
-				\ 'right': [ [ 'lineinfo','winform'],
-				\            [ 'percent' ],
-				\            [ 'fileformat', 'fileencoding', 'filetype' ] ] ,
+				\ 'lineinfo': '%3l[%L]:%-2v',
+				\ 'skkstatus': '%{strlen(SkkGetModeStr())-1 ? "あ" : ""}'
 				\ }
+	let g:lightline.active = {
+	\ 'left': [ [ 'mode', 'paste' ],
+	\           [ 'readonly', 'filename', 'modified' ] ],
+	\ 'right': [ [ 'lineinfo','winform'],
+	\            [ 'percent' ],
+	\            [ 'skkstatus', 'fileformat', 'fileencoding', 'filetype' ] ] ,
+	\ }
 	"neocomplete
 	let g:neocomplete#enable_at_startup=1
 	let g:neocomplete#enable_smart_case=1
