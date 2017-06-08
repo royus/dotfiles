@@ -1,10 +1,10 @@
-"Last Change: 2017/06/08 (Thu) 14:31:01.
+"Last Change: 2017/06/08 (Thu) 14:54:06.
 
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
-let use_ja_input=1
+let use_ja_input=0
 
 "dein
 if version>=704 && load_plugin
@@ -24,8 +24,8 @@ if version>=704 && load_plugin
 	call dein#add('thinca/vim-poslist')
 	call dein#add('thinca/vim-scouter')
 	call dein#add('tyru/skk.vim')
-	" call dein#add('scrooloose/syntastic')
 	call dein#add('LeafCage/yankround.vim')
+	" call dein#add('scrooloose/syntastic')
 	" call dein#add('Shougo/unite.vim')
 	" call dein#add('Shougo/unite-outline')
 	" call dein#add('ujihisa/unite-colorscheme')
@@ -131,17 +131,18 @@ if version>=704 && load_plugin
 	endif
 	let g:lightline.component = {
 				\ 'lineinfo': '%3l[%L]:%-2v',
-				\ 'skkstatus': '%{strlen(SkkGetModeStr())-1 ? substitute(SkkGetModeStr(), "SKK: ", "", "g") : ""}'
+				\ 'skkstatus': '%{strlen(SkkGetModeStr())-1 ? substitute(SkkGetModeStr(), "SKK: ", "", "g") : ""}',
 				\ }
-	" \ 'skkstatus': '%{join(SkkGetModeStr()[6],"")}'
-	" \ 'skkstatus': '%{strlen(SkkGetModeStr())-1 ? "あ" : ""}'
-
 	let g:lightline.active = {
-				\ 'left': [ [ 'mode', 'paste' ],
-				\           [ 'readonly', 'filename', 'modified' ] ],
+				\ 'left':  [ [ 'mode', 'paste' ],
+				\            [ 'readonly', 'absolutepath', 'modified' ] ],
 				\ 'right': [ [ 'lineinfo','winform'],
 				\            [ 'percent' ],
 				\            [ 'skkstatus', 'fileformat', 'fileencoding', 'filetype' ] ] ,
+				\ }
+	let g:lightline.inactive = {
+				\ 'left': [ [ 'filename' ] ],
+				\ 'right': [ [ 'lineinfo' ] ],
 				\ }
 	"neocomplete
 	let g:neocomplete#enable_at_startup=1
@@ -168,6 +169,8 @@ if version>=704 && load_plugin
 		let g:skk_auto_save_jisyo = -1
 		let g:eskk#enable_completion = 1
 		let g:skk_kutouten_type = "en"
+	else
+		let g:skk_control_j_key=""
 	endif
 	"syntastic
 	" let g:syntastic_enable_signs=1
