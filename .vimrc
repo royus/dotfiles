@@ -1,10 +1,10 @@
-"Last Change: 2017/06/09 (Fri) 17:06:36.
+"Last Change: 2017/06/09 (Fri) 17:41:28.
 
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
-let use_ja_input=0
+let use_ja_input=1
 
 "dein
 if version>=704 && load_plugin
