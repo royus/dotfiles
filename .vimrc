@@ -1,4 +1,4 @@
-"Last Change: 2017/06/08 (Thu) 14:54:06.
+"Last Change: 2017/06/09 (Fri) 17:06:36.
 
 set shell=/bin/sh
 let patched_font=0
@@ -80,6 +80,7 @@ if version>=704 && load_plugin
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	let g:tex_flavor='latex'
+	" autocmd FileType tex setlocal spell spelllang=en_us
 	"autodate
 	nnoremap <F10> OLast Change: .<CR><Esc>
 	let autodate_format='%Y/%m/%d (%a) %H:%M:%S'
@@ -135,7 +136,7 @@ if version>=704 && load_plugin
 				\ }
 	let g:lightline.active = {
 				\ 'left':  [ [ 'mode', 'paste' ],
-				\            [ 'readonly', 'absolutepath', 'modified' ] ],
+				\            [ 'readonly', 'filename', 'modified' ] ],
 				\ 'right': [ [ 'lineinfo','winform'],
 				\            [ 'percent' ],
 				\            [ 'skkstatus', 'fileformat', 'fileencoding', 'filetype' ] ] ,
@@ -566,13 +567,15 @@ function! s:RUN()
 		if filereadable("main")
 			!./main
 		else
-			!./.x_%:r; !rm .x_%:r
+			!./.x_%:r
+			" !rm .x_%:r
 		endif
 	elseif e=="java"
 		if filereadable("Makefile")
 			make; !java Main
 		else
-			JAVAC; !java %:r
+			JAVAC
+			!java %:r
 		endif
 	elseif e=="rb"
 		!ruby % -w
@@ -593,7 +596,7 @@ endfunction
 command! GCC call s:GCC()
 function! s:GCC()
 	write
-	!gcc % -O3 -lm -o .x_%:r -Wall
+	!gcc % -O3 -lm -o .x_%:r -Wall;
 endfunction
 command! JAVAC call s:JAVAC()
 function! s:JAVAC()
