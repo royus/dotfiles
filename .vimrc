@@ -1,4 +1,4 @@
-"Last Change: 2017/06/09 (Fri) 17:41:28.
+"Last Change: 2017/06/09 (Fri) 18:35:41.
 
 set shell=/bin/sh
 let patched_font=0
@@ -132,7 +132,7 @@ if version>=704 && load_plugin
 	endif
 	let g:lightline.component = {
 				\ 'lineinfo': '%3l[%L]:%-2v',
-				\ 'skkstatus': '%{strlen(SkkGetModeStr())-1 ? substitute(SkkGetModeStr(), "SKK: ", "", "g") : ""}',
+				\ 'skkstatus': '%{strlen(SkkGetModeStr())-1 ? substitute(SkkGetModeStr(), "SKK:", "", "g") : ""}',
 				\ }
 	let g:lightline.active = {
 				\ 'left':  [ [ 'mode', 'paste' ],
