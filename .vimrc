@@ -1,4 +1,4 @@
-"Last Change: 2017/06/09 (Fri) 18:35:41.
+"Last Change: 2017/06/10 (Sat) 23:41:01.
 
 set shell=/bin/sh
 let patched_font=0
@@ -79,8 +79,6 @@ if version>=704 && load_plugin
 		colorscheme hybrid
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
-	let g:tex_flavor='latex'
-	" autocmd FileType tex setlocal spell spelllang=en_us
 	"autodate
 	nnoremap <F10> OLast Change: .<CR><Esc>
 	let autodate_format='%Y/%m/%d (%a) %H:%M:%S'
@@ -100,7 +98,6 @@ if version>=704 && load_plugin
 	xmap ga <Plug>(EasyAlign)
 	"files&ctags
 	nnoremap <F2> :TodoToggle<CR>:wincmd w<CR>:echo<CR>:NERDTreeToggle<CR>:TagbarToggle<CR>:echo<CR>
-
 	nnoremap ,n :NERDTreeToggle<CR>
 	let g:auto_ctags=1
 	nnoremap ,t :TagbarToggle<CR>
@@ -116,6 +113,9 @@ if version>=704 && load_plugin
 		autocmd filetype vim let b:match_words='\<if\>:\<elseif\>:\<else\>:\<endif\>,\<for\>:\<endfor\>,\<function\>:\<endfunction\>'
 		autocmd filetype ruby let b:match_words='\<\(module\|class\|def\|begin\|do\|if\|unless\|case\)\>:\<\(elsif\|when\|rescue\)\>:\<\(else\|ensure\)\>:\<end\>'
 	augroup END
+	"latex
+	let g:tex_flavor='latex'
+	" autocmd FileType tex setlocal spell spelllang=en_us
 	"lightline
 	set laststatus=2
 	set noshowmode
@@ -132,7 +132,7 @@ if version>=704 && load_plugin
 	endif
 	let g:lightline.component = {
 				\ 'lineinfo': '%3l[%L]:%-2v',
-				\ 'skkstatus': '%{strlen(SkkGetModeStr())-1 ? substitute(SkkGetModeStr(), "SKK:", "", "g") : ""}',
+				\ 'skkstatus': '%{strlen(SkkGetModeStr())-1 ? substitute(substitute(SkkGetModeStr(), "[SKK:", "", ""), "]", "", "") : ""}',
 				\ }
 	let g:lightline.active = {
 				\ 'left':  [ [ 'mode', 'paste' ],
@@ -167,7 +167,7 @@ if version>=704 && load_plugin
 		let g:skk_abbrev_to_zenei_key=""
 		let g:skk_keep_state=1
 		let g:skk_large_jisyo = expand('~/.skk-jisyo')
-		let g:skk_auto_save_jisyo = -1
+		" let g:skk_auto_save_jisyo = -1
 		let g:eskk#enable_completion = 1
 		let g:skk_kutouten_type = "en"
 	else
@@ -240,8 +240,8 @@ set showmatch
 set matchpairs+=<:>
 if colorscheme_no==1
 	set cursorline cursorcolumn
-	" highlight clear CursorLine
-	" highlight clear CursorColumn
+	highlight clear CursorLine
+	highlight clear CursorColumn
 	highlight MatchParen ctermfg=cyan ctermbg=NONE
 	highlight PmenuSel ctermbg=lightgray
 else
