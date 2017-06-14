@@ -1,4 +1,4 @@
-"Last Change: 2017/06/12 (Mon) 14:37:03.
+"Last Change: 2017/06/14 (Wed) 11:12:58.
 
 set shell=/bin/sh
 let patched_font=0
