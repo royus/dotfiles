@@ -1,4 +1,4 @@
-"Last Change: 2017/06/14 (Wed) 11:12:58.
+"Last Change: 2017/06/14 (Wed) 11:13:42.
 
 set shell=/bin/sh
 let patched_font=0
@@ -588,8 +588,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		!latexmk % ; latexmk % -c; rm platex*.fls
-		" !latexmk % -pv; latexmk % -c; rm platex*.fls
+		" !latexmk % ; latexmk % -c; rm platex*.fls
+		!latexmk % -pv; latexmk % -c; rm platex*.fls
 	elseif e=="pml"
 		!spin %
 	endif
