@@ -1,4 +1,4 @@
-"Last Change: 2017/06/14 (Wed) 23:16:33.
+"Last Change: 2017/06/16 (Fri) 10:50:25.
 
 set shell=/bin/sh
 let patched_font=0
@@ -131,7 +131,7 @@ if version>=704 && load_plugin
 					\ }
 	endif
 	let g:lightline.component = {
-				\ 'lineinfo': '%3l[%L]:%-2v',
+				\ 'lineinfo': '%3l [%L]:%-2v',
 				\ 'skkstatus': '%{strlen(SkkGetModeStr())-1 ? substitute(substitute(SkkGetModeStr(), "[SKK:", "", ""), "]", "", "") : ""}',
 				\ }
 	let g:lightline.active = {
@@ -553,7 +553,7 @@ highlight CheckboxUnmark ctermfg=red
 "RUN
 command! RUN call s:RUN()
 nnoremap <F5> :RUN<CR>
-inoremap <F5> <Esc><Esc>:RUN<CR>
+inoremap <F5> <Esc><Esc><Esc>:RUN<CR>
 vnoremap <F5> <Esc>:RUN<CR>
 function! s:RUN()
 	wall
@@ -588,8 +588,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		" !latexmk % ; latexmk % -c; rm platex*.fls
-		!latexmk % -pv; latexmk % -c; rm platex*.fls
+		!latexmk %; latexmk % -c; rm platex*.fls
+		" !latexmk % -pv; latexmk % -c; rm platex*.fls
 	elseif e=="pml"
 		!spin %
 	endif
