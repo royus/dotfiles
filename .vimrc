@@ -1,4 +1,4 @@
-"Last Change: 2017/06/16 (Fri) 10:50:25.
+"Last Change: 2017/06/22 (Thu) 14:14:36.
 
 set shell=/bin/sh
 let patched_font=0
@@ -603,6 +603,11 @@ command! JAVAC call s:JAVAC()
 function! s:JAVAC()
 	write
 	!javac %
+endfunction
+command! PDF call s:PDF()
+function! s:PDF()
+	write
+	!apvlv %:r.pdf &
 endfunction
 autocmd filetype vim nnoremap <F5> :w<CR>:source %<CR>
 autocmd filetype vim inoremap <F5> <Esc>:w<CR>:source %<CR>
