@@ -1,4 +1,4 @@
-"Last Change: 2017/06/22 (Thu) 14:14:36.
+"Last Change: 2017/06/28 (Wed) 12:06:26.
 
 set shell=/bin/sh
 let patched_font=0
@@ -21,6 +21,7 @@ if version>=704 && load_plugin
 	"functions
 	call dein#add('itchyny/calendar.vim')
 	call dein#add('tpope/vim-fugitive')
+	call dein#add('cohama/lexima.vim')
 	call dein#add('thinca/vim-poslist')
 	call dein#add('thinca/vim-scouter')
 	call dein#add('tyru/skk.vim')
@@ -173,6 +174,13 @@ if version>=704 && load_plugin
 	else
 		let g:skk_control_j_key=""
 	endif
+	function! MySkkMap()
+		lmap <buffer> <Up>    <NOP>
+		lmap <buffer> <Down>  <NOP>
+		lmap <buffer> <Right> <NOP>
+		lmap <buffer> <Left>  <NOP>
+	endfunction
+	let g:skk_enable_hook = 'MySkkMap'
 	"syntastic
 	" let g:syntastic_enable_signs=1
 	" let g:syntastic_auto_loc_list=2
@@ -553,7 +561,7 @@ highlight CheckboxUnmark ctermfg=red
 "RUN
 command! RUN call s:RUN()
 nnoremap <F5> :RUN<CR>
-inoremap <F5> <Esc><Esc><Esc>:RUN<CR>
+inoremap <F5> <Esc>:RUN<CR>
 vnoremap <F5> <Esc>:RUN<CR>
 function! s:RUN()
 	wall
@@ -588,8 +596,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		!latexmk %; latexmk % -c; rm platex*.fls
-		" !latexmk % -pv; latexmk % -c; rm platex*.fls
+		" !latexmk %; latexmk % -c; rm platex*.fls
+		!latexmk % -pv; latexmk % -c; rm platex*.fls
 	elseif e=="pml"
 		!spin %
 	endif
