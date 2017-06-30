@@ -1,10 +1,10 @@
-"Last Change: 2017/06/28 (Wed) 12:06:26.
+"Last Change: 2017/06/30 (Fri) 15:01:43.
 
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
-let use_ja_input=1
+let use_ja_input=0
 
 "dein
 if version>=704 && load_plugin
@@ -285,6 +285,7 @@ nnoremap Q<Space> :<C-u>qa!<CR>
 
 "foldings
 nnoremap z za
+nnoremap Z zA
 " nnoremap za <NOP>
 set foldmethod=syntax foldlevel=100
 " set foldmethod=indent foldlevel=100
@@ -596,8 +597,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		" !latexmk %; latexmk % -c; rm platex*.fls
-		!latexmk % -pv; latexmk % -c; rm platex*.fls
+		!latexmk %; latexmk % -c; rm platex*.fls
+		" !latexmk % -pv; latexmk % -c; rm platex*.fls
 	elseif e=="pml"
 		!spin %
 	endif
