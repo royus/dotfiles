@@ -1,12 +1,12 @@
-"Last Change: 2017/06/30 (Fri) 17:43:51.
-
+"Last Change: 2017/06/30 (Fri) 19:21:20.
+"{{{
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
 let use_ja_input=0
-
-"dein
+"}}}
+"dein{{{
 if version>=704 && load_plugin
 	let s:dein_dir=expand('~/.vim')
 	let s:dein_repo_dir=s:dein_dir.'/repos/github.com/Shougo/dein.vim'
@@ -74,8 +74,8 @@ if version>=704 && load_plugin
 	if dein#check_install()
 		call dein#install()
 	endif
-
-	"plugins
+"}}}
+	"plugins{{{
 	if colorscheme_no==1
 		colorscheme hybrid
 	endif
@@ -220,9 +220,9 @@ else
 	nnoremap <Space>s :<C-u>%s/
 	vnoremap <Space>s :s/
 endif
+"}}}
 
-
-"appearence
+"appearence{{{
 set t_Co=256
 syntax enable
 set title
@@ -256,20 +256,20 @@ else
 	colorscheme darkblue
 endif
 highlight normal ctermbg=NONE
+"}}}
 
-
-"encoding
+"encoding{{{
 set encoding=utf-8 fileencodings=utf-8,iso-2022-jp,euc-jp,sjis fileencoding=utf-8
 set fileformat=unix fileformats=unix,dos,mac
+"}}}
 
-
-"files
+"files{{{
 set noswapfile
 set autochdir
 set hidden
 nnoremap Q     <NOP>
-nnoremap ZZ    <NOP>
-nnoremap ZQ    <NOP>
+" nnoremap ZZ    <NOP>
+" nnoremap ZQ    <NOP>
 nnoremap <C-z> <NOP>
 nnoremap <Space>w :<C-u>w<CR>
 nnoremap <Space>W :<C-u>W<CR>
@@ -281,36 +281,36 @@ nnoremap <Space>q :<C-u>q<CR>
 nnoremap q<Space> :<C-u>q<CR>
 nnoremap <Space>Q :<C-u>qa!<CR>
 nnoremap Q<Space> :<C-u>qa!<CR>
+"}}}
 
-
-"foldings
+"foldings {{{
 nnoremap z za
 nnoremap Z zA
-" nnoremap za <NOP>
+vnoremap z zf
 set foldmethod=syntax foldlevel=100
 " set foldmethod=indent foldlevel=100
+autocmd filetype vim set foldmethod=marker
 autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
 			\| setlocal foldmethod=manual
 			\| endif
 autocmd InsertLeave * if &l:foldmethod ==# 'manual'
 			\| setlocal foldmethod=syntax
 			\| endif
-let javaScript_fold=1
-let perl_fold=1
-let php_folding=1
-let r_syntax_folding=1
-let ruby_fold=1
-let sh_fold_enabled=1
-let vimsyn_folding='af'
-let xml_syntax_folding=1
+" let javaScript_fold=1
+" let perl_fold=1
+" let php_folding=1
+" let r_syntax_folding=1
+" let ruby_fold=1
+" let sh_fold_enabled=1
+" let xml_syntax_folding=1
 set foldtext=MyFoldText()
 function! MyFoldText()
 	let line=getline(v:foldstart)
 	let space=strpart('|---------------',0,&tabstop)
 	" let space=substitute(space,'\%( \)\@<= \%( *$\)\@=',' ','g')
 	let line=substitute(line,"\t",space,'g')
-	let line=substitute(line,'/\*\|\*/\|{{{\d\=','','g')
-	let cnt=printf(' [%3s,%2s]',(v:foldend-v:foldstart+1),v:foldlevel)
+	let line=substitute(line,'/\*\|\*/\|{{{\d\=','','g') "}}}
+	let cnt=printf(' [%3s,%2s]',v:foldlevel,(v:foldend-v:foldstart+1))
 	let line_width=winwidth(0)-&foldcolumn
 	if &number==1
 		let line_width -= max([&numberwidth, len(line('$'))])
@@ -320,9 +320,9 @@ function! MyFoldText()
 	let line=substitute(line,'\%( \)\@<= \%( *$\)\@=','-','g')
 	return line.cnt
 endfunction
+"}}}
 
-
-"history
+"history{{{
 set history=100
 nnoremap q: <NOP>
 nnoremap <Space>: q:
@@ -332,9 +332,9 @@ vnoremap q: <NOP>
 vnoremap <Space>: q:
 vnoremap q/ <NOP>
 vnoremap <Space>/ q/
+"}}}
 
-
-"searches
+"searches{{{
 set incsearch wrapscan ignorecase smartcase
 if version>=704
 	set wildignorecase
@@ -354,9 +354,9 @@ vnoremap <expr> N <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>Nzv' : ':<C-u
 function! s:search_forward_p()
 	return exists('v:searchforward') ? v:searchforward : 1
 endfunction
+"}}}
 
-
-"others
+"others{{{
 set backspace=start,eol,indent
 set pumheight=10
 set clipboard=unnamed,unnamedplus
@@ -366,15 +366,16 @@ autocmd BufReadPost *
 			\ if line("'\"") > 0 && line ("'\"") <= line("$") |
 			\   exe "normal! g'\"" |
 			\ endif
+"}}}
 
-
-"mapping&function
+"mapping&function{{{
 "unused:
 "<F3><F4><F6><F7><F8><F9>^
 "<Space> + abcefgmnruxz
 "   ,    + abdefghijklmopqrsuvwxyz
 set timeout timeoutlen=3000 ttimeoutlen=100
-"movements
+
+"movements{{{
 nnoremap <Up>    <NOP>
 nnoremap <Down>  <NOP>
 nnoremap <Right> <NOP>
@@ -420,8 +421,9 @@ nnoremap <expr> gg line(".")==1 ? 'G':'gg'
 vnoremap <expr> gg line(".")==1 ? 'G':'gg'
 nnoremap 0 ^
 vnoremap 0 ^
+"}}}
 
-"actions
+"actions{{{
 nnoremap ; :
 nnoremap : ;
 nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
@@ -446,36 +448,23 @@ endfunction
 autocmd BufWritePre * call <SID>remove_dust()
 nnoremap U <C-r>
 nnoremap <C-j> J
+"}}}
 
-"input
-" inoremap { {}<Left>
-" inoremap { <Space>{
-" inoremap } }<Space>
-" inoremap [ []<Left>
-" inoremap [ <Space>[
-" inoremap ] ]<Space>
-" inoremap ( ()<Left>
-" inoremap ( <Space>(
-" inoremap ) )<Space>
-" inoremap {<CR> <Space>{}<Left><CR><Esc>O
-" inoremap [<CR> <Space>[]<Left><CR><Esc>O
-" inoremap (<CR> <Space>()<Left><CR><Esc>O
-inoremap {<CR> {}<Left><CR><Esc>O
-inoremap [<CR> []<Left><CR><Esc>O
-inoremap (<CR> ()<Left><CR><Esc>O
-vnoremap { "zdi<C-v>{<C-R>z}<Esc>
-vnoremap } "zdi<C-v>{<C-R>z}<Esc>
-vnoremap [ "zdi<C-v>[<C-R>z]<Esc>
-vnoremap ] "zdi<C-v>[<C-R>z]<Esc>
-vnoremap ( "zdi<C-v>(<C-R>z)<Esc>
-vnoremap ) "zdi<C-v>(<C-R>z)<Esc>
-vnoremap " "zdi<C-v>"<C-R>z<C-v>"<Esc>
-vnoremap ' "zdi'<C-R>z'<Esc>
+"input{{{
+vnoremap i{ "zdi<C-v>{<C-R>z}<Esc>
+vnoremap i} "zdi<C-v>{<C-R>z}<Esc>
+vnoremap i[ "zdi<C-v>[<C-R>z]<Esc>
+vnoremap i] "zdi<C-v>[<C-R>z]<Esc>
+vnoremap i( "zdi<C-v>(<C-R>z)<Esc>
+vnoremap i) "zdi<C-v>(<C-R>z)<Esc>
+vnoremap i" "zdi<C-v>"<C-R>z<C-v>"<Esc>
+vnoremap i' "zdi'<C-R>z'<Esc>
 inoremap zl ->
 inoremap zh <-
 inoremap <C-j> <CR>
+"}}}
 
-"mark
+"mark{{{
 nnoremap [ ['
 nnoremap ] ]'
 if !exists('g:markrement_char')
@@ -494,8 +483,9 @@ function! s:AutoMarkrement()
 	execute 'mark' g:markrement_char[b:markrement_pos]
 	echo 'marked' g:markrement_char[b:markrement_pos]
 endfunction
+"}}}
 
-"text
+"text{{{
 autocmd filetype text inoremap .   .<Space>
 autocmd filetype text inoremap .a  .<Space>A
 autocmd filetype text inoremap .b  .<Space>B
@@ -525,8 +515,9 @@ autocmd filetype text inoremap .y  .<Space>Y
 autocmd filetype text inoremap .z  .<Space>Z
 autocmd filetype tex inoremap figure \begin{figure}[t]<CR>\centering<CR>%<Space>\includegraphics[width=8cm,clip]{./pdf/xxx.pdf}<CR>\caption{．\label{xxx}}<CR>\end{figure}
 autocmd filetype tex inoremap table \begin{table}[t]<CR>\centering<CR>\caption{．\label{xxx}}<CR>\begin{tabular}{\|c\|\|c\|c\|}<Space>\hline<CR>a<Space>&<Space>b<Space>&<Space>c<Space>\\<Space>\hline<Space>\hline<CR>\end{tabular}<CR>\end{table}
+"}}}
 
-"todo
+"todo{{{
 nnoremap T :VTodoToggle<CR>
 command! TodoToggle call s:TodoToggle()
 function! s:TodoToggle()
@@ -578,8 +569,9 @@ autocmd bufnew,bufenter .todo syntax match CheckboxMark /.*\-\s\[x\]\s.\+/ displ
 highlight CheckboxMark ctermfg=darkgreen
 autocmd bufnew,bufenter * syntax match CheckboxUnmark /.*\-\s\[\s\]\s.\+/ display containedin=ALL
 highlight CheckboxUnmark ctermfg=red
+"}}}
 
-"RUN
+"RUN{{{
 command! RUN call s:RUN()
 nnoremap <F5> :RUN<CR>
 inoremap <F5> <Esc>:RUN<CR>
@@ -635,15 +627,18 @@ function! s:JAVAC()
 endfunction
 command! PDF call s:PDF()
 function! s:PDF()
-	write
+	" write
 	!apvlv %:r.pdf &
 endfunction
 autocmd filetype vim nnoremap <F5> :w<CR>:source %<CR>
 autocmd filetype vim inoremap <F5> <Esc>:w<CR>:source %<CR>
 autocmd filetype vim vnoremap <F5> <Esc>:w<CR>:source %<CR>
+"}}}
 
-"template
+"template{{{
 autocmd BufNewFile,BufRead *.c    if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.c    | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead *.java if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.java | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead *.sh   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.sh   | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead *.tex  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.tex  | %substitute/filename/\=expand('%:r')/g | endif
+"}}}
+"}}}
