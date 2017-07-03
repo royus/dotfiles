@@ -1,4 +1,4 @@
-"Last Change: 2017/06/30 (Fri) 19:21:20.
+"Last Change: 2017/07/03 (Mon) 15:50:19.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -197,12 +197,12 @@ if version>=704 && load_plugin
 	" let g:unite_enable_start_insert=0
 	" let g:unite_source_history_yank_enable =1
 	" let g:unite_source_file_mru_limit=200
-	" nnoremap <silent> <Space>u  :<C-u>Unite
-	" nnoremap <silent> <Space>uy :<C-u>Unite history/yank<CR>
-	" nnoremap <silent> <Space>ub :<C-u>Unite buffer<CR>
-	" nnoremap <silent> <Space>uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-	" nnoremap <silent> <Space>ur :<C-u>Unite -buffer-name=register register<CR>
-	" nnoremap <silent> <Space>uu :<C-u>Unite file_mru buffer<CR>
+	" nnoremap <silent> [Space]u  :<C-u>Unite
+	" nnoremap <silent> [Space]uy :<C-u>Unite history/yank<CR>
+	" nnoremap <silent> [Space]ub :<C-u>Unite buffer<CR>
+	" nnoremap <silent> [Space]uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+	" nnoremap <silent> [Space]ur :<C-u>Unite -buffer-name=register register<CR>
+	" nnoremap <silent> [Space]uu :<C-u>Unite file_mru buffer<CR>
 	"yankround
 	nmap p <Plug>(yankround-p)
 	xmap p <Plug>(yankround-p)
@@ -211,14 +211,14 @@ if version>=704 && load_plugin
 	nmap <C-n> <Plug>(yankround-next)
 	let g:yankround_max_history=20
 	"abolish
-	nnoremap <Space>s :<C-u>%Subvert/
-	vnoremap <Space>s :Subvert/
+	nnoremap [Space]s :<C-u>%Subvert/
+	vnoremap [Space]s :Subvert/
 else
 	let colorscheme_no=0
 	"abolish
 	set gdefault
-	nnoremap <Space>s :<C-u>%s/
-	vnoremap <Space>s :s/
+	nnoremap [Space]s :<C-u>%s/
+	vnoremap [Space]s :s/
 endif
 "}}}
 
@@ -271,16 +271,16 @@ nnoremap Q     <NOP>
 " nnoremap ZZ    <NOP>
 " nnoremap ZQ    <NOP>
 nnoremap <C-z> <NOP>
-nnoremap <Space>w :<C-u>w<CR>
-nnoremap <Space>W :<C-u>W<CR>
+nnoremap [Space]w :<C-u>w<CR>
+nnoremap [Space]W :<C-u>W<CR>
 command! W call s:Su_Write()
 function! s:Su_Write()
 	:w !sudo tee %
 endfunction
-nnoremap <Space>q :<C-u>q<CR>
-nnoremap q<Space> :<C-u>q<CR>
-nnoremap <Space>Q :<C-u>qa!<CR>
-nnoremap Q<Space> :<C-u>qa!<CR>
+nnoremap [Space]q :<C-u>q<CR>
+nnoremap q[Space] :<C-u>q<CR>
+nnoremap [Space]Q :<C-u>qa!<CR>
+nnoremap Q[Space] :<C-u>qa!<CR>
 "}}}
 
 "foldings {{{
@@ -325,13 +325,13 @@ endfunction
 "history{{{
 set history=100
 nnoremap q: <NOP>
-nnoremap <Space>: q:
+nnoremap [Space]; q:
 nnoremap q/ <NOP>
-nnoremap <Space>/ q/
+nnoremap [Space]/ q/
 vnoremap q: <NOP>
-vnoremap <Space>: q:
+vnoremap [Space]; q:
 vnoremap q/ <NOP>
-vnoremap <Space>/ q/
+vnoremap [Space]/ q/
 "}}}
 
 "searches{{{
@@ -342,7 +342,7 @@ endif
 set wildmode=list:longest,full
 set wildignore=*.o,*.obj,*.pyc,*.class,*.out
 nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
-nnoremap <Space><Space> :<C-u>set nohlsearch<CR>
+nnoremap [Space]<Space> :<C-u>set nohlsearch<CR>
 nnoremap / :<C-u>set hlsearch<CR>/
 nnoremap ? :<C-u>set hlsearch<CR>?
 nnoremap * :<C-u>set hlsearch<CR>*N:echo<CR>
@@ -371,8 +371,10 @@ autocmd BufReadPost *
 "mapping&function{{{
 "unused:
 "<F3><F4><F6><F7><F8><F9>^
-"<Space> + abcefgmnruxz
+"[Space] + abcefgmnruxz
 "   ,    + abdefghijklmopqrsuvwxyz
+map <Space> [Space]
+noremap [Space] <NOP>
 set timeout timeoutlen=3000 ttimeoutlen=100
 
 "movements{{{
@@ -402,17 +404,17 @@ vnoremap <Tab> <C-w><C-w>
 " nnoremap <C-k> <C-w>k
 " nnoremap <C-h> <C-w>h
 " nnoremap <C-l> <C-w>l
-nnoremap <Space> <NOP>
-vnoremap <Space> <NOP>
-nnoremap <Space>h g^
-nnoremap <Space>l g$
-nnoremap <Space>k <C-u>
-nnoremap <Space>j <C-d>
-vnoremap <Space>h g^
-vnoremap <Space>l g$
-nnoremap <Space>k <C-u>
-nnoremap <Space>j <C-d>
-nnoremap <silent> <Space>t :$tabnew<Space>
+nnoremap [Space] <NOP>
+vnoremap [Space] <NOP>
+nnoremap [Space]h g^
+nnoremap [Space]l g$
+nnoremap [Space]k <C-u>
+nnoremap [Space]j <C-d>
+vnoremap [Space]h g^
+vnoremap [Space]l g$
+nnoremap [Space]k <C-u>
+nnoremap [Space]j <C-d>
+nnoremap [Space]t :$tabnew<Space>
 nnoremap K gt
 nnoremap J gT
 nnoremap H <C-o>
@@ -426,14 +428,14 @@ vnoremap 0 ^
 "actions{{{
 nnoremap ; :
 nnoremap : ;
-nnoremap <Space>o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
-nnoremap <Space>O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
+nnoremap [Space]o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+nnoremap [Space]O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
 nnoremap Y y$
-nnoremap <Space>i gg=G<C-o><C-o>
-nnoremap <Space>v ^v$h
-nnoremap <Space>d ^v$hx
-nnoremap <Space>y ^v$hy
-vnoremap <Space>p "0p
+nnoremap [Space]i gg=G<C-o><C-o>
+nnoremap [Space]v ^v$h
+nnoremap [Space]d ^v$hx
+nnoremap [Space]y ^v$hy
+vnoremap [Space]p "0p
 nnoremap <C-g> g<C-g>
 nnoremap + <C-a>
 nnoremap - <C-x>
@@ -465,8 +467,8 @@ inoremap <C-j> <CR>
 "}}}
 
 "mark{{{
-nnoremap [ ['
-nnoremap ] ]'
+nnoremap <nowait> [ ['
+nnoremap <nowait> ] ]'
 if !exists('g:markrement_char')
 	let g:markrement_char = [
 				\'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
