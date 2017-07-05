@@ -1,4 +1,4 @@
-"Last Change: 2017/07/03 (Mon) 15:50:19.
+"Last Change: 2017/07/04 (Tue) 13:30:46.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -467,8 +467,10 @@ inoremap <C-j> <CR>
 "}}}
 
 "mark{{{
-nnoremap <nowait> [ ['
-nnoremap <nowait> ] ]'
+" noremap <nowait> [ ['
+" noremap <nowait> ] ]'
+nnoremap [Space]M ['
+nnoremap [Space]m ]'
 if !exists('g:markrement_char')
 	let g:markrement_char = [
 				\'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
@@ -611,8 +613,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		!latexmk %; latexmk % -c; rm platex*.fls
-		" !latexmk % -pv; latexmk % -c; rm platex*.fls
+		" !latexmk %; latexmk % -c; rm platex*.fls
+		!latexmk % -pv; latexmk % -c; rm platex*.fls
 	elseif e=="pml"
 		!spin %
 	endif
