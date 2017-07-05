@@ -1,10 +1,10 @@
-"Last Change: 2017/07/04 (Tue) 13:30:46.
+"Last Change: 2017/07/05 (Wed) 18:12:24.
 "{{{
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
-let use_ja_input=0
+let use_ja_input=1
 "}}}
 "dein{{{
 if version>=704 && load_plugin
@@ -490,35 +490,35 @@ endfunction
 "}}}
 
 "text{{{
-autocmd filetype text inoremap .   .<Space>
-autocmd filetype text inoremap .a  .<Space>A
-autocmd filetype text inoremap .b  .<Space>B
-autocmd filetype text inoremap .c  .<Space>C
-autocmd filetype text inoremap .d  .<Space>D
-autocmd filetype text inoremap .e  .<Space>E
-autocmd filetype text inoremap .f  .<Space>F
-autocmd filetype text inoremap .g  .<Space>G
-autocmd filetype text inoremap .h  .<Space>H
-autocmd filetype text inoremap .i  .<Space>I
-autocmd filetype text inoremap .j  .<Space>J
-autocmd filetype text inoremap .k  .<Space>K
-autocmd filetype text inoremap .l  .<Space>L
-autocmd filetype text inoremap .m  .<Space>M
-autocmd filetype text inoremap .n  .<Space>N
-autocmd filetype text inoremap .o  .<Space>O
-autocmd filetype text inoremap .p  .<Space>P
-autocmd filetype text inoremap .q  .<Space>Q
-autocmd filetype text inoremap .r  .<Space>R
-autocmd filetype text inoremap .s  .<Space>S
-autocmd filetype text inoremap .t  .<Space>T
-autocmd filetype text inoremap .u  .<Space>U
-autocmd filetype text inoremap .v  .<Space>V
-autocmd filetype text inoremap .w  .<Space>W
-autocmd filetype text inoremap .x  .<Space>X
-autocmd filetype text inoremap .y  .<Space>Y
-autocmd filetype text inoremap .z  .<Space>Z
-autocmd filetype tex inoremap figure \begin{figure}[t]<CR>\centering<CR>%<Space>\includegraphics[width=8cm,clip]{./pdf/xxx.pdf}<CR>\caption{．\label{xxx}}<CR>\end{figure}
-autocmd filetype tex inoremap table \begin{table}[t]<CR>\centering<CR>\caption{．\label{xxx}}<CR>\begin{tabular}{\|c\|\|c\|c\|}<Space>\hline<CR>a<Space>&<Space>b<Space>&<Space>c<Space>\\<Space>\hline<Space>\hline<CR>\end{tabular}<CR>\end{table}
+" autocmd filetype text inoremap .   .<Space>
+" autocmd filetype text inoremap .a  .<Space>A
+" autocmd filetype text inoremap .b  .<Space>B
+" autocmd filetype text inoremap .c  .<Space>C
+" autocmd filetype text inoremap .d  .<Space>D
+" autocmd filetype text inoremap .e  .<Space>E
+" autocmd filetype text inoremap .f  .<Space>F
+" autocmd filetype text inoremap .g  .<Space>G
+" autocmd filetype text inoremap .h  .<Space>H
+" autocmd filetype text inoremap .i  .<Space>I
+" autocmd filetype text inoremap .j  .<Space>J
+" autocmd filetype text inoremap .k  .<Space>K
+" autocmd filetype text inoremap .l  .<Space>L
+" autocmd filetype text inoremap .m  .<Space>M
+" autocmd filetype text inoremap .n  .<Space>N
+" autocmd filetype text inoremap .o  .<Space>O
+" autocmd filetype text inoremap .p  .<Space>P
+" autocmd filetype text inoremap .q  .<Space>Q
+" autocmd filetype text inoremap .r  .<Space>R
+" autocmd filetype text inoremap .s  .<Space>S
+" autocmd filetype text inoremap .t  .<Space>T
+" autocmd filetype text inoremap .u  .<Space>U
+" autocmd filetype text inoremap .v  .<Space>V
+" autocmd filetype text inoremap .w  .<Space>W
+" autocmd filetype text inoremap .x  .<Space>X
+" autocmd filetype text inoremap .y  .<Space>Y
+" autocmd filetype text inoremap .z  .<Space>Z
+autocmd filetype tex inoremap FIG \begin{figure}[t]<CR>\centering<CR>%<Space>\includegraphics[width=8cm,clip]{./pdf/xxx.pdf}<CR>\caption{．\label{xxx}}<CR>\end{figure}
+autocmd filetype tex inoremap TAB \begin{table}[t]<CR>\centering<CR>\caption{．\label{xxx}}<CR>\begin{tabular}{\|c\|\|c\|c\|}<Space>\hline<CR>a<Space>&<Space>b<Space>&<Space>c<Space>\\<Space>\hline<Space>\hline<CR>\end{tabular}<CR>\end{table}
 "}}}
 
 "todo{{{
@@ -613,8 +613,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		" !latexmk %; latexmk % -c; rm platex*.fls
-		!latexmk % -pv; latexmk % -c; rm platex*.fls
+		!latexmk %; latexmk % -c; rm platex*.fls
+		" !latexmk % -pv; latexmk % -c; rm platex*.fls
 	elseif e=="pml"
 		!spin %
 	endif
