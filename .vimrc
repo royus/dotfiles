@@ -1,10 +1,10 @@
-"Last Change: 2017/07/05 (Wed) 18:12:24.
+"Last Change: 2017/07/10 (Mon) 15:43:03.
 "{{{
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
-let use_ja_input=1
+let use_ja_input=0
 "}}}
 "dein{{{
 if version>=704 && load_plugin
@@ -179,6 +179,7 @@ if version>=704 && load_plugin
 		lmap <buffer> <Down>  <NOP>
 		lmap <buffer> <Right> <NOP>
 		lmap <buffer> <Left>  <NOP>
+		" lmap <buffer> <F5>  <NOP>
 	endfunction
 	let g:skk_enable_hook = 'MySkkMap'
 	"syntastic
@@ -412,8 +413,8 @@ nnoremap [Space]k <C-u>
 nnoremap [Space]j <C-d>
 vnoremap [Space]h g^
 vnoremap [Space]l g$
-nnoremap [Space]k <C-u>
-nnoremap [Space]j <C-d>
+vnoremap [Space]k <C-u>
+vnoremap [Space]j <C-d>
 nnoremap [Space]t :$tabnew<Space>
 nnoremap K gt
 nnoremap J gT
@@ -461,6 +462,7 @@ vnoremap i( "zdi<C-v>(<C-R>z)<Esc>
 vnoremap i) "zdi<C-v>(<C-R>z)<Esc>
 vnoremap i" "zdi<C-v>"<C-R>z<C-v>"<Esc>
 vnoremap i' "zdi'<C-R>z'<Esc>
+vnoremap i$ "zdi$<C-R>z$<Esc>
 inoremap zl ->
 inoremap zh <-
 inoremap <C-j> <CR>
@@ -616,7 +618,7 @@ function! s:RUN()
 		!latexmk %; latexmk % -c; rm platex*.fls
 		" !latexmk % -pv; latexmk % -c; rm platex*.fls
 	elseif e=="pml"
-		!spin %
+		!spin -search %
 	endif
 endfunction
 command! GCC call s:GCC()
