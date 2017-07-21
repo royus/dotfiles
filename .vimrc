@@ -1,10 +1,10 @@
-"Last Change: 2017/07/10 (Mon) 15:43:03.
+"Last Change: 2017/07/20 (Thu) 12:52:44.
 "{{{
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
-let use_ja_input=0
+let use_ja_input=1
 "}}}
 "dein{{{
 if version>=704 && load_plugin
@@ -74,7 +74,7 @@ if version>=704 && load_plugin
 	if dein#check_install()
 		call dein#install()
 	endif
-"}}}
+	"}}}
 	"plugins{{{
 	if colorscheme_no==1
 		colorscheme hybrid
@@ -117,6 +117,9 @@ if version>=704 && load_plugin
 	"latex
 	let g:tex_flavor='latex'
 	" autocmd FileType tex setlocal spell spelllang=en_us
+	call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
+	call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
+	call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
 	"lightline
 	set laststatus=2
 	set noshowmode
@@ -416,8 +419,8 @@ vnoremap [Space]l g$
 vnoremap [Space]k <C-u>
 vnoremap [Space]j <C-d>
 nnoremap [Space]t :$tabnew<Space>
-nnoremap K gt
-nnoremap J gT
+" nnoremap K gt
+" nnoremap J gT
 nnoremap H <C-o>
 nnoremap L <C-i>
 nnoremap <expr> gg line(".")==1 ? 'G':'gg'
@@ -450,7 +453,7 @@ function! s:remove_dust()
 endfunction
 autocmd BufWritePre * call <SID>remove_dust()
 nnoremap U <C-r>
-nnoremap <C-j> J
+" nnoremap <C-j> J
 "}}}
 
 "input{{{
@@ -519,8 +522,8 @@ endfunction
 " autocmd filetype text inoremap .x  .<Space>X
 " autocmd filetype text inoremap .y  .<Space>Y
 " autocmd filetype text inoremap .z  .<Space>Z
-autocmd filetype tex inoremap FIG \begin{figure}[t]<CR>\centering<CR>%<Space>\includegraphics[width=8cm,clip]{./pdf/xxx.pdf}<CR>\caption{．\label{xxx}}<CR>\end{figure}
-autocmd filetype tex inoremap TAB \begin{table}[t]<CR>\centering<CR>\caption{．\label{xxx}}<CR>\begin{tabular}{\|c\|\|c\|c\|}<Space>\hline<CR>a<Space>&<Space>b<Space>&<Space>c<Space>\\<Space>\hline<Space>\hline<CR>\end{tabular}<CR>\end{table}
+autocmd filetype tex inoremap FIG \begin{figure}[t]<CR>\centering<CR>%<Space>\includegraphics[width=8cm,clip]{./pdf/xxx.pdf}<CR>\caption{.\label{xxx}}<CR>\end{figure}
+autocmd filetype tex inoremap TAB \begin{table}[t]<CR>\centering<CR>\caption{.\label{xxx}}<CR>\begin{tabular}{\|c\|\|c\|c\|}<Space>\hline<CR>a<Space>&<Space>b<Space>&<Space>c<Space>\\<Space>\hline<Space>\hline<CR>\end{tabular}<CR>\end{table}
 "}}}
 
 "todo{{{
@@ -569,6 +572,8 @@ function! ToggleCheckbox()
 	elseif l:line =~ '\-\s\[x\]'
 		let l:result = substitute(substitute(l:line, '-\s\[x\]', '- [ ]', ''), '\s\[\d\{4}.\+]$', '', '')
 		call setline('.', l:result)
+	" else
+		" insert enter
 	endif
 endfunction
 autocmd bufnew,bufenter .todo syntax match CheckboxMark /.*\-\s\[x\]\s.\+/ display containedin=ALL
