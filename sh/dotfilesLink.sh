@@ -1,10 +1,11 @@
 #!/bin/sh
 # dotfilesLink.sh
-# Last Change: 2017/04/12 (Wed) 11:36:37.
+# Last Change: 2017/07/23 (Sun) 08:17:13.
 
-mkdir ~/.xmonad      2>/dev/null
-mkdir ~/.vifm        2>/dev/null
-mkdir ~/.config/fish 2>/dev/null -p
+mkdir ~/.xmonad         2>/dev/null
+mkdir ~/.vifm           2>/dev/null
+mkdir ~/.config/fish    2>/dev/null -p
+mkdir ~/.config/termite 2>/dev/null -p
 
 ln -sf ~/dotfiles/.vimrc            ~/.vimrc
 ln -sf ~/dotfiles/.inputrc          ~/.inputrc
@@ -20,6 +21,7 @@ ln -sf ~/dotfiles/sh/git_pull.sh    ~/pull.sh
 ln -sf ~/dotfiles/.xinitrc          ~/.xinitrc
 ln -sf ~/dotfiles/.Xresources       ~/.Xresources
 ln -sf ~/dotfiles/.vifm/vifmrc      ~/.vifm/vifmrc
-ln -sf ~/dotfiles/config.fish       ~/.config/fish/config.fish
+ln -sf ~/dotfiles/.config.fish      ~/.config/fish/config.fish
+ln -sf ~/dotfiles/.termite.config   ~/.config/termite/config
 ln -sf ~/dotfiles/.skk-jisyo        ~/.skk-jisyo
 ln -sf ~/dotfiles/.latexmkrc        ~/.latexmkrc
