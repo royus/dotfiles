@@ -23,7 +23,7 @@ strippedKeys x = foldr M.delete (keys defaultConfig x) (keysToRemove x)
 main = do
 	xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobar.hs"
 	xmonad $ defaultConfig
-		{ terminal           = "xterm"
+		{ terminal           = "termite"
 		, workspaces         = myWorkspaces
 		-- , modMask            = mod4Mask
 		, borderWidth        = 3
@@ -41,7 +41,8 @@ main = do
 		, startupHook = myStartupHook
 		}
 		`additionalKeys`
-		[ ((modm,               xK_Return ), spawn "xterm")
+		[ ((modm,               xK_Return ), spawn terminal)
+		-- "xterm")
 		, ((modm,               xK_i      ), spawn "chromium")
 		, ((modm,               xK_p      ), spawn "dmenu_run -fn \"Ricty-14\" -nb black -nf grey -sb grey -sf black")
 		, ((modm,               xK_Tab    ), nextMatch Forward   (return True))
