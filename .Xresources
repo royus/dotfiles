@@ -10,12 +10,16 @@ XTerm*rightScrollBar:     false
 XTerm*background:         gray87
 XTerm*foreground:         black
 XTerm*cursorColor:        black
-XTerm*forcePackedFont:    false
+! XTerm*background:         black
+! XTerm*foreground:         white
+! XTerm*cursorColor:        white
+XTerm*forcePackedFont:    true
 XTerm*cjkWidth:           true
 XTerm*faceSize:           11
 XTerm*faceName:           Ricty
 XTerm*faceNameDoublesize: Ricty
-XTerm*fontDoublesize:     true
+! XTerm*fontDoublesize:     true
+! XTerm*trimSelection: true
 
 ! *background:    #101010
 ! *foreground:    #d0d0d0

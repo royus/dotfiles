@@ -1,4 +1,4 @@
-# Last Change: 2017/07/23 (Sun) 07:02:02.
+# Last Change: 2017/08/03 (Thu) 12:48:37.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 
 #alias
@@ -75,14 +75,14 @@ function fish_prompt
 			printf '>'
 			set_color 7FFF7F
 			printf '>'
-		case replace-one
-			set_color 336633
-			printf '>'
-			set_color 59B259
-			printf '>'
-			set_color 7FFF7F
-			printf '>'
 		case visual
+			set_color 664C33
+			printf '>'
+			set_color B28559
+			printf '>'
+			set_color FFBF7F
+			printf '>'
+		case '*'
 			set_color 663333
 			printf '>'
 			set_color B25959
