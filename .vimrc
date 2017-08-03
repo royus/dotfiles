@@ -1,4 +1,4 @@
-"Last Change: 2017/07/28 (Fri) 21:15:31.
+"Last Change: 2017/08/03 (Thu) 15:18:41.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -524,6 +524,7 @@ endfunction
 " autocmd filetype text inoremap .z  .<Space>Z
 autocmd filetype tex inoremap FIG \begin{figure}[t]<CR>\centering<CR>%<Space>\includegraphics[width=8cm,clip]{./pdf/xxx.pdf}<CR>\caption{.\label{xxx}}<CR>\end{figure}
 autocmd filetype tex inoremap TAB \begin{table}[t]<CR>\centering<CR>\caption{.\label{xxx}}<CR>\begin{tabular}{\|c\|\|c\|c\|}<Space>\hline<CR>a<Space>&<Space>b<Space>&<Space>c<Space>\\<Space>\hline<Space>\hline<CR>\end{tabular}<CR>\end{table}
+autocmd filetype tex inoremap LIST \lstinputlisting[caption=.,label=xxx]{sample.txt}<CR>
 "}}}
 
 "todo{{{
@@ -620,9 +621,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		" !latexmk %; latexmk % -c; rm platex*.fls
-		!latexmk % -pv; latexmk % -c
-		"; rm platex*.fls
+		" !latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
+		!latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
 	elseif e=="pml"
 		!spin -search %
 	endif
