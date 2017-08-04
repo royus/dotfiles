@@ -1,10 +1,10 @@
-"Last Change: 2017/08/03 (Thu) 15:18:41.
+"Last Change: 2017/08/04 (Fri) 16:26:05.
 "{{{
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
-let use_ja_input=1
+let use_ja_input=0
 "}}}
 "dein{{{
 if version>=704 && load_plugin
@@ -621,8 +621,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		" !latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
-		!latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+		!latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
+		" !latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
 	elseif e=="pml"
 		!spin -search %
 	endif
