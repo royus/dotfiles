@@ -1,4 +1,4 @@
-"Last Change: 2017/08/04 (Fri) 16:26:05.
+"Last Change: 2017/08/06 (Sun) 09:38:33.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -255,7 +255,7 @@ if colorscheme_no==1
 	highlight clear CursorLine
 	highlight clear CursorColumn
 	highlight MatchParen ctermfg=cyan ctermbg=NONE
-	highlight PmenuSel ctermbg=lightgray
+	highlight PmenuSel ctermbg=lightgray ctermfg=black
 else
 	colorscheme darkblue
 endif
@@ -621,8 +621,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		!latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
-		" !latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+		" !latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
+		!latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
 	elseif e=="pml"
 		!spin -search %
 	endif
