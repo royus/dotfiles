@@ -1,10 +1,10 @@
-"Last Change: 2017/08/06 (Sun) 09:38:33.
+"Last Change: 2017/08/23 (Wed) 01:40:13.
 "{{{
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
-let use_ja_input=0
+let use_ja_input=1
 "}}}
 "dein{{{
 if version>=704 && load_plugin
