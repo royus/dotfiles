@@ -1,4 +1,4 @@
-"Last Change: 2017/08/23 (Wed) 01:40:13.
+"Last Change: 2017/08/27 (Sun) 13:47:45.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -410,12 +410,12 @@ vnoremap <Tab> <C-w><C-w>
 " nnoremap <C-l> <C-w>l
 nnoremap [Space] <NOP>
 vnoremap [Space] <NOP>
-nnoremap [Space]h g^
-nnoremap [Space]l g$
+nnoremap [Space]h ^
+nnoremap [Space]l $
 nnoremap [Space]k <C-u>
 nnoremap [Space]j <C-d>
-vnoremap [Space]h g^
-vnoremap [Space]l g$
+vnoremap [Space]h ^
+vnoremap [Space]l $
 vnoremap [Space]k <C-u>
 vnoremap [Space]j <C-d>
 nnoremap [Space]t :$tabnew<Space>
@@ -621,8 +621,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		" !latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
-		!latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+		!latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
+		" !latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
 	elseif e=="pml"
 		!spin -search %
 	endif
