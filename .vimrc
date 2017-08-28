@@ -1,4 +1,4 @@
-"Last Change: 2017/08/27 (Sun) 14:11:35.
+"Last Change: 2017/08/28 (Mon) 18:10:09.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -291,15 +291,15 @@ nnoremap Q[Space] :<C-u>qa!<CR>
 nnoremap z za
 nnoremap Z zA
 vnoremap z zf
-set foldmethod=syntax foldlevel=100
+" set foldmethod=syntax foldlevel=100
 " set foldmethod=indent foldlevel=100
 autocmd filetype vim set foldmethod=marker
-autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
-			\| setlocal foldmethod=manual
-			\| endif
-autocmd InsertLeave * if &l:foldmethod ==# 'manual'
-			\| setlocal foldmethod=syntax
-			\| endif
+" autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
+" 			\| setlocal foldmethod=manual
+" 			\| endif
+" autocmd InsertLeave * if &l:foldmethod ==# 'manual'
+" 			\| setlocal foldmethod=syntax
+" 			\| endif
 " let javaScript_fold=1
 " let perl_fold=1
 " let php_folding=1
@@ -561,8 +561,8 @@ function! s:VTodoToggle()
 		44 vsplit ~/.todo
 	endif
 endfunction
-inoremap tl - [ ]<Space>
-inoremap tL tl
+inoremap tL - [ ]<Space>
+" inoremap tL tl
 nnoremap <Enter> :call ToggleCheckbox()<CR>
 vnoremap <Enter> :call ToggleCheckbox()<CR>
 function! ToggleCheckbox()
