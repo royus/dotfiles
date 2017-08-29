@@ -1,4 +1,4 @@
-"Last Change: 2017/08/28 (Mon) 18:10:09.
+"Last Change: 2017/08/29 (Tue) 19:12:48.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -6,6 +6,7 @@ let colorscheme_no=1
 let load_plugin=1
 let use_ja_input=0
 "}}}
+
 "dein{{{
 if version>=704 && load_plugin
 	let s:dein_dir=expand('~/.vim')
