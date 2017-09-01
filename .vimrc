@@ -1,10 +1,10 @@
-"Last Change: 2017/08/30 (Wed) 17:27:31.
+"Last Change: 2017/09/02 (Sat) 00:12:12.
 "{{{
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
-let use_ja_input=0
+let use_ja_input=1
 "}}}
 
 "dein{{{
@@ -315,7 +315,7 @@ function! MyFoldText()
 	" let space=substitute(space,'\%( \)\@<= \%( *$\)\@=',' ','g')
 	let line=substitute(line,"\t",space,'g')
 	let line=substitute(line,'/\*\|\*/\|{{{\d\=','','g') "}}}
-	let cnt=printf(' [%3s,%2s]',v:foldlevel,(v:foldend-v:foldstart+1))
+	let cnt=printf(' [%2s,%3s]',v:foldlevel,(v:foldend-v:foldstart+1))
 	let line_width=winwidth(0)-&foldcolumn
 	if &number==1
 		let line_width -= max([&numberwidth, len(line('$'))])
