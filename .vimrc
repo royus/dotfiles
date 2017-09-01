@@ -1,4 +1,4 @@
-"Last Change: 2017/08/29 (Tue) 19:12:48.
+"Last Change: 2017/08/30 (Wed) 17:27:31.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -22,7 +22,7 @@ if version>=704 && load_plugin
 	"functions
 	call dein#add('itchyny/calendar.vim')
 	call dein#add('tpope/vim-fugitive')
-	call dein#add('cohama/lexima.vim')
+	" call dein#add('cohama/lexima.vim')
 	call dein#add('thinca/vim-poslist')
 	call dein#add('thinca/vim-scouter')
 	call dein#add('tyru/skk.vim')
@@ -118,9 +118,9 @@ if version>=704 && load_plugin
 	"latex
 	let g:tex_flavor='latex'
 	" autocmd FileType tex setlocal spell spelllang=en_us
-	call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
-	call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
-	call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
+	" call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
+	" call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
+	" call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
 	"lightline
 	set laststatus=2
 	set noshowmode
@@ -622,8 +622,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		!latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
-		" !latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+		" !latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
+		!latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
 	elseif e=="pml"
 		!spin -search %
 	endif
