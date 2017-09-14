@@ -25,7 +25,7 @@ main = do
 	xmonad $ defaultConfig
 		{ terminal           = "termite"
 		, workspaces         = myWorkspaces
-		-- , modMask            = mod4Mask
+		, modMask            = mod4Mask
 		, borderWidth        = 3
 		, normalBorderColor  = "#6633FF"
 		, focusedBorderColor = "#66FFFF"
