@@ -1,3 +1,6 @@
+clear control
+clear mod4
+clear shift
 keycode   8 =
 keycode   9 = Escape NoSymbol Escape
 keycode  10 = 1 exclam 1 exclam
@@ -246,3 +249,6 @@ keycode 252 =
 keycode 253 =
 keycode 254 =
 keycode 255 =
+add shift = Shift_L Shift_R
+add control = Control_L Control_R
+add mod4 = Super_L Super_R
