@@ -58,3 +58,4 @@ myStartupHook = do
 	spawn "nm-applet &"
 	spawn "fcitx &"
 	spawn "xcompmgr &"
+	spawn "transset-df -a 0.9 >/dev/null"
