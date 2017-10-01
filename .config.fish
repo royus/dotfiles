@@ -1,4 +1,4 @@
-# Last Change: 2017/08/27 (Sun) 23:46:05.
+# Last Change: 2017/10/01 (Sun) 23:53:49.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 
 #alias
@@ -94,7 +94,6 @@ function fish_prompt
 	set_color normal
 	printf ' '
 end
-[ -n "$XTERM_VERSION" ]; transset-df -a 0.9 >/dev/null
 
 #path
 set PATH /usr/local/bin /usr/sbin /sbin $PATH
@@ -110,3 +109,6 @@ end
 function fish_mode_prompt
 	# NOP - Disable vim mode indicator
 end
+
+#others
+# [ -n "$XTERM_VERSION" ]; transset-df -a 0.9 >/dev/null
