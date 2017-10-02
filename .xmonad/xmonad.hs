@@ -1,32 +1,21 @@
-import qualified Data.Map as M
 import XMonad
 import System.IO
 import XMonad.Layout
 import XMonad.Layout.Gaps
 import XMonad.Layout.Spacing
-import XMonad.Util.Run
 import XMonad.Hooks.DynamicLog
--- import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
+import XMonad.Util.Run
 import XMonad.Util.EZConfig
 import XMonad.Actions.GroupNavigation
 
-myWorkspaces = ["1: main", "2: browser", "3: work", "4: media"]
-modm = mod1Mask
-
-keysToRemove x =
-	[ (modm              , xK_p)
-	, (modm .|. shiftMask, xK_Return)
-	]
-strippedKeys x = foldr M.delete (keys defaultConfig x) (keysToRemove x)
-
-main = do
+main =do
 	xmproc <- spawnPipe "/usr/bin/xmobar ~/.xmonad/xmobar.hs"
 	xmonad $ defaultConfig
-		{ terminal           = "termite"
-		, workspaces         = myWorkspaces
-		, modMask            = mod4Mask
-		, borderWidth        = 3
+		{ terminal    = "termite"
+		, workspaces= ["1: main", "2: browser", "3: work", "4: media"]
+		, modMask     = mod1Mask
+		, borderWidth = 3
 		, normalBorderColor  = "#6633FF"
 		, focusedBorderColor = "#66FFFF"
 		, manageHook         = manageDocks <+> manageHook defaultConfig
@@ -40,17 +29,14 @@ main = do
 			}
 		, startupHook = myStartupHook
 		}
-		`additionalKeys`
-		[ ((modm,               xK_Return ), spawn terminal)
-		-- "xterm")
-		, ((modm,               xK_i      ), spawn "chromium")
-		, ((modm,               xK_p      ), spawn "dmenu_run -fn \"Ricty-14\" -nb black -nf grey -sb grey -sf black")
-		, ((modm,               xK_Tab    ), nextMatch Forward   (return True))
-		, ((modm .|. shiftMask, xK_Tab    ), nextMatch Backward (return True))
-		, ((modm .|. shiftMask, xK_l      ), spawn "xbacklight + 5")
-		, ((modm .|. shiftMask, xK_d      ), spawn "xbacklight - 5")
-		]
-		-- , layoutHook         = spacing 4 $ gaps [(U,16),(D,2),(L,21),(R,21)] $ Tall 1 0.03 0.5
+		-- `additionalKeys`
+		-- [ ((modMask,               xK_i      ), spawn "chromium")
+		-- , ((modMask,               xK_p      ), spawn "dmenu_run -fn \"Ricty-14\" -nb black -nf grey -sb grey -sf black")
+		-- , ((modMask,               xK_Tab    ), nextMatch Forward  (return True))
+		-- , ((modMask .|. shiftMask, xK_Tab    ), nextMatch Backward (return True))
+		-- , ((modMask .|. shiftMask, xK_l      ), spawn "xbacklight + 5")
+		-- , ((modMask .|. shiftMask, xK_d      ), spawn "xbacklight - 5")
+		-- ]
 
 myStartupHook = do
 	spawn "feh --bg-fill ~/.background.jpg"
@@ -59,3 +45,4 @@ myStartupHook = do
 	spawn "fcitx &"
 	spawn "xcompmgr &"
 	spawn "transset-df -a 0.9 >/dev/null"
+
