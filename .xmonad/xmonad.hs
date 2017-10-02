@@ -1,3 +1,11 @@
+-------------------------------------------------------------------------------
+--                  __  ____  __                       _                     --
+--                  \ \/ /  \/  | ___  _ __   __ _  __| |                    --
+--                   \  /| |\/| |/ _ \| '_ \ / _` |/ _` |                    --
+--                   /  \| |  | | (_) | | | | (_| | (_| |                    --
+--                  /_/\_\_|  |_|\___/|_| |_|\__,_|\__,_|                    --
+--                                                                           --
+-------------------------------------------------------------------------------
 import XMonad
 import System.IO
 import XMonad.Layout
@@ -29,14 +37,16 @@ main =do
 			}
 		, startupHook = myStartupHook
 		}
-		-- `additionalKeys`
-		-- [ ((modMask,               xK_i      ), spawn "chromium")
-		-- , ((modMask,               xK_p      ), spawn "dmenu_run -fn \"Ricty-14\" -nb black -nf grey -sb grey -sf black")
-		-- , ((modMask,               xK_Tab    ), nextMatch Forward  (return True))
-		-- , ((modMask .|. shiftMask, xK_Tab    ), nextMatch Backward (return True))
-		-- , ((modMask .|. shiftMask, xK_l      ), spawn "xbacklight + 5")
-		-- , ((modMask .|. shiftMask, xK_d      ), spawn "xbacklight - 5")
-		-- ]
+		`additionalKeysP`
+
+		[ ("M1-i"  , spawn "chromium")
+		, ("M1-p"  , spawn "dmenu_run -fn \"Ricty-12\" -nb black -nf grey -sb grey -sf black")
+		-- , ("M1-<Return>"  , spawn "termite")
+		-- , ("M1-t", nextMatch Forward  (return True))
+		-- , ("M1-S-t", nextMatch Backward (return True))
+		, ("M1-S-l"  , spawn "xbacklight + 5")
+		, ("M1-S-d"  , spawn "xbacklight - 5")
+		]
 
 myStartupHook = do
 	spawn "feh --bg-fill ~/.background.jpg"
