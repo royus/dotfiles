@@ -1,4 +1,4 @@
-Config  { font = "xft:Ricty"
+Config  { font = "xft:Ricty:size=12"
 		, borderColor = "black"
 		, border = TopB
 		, bgColor = "black"
