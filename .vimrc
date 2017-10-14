@@ -1,10 +1,10 @@
-"Last Change: 2017/10/11 (Wed) 12:18:30.
+"Last Change: 2017/10/14 (Sat) 11:36:18.
 "{{{
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
-let use_ja_input=1
+let use_ja_input=0
 "}}}
 
 "dein{{{
@@ -283,9 +283,9 @@ function! s:Su_Write()
 	:w !sudo tee %
 endfunction
 nnoremap [Space]q :<C-u>q<CR>
-nnoremap q[Space] :<C-u>q<CR>
+nnoremap q<Space> :<C-u>q<CR>
 nnoremap [Space]Q :<C-u>qa!<CR>
-nnoremap Q[Space] :<C-u>qa!<CR>
+nnoremap Q<Space> :<C-u>qa!<CR>
 "}}}
 
 "foldings {{{
