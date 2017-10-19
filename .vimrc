@@ -1,4 +1,4 @@
-"Last Change: 2017/10/14 (Sat) 11:36:18.
+"Last Change: 2017/10/18 (Wed) 15:39:27.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -286,6 +286,16 @@ nnoremap [Space]q :<C-u>q<CR>
 nnoremap q<Space> :<C-u>q<CR>
 nnoremap [Space]Q :<C-u>qa!<CR>
 nnoremap Q<Space> :<C-u>qa!<CR>
+
+augroup BinaryXXD
+	autocmd!
+	autocmd BufReadPre *.bin let &binary =1
+	autocmd BufReadPost * if &binary | silent %!xxd -g 1
+	autocmd BufReadPost * set ft=xxd | endif
+	autocmd BufWritePre * if &binary | %!xxd -r | endif
+	autocmd BufWritePost * if &binary | silent %!xxd -g 1
+	autocmd BufWritePost * set nomod | endif
+augroup END
 "}}}
 
 "foldings {{{
@@ -574,7 +584,7 @@ function! ToggleCheckbox()
 	elseif l:line =~ '\-\s\[x\]'
 		let l:result = substitute(substitute(l:line, '-\s\[x\]', '- [ ]', ''), '\s\[\d\{4}.\+]$', '', '')
 		call setline('.', l:result)
-	" else
+		" else
 		" insert enter
 	endif
 endfunction
