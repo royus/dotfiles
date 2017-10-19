@@ -632,8 +632,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		!latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
-		" !latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+		" !latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
+		!latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
 	elseif e=="pml"
 		!spin -search %
 	endif
@@ -663,5 +663,6 @@ autocmd BufNewFile,BufRead *.c    if getfsize(@%)<=0 | 0read ~/dotfiles/template
 autocmd BufNewFile,BufRead *.java if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.java | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead *.sh   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.sh   | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead *.tex  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.tex  | %substitute/filename/\=expand('%:r')/g | endif
+autocmd BufNewFile,BufRead .todo  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.todo | %substitute/filename/\=expand('%:r')/g | endif
 "}}}
 "}}}
