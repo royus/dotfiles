@@ -4,7 +4,8 @@ xmonad xmonad-contrib xmobar dmenu gnome-icon-theme stalonetray xcompmgr transse
 otf-ipafont fcitx-im fcitx-configtool fcitx-mozc
 alsa-utils
 termite
-python-numpy
+
+python-numpy iverilog
 
 yaourt
 ttf-ricty
