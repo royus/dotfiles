@@ -632,8 +632,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		!latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
-		" !latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+		" !latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
+		!latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
 	elseif e=="pml"
 		!spin -search %
 	endif
