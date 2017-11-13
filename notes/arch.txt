@@ -11,4 +11,4 @@ yaourt
 ttf-ricty
 
 #tex (pacman)
-texlive-most texlive-langjapanese ghostscript poppler-data apvlv evince
+texlive-most texlive-langjapanese ghostscript poppler-data apvlv evince aspell
