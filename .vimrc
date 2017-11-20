@@ -4,7 +4,7 @@ set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
-let use_ja_input=0
+let use_ja_input=1
 "}}}
 
 "dein{{{
@@ -243,8 +243,7 @@ if version>=740
 endif
 set smartindent autoindent
 set tabstop=4 shiftwidth=4 noexpandtab smarttab
-autocmd filetype vim setl tabstop=2 shiftwidth=2
-autocmd filetype tex setl tabstop=2 shiftwidth=2
+autocmd filetype tex,text,vim setl tabstop=2 shiftwidth=2
 set display=lastline
 set scrolloff=7
 set helpheight=1000
