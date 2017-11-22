@@ -299,11 +299,12 @@ augroup END
 
 "foldings {{{
 nnoremap z za
-nnoremap Z zA
+nnoremap Z zR
 vnoremap z zf
 " set foldmethod=syntax foldlevel=100
 " set foldmethod=indent foldlevel=100
 autocmd filetype vim set foldmethod=marker
+autocmd filetype tex set foldmethod=marker
 " autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
 " 			\| setlocal foldmethod=manual
 " 			\| endif
@@ -631,8 +632,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		" !latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
-		!latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+		!latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
+		" !latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
 	elseif e=="pml"
 		!spin -search %
 	endif
