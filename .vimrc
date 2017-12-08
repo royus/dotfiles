@@ -1,4 +1,4 @@
-"Last Change: 2017/11/22 (Wed) 17:33:36.
+"Last Change: 11/22 (Wed) 17:33:36.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -82,8 +82,8 @@ if version>=704 && load_plugin
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	"autodate
-	nnoremap <F10> OLast Change: .<CR><Esc>
-	let autodate_format='%Y/%m/%d (%a) %H:%M:%S'
+	nnoremap <F10> OLast Change: .<Esc>
+	let autodate_format="%Y/%m/%d (%a) %H:%M:%S"
 	let autodate_lines =3
 	"auto_ft
 	let g:autoft_config = [
@@ -633,8 +633,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		!latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
-		" !latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+		" !latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
+		!latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
 	elseif e=="pml"
 		!spin -search %
 	endif
