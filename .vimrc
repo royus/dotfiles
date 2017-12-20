@@ -478,6 +478,7 @@ vnoremap i"     "zdi<C-v>"<C-R>z<C-v>"<Esc>
 vnoremap i'     "zdi'<C-R>z'<Esc>
 vnoremap i$     "zdi$<C-R>z$<Esc>
 vnoremap i<Bar> "zdi<Bar><C-R>z<Bar><Esc>
+autocmd FileType tex vnoremap i\ "zdi\color{red}<C-R>z\color{black}<Esc>
 inoremap zl ->
 inoremap zh <-
 inoremap <C-j> <CR>
@@ -574,6 +575,7 @@ function! s:VTodoToggle()
 	endif
 endfunction
 inoremap tL - [ ]<Space>
+nnoremap tL /- [<CR>
 " inoremap tL tl
 nnoremap <Enter> :call ToggleCheckbox()<CR>
 vnoremap <Enter> :call ToggleCheckbox()<CR>
@@ -633,8 +635,8 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		" !latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
-		!latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+		!latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
+		" !latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
 	elseif e=="pml"
 		!spin -search %
 	endif
