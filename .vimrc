@@ -477,6 +477,7 @@ vnoremap i)     "zdi<C-v>(<C-R>z)<Esc>
 vnoremap i"     "zdi<C-v>"<C-R>z<C-v>"<Esc>
 vnoremap i'     "zdi'<C-R>z'<Esc>
 vnoremap i$     "zdi$<C-R>z$<Esc>
+vnoremap i&     "zdi&<C-R>z&<Esc>
 vnoremap i<Bar> "zdi<Bar><C-R>z<Bar><Esc>
 autocmd FileType tex vnoremap i\ "zdi\color{red}<C-R>z\color{black}<Esc>
 inoremap zl ->
@@ -635,8 +636,20 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		" !latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
-		!latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+		let latexmk_pv=0
+		if filereadable("main.tex")
+			if latexmk_pv
+				!latexmk main.tex -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+			else
+				!latexmk main.tex; latexmk % -c; rm platex*.fls *.dvi *.gz
+			endif
+		else
+			if latexmk_pv
+				!latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+			else
+				!latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
+			endif
+		endif
 	elseif e=="pml"
 		!spin -search %
 	endif
@@ -665,7 +678,7 @@ autocmd filetype vim vnoremap <F5> <Esc>:w<CR>:source %<CR>
 autocmd BufNewFile,BufRead *.c    if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.c    | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead *.java if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.java | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead *.sh   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.sh   | %substitute/filename/\=expand('%:r')/g | endif
-autocmd BufNewFile,BufRead *.tex  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.tex  | %substitute/filename/\=expand('%:r')/g | endif
+" autocmd BufNewFile,BufRead *.tex  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.tex  | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead .todo  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.todo | endif
 "}}}
 "}}}
