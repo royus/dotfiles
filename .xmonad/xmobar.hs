@@ -1,3 +1,4 @@
+-- Last Change: 2018/03/08 (Thu) 13:21:35.
 Config  { font = "xft:Ricty:size=12"
 		, borderColor = "black"
 		, border = TopB
