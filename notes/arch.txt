@@ -5,6 +5,8 @@ otf-ipafont fcitx-im fcitx-configtool fcitx-mozc
 alsa-utils
 termite
 
+vbox~~~
+
 python-numpy iverilog gtkwave
 
 yaourt

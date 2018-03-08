@@ -1,4 +1,4 @@
-"Last Change: 11/22 (Wed) 17:33:36.
+" Last Change: 2018/03/08 (Thu) 12:01:00.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -82,9 +82,9 @@ if version>=704 && load_plugin
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	"autodate
-	nnoremap <F10> OLast Change: .<Esc>
+	nnoremap <F10> OLast Change: 2018/03/08 (Thu) 11:35:00.<Esc>
 	let autodate_format="%Y/%m/%d (%a) %H:%M:%S"
-	let autodate_lines =3
+	let autodate_lines=3
 	"auto_ft
 	let g:autoft_config = [
 				\ { 'filetype': 'html' , 'pattern': '<\%(!DOCTYPE\|html\|head\|script\)' },
@@ -286,15 +286,15 @@ nnoremap q<Space> :<C-u>q<CR>
 nnoremap [Space]Q :<C-u>qa!<CR>
 nnoremap Q<Space> :<C-u>qa!<CR>
 
-augroup BinaryXXD
-	autocmd!
-	autocmd BufReadPre *.bin let &binary =1
-	autocmd BufReadPost * if &binary | silent %!xxd -g 1
-	autocmd BufReadPost * set ft=xxd | endif
-	autocmd BufWritePre * if &binary | %!xxd -r | endif
-	autocmd BufWritePost * if &binary | silent %!xxd -g 1
-	autocmd BufWritePost * set nomod | endif
-augroup END
+" augroup BinaryXXD
+" 	autocmd!
+" 	autocmd BufReadPre *.bin let &binary =1
+" 	autocmd BufReadPost * if &binary | silent %!xxd -g 1
+" 	autocmd BufReadPost * set ft=xxd | endif
+" 	" autocmd BufWritePre * if &binary | %!xxd -r | endif
+" 	" autocmd BufWritePost * if &binary | silent %!xxd -g 1
+" 	" autocmd BufWritePost * set nomod | endif
+" augroup END
 "}}}
 
 "foldings {{{
