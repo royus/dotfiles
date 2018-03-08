@@ -1,3 +1,4 @@
+--Last Change: 2018/03/08 (Thu) 13:21:23.
 -------------------------------------------------------------------------------
 --                  __  ____  __                       _                     --
 --                  \ \/ /  \/  | ___  _ __   __ _  __| |                    --
@@ -37,8 +38,8 @@ main =do
 			}
 		, startupHook = myStartupHook
 		}
-		`additionalKeysP`
 
+		`additionalKeysP`
 		[ ("M1-i"  , spawn "chromium")
 		, ("M1-p"  , spawn "dmenu_run -fn \"Ricty-12\" -nb black -nf grey -sb grey -sf black")
 		-- , ("M1-<Return>"  , spawn "termite")
