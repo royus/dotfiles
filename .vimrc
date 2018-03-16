@@ -1,4 +1,4 @@
-" Last Change: 2018/03/08 (Thu) 12:01:00.
+" Last Change: 2018/03/16 (Fri) 17:27:59.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -636,7 +636,7 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		let latexmk_pv=0
+		let latexmk_pv=1
 		if filereadable("main.tex")
 			if latexmk_pv
 				!latexmk main.tex -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
@@ -678,7 +678,7 @@ autocmd filetype vim vnoremap <F5> <Esc>:w<CR>:source %<CR>
 autocmd BufNewFile,BufRead *.c    if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.c    | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead *.java if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.java | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead *.sh   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.sh   | %substitute/filename/\=expand('%:r')/g | endif
-" autocmd BufNewFile,BufRead *.tex  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.tex  | %substitute/filename/\=expand('%:r')/g | endif
+autocmd BufNewFile,BufRead *.tex  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.tex  | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead .todo  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.todo | endif
 "}}}
 "}}}
