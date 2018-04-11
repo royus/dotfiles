@@ -1,4 +1,4 @@
-# Last Change: 2017/10/02 (Mon) 10:35:54.
+# Last Change: 2018/04/11 (Wed) 22:46:35.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 
 #alias
@@ -111,5 +111,5 @@ function fish_mode_prompt
 end
 
 #others
-[ -n "$XTERM_VERSION" ]; transset-df -a 0.9 >/dev/null
+# [ -n "$XTERM_VERSION" ]; transset-df -a 0.9 >/dev/null
 # exec startx
