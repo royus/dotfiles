@@ -1,4 +1,4 @@
-" Last Change: 2018/03/16 (Fri) 17:27:59.
+" Last Change: 2018/03/18 (Sun) 09:50:46.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -639,15 +639,15 @@ function! s:RUN()
 		let latexmk_pv=1
 		if filereadable("main.tex")
 			if latexmk_pv
-				!latexmk main.tex -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+				!latexmk main.tex -pv; rm platex*.fls *.dvi *.gz
 			else
-				!latexmk main.tex; latexmk % -c; rm platex*.fls *.dvi *.gz
+				!latexmk main.tex; rm platex*.fls *.dvi *.gz
 			endif
 		else
 			if latexmk_pv
-				!latexmk % -pv; latexmk % -c; rm platex*.fls *.dvi *.gz
+				!latexmk % -pv; rm platex*.fls *.dvi *.gz
 			else
-				!latexmk %; latexmk % -c; rm platex*.fls *.dvi *.gz
+				!latexmk %; rm platex*.fls *.dvi *.gz
 			endif
 		endif
 	elseif e=="pml"
