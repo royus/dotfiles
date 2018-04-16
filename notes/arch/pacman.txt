@@ -1,6 +1,6 @@
 git gvim
 
-networkmanager network-manager-applet openssh
+networkmanager network-manager-applet openssh gnome-keyrings
 
 xorg-server xorg-server-utils xorg-apps xorg-xinit xorg-twm xorg-xclock mesa xterm
 xmonad xmonad-contrib xmobar dmenu gnome-icon-theme stalonetray xcompmgr transset-df
