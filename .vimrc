@@ -1,4 +1,4 @@
-" Last Change: 2018/04/15 (Sun) 13:51:12.
+" Last Change: 2018/04/20 (Fri) 15:47:39.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -636,7 +636,7 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		let latexmk_pv=1
+		let latexmk_pv=0
 		if filereadable("main.tex")
 			if latexmk_pv
 				!latexmk main.tex -pv; rm platex*.fls *.dvi *.gz
