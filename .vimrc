@@ -1,4 +1,4 @@
-" Last Change: 2018/04/15 (Sun) 13:51:12.
+" Last Change: 2018/05/27 (Sun) 16:37:31.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -163,8 +163,8 @@ if version>=704 && load_plugin
 	inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
 	set completeopt=menuone
 	"poslist
-	nmap <C-o> <Plug>(poslist-prev-pos)
-	nmap <C-i> <Plug>(poslist-next-pos)
+	nmap H <Plug>(poslist-prev-pos)
+	nmap L <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=100
 	"skk
 	if use_ja_input
@@ -432,8 +432,8 @@ vnoremap [Space]j <C-d>
 nnoremap [Space]t :$tabnew<Space>
 " nnoremap K gt
 " nnoremap J gT
-nnoremap H <C-o>
-nnoremap L <C-i>
+" nnoremap H <C-o>
+" nnoremap L <C-i>
 nnoremap <expr> gg line(".")==1 ? 'G':'gg'
 vnoremap <expr> gg line(".")==1 ? 'G':'gg'
 nnoremap 0 ^
@@ -479,7 +479,9 @@ vnoremap i'     "zdi'<C-R>z'<Esc>
 vnoremap i$     "zdi$<C-R>z$<Esc>
 vnoremap i&     "zdi&<C-R>z&<Esc>
 vnoremap i<Bar> "zdi<Bar><C-R>z<Bar><Esc>
-autocmd FileType tex vnoremap i\ "zdi\color{red}<C-R>z\color{black}<Esc>
+autocmd FileType tex vnoremap iR "zdi\color{red}<C-R>z\color{black}<Esc>
+autocmd FileType tex vnoremap iU     "zdi<C-v>\underline{<C-R>z}<Esc>
+autocmd FileType tex vnoremap iB     "zdi<C-v>\textbf{<C-R>z}<Esc>
 inoremap zl ->
 inoremap zh <-
 inoremap <C-j> <CR>
@@ -536,6 +538,7 @@ endfunction
 " autocmd filetype text inoremap .x  .<Space>X
 " autocmd filetype text inoremap .y  .<Space>Y
 " autocmd filetype text inoremap .z  .<Space>Z
+autocmd filetype tex inoremap REF \ref{xxx}
 autocmd filetype tex inoremap FIG \begin{figure}[t]<CR>\centering<CR>%<Space>\includegraphics[width=8cm,clip]{./pdf/xxx.pdf}<CR>\caption{.\label{xxx}}<CR>\end{figure}
 autocmd filetype tex inoremap TAB \begin{table}[t]<CR>\centering<CR>\caption{.\label{xxx}}<CR>\begin{tabular}{\|c\|\|c\|c\|}<Space>\hline<CR>a<Space>&<Space>b<Space>&<Space>c<Space>\\<Space>\hline<Space>\hline<CR>\end{tabular}<CR>\end{table}
 autocmd filetype tex inoremap LIST \lstinputlisting[caption=.,label=xxx]{sample.txt}<CR>
@@ -636,7 +639,7 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		let latexmk_pv=1
+		let latexmk_pv=0
 		if filereadable("main.tex")
 			if latexmk_pv
 				!latexmk main.tex -pv; rm platex*.fls *.dvi *.gz
@@ -679,6 +682,7 @@ autocmd BufNewFile,BufRead *.c    if getfsize(@%)<=0 | 0read ~/dotfiles/template
 autocmd BufNewFile,BufRead *.java if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.java | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead *.sh   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.sh   | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead *.tex  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.tex  | %substitute/filename/\=expand('%:r')/g | endif
+autocmd BufNewFile,BufRead *.py   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.py   | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead .todo  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.todo | endif
 "}}}
 "}}}
