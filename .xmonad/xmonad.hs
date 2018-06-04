@@ -1,4 +1,4 @@
---Last Change: 2018/04/11 (Wed) 22:46:11.
+--Last Change: 2018/06/04 (Mon) 15:53:01.
 
 -------------------------------------------------------------------------------
 --                  __  ____  __                       _                     --
@@ -47,8 +47,8 @@ main =do
 		-- , ("M1-<Return>"  , spawn "termite")
 		-- , ("M1-t", nextMatch Forward  (return True))
 		-- , ("M1-S-t", nextMatch Backward (return True))
-		, ("M1-S-l"  , spawn "xbacklight + 5")
-		, ("M1-S-d"  , spawn "xbacklight - 5")
+		, ("M1-S-l"  , spawn "sh ~/lighter.sh")
+		, ("M1-S-d"  , spawn "sh ~/darker.sh")
 		]
 
 myStartupHook = do
