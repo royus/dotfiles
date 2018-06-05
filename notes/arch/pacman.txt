@@ -14,6 +14,7 @@ lua
 vbox~~~
 
 python-numpy iverilog gtkwave
+libreoffice-still
 
 yaourt
 ttf-ricty
