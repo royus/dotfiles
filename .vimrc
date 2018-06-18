@@ -1,4 +1,4 @@
-" Last Change: 2018/06/18 (Mon) 22:39:16.
+" Last Change: 2018/06/18 (Mon) 23:03:26.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -118,9 +118,9 @@ if version>=704 && load_plugin
 	"latex
 	let g:tex_flavor='latex'
 	" autocmd FileType tex setlocal spell spelllang=en_us
-	" call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
-	" call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
-	" call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
+	call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
+	call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
+	call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
 	"lightline
 	set laststatus=2
 	set noshowmode
@@ -216,6 +216,7 @@ if version>=704 && load_plugin
 	nmap <C-n> <Plug>(yankround-next)
 	let g:yankround_max_history=20
 	"abolish
+	nnoremap / :S/
 	nnoremap [Space]s :<C-u>%Subvert/
 	vnoremap [Space]s :Subvert/
 else
@@ -411,8 +412,12 @@ vnoremap gk  k
 vnoremap gj  j
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
+inoremap <C-a> <HOME>
+inoremap <C-e> <END>
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
+inoremap <C-a> <HOME>
+inoremap <C-e> <END>
 nnoremap <Tab> <C-w><C-w>
 vnoremap <Tab> <C-w><C-w>
 " nnoremap <C-j> <C-w>j
@@ -438,6 +443,7 @@ nnoremap <expr> gg line(".")==1 ? 'G':'gg'
 vnoremap <expr> gg line(".")==1 ? 'G':'gg'
 nnoremap 0 ^
 vnoremap 0 ^
+nnoremap <C-a> ggVG
 "}}}
 
 "actions{{{
