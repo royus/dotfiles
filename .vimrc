@@ -1,4 +1,4 @@
-" Last Change: 2018/05/27 (Sun) 16:37:31.
+" Last Change: 2018/06/18 (Mon) 22:39:16.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -22,7 +22,7 @@ if version>=704 && load_plugin
 	"functions
 	call dein#add('itchyny/calendar.vim')
 	call dein#add('tpope/vim-fugitive')
-	" call dein#add('cohama/lexima.vim')
+	call dein#add('cohama/lexima.vim')
 	call dein#add('thinca/vim-poslist')
 	call dein#add('thinca/vim-scouter')
 	call dein#add('tyru/skk.vim')
@@ -468,6 +468,12 @@ nnoremap U <C-r>
 "}}}
 
 "input{{{
+" inoremap " ""<Left>
+" inoremap "<CR> ""<Left><CR><ESC><S-o>
+" inoremap { {}<Left>
+" inoremap {<CR> {}<Left><CR><ESC><S-o>
+" inoremap ( ()<ESC>i
+" inoremap (<CR> ()<Left><CR><ESC><S-o>
 vnoremap i{     "zdi<C-v>{<C-R>z}<Esc>
 vnoremap i}     "zdi<C-v>{<C-R>z}<Esc>
 vnoremap i[     "zdi<C-v>[<C-R>z]<Esc>
@@ -603,9 +609,9 @@ highlight CheckboxUnmark ctermfg=red
 
 "RUN{{{
 command! RUN call s:RUN()
-nnoremap <F5> :RUN<CR>
-inoremap <F5> <Esc>:RUN<CR>
-vnoremap <F5> <Esc>:RUN<CR>
+nnoremap <F5> <Esc>:RUN<CR>
+inoremap <F5> <Esc><Esc>:RUN<CR>
+vnoremap <F5> <Esc><Esc>:RUN<CR>
 function! s:RUN()
 	wall
 	let e=expand("%:e")
@@ -613,7 +619,7 @@ function! s:RUN()
 		if filereadable("Makefile")
 			make
 		else
-			GCC
+			!gcc % -O3 -lm -o .x_%:r -Wall;
 		endif
 		if filereadable("main")
 			!./main
@@ -625,7 +631,7 @@ function! s:RUN()
 		if filereadable("Makefile")
 			make; !java Main
 		else
-			JAVAC
+			!javac %
 			!java %:r
 		endif
 	elseif e=="rb"
@@ -656,21 +662,6 @@ function! s:RUN()
 	elseif e=="pml"
 		!spin -search %
 	endif
-endfunction
-command! GCC call s:GCC()
-function! s:GCC()
-	write
-	!gcc % -O3 -lm -o .x_%:r -Wall;
-endfunction
-command! JAVAC call s:JAVAC()
-function! s:JAVAC()
-	write
-	!javac %
-endfunction
-command! PDF call s:PDF()
-function! s:PDF()
-	" write
-	!apvlv %:r.pdf &
 endfunction
 autocmd filetype vim nnoremap <F5> :w<CR>:source %<CR>
 autocmd filetype vim inoremap <F5> <Esc>:w<CR>:source %<CR>
