@@ -1,4 +1,4 @@
-" Last Change: 2018/06/18 (Mon) 23:03:26.
+" Last Change: 2018/06/18 (Mon) 23:16:45.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -18,15 +18,15 @@ if version>=704 && load_plugin
 		execute 'set runtimepath^='.fnamemodify(s:dein_repo_dir, ':p')
 	endif
 	call dein#begin(s:dein_dir)
-	call dein#add('Shougo/dein.vim')
+	call dein#add('Shougo/dein.vim') "plugin manager
 	"functions
 	call dein#add('itchyny/calendar.vim')
-	call dein#add('tpope/vim-fugitive')
-	call dein#add('cohama/lexima.vim')
-	call dein#add('thinca/vim-poslist')
-	call dein#add('thinca/vim-scouter')
-	call dein#add('tyru/skk.vim')
-	call dein#add('LeafCage/yankround.vim')
+	call dein#add('tpope/vim-fugitive') " git
+	call dein#add('cohama/lexima.vim') " auto close parenthesis
+	call dein#add('thinca/vim-poslist') " H/L = go back/forth precisely
+	call dein#add('thinca/vim-scouter') " :Scouter = power of vimrc
+	call dein#add('tyru/skk.vim') " JPN input
+	call dein#add('LeafCage/yankround.vim') " paste older yanks
 	" call dein#add('scrooloose/syntastic')
 	" call dein#add('Shougo/unite.vim')
 	" call dein#add('Shougo/unite-outline')
@@ -34,16 +34,16 @@ if version>=704 && load_plugin
 	" call dein#add('Shougo/neomru.vim')
 	" call dein#add('Shougo/vimproc')
 	"appearence
-	call dein#add('w0ng/vim-hybrid')
-	call dein#add('vimtaku/hl_matchit.vim')
-	call dein#add('itchyny/lightline.vim')
-	call dein#add('itchyny/vim-autoft')
+	call dein#add('w0ng/vim-hybrid') " colorscheme
+	call dein#add('vimtaku/hl_matchit.vim') " show matching parenthesis
+	call dein#add('itchyny/lightline.vim') " status line @ bottom
+	call dein#add('itchyny/vim-autoft') " determine filetype automatically
 	"input
-	call dein#add('tpope/vim-abolish')
-	call dein#add('vim-scripts/autodate.vim')
-	call dein#add('tomtom/tcomment_vim')
-	call dein#add('junegunn/vim-easy-align')
-	call dein#add('mattn/emmet-vim')
+	call dein#add('tpope/vim-abolish') " better substituter/searcher
+	call dein#add('vim-scripts/autodate.vim') " update date @ top automatically
+	call dein#add('tomtom/tcomment_vim') " gcc = comment out
+	call dein#add('junegunn/vim-easy-align') " VX*Y = align X with Y
+	call dein#add('mattn/emmet-vim') " for HTMLs
 	call dein#add('Shougo/neocomplete.vim')
 	call dein#add('Shougo/neosnippet.vim')
 	call dein#add('Shougo/neosnippet-snippets')
