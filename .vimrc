@@ -1,4 +1,4 @@
-" Last Change: 2018/06/18 (Mon) 23:16:45.
+" Last Change: 2018/06/19 (Tue) 14:40:52.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -44,9 +44,9 @@ if version>=704 && load_plugin
 	call dein#add('tomtom/tcomment_vim') " gcc = comment out
 	call dein#add('junegunn/vim-easy-align') " VX*Y = align X with Y
 	call dein#add('mattn/emmet-vim') " for HTMLs
-	call dein#add('Shougo/neocomplete.vim')
-	call dein#add('Shougo/neosnippet.vim')
-	call dein#add('Shougo/neosnippet-snippets')
+	" call dein#add('Shougo/neocomplete.vim')
+	" call dein#add('Shougo/neosnippet.vim')
+	" call dein#add('Shougo/neosnippet-snippets')
 	"files
 	call dein#add('soramugi/auto-ctags.vim')
 	call dein#add('majutsushi/tagbar')
