@@ -1,4 +1,4 @@
-" Last Change: 2018/06/19 (Tue) 14:40:52.
+" Last Change: 2018/07/10 (Tue) 15:15:23.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -569,9 +569,9 @@ function! s:TodoToggle()
 		return
 	endif
 	if filereadable(".todo")
-		10 split .todo
+		7 split .todo
 	else
-		10 split ~/.todo
+		7 split ~/.todo
 	endif
 endfunction
 command! VTodoToggle call s:VTodoToggle()
