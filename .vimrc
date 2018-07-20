@@ -1,4 +1,4 @@
-" Last Change: 2018/07/10 (Tue) 15:15:23.
+" Last Change: 2018/07/20 (Fri) 11:01:44.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -22,7 +22,6 @@ if version>=704 && load_plugin
 	"functions
 	call dein#add('itchyny/calendar.vim')
 	call dein#add('tpope/vim-fugitive') " git
-	call dein#add('cohama/lexima.vim') " auto close parenthesis
 	call dein#add('thinca/vim-poslist') " H/L = go back/forth precisely
 	call dein#add('thinca/vim-scouter') " :Scouter = power of vimrc
 	call dein#add('tyru/skk.vim') " JPN input
@@ -41,6 +40,7 @@ if version>=704 && load_plugin
 	"input
 	call dein#add('tpope/vim-abolish') " better substituter/searcher
 	call dein#add('vim-scripts/autodate.vim') " update date @ top automatically
+	call dein#add('cohama/lexima.vim') " auto close parenthesis
 	call dein#add('tomtom/tcomment_vim') " gcc = comment out
 	call dein#add('junegunn/vim-easy-align') " VX*Y = align X with Y
 	call dein#add('mattn/emmet-vim') " for HTMLs
@@ -651,7 +651,7 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		let latexmk_pv=0
+		let latexmk_pv=1
 		if filereadable("main.tex")
 			if latexmk_pv
 				!latexmk main.tex -pv; rm platex*.fls *.dvi *.gz
