@@ -1,4 +1,4 @@
-" Last Change: 2018/07/20 (Fri) 11:01:44.
+" Last Change: 2018/07/23 (Mon) 14:01:31.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -416,8 +416,8 @@ inoremap <C-a> <HOME>
 inoremap <C-e> <END>
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
-inoremap <C-a> <HOME>
-inoremap <C-e> <END>
+cnoremap <C-a> <HOME>
+cnoremap <C-e> <END>
 nnoremap <Tab> <C-w><C-w>
 vnoremap <Tab> <C-w><C-w>
 " nnoremap <C-j> <C-w>j
