@@ -1,4 +1,4 @@
-" Last Change: 2018/07/23 (Mon) 14:01:31.
+" Last Change: 2018/07/23 (Mon) 17:04:09.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -252,9 +252,11 @@ set splitbelow splitright
 set showmatch
 set matchpairs+=<:>
 if colorscheme_no==1
-	set cursorline cursorcolumn
-	highlight clear CursorLine
-	highlight clear CursorColumn
+	" set cursorline cursorcolumn
+	" highlight clear CursorLine
+	" highlight clear CursorColumn
+	autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+	autocmd CursorHold,CursorHoldI * setlocal cursorline
 	highlight MatchParen ctermfg=cyan ctermbg=NONE
 	highlight PmenuSel ctermbg=lightgray ctermfg=black
 else
