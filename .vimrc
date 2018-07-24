@@ -1,4 +1,4 @@
-" Last Change: 2018/07/23 (Mon) 17:04:09.
+" Last Change: 2018/07/24 (Tue) 13:05:38.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -8,7 +8,7 @@ let use_ja_input=1
 "}}}
 
 "dein{{{
-if version>=704 && load_plugin
+if version>=800 && load_plugin
 	let s:dein_dir=expand('~/.vim')
 	let s:dein_repo_dir=s:dein_dir.'/repos/github.com/Shougo/dein.vim'
 	if &runtimepath !~# '/dein.vim'
@@ -232,14 +232,16 @@ endif
 set t_Co=256
 syntax enable
 set title
-set number ruler
-if version>=730
+set ruler
+if version>=703
 	set relativenumber
+else
+	set number
 endif
 set showcmd
 set list listchars=eol:~,tab:\|-
 set background=dark
-if version>=740
+if version>=704
 	set breakindent showbreak=+++
 endif
 set smartindent autoindent
@@ -252,9 +254,6 @@ set splitbelow splitright
 set showmatch
 set matchpairs+=<:>
 if colorscheme_no==1
-	" set cursorline cursorcolumn
-	" highlight clear CursorLine
-	" highlight clear CursorColumn
 	autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
 	autocmd CursorHold,CursorHoldI * setlocal cursorline
 	highlight MatchParen ctermfg=cyan ctermbg=NONE
