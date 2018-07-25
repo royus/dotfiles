@@ -1,4 +1,4 @@
-" Last Change: 2018/07/24 (Tue) 13:05:38.
+" Last Change: 2018/07/25 (Wed) 11:22:04.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -232,11 +232,9 @@ endif
 set t_Co=256
 syntax enable
 set title
-set ruler
+set number ruler
 if version>=703
 	set relativenumber
-else
-	set number
 endif
 set showcmd
 set list listchars=eol:~,tab:\|-
