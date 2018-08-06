@@ -1,4 +1,4 @@
-" Last Change: 2018/07/30 (Mon) 13:56:33.
+" Last Change: 2018/08/06 (Mon) 15:33:02.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -20,7 +20,7 @@ if version>=800 && load_plugin
 	call dein#begin(s:dein_dir)
 	call dein#add('Shougo/dein.vim') "plugin manager
 	"functions
-	call dein#add('itchyny/calendar.vim')
+	call dein#add('itchyny/calendar.vim') " calendar
 	call dein#add('tpope/vim-fugitive') " git
 	call dein#add('thinca/vim-poslist') " H/L = go back/forth precisely
 	call dein#add('thinca/vim-scouter') " :Scouter = power of vimrc
@@ -48,14 +48,14 @@ if version>=800 && load_plugin
 	" call dein#add('Shougo/neosnippet.vim')
 	" call dein#add('Shougo/neosnippet-snippets')
 	"files
-	call dein#add('soramugi/auto-ctags.vim')
-	call dein#add('majutsushi/tagbar')
-	call dein#add('scrooloose/nerdtree')
+	call dein#add('soramugi/auto-ctags.vim') " automatically generate tags
+	call dein#add('majutsushi/tagbar') " show tagbar
+	call dein#add('scrooloose/nerdtree') " show nerdtree
 	"filetype
-	call dein#add('dag/vim-fish')
-	call dein#add('lervag/vimtex')
-	call dein#add('matze/vim-tex-fold')
-	call dein#add('vim-scripts/verilog.vim')
+	call dein#add('dag/vim-fish') " fish
+	call dein#add('lervag/vimtex') " tex
+	call dein#add('matze/vim-tex-fold') " tex foldings
+	call dein#add('vim-scripts/verilog.vim') " verilog
 	"txtobj
 	call dein#add('kana/vim-textobj-user')
 	call dein#add('osyo-manga/vim-textobj-blockwise')
@@ -214,7 +214,7 @@ if version>=800 && load_plugin
 	nmap P <Plug>(yankround-P)
 	nmap <C-p> <Plug>(yankround-prev)
 	nmap <C-n> <Plug>(yankround-next)
-	let g:yankround_max_history=20
+	let g:yankround_max_history=5
 	"abolish
 	nnoremap / :S/
 	nnoremap [Space]s :<C-u>%Subvert/
@@ -285,6 +285,7 @@ nnoremap [Space]q :<C-u>q<CR>
 nnoremap q<Space> :<C-u>q<CR>
 nnoremap [Space]Q :<C-u>qa!<CR>
 nnoremap Q<Space> :<C-u>qa!<CR>
+
 
 " augroup BinaryXXD
 " 	autocmd!
