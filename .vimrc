@@ -1,4 +1,4 @@
-" Last Change: 2018/07/25 (Wed) 11:22:04.
+" Last Change: 2018/07/30 (Mon) 13:56:33.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -491,8 +491,9 @@ vnoremap i$     "zdi$<C-R>z$<Esc>
 vnoremap i&     "zdi&<C-R>z&<Esc>
 vnoremap i<Bar> "zdi<Bar><C-R>z<Bar><Esc>
 autocmd FileType tex vnoremap iR "zdi\color{red}<C-R>z\color{black}<Esc>
-autocmd FileType tex vnoremap iU     "zdi<C-v>\underline{<C-R>z}<Esc>
-autocmd FileType tex vnoremap iB     "zdi<C-v>\textbf{<C-R>z}<Esc>
+autocmd FileType tex vnoremap iU "zdi<C-v>\underline{<C-R>z}<Esc>
+autocmd FileType tex vnoremap iB "zdi<C-v>\textbf{<C-R>z}<Esc>
+autocmd FileType tex vnoremap i" "zdi<C-v>``<C-R>z"<Esc>
 inoremap zl ->
 inoremap zh <-
 inoremap <C-j> <CR>
@@ -650,7 +651,7 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		let latexmk_pv=1
+		let latexmk_pv=0
 		if filereadable("main.tex")
 			if latexmk_pv
 				!latexmk main.tex -pv; rm platex*.fls *.dvi *.gz
