@@ -1,4 +1,4 @@
-" Last Change: 2018/08/10 (Fri) 11:31:46.
+" Last Change: 2018/08/10 (Fri) 11:34:55.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -362,12 +362,12 @@ nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
 nnoremap [Space]<Space> :<C-u>set nohlsearch<CR>
 nnoremap / :<C-u>set hlsearch<CR>/
 nnoremap ? :<C-u>set hlsearch<CR>?
-nnoremap * :<C-u>set hlsearch<CR>*N:echo<CR>
-nnoremap # :<C-u>set hlsearch<CR>#N:echo<CR>
-nnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzv' : ':<C-u>set hlsearch<CR>Nzv'
-nnoremap <expr> N <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>Nzv' : ':<C-u>set hlsearch<CR>nzv'
-vnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzv' : ':<C-u>set hlsearch<CR>Nzv'
-vnoremap <expr> N <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>Nzv' : ':<C-u>set hlsearch<CR>nzv'
+nnoremap * :<C-u>set hlsearch<CR>*N:echo<CR>zz
+nnoremap # :<C-u>set hlsearch<CR>#N:echo<CR>zz
+nnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzvzz' : ':<C-u>set hlsearch<CR>Nzvzz'
+nnoremap <expr> N <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>Nzvzz' : ':<C-u>set hlsearch<CR>nzvzz'
+vnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzvzz' : ':<C-u>set hlsearch<CR>Nzvzz'
+vnoremap <expr> N <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>Nzvzz' : ':<C-u>set hlsearch<CR>nzvzz'
 function! s:search_forward_p()
 	return exists('v:searchforward') ? v:searchforward : 1
 endfunction
