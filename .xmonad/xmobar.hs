@@ -1,4 +1,4 @@
--- Last Change: 2018/03/08 (Thu) 13:21:35.
+-- Last Change: 2018/08/06 (Mon) 17:31:47.
 Config  { font = "xft:Ricty:size=12"
 		, borderColor = "black"
 		, border = TopB
@@ -20,7 +20,7 @@ Config  { font = "xft:Ricty:size=12"
 							, "--high","red"
 							] 10
 			, Run Battery   [ "--template","Bat: <left>%"
-							, "--Low","30"
+							, "--Low","20"
 							, "--High","80"
 							, "--low","red"
 							, "--normal","grey"
