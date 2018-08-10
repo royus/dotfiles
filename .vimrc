@@ -1,4 +1,4 @@
-" Last Change: 2018/08/10 (Fri) 10:48:25.
+" Last Change: 2018/08/10 (Fri) 11:31:46.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -616,10 +616,11 @@ highlight CheckboxUnmark ctermfg=red
 "}}}
 
 "RUN{{{
+"intentionally semicolon
+nmap <F5> <Esc>;RUN<CR>
+imap <F5> <Esc><Esc>;RUN<CR>
+vmap <F5> <Esc><Esc>;RUN<CR>
 command! RUN call s:RUN()
-nmap <F5> <Esc>:RUN<CR>
-imap <F5> <Esc><Esc>:RUN<CR>
-vmap <F5> <Esc><Esc>:RUN<CR>
 function! s:RUN()
 	wall
 	let e=expand("%:e")
@@ -669,6 +670,8 @@ function! s:RUN()
 		endif
 	elseif e=="pml"
 		!spin -search %
+	" else
+		" source %
 	endif
 endfunction
 autocmd filetype vim nnoremap <F5> :w<CR>:source %<CR>
