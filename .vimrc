@@ -1,4 +1,4 @@
-" Last Change: 2018/08/06 (Mon) 15:33:02.
+" Last Change: 2018/08/10 (Fri) 10:48:25.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -42,7 +42,7 @@ if version>=800 && load_plugin
 	call dein#add('vim-scripts/autodate.vim') " update date @ top automatically
 	call dein#add('cohama/lexima.vim') " auto close parenthesis
 	call dein#add('tomtom/tcomment_vim') " gcc = comment out
-	call dein#add('junegunn/vim-easy-align') " VX*Y = align X with Y
+	call dein#add('junegunn/vim-easy-align') " VXga*Y = align X with Y
 	call dein#add('mattn/emmet-vim') " for HTMLs
 	" call dein#add('Shougo/neocomplete.vim')
 	" call dein#add('Shougo/neosnippet.vim')
@@ -56,6 +56,7 @@ if version>=800 && load_plugin
 	call dein#add('lervag/vimtex') " tex
 	call dein#add('matze/vim-tex-fold') " tex foldings
 	call dein#add('vim-scripts/verilog.vim') " verilog
+	call dein#add('stephpy/vim-yaml') " verilog
 	"txtobj
 	call dein#add('kana/vim-textobj-user')
 	call dein#add('osyo-manga/vim-textobj-blockwise')
@@ -237,14 +238,14 @@ if version>=703
 	set relativenumber
 endif
 set showcmd
-set list listchars=eol:~,tab:\|-
+set list listchars=eol:~,tab:\|_
 set background=dark
 if version>=704
 	set breakindent showbreak=+++
 endif
 set smartindent autoindent
 set tabstop=4 shiftwidth=4 noexpandtab smarttab
-autocmd filetype tex,text,vim setl tabstop=2 shiftwidth=2
+autocmd filetype tex,text,vim,yaml setl tabstop=2 shiftwidth=2
 set display=lastline
 set scrolloff=7
 set helpheight=1000
@@ -616,9 +617,9 @@ highlight CheckboxUnmark ctermfg=red
 
 "RUN{{{
 command! RUN call s:RUN()
-nnoremap <F5> <Esc>:RUN<CR>
-inoremap <F5> <Esc><Esc>:RUN<CR>
-vnoremap <F5> <Esc><Esc>:RUN<CR>
+nmap <F5> <Esc>:RUN<CR>
+imap <F5> <Esc><Esc>:RUN<CR>
+vmap <F5> <Esc><Esc>:RUN<CR>
 function! s:RUN()
 	wall
 	let e=expand("%:e")
@@ -652,7 +653,7 @@ function! s:RUN()
 	elseif e=="ml"
 		!ocaml -init %
 	elseif e=="tex"
-		let latexmk_pv=0
+		let latexmk_pv=1
 		if filereadable("main.tex")
 			if latexmk_pv
 				!latexmk main.tex -pv; rm platex*.fls *.dvi *.gz
