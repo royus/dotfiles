@@ -1,9 +1,9 @@
-# Last Change: 2018/04/11 (Wed) 22:46:35.
+# Last Change: 2018/08/10 (Fri) 11:40:25.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 
 #alias
 alias fishrc='vim ~/.config/fish/config.fish'
-alias vimrc='vim ~/.vimrc'
+alias vimrc='vim ~/dotfiles/.vimrc'
 alias vi='vim'
 alias aspell='aspell --lang=en -c -t'
 alias ..    'cd ..'
