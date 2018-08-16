@@ -16,8 +16,8 @@ vbox~~~
 python-numpy iverilog gtkwave
 libreoffice-still
 
-yaourt
-ttf-ricty
+yay
+ttf-ricty anaconda
 
 #tex (pacman)
 texlive-most texlive-langjapanese ghostscript poppler-data apvlv evince aspell
