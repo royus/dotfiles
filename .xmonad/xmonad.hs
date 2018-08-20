@@ -1,4 +1,4 @@
---Last Change: 2018/06/04 (Mon) 15:53:01.
+--Last Change: 2018/08/20 (Mon) 17:43:55.
 
 -------------------------------------------------------------------------------
 --                  __  ____  __                       _                     --
@@ -52,10 +52,11 @@ main =do
 		]
 
 myStartupHook = do
+	spawn "xcompmgr &"
 	spawn "feh --bg-fill ~/.background.jpg"
 	spawn "stalonetray &"
 	spawn "nm-applet &"
 	spawn "fcitx &"
-	spawn "xcompmgr &"
-	spawn "transset-df -a 0.9 >/dev/null"
-
+	-- spawn "transset-df -a 0.9 >/dev/null"
+	spawn "exec xset m 3/2 4"
+--
