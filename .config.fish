@@ -1,4 +1,4 @@
-# Last Change: 2018/08/23 (Thu) 12:08:08.
+# Last Change: 2018/09/27 (Thu) 19:29:16.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 
 #alias
@@ -6,6 +6,7 @@ alias fishrc='vim ~/.config/fish/config.fish'
 alias vimrc='vim ~/dotfiles/.vimrc'
 alias vi='vim'
 alias aspell='aspell --lang=en -c -t'
+alias gitinit='sh ~/dotfiles/sh/git/init.sh'
 alias ..    'cd ..'
 alias ...   'cd ../..'
 alias ....  'cd ../../..'
@@ -13,9 +14,16 @@ alias ..... 'cd ../../../..'
 alias cp 'cp -i'
 alias rm 'rm -i'
 alias mv 'mv -i'
+alias ll 'ls -alF'
+alias la 'ls -A'
+alias l  'ls -CF'
 function cd
 	builtin cd $argv
 	ls -A
+end
+function mkdircd
+	mkdir $argv
+	builtin cd $argv
 end
 
 #appearance
