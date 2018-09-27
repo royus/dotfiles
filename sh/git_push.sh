@@ -1,6 +1,6 @@
 #!/bin/sh
-# sh/git_push.sh
-# Last Change: 2017/03/27 (Mon) 10:13:47.
+# git_push.sh
+# Last Change: 2018/09/27 (Thu) 18:51:44.
 
 cd ~/dotfiles/
 git add .
