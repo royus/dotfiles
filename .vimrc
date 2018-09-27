@@ -1,4 +1,4 @@
-" Last Change: 2018/08/27 (Mon) 16:44:26.
+" Last Change: 2018/09/27 (Thu) 18:59:37.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -682,7 +682,7 @@ autocmd filetype vim vnoremap <F5> <Esc>:w<CR>:source %<CR>
 "template{{{
 autocmd BufNewFile,BufRead *.c    if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.c    | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead *.java if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.java | %substitute/filename/\=expand('%:r')/g | endif
-autocmd BufNewFile,BufRead *.sh   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.sh   | %substitute/filename/\=expand('%:r')/g | endif
+autocmd BufNewFile,BufRead *.sh   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.sh   | %substitute/filename/\=expand('%:t:r')/g | endif
 autocmd BufNewFile,BufRead *.tex  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.tex  | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead *.py   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.py   | %substitute/filename/\=expand('%:r')/g | endif
 autocmd BufNewFile,BufRead .todo  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.todo | endif
