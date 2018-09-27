@@ -240,7 +240,7 @@ endif
 set showcmd
 set list listchars=eol:~,tab:\|_
 set background=dark
-if version>=704
+if version>=800
 	set breakindent showbreak=+++
 endif
 set smartindent autoindent
