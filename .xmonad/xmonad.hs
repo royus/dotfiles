@@ -1,4 +1,4 @@
---Last Change: 2018/08/20 (Mon) 17:43:55.
+--Last Change: 2018/08/23 (Thu) 10:16:46.
 
 -------------------------------------------------------------------------------
 --                  __  ____  __                       _                     --
@@ -57,6 +57,5 @@ myStartupHook = do
 	spawn "stalonetray &"
 	spawn "nm-applet &"
 	spawn "fcitx &"
-	-- spawn "transset-df -a 0.9 >/dev/null"
-	spawn "exec xset m 3/2 4"
+	spawn "exec xset m 4/3 4"
 --
