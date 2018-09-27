@@ -1,5 +1,5 @@
 #!/bin/sh
-# git_merge.sh
-# Last Change: 2017/03/10 (Fri) 16:10:49.
+# merge.sh
+# Last Change: 2018/09/27 (Thu) 19:07:10.
 
 git config --global alias.nffmerge "merge --no-ff"
