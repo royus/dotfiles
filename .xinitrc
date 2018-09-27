@@ -35,3 +35,4 @@ fi
 # exec xterm -geometry 106x47+0+0 -name login
 
 exec xmonad
+# exec xterm
