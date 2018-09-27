@@ -1,6 +1,6 @@
 #!/bin/sh
 # dotfilesLink.sh
-# Last Change: 2018/09/27 (Thu) 19:04:36.
+# Last Change: 2018/09/27 (Thu) 19:28:33.
 
 mkdir ~/.xmonad         2>/dev/null
 mkdir ~/.vifm           2>/dev/null
