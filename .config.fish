@@ -1,4 +1,4 @@
-# Last Change: 2018/08/16 (Thu) 21:02:50.
+# Last Change: 2018/08/23 (Thu) 12:08:08.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 
 #alias
@@ -96,7 +96,7 @@ function fish_prompt
 end
 
 #path
-set PATH /usr/local/bin /usr/sbin /sbin /usr/local/anaconda/bin $PATH
+set PATH /usr/local/bin /usr/sbin /sbin $PATH
 
 #vi_mode
 fish_vi_key_bindings
