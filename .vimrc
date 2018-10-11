@@ -1,4 +1,4 @@
-" Last Change: 2018/09/27 (Thu) 18:59:37.
+" Last Change: 2018/10/11 (Thu) 14:11:45.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -379,6 +379,7 @@ set pumheight=10
 set clipboard=unnamed,unnamedplus
 set ambiwidth=double
 set virtualedit=block
+set nojoinspaces
 autocmd BufReadPost *
 			\ if line("'\"") > 0 && line ("'\"") <= line("$") |
 			\   exe "normal! g'\"" |
