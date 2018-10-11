@@ -1,4 +1,4 @@
--- Last Change: 2018/08/06 (Mon) 17:31:47.
+-- Last Change: 2018/10/11 (Thu) 12:42:32.
 Config  { font = "xft:Ricty:size=12"
 		, borderColor = "black"
 		, border = TopB
@@ -31,5 +31,5 @@ Config  { font = "xft:Ricty:size=12"
 			]
 		, sepChar = "%"
 		, alignSep = "}{"
-		, template = "%cpu%  %memory%  %battery% }%StdinReader%{ <fc=orange>%date%</fc>     "
+		, template = "%cpu%  %memory%  %battery% }%StdinReader%{ <fc=orange>%date%</fc>       "
 }
