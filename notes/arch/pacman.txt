@@ -13,11 +13,12 @@ lua
 
 vbox~~~
 
-python-numpy iverilog gtkwave
+python-numpy
+iverilog gtkwave
 libreoffice-still
 
 yay
 ttf-ricty
 
 #tex (pacman)
-texlive-most texlive-langjapanese ghostscript poppler-data apvlv evince aspell
+texlive-most texlive-langjapanese ghostscript poppler-data apvlv evince aspell aspell-en
