@@ -1,4 +1,4 @@
---Last Change: 2018/09/27 (Thu) 21:15:18.
+--Last Change: 2018/10/11 (Thu) 13:10:42.
 
 -------------------------------------------------------------------------------
 --                  __  ____  __                       _                     --
@@ -56,5 +56,6 @@ myStartupHook = do
 	spawn "feh --bg-fill ~/.background.jpg"
 	spawn "stalonetray &"
 	spawn "nm-applet &"
+	spawn "~/.dropbox-dist/dropboxd"
 	spawn "fcitx &"
 	spawn "exec xset m 4/3 4"
