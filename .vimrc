@@ -1,4 +1,4 @@
-" Last Change: 2018/10/29 (Mon) 10:50:34.
+" Last Change: 2018/10/29 (Mon) 10:53:23.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -236,6 +236,7 @@ else
 	set gdefault
 	nnoremap [Space]s :<C-u>%s/
 	vnoremap [Space]s :s/
+	nnoremap <F2> :TodoToggle<CR>
 endif
 "}}}
 
