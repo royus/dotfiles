@@ -17,6 +17,8 @@ python-numpy
 iverilog gtkwave
 libreoffice-still
 
+php
+
 yay
 ttf-ricty
 
