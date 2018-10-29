@@ -1,4 +1,4 @@
-" Last Change: 2018/10/11 (Thu) 14:11:45.
+" Last Change: 2018/10/29 (Mon) 10:50:34.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -96,6 +96,16 @@ if version>=800 && load_plugin
 	"calendar
 	let g:calendar_frame = 'default'
 	nnoremap ,c :Calendar -first_day=monday<CR>
+	"comment
+	if !exists('g:tcomment_types')
+		let g:tcomment_types = {}
+	endif
+	let g:tcomment_types = {
+				\'php_surround' : "<?php %s ?>",
+				\'eruby_surround' : "<%% %s %%>",
+				\'eruby_surround_minus' : "<%% %s -%%>",
+				\'eruby_surround_equality' : "<%%= %s %%>",
+				\}
 	"easy-align
 	nmap ga <Plug>(EasyAlign)
 	xmap ga <Plug>(EasyAlign)
@@ -245,7 +255,8 @@ if version>=800
 endif
 set smartindent autoindent
 set tabstop=4 shiftwidth=4 noexpandtab smarttab
-autocmd filetype tex,text,vim,yaml setl tabstop=2 shiftwidth=2
+autocmd filetype tex,text,vim,yaml setlocal tabstop=2 shiftwidth=2
+autocmd filetype php setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
 set display=lastline
 set scrolloff=7
 set helpheight=1000
@@ -357,7 +368,7 @@ if version>=704
 	set wildignorecase
 endif
 set wildmode=list:longest,full
-set wildignore=*.o,*.obj,*.pyc,*.class,*.out
+set wildignore=*.o,*.obj,tags*,*.pyc,*.class,*.out
 nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
 nnoremap [Space]<Space> :<C-u>set nohlsearch<CR>
 nnoremap / :<C-u>set hlsearch<CR>/
@@ -671,7 +682,7 @@ function! s:RUN()
 		endif
 	elseif e=="pml"
 		!spin -search %
-	" else
+		" else
 		" source %
 	endif
 endfunction
