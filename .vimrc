@@ -1,4 +1,4 @@
-" Last Change: 2018/10/29 (Mon) 10:53:23.
+" Last Change: 2018/10/30 (Tue) 15:50:52.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -509,6 +509,7 @@ autocmd FileType tex vnoremap iR "zdi\color{red}<C-R>z\color{black}<Esc>
 autocmd FileType tex vnoremap iU "zdi<C-v>\underline{<C-R>z}<Esc>
 autocmd FileType tex vnoremap iB "zdi<C-v>\textbf{<C-R>z}<Esc>
 autocmd FileType tex vnoremap i" "zdi<C-v>``<C-R>z"<Esc>
+autocmd FileType php vnoremap iP "zdi<C-v><?php <C-R>z?><Esc>
 inoremap zl ->
 inoremap zh <-
 inoremap <C-j> <CR>
@@ -565,6 +566,7 @@ endfunction
 " autocmd filetype text inoremap .x  .<Space>X
 " autocmd filetype text inoremap .y  .<Space>Y
 " autocmd filetype text inoremap .z  .<Space>Z
+autocmd filetype php inoremap PHP <?php<Space>?><Left><Left><Left>
 autocmd filetype tex inoremap REF \ref{xxx}
 autocmd filetype tex inoremap FIG \begin{figure}[t]<CR>\centering<CR>%<Space>\includegraphics[width=8cm,clip]{./pdf/xxx.pdf}<CR>\caption{.\label{xxx}}<CR>\end{figure}
 autocmd filetype tex inoremap TAB \begin{table}[t]<CR>\centering<CR>\caption{.\label{xxx}}<CR>\begin{tabular}{\|c\|\|c\|c\|}<Space>\hline<CR>a<Space>&<Space>b<Space>&<Space>c<Space>\\<Space>\hline<Space>\hline<CR>\end{tabular}<CR>\end{table}
