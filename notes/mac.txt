@@ -1,1 +1,5 @@
 karabiner
+
+lua
+
+mactex
