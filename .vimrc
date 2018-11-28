@@ -1,4 +1,4 @@
-" Last Change: 2018/10/30 (Tue) 15:50:52.
+" Last Change: 2018/11/28 (Wed) 11:30:52.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -371,7 +371,7 @@ endif
 set wildmode=list:longest,full
 set wildignore=*.o,*.obj,tags*,*.pyc,*.class,*.out
 nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
-nnoremap [Space]<Space> :<C-u>set nohlsearch<CR>
+" nnoremap [Space]<Space> :<C-u>set nohlsearch<CR><Space>
 nnoremap / :<C-u>set hlsearch<CR>/
 nnoremap ? :<C-u>set hlsearch<CR>?
 nnoremap * :<C-u>set hlsearch<CR>*N:echo<CR>zz
@@ -438,8 +438,8 @@ vnoremap <Tab> <C-w><C-w>
 " nnoremap <C-k> <C-w>k
 " nnoremap <C-h> <C-w>h
 " nnoremap <C-l> <C-w>l
-nnoremap [Space] <NOP>
-vnoremap [Space] <NOP>
+" nnoremap [Space] <NOP>
+" vnoremap [Space] <NOP>
 nnoremap [Space]h ^
 nnoremap [Space]l $
 nnoremap [Space]k <C-u>
