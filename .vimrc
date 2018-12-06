@@ -1,4 +1,4 @@
-" Last Change: 2018/11/28 (Wed) 11:30:52.
+" Last Change: 2018/12/06 (Thu) 13:36:22.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -128,6 +128,7 @@ if version>=800 && load_plugin
 	augroup END
 	"latex
 	let g:tex_flavor='latex'
+	let g:vimtex_disable_version_warning=1
 	" autocmd FileType tex setlocal spell spelllang=en_us
 	call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
 	call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
@@ -695,11 +696,11 @@ autocmd filetype vim vnoremap <F5> <Esc>:w<CR>:source %<CR>
 "}}}
 
 "template{{{
-autocmd BufNewFile,BufRead *.c    if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.c    | %substitute/filename/\=expand('%:r')/g | endif
-autocmd BufNewFile,BufRead *.java if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.java | %substitute/filename/\=expand('%:r')/g | endif
+autocmd BufNewFile,BufRead *.c    if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.c    | %substitute/filename/\=expand('%:t:r')/g | endif
+autocmd BufNewFile,BufRead *.java if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.java | %substitute/filename/\=expand('%:t:r')/g | endif
 autocmd BufNewFile,BufRead *.sh   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.sh   | %substitute/filename/\=expand('%:t:r')/g | endif
-autocmd BufNewFile,BufRead *.tex  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.tex  | %substitute/filename/\=expand('%:r')/g | endif
-autocmd BufNewFile,BufRead *.py   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.py   | %substitute/filename/\=expand('%:r')/g | endif
+autocmd BufNewFile,BufRead *.tex  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.tex  | %substitute/filename/\=expand('%:t:r')/g | endif
+autocmd BufNewFile,BufRead *.py   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.py   | %substitute/filename/\=expand('%:t:r')/g | endif
 autocmd BufNewFile,BufRead .todo  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.todo | endif
 "}}}
 "}}}

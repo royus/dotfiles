@@ -1,5 +1,6 @@
 karabiner
 
-lua
-
 mactex
+
+brew
+vim lua aspell
