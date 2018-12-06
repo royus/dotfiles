@@ -1,4 +1,4 @@
-" Last Change: 2018/12/06 (Thu) 13:36:22.
+" Last Change: 2018/12/07 (Fri) 08:25:00.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -128,7 +128,7 @@ if version>=800 && load_plugin
 	augroup END
 	"latex
 	let g:tex_flavor='latex'
-	let g:vimtex_disable_version_warning=1
+	let g:vimtex_compiler_latexmk = {'callback' : 0}
 	" autocmd FileType tex setlocal spell spelllang=en_us
 	call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
 	call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
