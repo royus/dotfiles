@@ -1,4 +1,4 @@
-" Last Change: 2018/12/07 (Fri) 14:31:46.
+" Last Change: 2018/12/07 (Fri) 14:34:43.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -300,7 +300,6 @@ nnoremap [Space]q :<C-u>q<CR>
 nnoremap q<Space> :<C-u>q<CR>
 nnoremap [Space]Q :<C-u>qa!<CR>
 nnoremap Q<Space> :<C-u>qa!<CR>
-
 
 " augroup BinaryXXD
 " 	autocmd!
