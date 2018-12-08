@@ -1,10 +1,20 @@
-" Last Change: 2018/12/07 (Fri) 14:34:43.
+" Last Change: 2018/12/08 (Sat) 17:41:52.
 "{{{
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
 let use_ja_input=1
+if has('mac')
+	let use_ja_input=0
+	set ttimeoutlen=1
+	let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
+	augroup MyIMEGroup
+		autocmd!
+		autocmd InsertLeave * :call system(g:imeoff)
+	augroup END
+	inoremap <silent> <ESC> <ESC>:call system(g:imeoff)<CR>
+endif
 "}}}
 
 "dein{{{
