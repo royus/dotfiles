@@ -1,6 +1,8 @@
-karabiner
-
 mactex
 
 brew
-vim lua aspell
+vim lua aspell karabiner
+
+iterm
+
+half_space

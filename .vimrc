@@ -1,4 +1,4 @@
-" Last Change: 2018/12/08 (Sat) 17:41:52.
+" Last Change: 2018/12/08 (Sat) 17:48:59.
 "{{{
 set shell=/bin/sh
 let patched_font=0
