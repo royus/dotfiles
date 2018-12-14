@@ -1,4 +1,4 @@
-" Last Change: 2018/12/12 (Wed) 20:38:17.
+" Last Change: 2018/12/14 (Fri) 13:57:32.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -66,7 +66,7 @@ if version>=800 && load_plugin
 	call dein#add('lervag/vimtex') " tex
 	call dein#add('matze/vim-tex-fold') " tex foldings
 	call dein#add('vim-scripts/verilog.vim') " verilog
-	call dein#add('stephpy/vim-yaml') " verilog
+	call dein#add('stephpy/vim-yaml') " yaml
 	"txtobj
 	call dein#add('kana/vim-textobj-user')
 	call dein#add('osyo-manga/vim-textobj-blockwise')
@@ -266,7 +266,7 @@ if version>=800
 	set breakindent showbreak=+++
 endif
 set smartindent autoindent
-set tabstop=4 shiftwidth=4 noexpandtab smarttab
+set tabstop=4 shiftwidth=4 shiftround noexpandtab smarttab
 autocmd filetype tex,text,vim,yaml setlocal tabstop=2 shiftwidth=2
 autocmd filetype markdown,php setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
 autocmd filetype javascript,json setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
@@ -294,6 +294,7 @@ set fileformat=unix fileformats=unix,dos,mac
 
 "files{{{
 set noswapfile
+set nobackup nowritebackup
 set autochdir
 set hidden
 nnoremap Q     <NOP>
