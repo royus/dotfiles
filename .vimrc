@@ -1,20 +1,20 @@
-" Last Change: 2018/12/08 (Sat) 17:48:59.
+" Last Change: 2018/12/12 (Wed) 20:38:17.
 "{{{
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
 let use_ja_input=1
-if has('mac')
-	let use_ja_input=0
-	set ttimeoutlen=1
-	let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
-	augroup MyIMEGroup
-		autocmd!
-		autocmd InsertLeave * :call system(g:imeoff)
-	augroup END
-	inoremap <silent> <ESC> <ESC>:call system(g:imeoff)<CR>
-endif
+" if has('mac')
+" 	let use_ja_input=0
+" 	set ttimeoutlen=1
+" 	let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
+" 	augroup MyIMEGroup
+" 		autocmd!
+" 		autocmd InsertLeave * :call system(g:imeoff)
+" 	augroup END
+" 	inoremap <silent> <ESC> <ESC>:call system(g:imeoff)<Enter>
+" endif
 "}}}
 
 "dein{{{
@@ -268,8 +268,8 @@ endif
 set smartindent autoindent
 set tabstop=4 shiftwidth=4 noexpandtab smarttab
 autocmd filetype tex,text,vim,yaml setlocal tabstop=2 shiftwidth=2
-autocmd filetype php setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
-autocmd filetype json setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+autocmd filetype markdown,php setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
+autocmd filetype javascript,json setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 set display=lastline
 set scrolloff=7
 set helpheight=1000
@@ -477,7 +477,7 @@ nnoremap : ;
 nnoremap [Space]o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
 nnoremap [Space]O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
 nnoremap Y y$
-nnoremap [Space]i gg=G<C-o><C-o>
+nnoremap [Space]i gg=G
 nnoremap [Space]v ^v$h
 nnoremap [Space]d ^v$hx
 nnoremap [Space]y ^v$hy
@@ -696,8 +696,8 @@ function! s:RUN()
 		endif
 	elseif e=="pml"
 		!spin -search %
-		" else
-		" source %
+	elseif e=="js"
+		!node %
 	endif
 endfunction
 autocmd filetype vim nnoremap <F5> :w<CR>:source %<CR>
