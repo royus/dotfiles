@@ -1,8 +1,8 @@
 mactex
 
 brew
-vim lua aspell karabiner
+vim lua aspell karabiner fish nodebrew
 
 iterm
 
-half_space
+change into half_space
