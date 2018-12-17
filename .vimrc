@@ -1,4 +1,4 @@
-" Last Change: 2018/12/14 (Fri) 13:57:32.
+" Last Change: 2018/12/17 (Mon) 10:45:39.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -413,7 +413,7 @@ autocmd BufReadPost *
 "mapping&function{{{
 "unused:
 "<F3><F4><F6><F7><F8><F9>^
-"[Space] + abcefgmnruxz
+"[Space] + abcefgmnrxz
 "   ,    + abdefghijklmopqrsuvwxyz
 map <Space> [Space]
 noremap [Space] <NOP>
@@ -496,6 +496,7 @@ function! s:remove_dust()
 endfunction
 autocmd BufWritePre * call <SID>remove_dust()
 nnoremap U <C-r>
+nnoremap [Space]u U
 " nnoremap <C-j> J
 "}}}
 
