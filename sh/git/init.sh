@@ -1,9 +1,9 @@
 #!/bin/sh
 # init.sh
-# Last Change: 2018/09/27 (Thu) 19:28:06.
+# Last Change: 2018/12/24 (Mon) 11:01:51.
 
 git init
-cp ~/dotfiles/.gitignore .
+cat ~/dotfiles/.gitignore >> .gitignore
 # rm -r build/
 git add .gitignore
 git add *
