@@ -3,6 +3,7 @@ mactex
 brew
 vim lua aspell karabiner fish nodebrew
 
-iterm
+iterm?
 
-change into half_space
+change to half_space
+turn off screen when lid is closed
