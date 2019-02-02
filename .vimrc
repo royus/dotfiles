@@ -1,4 +1,4 @@
-" Last Change: 2018/12/20 (Thu) 18:38:16.
+" Last Change: 2019/01/23 (Wed) 21:01:32.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -257,7 +257,7 @@ syntax enable
 set title
 set number ruler
 if version>=703
-	set relativenumber
+	" set relativenumber
 endif
 set showcmd
 set list listchars=eol:~,tab:\|_
@@ -277,8 +277,8 @@ set splitbelow splitright
 set showmatch
 set matchpairs+=<:>
 if colorscheme_no==1
-	autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
-	autocmd CursorHold,CursorHoldI * setlocal cursorline
+	" autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+	" autocmd CursorHold,CursorHoldI * setlocal cursorline
 	highlight MatchParen ctermfg=cyan ctermbg=NONE
 	highlight PmenuSel ctermbg=lightgray ctermfg=black
 else
@@ -668,6 +668,18 @@ function! s:RUN()
 			!./.x_%:r
 			" !rm .x_%:r
 		endif
+	elseif e=="cpp"
+		if filereadable("Makefile")
+			make
+		else
+			!g++ % -O3 -lm -o .x_%:r -Wall;
+		endif
+		if filereadable("main")
+			!./main
+		else
+			!./.x_%:r
+			" !rm .x_%:r
+		endif
 	elseif e=="java"
 		if filereadable("Makefile")
 			make; !java Main
@@ -713,6 +725,7 @@ autocmd filetype vim vnoremap <F5> <Esc>:w<CR>:source %<CR>
 
 "template{{{
 autocmd BufNewFile,BufRead *.c    if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.c    | %substitute/filename/\=expand('%:t:r')/g | endif
+autocmd BufNewFile,BufRead *.cpp  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.cpp  | %substitute/filename/\=expand('%:t:r')/g | endif
 autocmd BufNewFile,BufRead *.java if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.java | %substitute/filename/\=expand('%:t:r')/g | endif
 autocmd BufNewFile,BufRead *.sh   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.sh   | %substitute/filename/\=expand('%:t:r')/g | endif
 autocmd BufNewFile,BufRead *.tex  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.tex  | %substitute/filename/\=expand('%:t:r')/g | endif

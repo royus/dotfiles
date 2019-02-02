@@ -1,5 +1,5 @@
 /* filename.c */
-/* Last Change: 2018/11/06 (Tue) 21:11:42. */
+/* Last Change: 2019/01/16 (Wed) 18:38:34. */
 
 #include<stdio.h>
 /* #include<stdlib.h> */
@@ -8,7 +8,7 @@
 /* #include<math.h> */
 /* #include<time.h> */
 
-/* while(scanf("%d",&n)!=EOF){} */
+/* while(scanf(" %d",&n)!=EOF){} */
 /* int n[10]={0}; */
 /* scanf(" %d",&n); */
 
