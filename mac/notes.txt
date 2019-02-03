@@ -5,5 +5,7 @@ vim lua aspell karabiner fish nodebrew
 
 iterm?
 
+keyboard->input->win-like sc
+
 change to half_space
 turn off screen when lid is closed
