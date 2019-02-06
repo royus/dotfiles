@@ -1,6 +1,6 @@
 #!/bin/sh
 # dotfilesLink.sh
-# Last Change: 2018/12/14 (Fri) 13:10:52.
+# Last Change: 2019/02/06 (Wed) 14:25:12.
 
 mkdir ~/.xmonad           2>/dev/null
 mkdir ~/.vifm             2>/dev/null
@@ -27,5 +27,3 @@ ln -sf ~/dotfiles/sh/backlight/lighter.sh ~/lighter.sh
 ln -sf ~/dotfiles/sh/backlight/darker.sh  ~/darker.sh
 ln -sf ~/dotfiles/sh/git/push.sh          ~/push.sh
 ln -sf ~/dotfiles/sh/git/pull.sh          ~/pull.sh
-
-ln -sf ~/dotfiles/mac/.karabiner.json     ~/.config/karabiner/karabiner.json
