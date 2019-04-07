@@ -3,9 +3,8 @@ mactex
 brew
 vim lua aspell karabiner fish nodebrew
 
-iterm?
-
 keyboard->input->win-like-sc, auto-switch-toa-doc's...
+accessibility->trackpad->drag w/o lock
 
 change to half_space
 turn off screen when lid is closed
