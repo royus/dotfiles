@@ -1,4 +1,4 @@
-" Last Change: 2019/02/06 (Wed) 10:52:30.
+" Last Change: 2019/07/22 (Mon) 01:19:20.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -659,6 +659,8 @@ function! s:RUN()
 	if e=="c"
 		if filereadable("Makefile")
 			make
+		elseif filereadable("main.c")
+			!gcc *.c -O0 -lm -g -o main -Wall;
 		else
 			!gcc % -O0 -lm -g -o .x_%:r -Wall;
 		endif
