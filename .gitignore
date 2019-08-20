@@ -1,4 +1,6 @@
-
 # Ignore ctags
 tags
 tags.lock
+
+# Ignore binaries
+.x_*
