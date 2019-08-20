@@ -1,4 +1,4 @@
-" Last Change: 2019/07/22 (Mon) 01:19:20.
+" Last Change: 2019/08/08 (Thu) 17:45:28.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -701,19 +701,19 @@ function! s:RUN()
 		!ocaml -init %
 	elseif e=="tex"
 		let latexmk_pv=1
-		if filereadable("main.tex")
-			if latexmk_pv
-				!latexmk main.tex -pv; rm platex*.fls *.dvi *.gz
-			else
-				!latexmk main.tex; rm platex*.fls *.dvi *.gz
-			endif
-		else
+		" if filereadable("main.tex")
+		" 	if latexmk_pv
+		" 		!latexmk main.tex -pv; rm platex*.fls *.dvi *.gz
+		" 	else
+		" 		!latexmk main.tex; rm platex*.fls *.dvi *.gz
+		" 	endif
+		" else
 			if latexmk_pv
 				!latexmk % -pv; rm platex*.fls *.dvi *.gz
 			else
 				!latexmk %; rm platex*.fls *.dvi *.gz
 			endif
-		endif
+		" endif
 	elseif e=="pml"
 		!spin -search %
 	elseif e=="js"
