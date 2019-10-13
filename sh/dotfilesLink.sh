@@ -1,10 +1,10 @@
 #!/bin/sh
 # dotfilesLink.sh
-# Last Change: 2019/02/06 (Wed) 14:25:12.
+# Last Change: 2019/08/24 (Sat) 12:40:26.
 
 mkdir ~/.xmonad           2>/dev/null
 mkdir ~/.vifm             2>/dev/null
-mkdir ~/.config/fish      2>/dev/null -p
+mkdir -p ~/.config/fish   2>/dev/null
 mkdir ~/.config/termite   2>/dev/null
 mkdir ~/.config/karabiner 2>/dev/null
 
