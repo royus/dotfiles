@@ -1,4 +1,4 @@
-" Last Change: 2019/08/08 (Thu) 17:45:28.
+" Last Change: 2019/10/13 (Sun) 13:26:13.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -652,6 +652,8 @@ highlight CheckboxUnmark ctermfg=red
 nmap <F5> <Esc>;RUN<CR>
 imap <F5> <Esc><Esc>;RUN<CR>
 vmap <F5> <Esc><Esc>;RUN<CR>
+nnoremap [Space]<F5> <Esc>:RUN<CR>
+
 command! RUN call s:RUN()
 function! s:RUN()
 	wall
