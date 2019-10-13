@@ -1,10 +1,14 @@
-mactex
+update osx
 
+git
 brew
-vim lua aspell karabiner fish nodebrew
+karabiner
 
-keyboard->input->win-like-sc, auto-switch-toa-doc's...
+vim fish
+
+keyboard->input->win-like-sc, live-conversion-off, auto-switch-toa-doc's...
 accessibility->trackpad->drag w/o lock
 
+mactex lua aspell
 change to half_space
 turn off screen when lid is closed
