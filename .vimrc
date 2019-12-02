@@ -1,4 +1,4 @@
-" Last Change: 2019/10/13 (Sun) 13:26:13.
+" Last Change: 2019/10/23 (Wed) 11:09:28.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -676,7 +676,7 @@ function! s:RUN()
 		if filereadable("Makefile")
 			make
 		else
-			!g++ % -O3 -lm -o .x_%:r -Wall;
+			!g++ % -O3 -lm -o .x_%:r -Wall -std=c++11 `pkg-config --cflags opencv4` `pkg-config --libs opencv4`;
 		endif
 		if filereadable("main")
 			!./main

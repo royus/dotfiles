@@ -1,4 +1,4 @@
-# Last Change: 2018/12/12 (Wed) 20:25:24.
+# Last Change: 2019/10/23 (Wed) 10:43:58.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 
 #alias
@@ -122,6 +122,8 @@ end
 function fish_mode_prompt
 	# NOP - Disable vim mode indicator
 end
+
+export LC_ALL=en_US.UTF-8
 
 #others
 # [ -n "$XTERM_VERSION" ]; transset-df -a 0.9 >/dev/null
