@@ -1,4 +1,4 @@
-# Last Change: 2019/10/23 (Wed) 10:43:58.
+# Last Change: 2020/01/20 (Mon) 11:16:28.
 # ln -sf ~/dotfiles/.fishrc ~/.config/fish/config.fish
 
 #alias
@@ -109,7 +109,8 @@ function fish_prompt
 end
 
 #path
-set PATH /usr/local/bin /usr/sbin /sbin $HOME/.nodebrew/current/bin $PATH
+set PATH /usr/local/bin /usr/sbin /sbin $PATH
+# set PATH /usr/local/bin /usr/sbin /sbin $HOME/.nodebrew/current/bin $PATH
 
 #vi_mode
 fish_vi_key_bindings
