@@ -1,4 +1,4 @@
-" Last Change: 2019/10/23 (Wed) 11:09:28.
+" Last Change: 2021/11/27 (Sat) 09:56:53.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -267,7 +267,7 @@ if version>=800
 endif
 set smartindent autoindent
 set tabstop=4 shiftwidth=4 shiftround noexpandtab smarttab
-autocmd filetype tex,text,vim,yaml setlocal tabstop=2 shiftwidth=2
+autocmd filetype css,http,tex,text,vim,yaml setlocal tabstop=2 shiftwidth=2
 autocmd filetype markdown,php setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
 autocmd filetype javascript,json setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 set display=lastline
