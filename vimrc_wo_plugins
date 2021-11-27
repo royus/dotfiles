@@ -1,0 +1,417 @@
+"Last Change: 2021/05/18 (Tue) 15:03:17.
+
+syntax enable
+set gdefault
+nnoremap [Space]s :<C-u>%s/
+vnoremap [Space]s :s/
+inoremap { {}<Left>
+inoremap [ []<Left>
+inoremap ( ()<Left>
+inoremap {} {}
+inoremap [] []
+inoremap () ()
+inoremap {<BackSpace> <NOP>
+inoremap [<BackSpace> <NOP>
+inoremap (<BackSpace> <NOP>
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
+inoremap [<Enter> []<Left><CR><ESC><S-o>
+inoremap (<Enter> ()<Left><CR><ESC><S-o>
+
+colorscheme slate
+
+
+highlight LineNr ctermfg=7
+set cursorline
+
+
+"appearance {{{
+set t_Co=256
+set title
+set number ruler
+if version>=704
+	set relativenumber
+endif
+set showcmd
+set list listchars=eol:~,tab:\|_
+set background=dark
+if version>=800
+	set breakindent showbreak=+++
+endif
+set smartindent autoindent
+set tabstop=4 shiftwidth=4 shiftround noexpandtab smarttab
+autocmd filetype tex,text,vim,yaml setlocal tabstop=2 shiftwidth=2
+autocmd filetype markdown,php setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
+autocmd filetype javascript,json setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+set display=lastline
+set scrolloff=7
+set helpheight=1000
+set splitbelow splitright
+set showmatch
+set matchpairs+=<:>
+highlight MatchParen ctermfg=cyan ctermbg=NONE
+highlight PmenuSel ctermbg=lightgray ctermfg=black
+highlight normal ctermbg=NONE
+"}}}
+
+
+"files{{{
+set noswapfile
+set nobackup nowritebackup
+set autochdir
+set hidden
+nnoremap Q     <NOP>
+" nnoremap ZZ    <NOP>
+" nnoremap ZQ    <NOP>
+nnoremap <C-z> <NOP>
+nnoremap [Space]w :<C-u>w<CR>
+nnoremap [Space]W :<C-u>W<CR>
+command! W call s:Su_Write()
+function! s:Su_Write()
+	:w !sudo tee %
+endfunction
+nnoremap [Space]q :<C-u>q<CR>
+nnoremap q<Space> :<C-u>q<CR>
+nnoremap [Space]Q :<C-u>qa!<CR>
+nnoremap Q<Space> :<C-u>qa!<CR>
+
+" augroup BinaryXXD
+" autocmd!
+" autocmd BufReadPre *.bin let &binary =1
+" autocmd BufReadPost * if &binary | silent %!xxd -g 1
+" autocmd BufReadPost * set ft=xxd | endif
+ " " autocmd BufWritePre * if &binary | %!xxd -r | endif
+ " " autocmd BufWritePost * if &binary | silent %!xxd -g 1
+ " " autocmd BufWritePost * set nomod | endif
+ " augroup END
+ "}}}
+
+ "foldings {{{
+ nnoremap z za
+ nnoremap Z zR
+ vnoremap z zf
+ autocmd filetype vim set foldmethod=marker
+ autocmd filetype tex set foldmethod=marker
+ set foldtext=MyFoldText()
+ function! MyFoldText()
+	 let line=getline(v:foldstart)
+	 let space=strpart('|---------------',0,&tabstop)
+	 let line=substitute(line,"\t",space,'g')
+	 let line=substitute(line,'/\*\|\*/\|{{{\d\=','','g') "}}}
+	 let cnt=printf(' [%2s,%3s]',v:foldlevel,(v:foldend-v:foldstart+1))
+	 let line_width=winwidth(0)-&foldcolumn
+	 if &number==1
+		 let line_width -= max([&numberwidth, len(line('$'))])
+	 endif
+	 let alignment=line_width - len(cnt)
+	 let line=strpart(printf('%-'.alignment.'s',line),0,alignment)
+	 let line=substitute(line,'\%( \)\@<= \%( *$\)\@=','-','g')
+	 return line.cnt
+ endfunction
+ "}}}
+
+ "history{{{
+ set history=100
+ nnoremap q: <NOP>
+ nnoremap [Space]; q:
+ nnoremap q/ <NOP>
+ nnoremap [Space]/ q/
+ vnoremap q: <NOP>
+ vnoremap [Space]; q:
+ vnoremap q/ <NOP>
+ vnoremap [Space]/ q/
+ "}}}
+
+ "searches{{{
+ set incsearch wrapscan ignorecase smartcase
+ if version>=704
+	 set wildignorecase
+ endif
+ set wildmode=list:longest,full
+ set wildignore=*.o,*.obj,tags*,*.pyc,*.class,*.out
+ nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
+ " nnoremap [Space]<Space> :<C-u>set nohlsearch<CR><Space>
+ nnoremap / :<C-u>set hlsearch<CR>/
+ nnoremap ? :<C-u>set hlsearch<CR>?
+ nnoremap * :<C-u>set hlsearch<CR>*N:echo<CR>zz
+ nnoremap # :<C-u>set hlsearch<CR>#N:echo<CR>zz
+ nnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzvzz' : ':<C-u>set hlsearch<CR>Nzvzz'
+ nnoremap <expr> N <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>Nzvzz' : ':<C-u>set hlsearch<CR>nzvzz'
+ vnoremap <expr> n <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>nzvzz' : ':<C-u>set hlsearch<CR>Nzvzz'
+ vnoremap <expr> N <SID>search_forward_p() ? ':<C-u>set hlsearch<CR>Nzvzz' : ':<C-u>set hlsearch<CR>nzvzz'
+ function! s:search_forward_p()
+	 return exists('v:searchforward') ? v:searchforward : 1
+ endfunction
+ "}}}
+
+ "others{{{
+ set backspace=start,eol,indent
+ set pumheight=10
+ set ambiwidth=double
+ set virtualedit=block
+ set nojoinspaces
+ autocmd BufReadPost *
+			 \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+			 \   exe "normal! g'\"" |
+			 \ endif
+ "}}}
+
+ "mapping&function{{{
+ "unused:
+ "<F3><F4><F6><F7><F8><F9>^
+ "[Space] + abcefgmnrxz
+ "   ,    + abdefghijklmopqrsuvwxyz
+ map <Space> [Space]
+ noremap [Space] <NOP>
+ set timeout timeoutlen=3000 ttimeoutlen=100
+
+ "movements{{{
+ nnoremap <Up>    <NOP>
+ nnoremap <Down>  <NOP>
+ nnoremap <Right> <NOP>
+ nnoremap <Left>  <NOP>
+ inoremap <Up>    <NOP>
+ inoremap <Down>  <NOP>
+ inoremap <Right> <NOP>
+ inoremap <Left>  <NOP>
+ vnoremap <Up>    <NOP>
+ vnoremap <Down>  <NOP>
+ vnoremap <Right> <NOP>
+ vnoremap <Left>  <NOP>
+ nnoremap k   gk
+ nnoremap j   gj
+ vnoremap k   gk
+ vnoremap j   gj
+ nnoremap gk  k
+ nnoremap gj  j
+ vnoremap gk  k
+ vnoremap gj  j
+ inoremap <C-f> <Right>
+ inoremap <C-b> <Left>
+ inoremap <C-a> <HOME>
+ inoremap <C-e> <END>
+ cnoremap <C-f> <Right>
+ cnoremap <C-b> <Left>
+ cnoremap <C-a> <HOME>
+ cnoremap <C-e> <END>
+ nnoremap <Tab> <C-w><C-w>
+ vnoremap <Tab> <C-w><C-w>
+ " nnoremap <C-j> <C-w>j
+ " nnoremap <C-k> <C-w>k
+ " nnoremap <C-h> <C-w>h
+ " nnoremap <C-l> <C-w>l
+ " nnoremap [Space] <NOP>
+ " vnoremap [Space] <NOP>
+ nnoremap [Space]h ^
+ nnoremap [Space]l $
+ nnoremap [Space]k <C-u>
+ nnoremap [Space]j <C-d>
+ vnoremap [Space]h ^
+ vnoremap [Space]l $
+ vnoremap [Space]k <C-u>
+ vnoremap [Space]j <C-d>
+ nnoremap [Space]t :$tabnew<Space>
+ " nnoremap K gt
+ " nnoremap J gT
+ " nnoremap H <C-o>
+ " nnoremap L <C-i>
+ nnoremap <expr> gg line(".")==1 ? 'G':'gg'
+ vnoremap <expr> gg line(".")==1 ? 'G':'gg'
+ nnoremap 0 ^
+ vnoremap 0 ^
+ nnoremap <C-a> ggVG
+ "}}}
+
+ "actions{{{
+ nnoremap ; :
+ nnoremap : ;
+ nnoremap [Space]o  :<C-u>for i in range(v:count1) \| call append(line('.'), '') \| endfor<CR>
+ nnoremap [Space]O  :<C-u>for i in range(v:count1) \| call append(line('.')-1, '') \| endfor<CR>
+ nnoremap Y y$
+ nnoremap [Space]i gg=G
+ nnoremap [Space]v ^v$h
+ nnoremap [Space]d ^v$hx
+ nnoremap [Space]y ^v$hy
+ vnoremap [Space]p "0p
+ nnoremap <C-g> g<C-g>
+ nnoremap + <C-a>
+ nnoremap - <C-x>
+ vnoremap + <C-a>
+ vnoremap - <C-x>
+ function! s:remove_dust()
+	 let cursor=getpos(".")
+	 %s/\s\+$//ge
+	 call setpos(".", cursor)
+	 unlet cursor
+ endfunction
+ autocmd BufWritePre * call <SID>remove_dust()
+ nnoremap U <C-r>
+ nnoremap [Space]u U
+ " nnoremap <C-j> J
+ "}}}
+
+ "input{{{
+ " inoremap " ""<Left>
+ " inoremap "<CR> ""<Left><CR><ESC><S-o>
+ " inoremap { {}<Left>
+ " inoremap {<CR> {}<Left><CR><ESC><S-o>
+ " inoremap ( ()<ESC>i
+ " inoremap (<CR> ()<Left><CR><ESC><S-o>
+ vnoremap i{     "zdi<C-v>{<C-R>z}<Esc>
+ vnoremap i}     "zdi<C-v>{<C-R>z}<Esc>
+ vnoremap i[     "zdi<C-v>[<C-R>z]<Esc>
+ vnoremap i]     "zdi<C-v>[<C-R>z]<Esc>
+ vnoremap i(     "zdi<C-v>(<C-R>z)<Esc>
+ vnoremap i)     "zdi<C-v>(<C-R>z)<Esc>
+ vnoremap i"     "zdi<C-v>"<C-R>z<C-v>"<Esc>
+ vnoremap i'     "zdi'<C-R>z'<Esc>
+ vnoremap i$     "zdi$<C-R>z$<Esc>
+ vnoremap i&     "zdi&<C-R>z&<Esc>
+ vnoremap i<Bar> "zdi<Bar><C-R>z<Bar><Esc>
+ autocmd FileType tex vnoremap iR "zdi\color{red}<C-R>z\color{black}<Esc>
+ autocmd FileType tex vnoremap iU "zdi<C-v>\underline{<C-R>z}<Esc>
+ autocmd FileType tex vnoremap iB "zdi<C-v>\textbf{<C-R>z}<Esc>
+ autocmd FileType tex vnoremap i" "zdi<C-v>``<C-R>z"<Esc>
+ autocmd FileType php vnoremap iP "zdi<C-v><?php <C-R>z?><Esc>
+ inoremap zl ->
+ inoremap zh <-
+ inoremap <C-j> <CR>
+ "}}}
+
+ "mark{{{
+ " noremap <nowait> [ ['
+ " noremap <nowait> ] ]'
+ nnoremap [Space]M ['
+ nnoremap [Space]m ]'
+ if !exists('g:markrement_char')
+	 let g:markrement_char = [
+				 \'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+				 \'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'
+				 \ ]
+ endif
+ nnoremap <silent>m :<C-u>call <SID>AutoMarkrement()<CR>
+ function! s:AutoMarkrement()
+	 if !exists('b:markrement_pos')
+		 let b:markrement_pos = 0
+	 else
+		 let b:markrement_pos = (b:markrement_pos + 1) % len(g:markrement_char)
+	 endif
+	 execute 'mark' g:markrement_char[b:markrement_pos]
+	 echo 'marked' g:markrement_char[b:markrement_pos]
+ endfunction
+ "}}}
+
+ "text{{{
+ " autocmd filetype text inoremap .   .<Space>
+ " autocmd filetype text inoremap .a  .<Space>A
+ " autocmd filetype text inoremap .b  .<Space>B
+ " autocmd filetype text inoremap .c  .<Space>C
+ " autocmd filetype text inoremap .d  .<Space>D
+ " autocmd filetype text inoremap .e  .<Space>E
+ " autocmd filetype text inoremap .f  .<Space>F
+ " autocmd filetype text inoremap .g  .<Space>G
+ " autocmd filetype text inoremap .h  .<Space>H
+ " autocmd filetype text inoremap .i  .<Space>I
+ " autocmd filetype text inoremap .j  .<Space>J
+ " autocmd filetype text inoremap .k  .<Space>K
+ " autocmd filetype text inoremap .l  .<Space>L
+ " autocmd filetype text inoremap .m  .<Space>M
+ " autocmd filetype text inoremap .n  .<Space>N
+ " autocmd filetype text inoremap .o  .<Space>O
+ " autocmd filetype text inoremap .p  .<Space>P
+ " autocmd filetype text inoremap .q  .<Space>Q
+ " autocmd filetype text inoremap .r  .<Space>R
+ " autocmd filetype text inoremap .s  .<Space>S
+ " autocmd filetype text inoremap .t  .<Space>T
+ " autocmd filetype text inoremap .u  .<Space>U
+ " autocmd filetype text inoremap .v  .<Space>V
+ " autocmd filetype text inoremap .w  .<Space>W
+ " autocmd filetype text inoremap .x  .<Space>X
+ " autocmd filetype text inoremap .y  .<Space>Y
+ " autocmd filetype text inoremap .z  .<Space>Z
+ autocmd filetype php inoremap PHP <?php<Space>?><Left><Left><Left>
+ autocmd filetype tex inoremap REF \ref{xxx}
+ autocmd filetype tex inoremap FIG \begin{figure}[t]<CR>\centering<CR>%<Space>\includegraphics[width=8cm,clip]{./pdf/xxx.pdf}<CR>\caption{.\label{xxx}}<CR>\end{figure}
+ autocmd filetype tex inoremap TAB \begin{table}[t]<CR>\centering<CR>\caption{.\label{xxx}}<CR>\begin{tabular}{\|c\|\|c\|c\|}<Space>\hline<CR>a<Space>&<Space>b<Space>&<Space>c<Space>\\<Space>\hline<Space>\hline<CR>\end{tabular}<CR>\end{table}
+ autocmd filetype tex inoremap LIST \lstinputlisting[caption=.,label=xxx]{sample.txt}<CR>
+ "}}}
+
+
+ "RUN{{{
+ "intentionally semicolon
+ nmap <F5> <Esc>;RUN<CR>
+ imap <F5> <Esc><Esc>;RUN<CR>
+ vmap <F5> <Esc><Esc>;RUN<CR>
+ nnoremap [Space]<F5> <Esc>:RUN<CR>
+
+ command! RUN call s:RUN()
+ function! s:RUN()
+	 wall
+	 let e=expand("%:e")
+	 if e=="c"
+		 if filereadable("Makefile")
+			 make
+		 elseif filereadable("main.c")
+			 !gcc *.c -O0 -lm -g -o main -Wall;
+		 else
+			 !gcc % -O0 -lm -g -o .x_%:r -Wall;
+		 endif
+		 if filereadable("main")
+			 !./main
+		 else
+			 !./.x_%:r
+			 " !rm .x_%:r
+		 endif
+	 elseif e=="cpp"
+		 if filereadable("Makefile")
+			 make
+		 else
+			 !g++ % -O3 -lm -o .x_%:r -Wall -std=c++11 `pkg-config --cflags opencv4` `pkg-config --libs opencv4`;
+		 endif
+		 if filereadable("main")
+			 !./main
+		 else
+			 !./.x_%:r
+			 " !rm .x_%:r
+		 endif
+	 elseif e=="java"
+		 if filereadable("Makefile")
+			 make; !java Main
+		 else
+			 !javac *.java
+			 !java %:r
+		 endif
+	 elseif e=="rb"
+		 !ruby % -w
+	 elseif e=="py"
+		 if bufwinnr("main.py")!=-1
+			 !python3 -B main.py
+		 else
+			 !python3 -B %
+		 endif
+	 elseif e=="ml"
+		 !ocaml -init %
+	 elseif e=="tex"
+		 let latexmk_pv=1
+		 " if filereadable("main.tex")
+		 " if latexmk_pv
+		 " !latexmk main.tex -pv; rm platex*.fls *.dvi *.gz
+		 " else
+		 " !latexmk main.tex; rm platex*.fls *.dvi *.gz
+		 " endif
+		 " else
+		 if latexmk_pv
+			 !latexmk % -pv; rm platex*.fls *.dvi *.gz
+		 else
+			 !latexmk %; rm platex*.fls *.dvi *.gz
+		 endif
+		 " endif
+	 elseif e=="pml"
+		 !spin -search %
+	 elseif e=="js"
+		 !node %
+	 endif
+ endfunction
+ autocmd filetype vim nnoremap <F5> :w<CR>:source %<CR>
+ autocmd filetype vim inoremap <F5> <Esc>:w<CR>:source %<CR>
+ autocmd filetype vim vnoremap <F5> <Esc>:w<CR>:source %<CR>
+ "}}}
