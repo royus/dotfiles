@@ -1,4 +1,4 @@
-" Last Change: 2021/11/27 (Sat) 09:56:53.
+" Last Change: 2021/11/27 (Sat) 09:57:52.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -256,7 +256,7 @@ set t_Co=256
 syntax enable
 set title
 set number ruler
-if version>=703
+if version>=704
 	set relativenumber
 endif
 set showcmd
@@ -400,7 +400,9 @@ endfunction
 "others{{{
 set backspace=start,eol,indent
 set pumheight=10
-set clipboard=unnamed,unnamedplus
+if has("clipboard")
+	set clipboard=unnamed,unnamedplus
+endif
 set ambiwidth=double
 set virtualedit=block
 set nojoinspaces
@@ -710,11 +712,11 @@ function! s:RUN()
 		" 		!latexmk main.tex; rm platex*.fls *.dvi *.gz
 		" 	endif
 		" else
-			if latexmk_pv
-				!latexmk % -pv; rm platex*.fls *.dvi *.gz
-			else
-				!latexmk %; rm platex*.fls *.dvi *.gz
-			endif
+		if latexmk_pv
+			!latexmk % -pv; rm platex*.fls *.dvi *.gz
+		else
+			!latexmk %; rm platex*.fls *.dvi *.gz
+		endif
 		" endif
 	elseif e=="pml"
 		!spin -search %
