@@ -269,7 +269,7 @@ set smartindent autoindent
 set tabstop=4 shiftwidth=4 shiftround noexpandtab smarttab
 autocmd filetype tex,text,vim,yaml setlocal tabstop=2 shiftwidth=2
 autocmd filetype markdown,php setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
-autocmd filetype css,html,javascript,json setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+autocmd filetype css,html,javascript,json,typescript setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 set display=lastline
 set scrolloff=7
 set helpheight=1000
