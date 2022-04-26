@@ -1,4 +1,4 @@
-" Last Change: 2021/11/27 (Sat) 10:10:43.
+" Last Change: 2022/04/26 (Tue) 10:32:36.
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -402,6 +402,12 @@ set backspace=start,eol,indent
 set pumheight=10
 if has("clipboard")
 	set clipboard=unnamed,unnamedplus
+endif
+if isdirectory('/mnt/c/Windows/') "if WSL
+	augroup Yank
+		au!
+		autocmd TextYankPost * :call system('clip.exe', @")
+	augroup END"
 endif
 set ambiwidth=double
 set virtualedit=block
