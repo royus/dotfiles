@@ -78,9 +78,6 @@ if version>=800 && load_plugin
 	endif
 	"}}}
 	"plugins{{{
-	if colorscheme_no==1
-		colorscheme hybrid
-	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	"autodate
 	nnoremap <F10> OLast Change: .<Esc>
@@ -266,10 +263,12 @@ set splitbelow splitright
 set showmatch
 set matchpairs+=<:>
 if colorscheme_no==1
+	colorscheme hybrid
 	autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
 	autocmd CursorHold,CursorHoldI * setlocal cursorline
 	highlight MatchParen ctermfg=cyan ctermbg=NONE
 	highlight PmenuSel ctermbg=lightgray ctermfg=black
+	highlight LineNr ctermbg=NONE ctermfg=darkgray
 else
 	colorscheme darkblue
 endif
