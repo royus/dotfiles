@@ -1,20 +1,10 @@
-" Last Change: 2022/04/26 (Tue) 10:32:36.
+"Last Change: 2022/04/26 (Tue) 11:50:41.
 "{{{
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
 let load_plugin=1
 let use_ja_input=1
-" if has('mac')
-" 	let use_ja_input=0
-" 	set ttimeoutlen=1
-" 	let g:imeoff = 'osascript -e "tell application \"System Events\" to key code 102"'
-" 	augroup MyIMEGroup
-" 		autocmd!
-" 		autocmd InsertLeave * :call system(g:imeoff)
-" 	augroup END
-" 	inoremap <silent> <ESC> <ESC>:call system(g:imeoff)<Enter>
-" endif
 "}}}
 
 "dein{{{
@@ -93,7 +83,7 @@ if version>=800 && load_plugin
 	endif
 	let g:neosnippet#enable_snipmate_compatibility=1
 	"autodate
-	nnoremap <F10> OLast Change: 2018/03/08 (Thu) 11:35:00.<Esc>
+	nnoremap <F10> OLast Change: .<Esc>
 	let autodate_format="%Y/%m/%d (%a) %H:%M:%S"
 	let autodate_lines=3
 	"auto_ft
@@ -122,7 +112,7 @@ if version>=800 && load_plugin
 	"files&ctags
 	nnoremap <F2> :TodoToggle<CR>:wincmd w<CR>:echo<CR>:NERDTreeToggle<CR>:TagbarToggle<CR>:echo<CR>
 	nnoremap ,n :NERDTreeToggle<CR>
-	let g:auto_ctags=1
+	let g:auto_ctags=0
 	nnoremap ,t :TagbarToggle<CR>
 	let g:tagbar_width=25
 	"hl_matchit
@@ -194,7 +184,6 @@ if version>=800 && load_plugin
 		let g:skk_abbrev_to_zenei_key=""
 		let g:skk_keep_state=1
 		let g:skk_large_jisyo = expand('~/.skk-jisyo')
-		" let g:skk_auto_save_jisyo = -1
 		let g:eskk#enable_completion = 1
 		let g:skk_kutouten_type = "en"
 	else
@@ -277,8 +266,8 @@ set splitbelow splitright
 set showmatch
 set matchpairs+=<:>
 if colorscheme_no==1
-	" autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
-	" autocmd CursorHold,CursorHoldI * setlocal cursorline
+	autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
+	autocmd CursorHold,CursorHoldI * setlocal cursorline
 	highlight MatchParen ctermfg=cyan ctermbg=NONE
 	highlight PmenuSel ctermbg=lightgray ctermfg=black
 else
@@ -312,15 +301,15 @@ nnoremap q<Space> :<C-u>q<CR>
 nnoremap [Space]Q :<C-u>qa!<CR>
 nnoremap Q<Space> :<C-u>qa!<CR>
 
-" augroup BinaryXXD
-" 	autocmd!
-" 	autocmd BufReadPre *.bin let &binary =1
-" 	autocmd BufReadPost * if &binary | silent %!xxd -g 1
-" 	autocmd BufReadPost * set ft=xxd | endif
-" 	" autocmd BufWritePre * if &binary | %!xxd -r | endif
-" 	" autocmd BufWritePost * if &binary | silent %!xxd -g 1
-" 	" autocmd BufWritePost * set nomod | endif
-" augroup END
+augroup BinaryXXD
+	autocmd!
+	autocmd BufReadPre *.bin let &binary =1
+	autocmd BufReadPost * if &binary | silent %!xxd -g 1
+	autocmd BufReadPost * set ft=xxd | endif
+	autocmd BufWritePre * if &binary | %!xxd -r | endif
+	autocmd BufWritePost * if &binary | silent %!xxd -g 1
+	autocmd BufWritePost * set nomod | endif
+augroup END
 "}}}
 
 "foldings {{{
@@ -440,10 +429,10 @@ vnoremap <Up>    <NOP>
 vnoremap <Down>  <NOP>
 vnoremap <Right> <NOP>
 vnoremap <Left>  <NOP>
-nnoremap k   gk
-nnoremap j   gj
-vnoremap k   gk
-vnoremap j   gj
+nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
+vnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
+vnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 nnoremap gk  k
 nnoremap gj  j
 vnoremap gk  k
