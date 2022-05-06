@@ -1,4 +1,5 @@
-"Last Change: 2022/04/26 (Tue) 11:50:41.
+" Last Change: 2022/05/06 (Fri) 14:02:10.
+
 "{{{
 set shell=/bin/sh
 let patched_font=0
@@ -109,6 +110,13 @@ if version>=800 && load_plugin
 	"files&ctags
 	nnoremap <F2> :TodoToggle<CR>:wincmd w<CR>:echo<CR>:NERDTreeToggle<CR>:TagbarToggle<CR>:echo<CR>
 	nnoremap ,n :NERDTreeToggle<CR>
+	autocmd StdinReadPre * let s:std_in = 1
+	if argc() == 0 || argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in")
+		autocmd vimenter * NERDTree
+	else
+		autocmd vimenter * NERDTree | wincmd p
+	endif
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 	let g:auto_ctags=0
 	nnoremap ,t :TagbarToggle<CR>
 	let g:tagbar_width=25
@@ -303,12 +311,13 @@ nnoremap Q<Space> :<C-u>qa!<CR>
 augroup BinaryXXD
 	autocmd!
 	autocmd BufReadPre *.bin let &binary =1
-	autocmd BufReadPost * if &binary | silent %!xxd -g 1
-	autocmd BufReadPost * set ft=xxd | endif
-	autocmd BufWritePre * if &binary | %!xxd -r | endif
-	autocmd BufWritePost * if &binary | silent %!xxd -g 1
-	autocmd BufWritePost * set nomod | endif
+	autocmd BufReadPost *.bin if &binary | silent %!xxd -g 1
+	autocmd BufReadPost *.bin set ft=xxd | endif
+	autocmd BufWritePre *.bin if &binary | %!xxd -r | endif
+	autocmd BufWritePost *.bin if &binary | silent %!xxd -g 1
+	autocmd BufWritePost *.bin set nomod | endif
 augroup END
+
 "}}}
 
 "foldings {{{
