@@ -488,6 +488,8 @@ nnoremap + <C-a>
 nnoremap - <C-x>
 vnoremap + <C-a>
 vnoremap - <C-x>
+vnoremap g+ g<C-a>
+vnoremap g- g<C-x>
 function! s:remove_dust()
 	let cursor=getpos(".")
 	%s/\s\+$//ge
