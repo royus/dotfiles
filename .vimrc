@@ -1,6 +1,6 @@
-" Last Change: 2022/05/06 (Fri) 14:02:10.
+" Last Change: 2022/05/06 (Fri) 17:31:09.
 
-"{{{
+"variables{{{
 set shell=/bin/sh
 let patched_font=0
 let colorscheme_no=1
@@ -103,6 +103,7 @@ if version>=800 && load_plugin
 				\'eruby_surround' : "<%% %s %%>",
 				\'eruby_surround_minus' : "<%% %s -%%>",
 				\'eruby_surround_equality' : "<%%= %s %%>",
+				\'basic' : "' %s",
 				\}
 	"easy-align
 	nmap ga <Plug>(EasyAlign)
@@ -308,15 +309,15 @@ nnoremap q<Space> :<C-u>q<CR>
 nnoremap [Space]Q :<C-u>qa!<CR>
 nnoremap Q<Space> :<C-u>qa!<CR>
 
-augroup BinaryXXD
-	autocmd!
-	autocmd BufReadPre *.bin let &binary =1
-	autocmd BufReadPost *.bin if &binary | silent %!xxd -g 1
-	autocmd BufReadPost *.bin set ft=xxd | endif
-	autocmd BufWritePre *.bin if &binary | %!xxd -r | endif
-	autocmd BufWritePost *.bin if &binary | silent %!xxd -g 1
-	autocmd BufWritePost *.bin set nomod | endif
-augroup END
+" augroup BinaryXXD
+" 	autocmd!
+" 	autocmd BufReadPre *.bin let &binary =1
+" 	autocmd BufReadPost * if &binary | silent %!xxd -g 1
+" 	autocmd BufReadPost * set ft=xxd | endif
+" 	autocmd BufWritePre * if &binary | %!xxd -r | endif
+" 	autocmd BufWritePost * if &binary | silent %!xxd -g 1
+" 	autocmd BufWritePost * set nomod | endif
+" augroup END
 
 "}}}
 
