@@ -1,4 +1,5 @@
-" Last Change: 2022/07/27 (Wed) 13:45:06.
+" Last Change: 2022/07/27 (Wed) 15:23:09.
+" Requires version 8.2 for best results
 
 "variables{{{
 set shell=/bin/sh
@@ -144,12 +145,13 @@ if version>=800 && load_plugin
 	"lightline
 	set laststatus=2
 	set noshowmode
-	if patched_font
+	if patched_font && version>=802
 		let g:lightline={
 					\ 'colorscheme': 'jellybeans',
 					\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2"  },
 					\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"  }
 					\ }
+		call setcellwidths([[0xe0b0,0xe0b3,1]])
 	else
 		let g:lightline={
 					\ 'colorscheme': 'jellybeans',
@@ -409,7 +411,7 @@ if isdirectory('/mnt/c/Windows/') "if WSL
 		autocmd TextYankPost * :call system('clip.exe', @")
 	augroup END"
 endif
-set ambiwidth=single
+set ambiwidth=double
 set virtualedit=block
 set nojoinspaces
 autocmd BufReadPost *
