@@ -1,8 +1,8 @@
-" Last Change: 2022/05/06 (Fri) 17:31:09.
+" Last Change: 2022/07/27 (Wed) 13:45:06.
 
 "variables{{{
 set shell=/bin/sh
-let patched_font=0
+let patched_font=1
 let colorscheme_no=1
 let load_plugin=1
 let use_ja_input=1
@@ -37,6 +37,8 @@ if version>=800 && load_plugin
 	call dein#add('w0ng/vim-hybrid') " colorscheme
 	call dein#add('vimtaku/hl_matchit.vim') " show matching parenthesis
 	call dein#add('itchyny/lightline.vim') " status line @ bottom
+	call dein#add('cocopon/lightline-hybrid.vim') " hybrid theme for lightline
+
 	call dein#add('itchyny/vim-autoft') " determine filetype automatically
 	"input
 	call dein#add('tpope/vim-abolish') " better substituter/searcher
@@ -145,8 +147,8 @@ if version>=800 && load_plugin
 	if patched_font
 		let g:lightline={
 					\ 'colorscheme': 'jellybeans',
-					\ 'separator': { 'left': "\u2b80", 'right': "\u2b82" },
-					\ 'subseparator': { 'left': "\u2b81", 'right': "\u2b83" },
+					\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2"  },
+					\ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"  }
 					\ }
 	else
 		let g:lightline={
@@ -154,19 +156,19 @@ if version>=800 && load_plugin
 					\ }
 	endif
 	let g:lightline.component = {
-				\ 'lineinfo': '%3l [%L]:%-2v',
+				\ 'lineinfo': '%4l [%L]:%-3v',
 				\ 'skkstatus': '%{strlen(SkkGetModeStr())-1 ? substitute(substitute(SkkGetModeStr(), "[SKK:", "", ""), "]", "", "") : ""}',
 				\ }
 	let g:lightline.active = {
 				\ 'left':  [ [ 'mode', 'paste' ],
-				\            [ 'readonly', 'filename', 'modified' ] ],
+				\            [ 'readonly', 'filename', 'modified', 'method'] ],
 				\ 'right': [ [ 'lineinfo','winform'],
 				\            [ 'percent' ],
 				\            [ 'skkstatus', 'fileformat', 'fileencoding', 'filetype' ] ] ,
 				\ }
 	let g:lightline.inactive = {
-				\ 'left': [ [ 'filename' ] ],
 				\ 'right': [ [ 'lineinfo' ] ],
+				\ 'left': [ [ 'filename' ] ],
 				\ }
 	"neocomplete
 	let g:neocomplete#enable_at_startup=1
@@ -407,7 +409,7 @@ if isdirectory('/mnt/c/Windows/') "if WSL
 		autocmd TextYankPost * :call system('clip.exe', @")
 	augroup END"
 endif
-set ambiwidth=double
+set ambiwidth=single
 set virtualedit=block
 set nojoinspaces
 autocmd BufReadPost *
