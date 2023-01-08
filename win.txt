@@ -1,0 +1,11 @@
+Excel
+ File-Options-QuickAccessToolbar-HomeTab-SelectObjects
+
+PowerPoint
+ File-Options-Advanced
+  Uncheck "When selecting, automatically select entire word"
+
+
+IME
+ F13: IME Off / HalfAlphanumeric
+ F14: IME On  / Katakana
