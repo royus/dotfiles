@@ -4,8 +4,14 @@ Excel
 PowerPoint
  File-Options-Advanced
   Uncheck "When selecting, automatically select entire word"
+ File-Options-QuickAccessToolbar-DrawingTools-AlignCenter/Middle
 
 
 IME
- F13: IME Off / HalfAlphanumeric
- F14: IME On  / Katakana
+ General-Compatibility
+ Advanced-General
+  Space-AlwaysHalfWidth
+  KeyTemplate-Advanced
+   BackSpace: Converted-RevAll
+   F13: NoInput-IMEOff / Others-HalfAlphanumeric
+   F14: NoInput-IMEOn  / Others-Katakana
