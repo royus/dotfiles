@@ -1,6 +1,47 @@
-# Ignore ctags
+# === ctags ===
 tags
 tags.lock
 
-# Ignore binaries
+# === Binaries / temp ===
 .x_*
+*.bak
+*.tmp
+*.log
+
+# === Vim ===
+*.swp
+*.swo
+*.swn
+*~
+.netrwhist
+.viminfo
+
+# === macOS ===
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# === Linux ===
+.directory
+.Trash-*
+.nfs*
+
+# === Windows / WSL ===
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# === Editors / IDE ===
+.idea/
+.vscode/
+*.iml
+
+# === Local-only secrets / overrides ===
+.env
+.env.local
+*.local
