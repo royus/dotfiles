@@ -3,14 +3,14 @@
 
 "variables{{{
 set shell=/bin/sh
-let patched_font=1
-let colorscheme_no=1
-let load_plugin=1
-let use_ja_input=1
+let s:dotfiles_dir = expand('<sfile>:p:h')
+let g:patched_font=1
+let g:colorscheme_no=1
+let g:load_plugin=1
 "}}}
 
 "dein{{{
-if version>=800 && load_plugin
+if version>=800 && g:load_plugin
 	let s:dein_dir=expand('~/.vim')
 	let s:dein_repo_dir=s:dein_dir.'/repos/github.com/Shougo/dein.vim'
 	if &runtimepath !~# '/dein.vim'
@@ -26,14 +26,7 @@ if version>=800 && load_plugin
 	call dein#add('tpope/vim-fugitive') " git
 	call dein#add('thinca/vim-poslist') " H/L = go back/forth precisely
 	call dein#add('thinca/vim-scouter') " :Scouter = power of vimrc
-	call dein#add('tyru/skk.vim') " JPN input
 	call dein#add('LeafCage/yankround.vim') " paste older yanks
-	" call dein#add('scrooloose/syntastic')
-	" call dein#add('Shougo/unite.vim')
-	" call dein#add('Shougo/unite-outline')
-	" call dein#add('ujihisa/unite-colorscheme')
-	" call dein#add('Shougo/neomru.vim')
-	" call dein#add('Shougo/vimproc')
 	"appearence
 	call dein#add('w0ng/vim-hybrid') " colorscheme
 	call dein#add('vimtaku/hl_matchit.vim') " show matching parenthesis
@@ -48,9 +41,6 @@ if version>=800 && load_plugin
 	call dein#add('tomtom/tcomment_vim') " gcc = comment out
 	call dein#add('junegunn/vim-easy-align') " VXga*Y = align X with Y
 	call dein#add('mattn/emmet-vim') " for HTMLs
-	" call dein#add('Shougo/neocomplete.vim')
-	" call dein#add('Shougo/neosnippet.vim')
-	" call dein#add('Shougo/neosnippet-snippets')
 	"files
 	call dein#add('soramugi/auto-ctags.vim') " automatically generate tags
 	call dein#add('majutsushi/tagbar') " show tagbar
@@ -138,14 +128,13 @@ if version>=800 && load_plugin
 	"latex
 	let g:tex_flavor='latex'
 	let g:vimtex_compiler_latexmk = {'callback' : 0}
-	" autocmd FileType tex setlocal spell spelllang=en_us
 	call lexima#add_rule({'char': '$', 'input_after': '$', 'filetype': 'tex'})
 	call lexima#add_rule({'char': '$', 'at': '\%#\$', 'leave': 1, 'filetype': 'tex'})
 	call lexima#add_rule({'char': '<BS>', 'at': '\$\%#\$', 'delete': 1, 'filetype': 'tex'})
 	"lightline
 	set laststatus=2
 	set noshowmode
-	if patched_font && version>=802
+	if g:patched_font && version>=802
 		let g:lightline={
 					\ 'colorscheme': 'jellybeans',
 					\ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2"  },
@@ -159,76 +148,25 @@ if version>=800 && load_plugin
 	endif
 	let g:lightline.component = {
 				\ 'lineinfo': '%4l [%L]:%-3v',
-				\ 'skkstatus': '%{strlen(SkkGetModeStr())-1 ? substitute(substitute(SkkGetModeStr(), "[SKK:", "", ""), "]", "", "") : ""}',
 				\ }
 	let g:lightline.active = {
 				\ 'left':  [ [ 'mode', 'paste' ],
 				\            [ 'readonly', 'filename', 'modified', 'method'] ],
 				\ 'right': [ [ 'lineinfo','winform'],
 				\            [ 'percent' ],
-				\            [ 'skkstatus', 'fileformat', 'fileencoding', 'filetype' ] ] ,
+				\            [ 'fileformat', 'fileencoding', 'filetype' ] ] ,
 				\ }
 	let g:lightline.inactive = {
 				\ 'right': [ [ 'lineinfo' ] ],
 				\ 'left': [ [ 'filename' ] ],
 				\ }
-	"neocomplete
-	let g:neocomplete#enable_at_startup=1
-	let g:neocomplete#enable_smart_case=1
-	let g:neocomplete#sources#syntax#min_keyword_length=3
-	let g:neocomplete#lock_buffer_name_pattern='\*ku\*'
-	let g:neocomplete#sources#dictionary#dictionaries={
-				\ 'default' : '',
-				\ 'vimshell' : $HOME.'/.vimshell_hist',
-				\ 'scheme' : $HOME.'/.gosh_completions'
-				\ }
+	"completion
 	inoremap <expr><Tab>  pumvisible() ? "\<C-n>" : "\<Tab>"
 	set completeopt=menuone
 	"poslist
 	nmap H <Plug>(poslist-prev-pos)
 	nmap L <Plug>(poslist-next-pos)
 	let g:poslist_hstsize=100
-	"skk
-	if use_ja_input
-		map! <C-j> <Plug>(skk-toggle-im)
-		let g:skk_abbrev_to_zenei_key=""
-		let g:skk_keep_state=1
-		let g:skk_large_jisyo = expand('~/.skk-jisyo')
-		let g:eskk#enable_completion = 1
-		let g:skk_kutouten_type = "en"
-	else
-		let g:skk_control_j_key=""
-	endif
-	function! MySkkMap()
-		lmap <buffer> <Up>    <NOP>
-		lmap <buffer> <Down>  <NOP>
-		lmap <buffer> <Right> <NOP>
-		lmap <buffer> <Left>  <NOP>
-		" lmap <buffer> <F5>  <NOP>
-	endfunction
-	let g:skk_enable_hook = 'MySkkMap'
-	"syntastic
-	" let g:syntastic_enable_signs=1
-	" let g:syntastic_auto_loc_list=2
-	" let g:syntastic_mode_map={'mode': 'passive'}
-	" augroup AutoSyntastic
-	"   autocmd!
-	"   autocmd InsertLeave,TextChanged * call s:syntastic()
-	" augroup END
-	" function! s:syntastic()
-	"   w
-	"   SyntasticCheck
-	" endfunction
-	"unite
-	" let g:unite_enable_start_insert=0
-	" let g:unite_source_history_yank_enable =1
-	" let g:unite_source_file_mru_limit=200
-	" nnoremap <silent> [Space]u  :<C-u>Unite
-	" nnoremap <silent> [Space]uy :<C-u>Unite history/yank<CR>
-	" nnoremap <silent> [Space]ub :<C-u>Unite buffer<CR>
-	" nnoremap <silent> [Space]uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-	" nnoremap <silent> [Space]ur :<C-u>Unite -buffer-name=register register<CR>
-	" nnoremap <silent> [Space]uu :<C-u>Unite file_mru buffer<CR>
 	"yankround
 	nmap p <Plug>(yankround-p)
 	xmap p <Plug>(yankround-p)
@@ -241,7 +179,7 @@ if version>=800 && load_plugin
 	nnoremap [Space]s :<C-u>%Subvert/
 	vnoremap [Space]s :Subvert/
 else
-	let colorscheme_no=0
+	let g:colorscheme_no=0
 	"abolish
 	set gdefault
 	nnoremap [Space]s :<C-u>%s/
@@ -275,7 +213,7 @@ set helpheight=1000
 set splitbelow splitright
 set showmatch
 set matchpairs+=<:>
-if colorscheme_no==1
+if g:colorscheme_no==1
 	colorscheme hybrid
 	autocmd CursorMoved,CursorMovedI,WinLeave * setlocal nocursorline
 	autocmd CursorHold,CursorHoldI * setlocal cursorline
@@ -299,8 +237,6 @@ set nobackup nowritebackup
 set autochdir
 set hidden
 nnoremap Q     <NOP>
-" nnoremap ZZ    <NOP>
-" nnoremap ZQ    <NOP>
 nnoremap <C-z> <NOP>
 nnoremap [Space]w :<C-u>w<CR>
 nnoremap [Space]W :<C-u>W<CR>
@@ -312,45 +248,18 @@ nnoremap [Space]q :<C-u>q<CR>
 nnoremap q<Space> :<C-u>q<CR>
 nnoremap [Space]Q :<C-u>qa!<CR>
 nnoremap Q<Space> :<C-u>qa!<CR>
-
-" augroup BinaryXXD
-" 	autocmd!
-" 	autocmd BufReadPre *.bin let &binary =1
-" 	autocmd BufReadPost * if &binary | silent %!xxd -g 1
-" 	autocmd BufReadPost * set ft=xxd | endif
-" 	autocmd BufWritePre * if &binary | %!xxd -r | endif
-" 	autocmd BufWritePost * if &binary | silent %!xxd -g 1
-" 	autocmd BufWritePost * set nomod | endif
-" augroup END
-
 "}}}
 
 "foldings {{{
 nnoremap z za
 nnoremap Z zR
 vnoremap z zf
-" set foldmethod=syntax foldlevel=100
-" set foldmethod=indent foldlevel=100
 autocmd filetype vim set foldmethod=marker
 autocmd filetype tex set foldmethod=marker
-" autocmd InsertEnter * if &l:foldmethod ==# 'syntax'
-" 			\| setlocal foldmethod=manual
-" 			\| endif
-" autocmd InsertLeave * if &l:foldmethod ==# 'manual'
-" 			\| setlocal foldmethod=syntax
-" 			\| endif
-" let javaScript_fold=1
-" let perl_fold=1
-" let php_folding=1
-" let r_syntax_folding=1
-" let ruby_fold=1
-" let sh_fold_enabled=1
-" let xml_syntax_folding=1
 set foldtext=MyFoldText()
 function! MyFoldText()
 	let line=getline(v:foldstart)
 	let space=strpart('|---------------',0,&tabstop)
-	" let space=substitute(space,'\%( \)\@<= \%( *$\)\@=',' ','g')
 	let line=substitute(line,"\t",space,'g')
 	let line=substitute(line,'/\*\|\*/\|{{{\d\=','','g') "}}}
 	let cnt=printf(' [%2s,%3s]',v:foldlevel,(v:foldend-v:foldstart+1))
@@ -367,14 +276,10 @@ endfunction
 
 "history{{{
 set history=100
-nnoremap q: <NOP>
-nnoremap [Space]; q:
-nnoremap q/ <NOP>
-nnoremap [Space]/ q/
-vnoremap q: <NOP>
-vnoremap [Space]; q:
-vnoremap q/ <NOP>
-vnoremap [Space]/ q/
+noremap q: <NOP>
+noremap [Space]; q:
+noremap q/ <NOP>
+noremap [Space]/ q/
 "}}}
 
 "searches{{{
@@ -385,7 +290,6 @@ endif
 set wildmode=list:longest,full
 set wildignore=*.o,*.obj,tags*,*.pyc,*.class,*.out
 nnoremap <Esc><Esc> :<C-u>set nohlsearch<CR>
-" nnoremap [Space]<Space> :<C-u>set nohlsearch<CR><Space>
 nnoremap / :<C-u>set hlsearch<CR>/
 nnoremap ? :<C-u>set hlsearch<CR>?
 nnoremap * :<C-u>set hlsearch<CR>*N:echo<CR>zz
@@ -405,11 +309,11 @@ set pumheight=10
 if has("clipboard")
 	set clipboard=unnamed,unnamedplus
 endif
-if isdirectory('/mnt/c/Windows/') "if WSL
+if filereadable('/proc/version') && readfile('/proc/version')[0] =~? 'microsoft\|wsl' "if WSL
 	augroup Yank
 		au!
 		autocmd TextYankPost * :call system('clip.exe', @")
-	augroup END"
+	augroup END
 endif
 set ambiwidth=double
 set virtualedit=block
@@ -430,18 +334,12 @@ noremap [Space] <NOP>
 set timeout timeoutlen=3000 ttimeoutlen=100
 
 "movements{{{
-nnoremap <Up>    <NOP>
-nnoremap <Down>  <NOP>
-nnoremap <Right> <NOP>
-nnoremap <Left>  <NOP>
-inoremap <Up>    <NOP>
-inoremap <Down>  <NOP>
-inoremap <Right> <NOP>
-inoremap <Left>  <NOP>
-vnoremap <Up>    <NOP>
-vnoremap <Down>  <NOP>
-vnoremap <Right> <NOP>
-vnoremap <Left>  <NOP>
+for s:m in ['n', 'i', 'v']
+	for s:k in ['Up', 'Down', 'Right', 'Left']
+		execute s:m . 'noremap <' . s:k . '> <NOP>'
+	endfor
+endfor
+unlet s:m s:k
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
 vnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
@@ -450,22 +348,12 @@ nnoremap gk  k
 nnoremap gj  j
 vnoremap gk  k
 vnoremap gj  j
-inoremap <C-f> <Right>
-inoremap <C-b> <Left>
-inoremap <C-a> <HOME>
-inoremap <C-e> <END>
-cnoremap <C-f> <Right>
-cnoremap <C-b> <Left>
-cnoremap <C-a> <HOME>
-cnoremap <C-e> <END>
+noremap! <C-f> <Right>
+noremap! <C-b> <Left>
+noremap! <C-a> <HOME>
+noremap! <C-e> <END>
 nnoremap <Tab> <C-w><C-w>
 vnoremap <Tab> <C-w><C-w>
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-l> <C-w>l
-" nnoremap [Space] <NOP>
-" vnoremap [Space] <NOP>
 nnoremap [Space]h ^
 nnoremap [Space]l $
 nnoremap [Space]k <C-u>
@@ -475,10 +363,6 @@ vnoremap [Space]l $
 vnoremap [Space]k <C-u>
 vnoremap [Space]j <C-d>
 nnoremap [Space]t :$tabnew<Space>
-" nnoremap K gt
-" nnoremap J gT
-" nnoremap H <C-o>
-" nnoremap L <C-i>
 nnoremap <expr> gg line(".")==1 ? 'G':'gg'
 vnoremap <expr> gg line(".")==1 ? 'G':'gg'
 nnoremap 0 ^
@@ -513,16 +397,9 @@ endfunction
 autocmd BufWritePre * call <SID>remove_dust()
 nnoremap U <C-r>
 nnoremap [Space]u U
-" nnoremap <C-j> J
 "}}}
 
 "input{{{
-" inoremap " ""<Left>
-" inoremap "<CR> ""<Left><CR><ESC><S-o>
-" inoremap { {}<Left>
-" inoremap {<CR> {}<Left><CR><ESC><S-o>
-" inoremap ( ()<ESC>i
-" inoremap (<CR> ()<Left><CR><ESC><S-o>
 vnoremap i{     "zdi<C-v>{<C-R>z}<Esc>
 vnoremap i}     "zdi<C-v>{<C-R>z}<Esc>
 vnoremap i[     "zdi<C-v>[<C-R>z]<Esc>
@@ -545,8 +422,6 @@ inoremap <C-j> <CR>
 "}}}
 
 "mark{{{
-" noremap <nowait> [ ['
-" noremap <nowait> ] ]'
 nnoremap [Space]M ['
 nnoremap [Space]m ]'
 if !exists('g:markrement_char')
@@ -568,33 +443,6 @@ endfunction
 "}}}
 
 "text{{{
-" autocmd filetype text inoremap .   .<Space>
-" autocmd filetype text inoremap .a  .<Space>A
-" autocmd filetype text inoremap .b  .<Space>B
-" autocmd filetype text inoremap .c  .<Space>C
-" autocmd filetype text inoremap .d  .<Space>D
-" autocmd filetype text inoremap .e  .<Space>E
-" autocmd filetype text inoremap .f  .<Space>F
-" autocmd filetype text inoremap .g  .<Space>G
-" autocmd filetype text inoremap .h  .<Space>H
-" autocmd filetype text inoremap .i  .<Space>I
-" autocmd filetype text inoremap .j  .<Space>J
-" autocmd filetype text inoremap .k  .<Space>K
-" autocmd filetype text inoremap .l  .<Space>L
-" autocmd filetype text inoremap .m  .<Space>M
-" autocmd filetype text inoremap .n  .<Space>N
-" autocmd filetype text inoremap .o  .<Space>O
-" autocmd filetype text inoremap .p  .<Space>P
-" autocmd filetype text inoremap .q  .<Space>Q
-" autocmd filetype text inoremap .r  .<Space>R
-" autocmd filetype text inoremap .s  .<Space>S
-" autocmd filetype text inoremap .t  .<Space>T
-" autocmd filetype text inoremap .u  .<Space>U
-" autocmd filetype text inoremap .v  .<Space>V
-" autocmd filetype text inoremap .w  .<Space>W
-" autocmd filetype text inoremap .x  .<Space>X
-" autocmd filetype text inoremap .y  .<Space>Y
-" autocmd filetype text inoremap .z  .<Space>Z
 autocmd filetype php inoremap PHP <?php<Space>?><Left><Left><Left>
 autocmd filetype tex inoremap REF \ref{xxx}
 autocmd filetype tex inoremap FIG \begin{figure}[t]<CR>\centering<CR>%<Space>\includegraphics[width=8cm,clip]{./pdf/xxx.pdf}<CR>\caption{.\label{xxx}}<CR>\end{figure}
@@ -609,7 +457,6 @@ function! s:TodoToggle()
 	let todowinnr = bufwinnr(".todo")
 	if todowinnr != -1
 		exe todowinnr."wincmd w"
-		" exe "normal \<C-w>".todowinnr."w"
 		write
 		bdelete
 		return
@@ -625,7 +472,6 @@ function! s:VTodoToggle()
 	let todowinnr = bufwinnr(".todo")
 	if todowinnr != -1
 		exe todowinnr."wincmd w"
-		" exe "normal \<C-w>".todowinnr."w"
 		write
 		bdelete
 		return
@@ -638,7 +484,6 @@ function! s:VTodoToggle()
 endfunction
 inoremap tL - [ ]<Space>
 nnoremap tL /- [<CR>
-" inoremap tL tl
 nnoremap <Enter> :call ToggleCheckbox()<CR>
 vnoremap <Enter> :call ToggleCheckbox()<CR>
 function! ToggleCheckbox()
@@ -649,8 +494,6 @@ function! ToggleCheckbox()
 	elseif l:line =~ '\-\s\[x\]'
 		let l:result = substitute(substitute(l:line, '-\s\[x\]', '- [ ]', ''), '\s\[\d\{4}.\+]$', '', '')
 		call setline('.', l:result)
-		" else
-		" insert enter
 	endif
 endfunction
 autocmd bufnew,bufenter .todo syntax match CheckboxMark /.*\-\s\[x\]\s.\+/ display containedin=ALL
@@ -666,11 +509,20 @@ imap <F5> <Esc><Esc>;RUN<CR>
 vmap <F5> <Esc><Esc>;RUN<CR>
 nnoremap [Space]<F5> <Esc>:RUN<CR>
 
+let s:run_simple = {
+			\ 'rb':  '!ruby % -w',
+			\ 'ml':  '!ocaml -init %',
+			\ 'pml': '!spin -search %',
+			\ 'js':  '!node %',
+			\ 'tex': '!latexmk % -pv; rm platex*.fls *.dvi *.gz',
+			\ }
 command! RUN call s:RUN()
 function! s:RUN()
 	wall
 	let e=expand("%:e")
-	if e=="c"
+	if has_key(s:run_simple, e)
+		execute s:run_simple[e]
+	elseif e=="c"
 		if filereadable("Makefile")
 			make
 		elseif filereadable("main.c")
@@ -678,24 +530,14 @@ function! s:RUN()
 		else
 			!gcc % -O0 -lm -g -o .x_%:r -Wall;
 		endif
-		if filereadable("main")
-			!./main
-		else
-			!./.x_%:r
-			" !rm .x_%:r
-		endif
+		if filereadable("main") | !./main | else | !./.x_%:r | endif
 	elseif e=="cpp"
 		if filereadable("Makefile")
 			make
 		else
 			!g++ % -O3 -lm -o .x_%:r -Wall -std=c++11 `pkg-config --cflags opencv4` `pkg-config --libs opencv4`;
 		endif
-		if filereadable("main")
-			!./main
-		else
-			!./.x_%:r
-			" !rm .x_%:r
-		endif
+		if filereadable("main") | !./main | else | !./.x_%:r | endif
 	elseif e=="java"
 		if filereadable("Makefile")
 			make; !java Main
@@ -703,35 +545,12 @@ function! s:RUN()
 			!javac %
 			!java %:r
 		endif
-	elseif e=="rb"
-		!ruby % -w
 	elseif e=="py"
 		if bufwinnr("main.py")!=-1
 			!python3 -B main.py
 		else
 			!python3 -B %
 		endif
-	elseif e=="ml"
-		!ocaml -init %
-	elseif e=="tex"
-		let latexmk_pv=1
-		" if filereadable("main.tex")
-		" 	if latexmk_pv
-		" 		!latexmk main.tex -pv; rm platex*.fls *.dvi *.gz
-		" 	else
-		" 		!latexmk main.tex; rm platex*.fls *.dvi *.gz
-		" 	endif
-		" else
-		if latexmk_pv
-			!latexmk % -pv; rm platex*.fls *.dvi *.gz
-		else
-			!latexmk %; rm platex*.fls *.dvi *.gz
-		endif
-		" endif
-	elseif e=="pml"
-		!spin -search %
-	elseif e=="js"
-		!node %
 	endif
 endfunction
 autocmd filetype vim nnoremap <F5> :w<CR>:source %<CR>
@@ -740,12 +559,10 @@ autocmd filetype vim vnoremap <F5> <Esc>:w<CR>:source %<CR>
 "}}}
 
 "template{{{
-autocmd BufNewFile,BufRead *.c    if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.c    | %substitute/filename/\=expand('%:t:r')/g | endif
-autocmd BufNewFile,BufRead *.cpp  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.cpp  | %substitute/filename/\=expand('%:t:r')/g | endif
-autocmd BufNewFile,BufRead *.java if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.java | %substitute/filename/\=expand('%:t:r')/g | endif
-autocmd BufNewFile,BufRead *.sh   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.sh   | %substitute/filename/\=expand('%:t:r')/g | endif
-autocmd BufNewFile,BufRead *.tex  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.tex  | %substitute/filename/\=expand('%:t:r')/g | endif
-autocmd BufNewFile,BufRead *.py   if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.py   | %substitute/filename/\=expand('%:t:r')/g | endif
-autocmd BufNewFile,BufRead .todo  if getfsize(@%)<=0 | 0read ~/dotfiles/template/template.todo | endif
+for s:ext in ['c', 'cpp', 'java', 'sh', 'tex', 'py']
+	execute 'autocmd BufNewFile,BufRead *.' . s:ext . ' if getfsize(@%)<=0 | 0read ' . s:dotfiles_dir . '/template/template.' . s:ext . ' | %substitute/filename/\=expand(''%:t:r'')/g | endif'
+endfor
+unlet s:ext
+execute 'autocmd BufNewFile,BufRead .todo if getfsize(@%)<=0 | 0read ' . s:dotfiles_dir . '/template/template.todo | endif'
 "}}}
 "}}}
