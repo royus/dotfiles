@@ -1,3 +1,0 @@
-stalonetray &
-nm-applet &
-fcitx &
