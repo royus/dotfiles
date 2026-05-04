@@ -1,6 +1,6 @@
 # Windows Setup Notes
 
-Windows環境のGUI設定メモ。
+GUI settings for the Windows environment.
 
 ## Excel
 
