@@ -76,20 +76,9 @@ link .vimrc ~/.vimrc
 
 # linux + wsl shared
 if [[ $OS == linux || $OS == wsl ]]; then
-	link linux/.bashrc           ~/.bashrc
-	link linux/.bash_profile     ~/.bash_profile
-	link linux/.inputrc          ~/.inputrc
-	link linux/.config.fish      ~/.config/fish/config.fish
-	link linux/.latexmkrc        ~/.latexmkrc
-	link linux/.vifm/vifmrc      ~/.vifm/vifmrc
-fi
-
-# linux only — X-related
-if [[ $OS == linux ]]; then
-	link linux/.Xresources         ~/.Xresources
-	link linux/.xinitrc            ~/.xinitrc
-	link linux/.xmonad/xmonad.hs   ~/.xmonad/xmonad.hs
-	link linux/.xmonad/xmobar.hs   ~/.xmonad/xmobar.hs
+	link linux/.bashrc       ~/.bashrc
+	link linux/.bash_profile ~/.bash_profile
+	link linux/.inputrc      ~/.inputrc
 fi
 
 # mac — karabiner/btt are managed via app UI; see README
