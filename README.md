@@ -75,3 +75,17 @@ Tap (no other key) → sends `英数` / `かな` (IME toggle).
 
 - `docs/windows-notes.md` — Windows GUI settings (Excel / PowerPoint / IME) and AutoHotkey setup
 - `docs/mac-notes.md` — macOS system settings, app config import (Karabiner / BetterTouchTool / Eucalyn)
+
+## App configs
+
+### Vimium
+
+Two variants in `apps/`. Vimium has no runtime layout toggle, so import the
+matching file via Vimium → Options → Settings → Restore settings:
+
+- `apps/vimium-options-eucalyn.json` — for eucalyn keyboards (default usage).
+  - Scroll: `g`/`t`/`s` instead of `h`/`j`/`l` (k unchanged).
+  - `hh` replaces `gg` for scrollToTop.
+  - `c` replaces `t` for createTab.
+  - `linkHintCharacters` tuned to eucalyn home/top/bottom letter outputs.
+- `apps/vimium-options-qwerty.json` — baseline for qwerty keyboards.
