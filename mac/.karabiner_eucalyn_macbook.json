@@ -1,0 +1,150 @@
+{
+	"title": "Eucalyn layout for MacBook built-in keyboard",
+	"rules": [
+		{
+			"description": "Eucalyn layer: japanese_eisuu / japanese_kana hold = arrow layer; tap = send IME toggle",
+			"manipulators": [
+				{
+					"type": "basic",
+					"from": {
+						"key_code": "japanese_eisuu",
+						"modifiers": { "optional": ["any"] }
+					},
+					"to": [
+						{ "set_variable": { "name": "eucalyn_layer", "value": 1 } }
+					],
+					"to_after_key_up": [
+						{ "set_variable": { "name": "eucalyn_layer", "value": 0 } }
+					],
+					"to_if_alone": [{ "key_code": "japanese_eisuu" }],
+					"conditions": [
+						{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }
+					]
+				},
+				{
+					"type": "basic",
+					"from": {
+						"key_code": "japanese_kana",
+						"modifiers": { "optional": ["any"] }
+					},
+					"to": [
+						{ "set_variable": { "name": "eucalyn_layer", "value": 1 } }
+					],
+					"to_after_key_up": [
+						{ "set_variable": { "name": "eucalyn_layer", "value": 0 } }
+					],
+					"to_if_alone": [{ "key_code": "japanese_kana" }],
+					"conditions": [
+						{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }
+					]
+				},
+				{
+					"type": "basic",
+					"from": { "key_code": "h", "modifiers": { "optional": ["any"] } },
+					"to": [{ "key_code": "left_arrow" }],
+					"conditions": [
+						{ "type": "variable_if", "name": "eucalyn_layer", "value": 1 },
+						{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }
+					]
+				},
+				{
+					"type": "basic",
+					"from": { "key_code": "j", "modifiers": { "optional": ["any"] } },
+					"to": [{ "key_code": "down_arrow" }],
+					"conditions": [
+						{ "type": "variable_if", "name": "eucalyn_layer", "value": 1 },
+						{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }
+					]
+				},
+				{
+					"type": "basic",
+					"from": { "key_code": "k", "modifiers": { "optional": ["any"] } },
+					"to": [{ "key_code": "up_arrow" }],
+					"conditions": [
+						{ "type": "variable_if", "name": "eucalyn_layer", "value": 1 },
+						{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }
+					]
+				},
+				{
+					"type": "basic",
+					"from": { "key_code": "l", "modifiers": { "optional": ["any"] } },
+					"to": [{ "key_code": "right_arrow" }],
+					"conditions": [
+						{ "type": "variable_if", "name": "eucalyn_layer", "value": 1 },
+						{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }
+					]
+				},
+				{
+					"type": "basic",
+					"from": { "key_code": "s", "modifiers": { "optional": ["any"] } },
+					"to": [{ "key_code": "home" }],
+					"conditions": [
+						{ "type": "variable_if", "name": "eucalyn_layer", "value": 1 },
+						{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }
+					]
+				},
+				{
+					"type": "basic",
+					"from": { "key_code": "f", "modifiers": { "optional": ["any"] } },
+					"to": [{ "key_code": "end" }],
+					"conditions": [
+						{ "type": "variable_if", "name": "eucalyn_layer", "value": 1 },
+						{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }
+					]
+				},
+				{
+					"type": "basic",
+					"from": { "key_code": "e", "modifiers": { "optional": ["any"] } },
+					"to": [{ "key_code": "page_up" }],
+					"conditions": [
+						{ "type": "variable_if", "name": "eucalyn_layer", "value": 1 },
+						{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }
+					]
+				},
+				{
+					"type": "basic",
+					"from": { "key_code": "d", "modifiers": { "optional": ["any"] } },
+					"to": [{ "key_code": "page_down" }],
+					"conditions": [
+						{ "type": "variable_if", "name": "eucalyn_layer", "value": 1 },
+						{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }
+					]
+				},
+				{
+					"type": "basic",
+					"from": { "key_code": "delete_or_backspace", "modifiers": { "optional": ["any"] } },
+					"to": [{ "key_code": "delete_forward" }],
+					"conditions": [
+						{ "type": "variable_if", "name": "eucalyn_layer", "value": 1 },
+						{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }
+					]
+				}
+			]
+		},
+		{
+			"description": "Eucalyn key remap (built-in keyboard only)",
+			"manipulators": [
+				{ "type": "basic", "from": { "key_code": "e" }, "to": [{ "key_code": "comma" }],     "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "r" }, "to": [{ "key_code": "period" }],    "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "t" }, "to": [{ "key_code": "semicolon" }], "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "y" }, "to": [{ "key_code": "m" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "u" }, "to": [{ "key_code": "r" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "i" }, "to": [{ "key_code": "d" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "o" }, "to": [{ "key_code": "y" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "s" }, "to": [{ "key_code": "o" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "d" }, "to": [{ "key_code": "e" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "f" }, "to": [{ "key_code": "i" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "g" }, "to": [{ "key_code": "u" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "h" }, "to": [{ "key_code": "g" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "j" }, "to": [{ "key_code": "t" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "l" }, "to": [{ "key_code": "s" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "semicolon" }, "to": [{ "key_code": "n" }], "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "b" }, "to": [{ "key_code": "f" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "n" }, "to": [{ "key_code": "b" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "m" }, "to": [{ "key_code": "h" }],         "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "period" }, "to": [{ "key_code": "l" }],    "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] },
+				{ "type": "basic", "from": { "key_code": "comma" }, "to": [{ "key_code": "j" }],     "conditions": [{ "type": "device_if", "identifiers": [{ "is_built_in_keyboard": true }] }] }
+			]
+		}
+	]
+}
