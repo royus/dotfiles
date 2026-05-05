@@ -23,6 +23,7 @@ dotfiles/
 ├── .vimrc           Vim config (all platforms)
 ├── linux/           Linux / WSL configs (.bashrc, .bash_profile, .inputrc)
 ├── mac/             macOS configs (Karabiner, BetterTouchTool)
+├── windows/         Windows AutoHotkey scripts (eucalyn layout)
 ├── apps/            cross-platform app configs (Vimium, ...)
 └── docs/            setup notes
 ```
@@ -36,24 +37,41 @@ dotfiles/
 | `linux/.bash_profile` | ✓ | ✓ | – |
 | `linux/.inputrc` | ✓ | ✓ | – |
 
-## macOS manual setup
+## Eucalyn layout reference
 
-`install.sh` does not link macOS GUI app configs. Import them manually:
+### Base layer (typed character per QWERTY-labeled key)
 
-### Karabiner-Elements
+```
+┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+│ Q │ W │ , │ . │ ; │ M │ R │ D │ Y │ P │
+├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
+│ A │ O │ E │ I │ U │ G │ T │ K │ S │ N │
+├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
+│ Z │ X │ C │ V │ F │ B │ H │ J │ L │ / │
+└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘
+```
 
-Two variants are provided for different keyboards:
+Unchanged from QWERTY: `Q W P A K Z X C V /`.
 
-- `mac/.karabiner_hhkb.json` — for HHKB (sends 英数/かな when option is tapped alone)
-- `mac/.karabiner_macbook.json` — for the MacBook built-in keyboard (`\` → Return and other remaps)
+### Arrow layer (hold 英数 or かな on macOS, 無変換 or カタひら on Windows)
 
-Either import via the Karabiner-Elements UI, or copy to `~/.config/karabiner/karabiner.json`.
+Layer trigger is on physical key positions (independent of the base remap).
 
-### BetterTouchTool
+```
+┌───┬───┬───┬───┬───┬───┬───┬───┬───┬───┐
+│   │   │PgU│   │   │   │   │   │   │   │
+├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
+│   │Hom│PgD│End│   │ ← │ ↓ │ ↑ │ → │   │
+├───┼───┼───┼───┼───┼───┼───┼───┼───┼───┤
+│   │   │   │   │   │   │   │   │   │   │
+└───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘
+```
 
-Import `mac/.btt.json` from BetterTouchTool → Preferences → Manage Presets.
+`Backspace` while layer held → forward `Delete`.
 
-## Notes
+Tap (no other key) → sends `英数` / `かな` (IME toggle).
 
-- `docs/windows-notes.md` — Windows GUI settings (Excel / PowerPoint / IME)
-- `docs/mac-notes.md` — macOS setup notes
+## Per-OS setup notes
+
+- `docs/windows-notes.md` — Windows GUI settings (Excel / PowerPoint / IME) and AutoHotkey setup
+- `docs/mac-notes.md` — macOS system settings, app config import (Karabiner / BetterTouchTool / Eucalyn)
