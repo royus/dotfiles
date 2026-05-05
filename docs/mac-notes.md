@@ -1,14 +1,26 @@
-update osx
+# macOS Setup Notes
 
-git
-brew
-karabiner
+## System
 
-vim fish
+- Update macOS
+- Turn off screen when lid is closed
 
-keyboard->input->win-like-sc, live-conversion-off, auto-switch-toa-doc's...
-accessibility->trackpad->drag w/o lock
+## Install
 
-mactex lua aspell ctags
-change to half_space
-turn off screen when lid is closed
+- `git`, `brew`
+- `karabiner` (Karabiner-Elements)
+- `vim`, `fish`
+- `mactex`, `lua`, `aspell`, `ctags`
+
+## System Preferences
+
+### Keyboard / Input
+
+- Use Windows-like shortcuts
+- Disable live conversion
+- Auto-switch input source per document
+- Change to half-width space
+
+### Accessibility
+
+- Trackpad → enable drag without lock

@@ -21,11 +21,10 @@ into `$HOME`. Existing files are moved aside to `*.bak.YYYYMMDDHHMMSS`
 dotfiles/
 ├── install.sh       installer script
 ├── .vimrc           Vim config (all platforms)
-├── linux/           Linux / WSL configs (.bashrc, .vifm/, .xmonad/, ...)
+├── linux/           Linux / WSL configs (.bashrc, .bash_profile, .inputrc)
 ├── mac/             macOS configs (Karabiner, BetterTouchTool)
 ├── apps/            cross-platform app configs (Vimium, ...)
-├── docs/            setup notes
-└── template/        code templates
+└── docs/            setup notes
 ```
 
 ## Linked files per OS
@@ -36,12 +35,6 @@ dotfiles/
 | `linux/.bashrc` | ✓ | ✓ | – |
 | `linux/.bash_profile` | ✓ | ✓ | – |
 | `linux/.inputrc` | ✓ | ✓ | – |
-| `linux/.config.fish` | ✓ | ✓ | – |
-| `linux/.latexmkrc` | ✓ | ✓ | – |
-| `linux/.vifm/vifmrc` | ✓ | ✓ | – |
-| `linux/.Xresources` | ✓ | – | – |
-| `linux/.xinitrc` | ✓ | – | – |
-| `linux/.xmonad/*.hs` | ✓ | – | – |
 
 ## macOS manual setup
 
@@ -63,5 +56,4 @@ Import `mac/.btt.json` from BetterTouchTool → Preferences → Manage Presets.
 ## Notes
 
 - `docs/windows-notes.md` — Windows GUI settings (Excel / PowerPoint / IME)
-- `docs/mac-notes.md` — macOS notes
-- `docs/linux-notes/` — Linux environment notes
+- `docs/mac-notes.md` — macOS setup notes
