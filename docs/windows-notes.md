@@ -14,7 +14,6 @@ GUI settings for the Windows environment.
 
 ## IME
 
-- `General` → `Predictive Input` → **Off**
 - `General` → `Compatibility` → **On**
 - `Advanced` → `General`
   - `Space` → **Always Half Width**
