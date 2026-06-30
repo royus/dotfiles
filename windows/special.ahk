@@ -1,6 +1,6 @@
 ﻿#Requires AutoHotkey v2.0
 
-;;Specials
+;; Specials
 sc079::Enter
 [::Backspace
 sc073::RShift
@@ -8,13 +8,13 @@ sc07d::\
 ]::[
 \::]
 
-;;Layers
+;; Layers
 FnKeys := ["sc07b", "sc070"]
 
 sc07b::F13
 sc070::F14
 
-; 複合キーのホットキー登録
+;; Arrows
 for key in FnKeys {
     Hotkey(key " & h", (*) => Send("{Left}"))
     Hotkey(key " & j", (*) => Send("{Down}"))
