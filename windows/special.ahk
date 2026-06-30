@@ -10,7 +10,6 @@ sc07d::\
 
 ;; Layers
 FnKeys := ["sc07b", "sc070"]
-
 sc07b::F13
 sc070::F14
 
