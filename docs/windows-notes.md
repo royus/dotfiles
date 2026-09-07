@@ -87,3 +87,20 @@ diagrams in the top-level [README](../README.md#eucalyn-layout-reference).
 The arrow-layer trigger keys on Windows are `無変換` → F13 and `カタカナ/ひらがな`
 → F14 (the IME-toggle behavior is configured separately under [IME](#ime)
 above).
+
+## Caps Lock
+
+Turn Caps Lock **off** with `Shift` rather than the `Caps Lock` key, so a stuck
+Caps Lock can be cleared without a key the keyboard may not expose.
+
+- `Settings` → `Time & language` → `Typing` → `Advanced keyboard settings` →
+  `Input language hot keys` → `Advanced Key Settings` →
+  `To turn off Caps Lock` → **Press the SHIFT key**
+
+Windows 11 moved this entry under `Typing`; it is no longer on the
+`Language & region` page. Direct open:
+`rundll32.exe Shell32.dll,Control_RunDLL input.dll,,{C07337D3-DB2C-4D0B-9A93-B722A6C106E2}`
+
+Only the *off* direction moves to `Shift`; `Caps Lock` still turns it on. Chosen
+over remapping the key away entirely (PowerToys / Scancode Map) because it needs
+no resident software and no reboot.
