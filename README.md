@@ -89,3 +89,7 @@ matching file via Vimium → Options → Settings → Restore settings:
   - `c` replaces `t` for createTab.
   - `linkHintCharacters` tuned to eucalyn home/top/bottom letter outputs.
 - `apps/vimium-options-qwerty.json` — baseline for qwerty keyboards.
+
+## License
+
+[MIT](LICENSE).

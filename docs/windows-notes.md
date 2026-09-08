@@ -61,6 +61,10 @@ move was for. Reopen only if Mozc's Windows renderer gains theming.
 **Conclusion: there is currently no way to satisfy R1–R4 and have a dark
 candidate window. Staying on the legacy IME.**
 
+#### Rejected wiring for the new IME (reference only)
+
+Kept so the design does not have to be rediscovered. This is **not** what
+`special.ahk` does today; the current wiring is F13 / F14 as described above.
 
 The new IME can only bind 無変換 / 変換 / Ctrl+Space / Shift+Space. Rather than
 teaching the IME about F13 / F14, let AHK emit the keycodes the new IME already

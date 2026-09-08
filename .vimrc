@@ -1,6 +1,11 @@
 " Last Change: 2026-05-05
 " Minimal Vim configuration
 
+" all autocmds below live in this group so re-sourcing does not duplicate them
+augroup vimrc
+	autocmd!
+augroup END
+
 "appearance{{{
 set t_Co=256
 syntax enable
@@ -12,9 +17,9 @@ set background=dark
 set breakindent showbreak=+++
 set smartindent autoindent
 set tabstop=4 shiftwidth=4 shiftround noexpandtab smarttab
-autocmd filetype tex,text,vim,yaml setlocal tabstop=2 shiftwidth=2
-autocmd filetype markdown,php setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
-autocmd filetype css,html,javascript,json,typescript setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
+autocmd vimrc filetype tex,text,vim,yaml setlocal tabstop=2 shiftwidth=2
+autocmd vimrc filetype markdown,php setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
+autocmd vimrc filetype css,html,javascript,json,typescript setlocal expandtab tabstop=2 softtabstop=2 shiftwidth=2
 set display=lastline
 set scrolloff=7
 set helpheight=1000
@@ -40,7 +45,7 @@ set autochdir hidden
 nnoremap z za
 nnoremap Z zR
 vnoremap z zf
-autocmd filetype vim,tex set foldmethod=marker
+autocmd vimrc filetype vim,tex set foldmethod=marker
 "}}}
 
 "searches{{{
@@ -79,7 +84,7 @@ if filereadable('/proc/version') && readfile('/proc/version')[0] =~? 'microsoft\
 		autocmd TextYankPost * :call system('clip.exe', @")
 	augroup END
 endif
-autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+autocmd vimrc BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 "}}}
 
 "mappings{{{
@@ -215,10 +220,15 @@ command! EucalynToggle call s:ApplyEucalyn(!g:eucalyn)
 "}}}
 
 "strip trailing whitespace on save{{{
+" skipped for filetypes where trailing spaces are significant
+" (markdown: two-space hard line break / diff: context lines)
 function! s:remove_dust()
+	if index(['markdown', 'diff'], &filetype) >= 0
+		return
+	endif
 	let l:cursor=getpos(".")
 	%s/\s\+$//ge
 	call setpos(".", l:cursor)
 endfunction
-autocmd BufWritePre * call <SID>remove_dust()
+autocmd vimrc BufWritePre * call <SID>remove_dust()
 "}}}

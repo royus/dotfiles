@@ -48,9 +48,14 @@ alias vimrc='vim ~/.vimrc'
 alias vi='vim'
 complete -cf sudo
 
-export PATH=/sbin:/usr/sbin:/usr/local/sbin:$PATH
-export LANG=C
+# prepend sbin dirs once (nested shells re-source this file)
+case ":$PATH:" in
+	*:/usr/local/sbin:*) ;;
+	*) export PATH=/sbin:/usr/sbin:/usr/local/sbin:$PATH ;;
+esac
 
-if [ -e ~/.local_bashrc ]; then
-	source .local_bashrc
-fi
+# locale: set LANG only, here (login and non-login shells both read this file)
+export LANG=en_US.UTF-8
+
+# machine-local overrides (not tracked)
+[ -f ~/.local_bashrc ] && . ~/.local_bashrc
