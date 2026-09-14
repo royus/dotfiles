@@ -1,6 +1,7 @@
 # dotfiles
 
-Personal dotfiles. Supports WSL / Linux / macOS.
+Personal dotfiles for WSL / Linux / macOS, plus AutoHotkey scripts for
+Windows.
 
 ## Install
 
@@ -53,7 +54,7 @@ dotfiles/
 
 Unchanged from QWERTY: `Q W P A K Z X C V /`.
 
-### Arrow layer (hold 英数 or かな on macOS, 無変換 or カタひら on Windows)
+### Arrow layer (hold 英数 or かな on macOS, 無変換 or カタカナ/ひらがな on Windows)
 
 Layer trigger is on physical key positions (independent of the base remap).
 
@@ -67,13 +68,16 @@ Layer trigger is on physical key positions (independent of the base remap).
 └───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘
 ```
 
-`Backspace` while layer held → forward `Delete`.
+`Backspace` while layer held → forward `Delete`. Windows only: `m` while
+layer held → `AppsKey` (context menu).
 
-Tap (no other key) → sends `英数` / `かな` (IME toggle).
+Tap (no other key) → IME off / on. On macOS this is `英数` / `かな` directly;
+on Windows the tap emits F13 / F14 and the IME maps them (see
+`docs/windows-notes.md`).
 
 ## Per-OS setup notes
 
-- `docs/windows-notes.md` — Windows GUI settings (Excel / PowerPoint / IME) and AutoHotkey setup
+- `docs/windows-notes.md` — Windows GUI settings (Excel / PowerPoint / IME / Caps Lock) and AutoHotkey setup
 - `docs/mac-notes.md` — macOS system settings, app config import (Karabiner / BetterTouchTool / Eucalyn)
 
 ## App configs

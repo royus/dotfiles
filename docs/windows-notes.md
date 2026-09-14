@@ -44,9 +44,10 @@ on the arrow layer in place of the composing-state bindings.
 
 ## Eucalyn layout (AutoHotkey v2)
 
-AHK is used **only on the laptop, and only for its built-in keyboard**;
-external keyboards keep their hardware layout and AHK is not run on other
-machines. See the layout diagrams in the top-level
+Run **only on the laptop, and only while its built-in keyboard is in use**.
+Unlike Karabiner, AHK cannot tell keyboards apart, so it remaps an external
+keyboard too; stop it when one is attached. Not run on other machines. See the
+layout diagrams in the top-level
 [README](../README.md#eucalyn-layout-reference).
 
 1. Install AutoHotkey v2: <https://www.autohotkey.com/>
@@ -54,9 +55,8 @@ machines. See the layout diagrams in the top-level
 3. To start at login: place a shortcut to `main.ahk` in
    `shell:startup` (`%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup`).
 
-The arrow-layer trigger keys on Windows are `無変換` → F13 and `カタカナ/ひらがな`
-→ F14 (the IME-toggle behavior is configured separately under [IME](#ime)
-above).
+What the taps of `無変換` / `カタカナ/ひらがな` do is configured under
+[IME](#ime) above.
 
 ## Caps Lock
 
