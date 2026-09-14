@@ -1,7 +1,6 @@
 # dotfiles
 
-Personal dotfiles for WSL / Linux / macOS, plus AutoHotkey scripts for
-Windows.
+Personal dotfiles. Supports WSL / Linux / macOS.
 
 ## Install
 
