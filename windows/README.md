@@ -27,6 +27,19 @@ Set Windows UI and apps to English while keeping the Japanese IME as the default
 1. Open **Settings** > **Time & language** > **Typing** > **Advanced keyboard settings**.
 2. Set **Override for default input method** to `Japanese - Microsoft IME`.
 
+### 3. Date & Time Format
+
+1. Open **Settings** > **Time & language** > **Date & time** > **Change date and time formats** (or navigate to **Region** settings in Control Panel).
+
+| Field            | Value                      |
+|------------------|----------------------------|
+| Calendar         | Gregorian Calendar         |
+| First day of week | Monday                    |
+| Short date       | `yyyy-MM-dd`               |
+| Long date        | `dddd, MMMM d, yyyy`       |
+| Short time       | `H:mm`                     |
+| Long time        | `H:mm:ss`                  |
+
 (For assigning F13/F14 to IME-Off/IME-On, see the [IME](#ime) section below.)
 ## Excel
 
@@ -77,8 +90,8 @@ layout diagrams in the top-level
 [README](../README.md#eucalyn-layout-reference).
 
 1. Install AutoHotkey v2: <https://www.autohotkey.com/>
-2. Run `main.ahk` (it `#Include`s `eucalyn.ahk` and `special.ahk`).
-3. To start at login: place a shortcut to `main.ahk` in
+2. Run `ahk/main.ahk` (it `#Include`s `eucalyn.ahk` and `special.ahk`).
+3. To start at login: place a shortcut to `ahk/main.ahk` in
    `shell:startup` (`%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup`).
 
 What the taps of `無変換` / `カタカナ/ひらがな` do is configured under
