@@ -2,6 +2,32 @@
 
 GUI settings for the Windows environment.
 
+## Automated Settings (Script)
+
+Run `./setup.ps1` to automatically apply:
+- System and App theme: Dark mode
+- Taskbar clock: Show seconds
+
+## Base Setup
+
+- Manually configure keyboard, mouse, and Wi-Fi connection.
+
+## Language and Region (English UI + Japanese Input)
+
+Set Windows UI and apps to English while keeping the Japanese IME as the default input method.
+
+### 1. Language & Region
+
+1. Open **Settings** > **Time & language** > **Language & region**.
+2. Add `English (United States)` to **Preferred languages** and drag it to the top of the list.
+3. Leave **Region** > **Country or region** as `Japan`.
+
+### 2. Default Input Method Override
+
+1. Open **Settings** > **Time & language** > **Typing** > **Advanced keyboard settings**.
+2. Set **Override for default input method** to `Japanese - Microsoft IME`.
+
+(For assigning F13/F14 to IME-Off/IME-On, see the [IME](#ime) section below.)
 ## Excel
 
 - `File` → `Options` → `Quick Access Toolbar` → `Home Tab` → `Select Objects`
@@ -51,7 +77,7 @@ layout diagrams in the top-level
 [README](../README.md#eucalyn-layout-reference).
 
 1. Install AutoHotkey v2: <https://www.autohotkey.com/>
-2. Run `windows/main.ahk` (it `#Include`s `eucalyn.ahk` and `special.ahk`).
+2. Run `main.ahk` (it `#Include`s `eucalyn.ahk` and `special.ahk`).
 3. To start at login: place a shortcut to `main.ahk` in
    `shell:startup` (`%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup`).
 

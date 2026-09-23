@@ -22,10 +22,9 @@ dotfiles/
 ├── install.sh       installer script
 ├── .vimrc           Vim config (all platforms)
 ├── linux/           Linux / WSL configs (.bashrc, .bash_profile, .inputrc)
-├── mac/             macOS configs (Karabiner, BetterTouchTool)
-├── windows/         Windows AutoHotkey scripts (eucalyn layout)
-├── apps/            cross-platform app configs (Vimium, ...)
-└── docs/            setup notes
+├── mac/             macOS configs (Karabiner, BetterTouchTool) and setup notes
+├── windows/         Windows AutoHotkey scripts, setup.ps1, and setup notes
+└── apps/            cross-platform app configs (Vimium, ...)
 ```
 
 ## Linked files per OS
@@ -72,12 +71,12 @@ layer held → `AppsKey` (context menu).
 
 Tap (no other key) → IME off / on. On macOS this is `英数` / `かな` directly;
 on Windows the tap emits F13 / F14 and the IME maps them (see
-`docs/windows-notes.md`).
+`windows/README.md`).
 
 ## Per-OS setup notes
 
-- `docs/windows-notes.md` — Windows GUI settings (Excel / PowerPoint / IME / Caps Lock) and AutoHotkey setup
-- `docs/mac-notes.md` — macOS system settings, app config import (Karabiner / BetterTouchTool / Eucalyn)
+- `windows/README.md` — Windows GUI settings (Excel / PowerPoint / IME / Caps Lock) and AutoHotkey setup
+- `mac/README.md` — macOS system settings, app config import (Karabiner / BetterTouchTool / Eucalyn)
 
 ## App configs
 

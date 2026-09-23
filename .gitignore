@@ -46,3 +46,4 @@ $RECYCLE.BIN/
 .env
 .env.local
 *.local
+GEMINI.md
